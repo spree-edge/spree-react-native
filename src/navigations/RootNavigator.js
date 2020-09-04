@@ -19,7 +19,7 @@ const MyTheme = {
 const RootStack = createStackNavigator()
 
 export default function App() {
-  const [isSignedIn, setIsSignedIn] = React.useState(true)  //Try making signed in
+  const [isSignedIn, setIsSignedIn] = React.useState(false)  //Try making signed in
 
   return (
     <NavigationContainer theme={MyTheme}>
@@ -31,9 +31,9 @@ export default function App() {
             </>
           ) : (
             <>
-              <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} />
-              <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} />
-              <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} />
+              <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} options={{headerShown: false}} />
+              <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} options={{headerShown: false}}/>
+              <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} options={{headerShown: false}}/>
               <RootStack.Screen name="SignIn" component={SignInScreen} />
               <RootStack.Screen name="SignUp" component={SignUpScreen} />
             </>
