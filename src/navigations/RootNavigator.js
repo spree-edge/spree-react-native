@@ -7,6 +7,9 @@ import SignUpScreen from '../screens/auth/SignUpScreen'
 import OnboardingAScreen from '../screens/onboarding/OnboardingAScreen'
 import OnboardingBScreen from '../screens/onboarding/OnboardingBScreen'
 import OnboardingCScreen from '../screens/onboarding/OnboardingCScreen'
+import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
+import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen'
+import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -23,19 +26,22 @@ export default function App() {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      <RootStack.Navigator>
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
         {
           isSignedIn ? (
             <>
-              <RootStack.Screen name="Home" component={HomeScreen} />
+              <RootStack.Screen name="Home" component={HomeScreen} options={{headerShown: true}} />
             </>
           ) : (
             <>
-              <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} options={{headerShown: false}} />
-              <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} options={{headerShown: false}}/>
-              <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} options={{headerShown: false}}/>
+              <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} />
+              <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} />
+              <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} />
               <RootStack.Screen name="SignIn" component={SignInScreen} />
               <RootStack.Screen name="SignUp" component={SignUpScreen} />
+              <RootStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+              <RootStack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+              <RootStack.Screen name="EnterCode" component={EnterCodeScreen} />
             </>
           )
         }

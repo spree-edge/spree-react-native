@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper'
+import { ThemeProvider } from 'react-native-elements'
 import RootNavigator from './src/navigations/RootNavigator'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
@@ -14,9 +15,11 @@ export default function App() {
 
   if(fontsLoaded) {
     return (
-      <PaperProvider>
-        <RootNavigator />
-      </PaperProvider>
+      <ThemeProvider>
+        <PaperProvider>
+          <RootNavigator />
+        </PaperProvider>
+      </ThemeProvider>
     )
   } else {
     return (
