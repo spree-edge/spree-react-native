@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const HomeScreen = () => {
+const CategoriesScreen = () => {
   return (
     <View style={styles.centeredContent}>
-      <Text>HomeScreen</Text>
+      <Text>CategoriesScreen</Text>
     </View>
   )
 }
 
-export default HomeScreen
+export default CategoriesScreen
 
 const styles = StyleSheet.create({
   centeredContent: {

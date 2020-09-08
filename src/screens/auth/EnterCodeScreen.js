@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 import { globalStyles } from '../../styles/global'
-import ChevronLeft from '../../../assets/icons/ChevronLeft'
+import { ChevronLeft } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Input } from 'react-native-elements'
 

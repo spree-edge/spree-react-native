@@ -56,6 +56,10 @@ export const globalStyles = StyleSheet.create({
     fontSize: 34,
     lineHeight: 40,
   },
+  headline3: {
+    fontFamily: 'lato-bold',
+    fontSize: 18,
+  },
   subhead: {
     fontFamily: 'lato-bold',
     fontSize: 16

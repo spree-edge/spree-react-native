@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 import { globalStyles } from '../../styles/global'
-import ChevronLeft from '../../../assets/icons/ChevronLeft'
+import { ChevronLeft } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Input } from 'react-native-elements'
 
@@ -12,7 +12,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       <ChevronLeft style={[globalStyles.mt32, {color: colors.black}]} 
         onPress={navigation.goBack}
       />
-      <Text style={[globalStyles.title, globalStyles.mt16]}>Forgot Password ?</Text>
+      <Text style={[globalStyles.title, globalStyles.mt16]}>Forget Password ?</Text>
       <Text
         style={[globalStyles.mt16, globalStyles.mb32, {color: colors.gray, lineHeight: 20}]}
       >

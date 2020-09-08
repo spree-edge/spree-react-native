@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { View, Image, Text, Button, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../styles/global'
-import ArrowLongRight from '../../../assets/icons/ArrowLongRight'
+import { ArrowLongRight } from '../../library/icons'
 
 const OnboardingBScreen = ({ navigation }) => {
   return (
@@ -14,7 +14,9 @@ const OnboardingBScreen = ({ navigation }) => {
         <Text style={[globalStyles.title, {color: '#fff'}]}>Find it</Text>
         <Text style={globalStyles.descriptionText}>Easy to find and check similar products in large catalogue.</Text>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 24}}>
-          <TouchableHighlight style={[globalStyles.roundedButton, globalStyles.centeredContent]}>
+          <TouchableHighlight style={[globalStyles.roundedButton, globalStyles.centeredContent]}
+            onPress={() => navigation.navigate('SignIn')}
+          >
             <Text style={globalStyles.descriptiveItem}>Go Shopping</Text>
           </TouchableHighlight>
           <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>

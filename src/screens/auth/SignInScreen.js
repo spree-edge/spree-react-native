@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { View, Text, TouchableHighlight } from 'react-native'
 import { globalStyles } from '../../styles/global'
-import ChevronLeft from '../../../assets/icons/ChevronLeft'
+import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-import Eye from '../../../assets/icons/Eye'
 
 const SignInScreen = ({ navigation }) => {
   // const password = React.createRef()

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import HomeScreen from '../screens/main/HomeScreen'
+import MainTabNavigator from './MainTabNavigator'
 import SignInScreen from '../screens/auth/SignInScreen'
 import SignUpScreen from '../screens/auth/SignUpScreen'
 import OnboardingAScreen from '../screens/onboarding/OnboardingAScreen'
@@ -21,8 +21,8 @@ const MyTheme = {
 
 const RootStack = createStackNavigator()
 
-export default function App() {
-  const [isSignedIn, setIsSignedIn] = React.useState(false)  //Try making signed in
+export default function RootStackNavigator() {
+  const [isSignedIn, setIsSignedIn] = React.useState(true)  //Try making signed in
 
   return (
     <NavigationContainer theme={MyTheme}>
@@ -30,7 +30,7 @@ export default function App() {
         {
           isSignedIn ? (
             <>
-              <RootStack.Screen name="Home" component={HomeScreen} options={{headerShown: true}} />
+              <RootStack.Screen name="MainTabNavigator" component={MainTabNavigator} />
             </>
           ) : (
             <>
