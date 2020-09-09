@@ -1,11 +1,24 @@
 import * as React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { globalStyles } from '../../../styles/global'
+
+const CategoryMenu = ({ headline, subheading }) => {
+  return (
+    <View style={styles.menuContainer}>
+      <Text>{headline}</Text>
+      <Text>{subheading}</Text>
+    </View>
+  )
+}
 
 const CategoriesScreen = () => {
   return (
-    <View style={styles.centeredContent}>
-      <Text>CategoriesScreen</Text>
-    </View>
+    <ScrollView>
+      <View>
+        <CategoryMenu headline="MEN" subheading="Spruce Up Your Look" />
+        <Text>CategoriesScreen</Text>
+      </View>
+    </ScrollView>
   )
 }
 
@@ -16,5 +29,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  menuContainer: {
+    width: '93.6%',
+    alignSelf: 'center'
   }
 })

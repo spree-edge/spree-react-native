@@ -7,7 +7,7 @@ const OnboardingCScreen = ({ navigation }) => {
   return (
     <View style={globalStyles.containerFluid}>
       <ImageBackground
-        source={require('../../../assets/images/onboarding-img-3.png')}
+        source={require('../../../assets/images/onboarding/onboarding-img-3.png')}
         style={{flex: 1, justifyContent: 'flex-end', paddingVertical: 48, paddingHorizontal: '10%',}}
       >
         <View>

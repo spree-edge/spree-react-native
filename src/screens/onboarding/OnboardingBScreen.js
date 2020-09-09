@@ -7,7 +7,7 @@ const OnboardingBScreen = ({ navigation }) => {
   return (
     <View style={globalStyles.containerFluid}>
       <Image
-        source={require('../../../assets/images/onboarding-img-2.png')}
+        source={require('../../../assets/images/onboarding/onboarding-img-2.png')}
         style={globalStyles.onboardingCover}  
       />
       <View style={globalStyles.onboardingCardContainer}>
