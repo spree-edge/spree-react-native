@@ -92,4 +92,7 @@ export const globalStyles = StyleSheet.create({
   mb32: {
     marginBottom: 32
   },
+  mb114: {
+    marginBottom: 114
+  }
 })

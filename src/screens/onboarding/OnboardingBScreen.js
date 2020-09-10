@@ -7,12 +7,17 @@ const OnboardingBScreen = ({ navigation }) => {
   return (
     <View style={globalStyles.containerFluid}>
       <Image
-        source={require('../../../assets/images/onboarding/onboarding-img-2.png')}
+        source={require('../../../assets/images/onboarding/onboarding-img-2/onboarding-img-2.png')}
         style={globalStyles.onboardingCover}  
       />
       <View style={globalStyles.onboardingCardContainer}>
         <Text style={[globalStyles.title, {color: '#fff'}]}>Find it</Text>
         <Text style={globalStyles.descriptionText}>Easy to find and check similar products in large catalogue.</Text>
+        <View style={[styles.dotsContainer, globalStyles.mt32]}>
+          <View style={styles.inactive}/>
+          <View style={styles.active}/>
+          <View style={styles.inactive}/>
+        </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 24}}>
           <TouchableHighlight style={[globalStyles.roundedButton, globalStyles.centeredContent]}
             onPress={() => navigation.navigate('SignIn')}
@@ -33,3 +38,24 @@ const OnboardingBScreen = ({ navigation }) => {
 }
 
 export default OnboardingBScreen
+
+const styles = StyleSheet.create({
+  inactive: {
+    width: 6,
+    height: 6,
+    borderRadius: 10,
+    backgroundColor: "#fff"
+  },
+  active: {
+    width: 16,
+    height: 6,
+    borderRadius: 10,
+    backgroundColor: "#ee3168"
+  },
+  dotsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: 70,
+    // borderWidth: 2,
+  }
+})

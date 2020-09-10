@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text, TouchableHighlight, TextInput, StyleSheet } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft } from '../../library/icons'
 import { colors } from '../../res/palette'
@@ -18,13 +18,51 @@ const EnterCodeScreen = ({ navigation }) => {
       >
          We have sent an email with 4-digit password reset code. Enter code below to continue.
       </Text>
-      <Input
+      {/* <Input
         placeholder="Enter Registered Email" 
         keyboardType="email-address"
         containerStyle={[{backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
         inputStyle={{fontFamily: 'lato-regular',}}
         inputContainerStyle={{ paddingTop: 5, borderBottomColor: '#fff'}}
-      />
+      /> */}
+      <View style={{flexDirection: 'row'}}>
+        <View
+          style={{
+            width: 73,
+          }}
+        >
+          <Input
+            style={styles.inputBackground}
+          />
+        </View>
+        <View
+          style={{
+            width: 73,
+          }}
+        >
+          <Input
+            style={styles.inputBackground}
+          />
+        </View>
+        <View
+          style={{
+            width: 73,
+          }}
+        >
+          <Input
+            style={styles.inputBackground}
+          />
+        </View>
+        <View
+          style={{
+            width: 73,
+          }}
+        >
+          <Input
+            style={styles.inputBackground}
+          />
+        </View>
+      </View>
       <TouchableHighlight
         style={[globalStyles.btnBlock, globalStyles.primary, globalStyles.mt32 ]}
         onPress={() => navigation.navigate('ResetPassword')}
@@ -38,3 +76,20 @@ const EnterCodeScreen = ({ navigation }) => {
 }
 
 export default EnterCodeScreen
+
+const styles = StyleSheet.create({
+  inputBackground: {
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "#ffffff",
+    shadowColor: "rgba(0, 0, 0, 0.05)",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowRadius: 8,
+    shadowOpacity: 1,
+    borderStyle: "solid",
+    borderWidth: 1,
+  }
+})
