@@ -27,7 +27,7 @@ function MainTabNavigator() {
           tabBarIcon: ({color, size}) => <MenuGridR color={color} size={size} />
         }}
       />
-      <Tab.Screen name="Favourites" component={FavouritesStackNavigator} 
+      <Tab.Screen name="Favorites" component={FavouritesStackNavigator} 
         options={{
           tabBarIcon: ({color, size}) => <Heart color={color} size={size} />
         }}

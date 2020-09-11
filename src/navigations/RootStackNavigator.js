@@ -22,7 +22,7 @@ const MyTheme = {
 const RootStack = createStackNavigator()
 
 export default function RootStackNavigator() {
-  const [isSignedIn, setIsSignedIn] = React.useState(false)  //Try making signed in
+  const [isSignedIn, setIsSignedIn] = React.useState(true)  //Try making signed in
 
   return (
     <NavigationContainer theme={MyTheme}>

@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import { globalStyles } from '../../../styles/global'
 import { ChevronDown } from '../../../library/icons'
 import { colors } from '../../../res/palette'
 import { List } from 'react-native-paper'

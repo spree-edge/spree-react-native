@@ -158,3 +158,69 @@ export const Search = props => {
     </Svg>
   )
 }
+
+export const Close = props => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M6.225 4.811a1 1 0 00-1.414 1.414L10.586 12 4.81 17.775a1 1 0 101.414 1.414L12 13.414l5.775 5.775a1 1 0 001.414-1.414L13.414 12l5.775-5.775a1 1 0 00-1.414-1.414L12 10.586 6.225 4.81z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const Pen = props => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M21.264 2.293a1 1 0 00-1.415 0l-.872.872a3.001 3.001 0 00-3.415.587L4.955 14.358l5.657 5.657L21.22 9.408c.924-.923 1.119-2.3.586-3.414l.873-.873a1 1 0 000-1.414l-1.415-1.414zm-4.268 8.51l-6.384 6.384-2.828-2.829 6.383-6.383 2.829 2.829zm1.818-1.818l.99-.99a1 1 0 000-1.415l-1.413-1.414a1 1 0 00-1.415 0l-.99.99 2.828 2.83z"
+        fill="currentColor"
+      />
+      <Path d="M2 22.95l2.122-7.778 5.656 5.657L2 22.95z" fill="currentColor" />
+    </Svg>
+  )
+}
+
+export const User = props => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zm-2 0a2 2 0 11-4 0 2 2 0 014 0z"
+        fill="currentColor"
+      />
+      <Path
+        d="M16 15a1 1 0 00-1-1H9a1 1 0 00-1 1v6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-2v-6z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const Gift = props => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M17.535 2.879a3 3 0 00-4.242 0l-1.414 1.414c-.06.06-.118.122-.172.186a3.01 3.01 0 00-.171-.186L10.12 2.879A3 3 0 105.88 7.12L6.757 8H1v6h2v8h18v-8h2V8h-6.343l.878-.879a3 3 0 000-4.242zM14.707 7.12l1.414-1.414a1 1 0 00-1.414-1.414l-1.414 1.414a1 1 0 001.414 1.414zm-4.586-1.414L8.707 4.293a1 1 0 10-1.414 1.414l1.414 1.414a1 1 0 101.414-1.414zM21 10v2H3v-2h18zm-8.083 4H19v6h-6.083v-6zm-1.834 0v6H5v-6h6.083z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const ChevronRight = props => {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M10.586 6.343L12 4.93 19.071 12 12 19.071l-1.414-1.414L16.243 12l-5.657-5.657z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
