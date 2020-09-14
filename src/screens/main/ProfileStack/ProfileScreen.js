@@ -9,23 +9,23 @@ import { Divider } from 'react-native-elements'
 const list = [
   {
     title: 'Account',
-    icon: <User style={{color: colors.black}} />
+    icon: <User size={24} style={{color: colors.black}} />
   },
   {
     title: 'Saved Address',
-    icon: <Home style={{color: colors.black}} />
+    icon: <Home size={24} style={{color: colors.black}} />
   },
   {
     title: 'My Orders',
-    icon: <ShoppingBag style={{color: colors.black}} />
+    icon: <ShoppingBag size={24} style={{color: colors.black}} />
   },
   {
     title: 'Favourites',
-    icon: <Heart style={{color: colors.black}} />
+    icon: <Heart size={24} style={{color: colors.black}} />
   },
   {
     title: 'Offers',
-    icon: <Gift style={{color: colors.black}} />
+    icon: <Gift size={24} style={{color: colors.black}} />
   },
 ]
 
@@ -47,7 +47,7 @@ const ProfileScreen = () => {
             />
             <View style={styles.profileDetails}>
               <Text style={[globalStyles.subhead, styles.profileName]}>Jane Pinto</Text>
-              <Pen style={{color: colors.white}} />
+              <Pen size={24} style={{color: colors.white}} />
             </View>
           </View>
         </LinearGradient>
@@ -59,7 +59,7 @@ const ProfileScreen = () => {
               <View style={styles.listContainer}>
                 <View style={styles.listIcon}>{item.icon}</View>
                 <Text style={[styles.title]}>{item.title}</Text>
-                <View style={styles.listIcon}><ChevronRight style={{color: colors.black}} /></View>
+                <View style={styles.listIcon}><ChevronRight size={24} style={{color: colors.black}} /></View>
               </View>
               <Divider />
             </View>

@@ -12,10 +12,10 @@ function FavouritesStackNavigator () {
   return (
     <FavouritesStack.Navigator
       screenOptions={{
-        headerLeft: () => <Menu style={{color: colors.black}} />,
+        headerLeft: () => <Menu size={24} style={{color: colors.black}} />,
         headerRight: () => <>
-          <Search style={{color: colors.black, marginRight: 14}} />
-          <ShoppingBag style={{color: colors.black}} />
+          <Search size={24} style={{color: colors.black, marginRight: 14}} />
+          <ShoppingBag size={24} style={{color: colors.black}} />
         </>,
         headerLeftContainerStyle: {
           // borderWidth: 2,

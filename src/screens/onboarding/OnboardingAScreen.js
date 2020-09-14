@@ -30,7 +30,7 @@ const OnboardingAScreen = ({ navigation }) => {
               style={globalStyles.descriptiveItem}
               onPress={() => navigation.navigate('OnboardingB')}  
             >Next</Text>
-            <ArrowLongRight style={{color: '#fff', marginLeft: 8}} />
+            <ArrowLongRight size={24} style={{color: '#fff', marginLeft: 8}} />
             {/* <SvgUri
               // width="100%"
               // height="100%"

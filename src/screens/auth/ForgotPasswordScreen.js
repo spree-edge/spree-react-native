@@ -9,7 +9,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
-      <ChevronLeft style={[globalStyles.mt32, {color: colors.black}]} 
+      <ChevronLeft size={24} style={[globalStyles.mt32, {color: colors.black}]} 
         onPress={navigation.goBack}
       />
       <Text style={[globalStyles.title, globalStyles.mt16]}>Forget Password ?</Text>

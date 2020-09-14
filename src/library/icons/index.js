@@ -1,9 +1,9 @@
 import * as React from "react"
 import Svg, { Path } from "react-native-svg"
 
-export const MenuGridR = props => {
+export const MenuGridR = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M4 4h4v4H4V4zM4 10h4v4H4v-4zM8 16H4v4h4v-4zM10 4h4v4h-4V4zM14 10h-4v4h4v-4zM10 16h4v4h-4v-4zM20 4h-4v4h4V4zM16 10h4v4h-4v-4zM20 16h-4v4h4v-4z"
         fill="currentColor"
@@ -12,9 +12,9 @@ export const MenuGridR = props => {
   )
 }
 
-export const Heart = props => {
+export const Heart = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -25,9 +25,9 @@ export const Heart = props => {
   )
 }
 
-export const Profile = props => {
+export const Profile = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -44,9 +44,9 @@ export const Profile = props => {
   )
 }
 
-export const Menu = props => {
+export const Menu = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M2 6a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM2 12.032a1 1 0 011-1h18a1 1 0 110 2H3a1 1 0 01-1-1zM3 17.064a1 1 0 100 2h18a1 1 0 000-2H3z"
         fill="currentColor"
@@ -55,9 +55,9 @@ export const Menu = props => {
   )
 }
 
-export const Home = props => {
+export const Home = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -68,9 +68,9 @@ export const Home = props => {
   )
 }
 
-export const Eye = props => {
+export const Eye = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -87,9 +87,9 @@ export const Eye = props => {
   )
 }
 
-export const ChevronLeft = props => {
+export const ChevronLeft = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M16.243 6.343L14.828 4.93 7.758 12l7.07 7.071 1.415-1.414L10.586 12l5.657-5.657z"
         fill="currentColor"
@@ -98,9 +98,9 @@ export const ChevronLeft = props => {
   )
 }
 
-export const ChevronDown = props => {
+export const ChevronDown = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M6.343 7.757L4.93 9.172 12 16.242l7.071-7.07-1.414-1.415L12 13.414 6.343 7.757z"
         fill="currentColor"
@@ -109,9 +109,9 @@ export const ChevronDown = props => {
   )
 }
 
-export const ArrowLongRight = props => {
+export const ArrowLongRight = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M23.068 11.993l-4.25-4.236-1.412 1.417 1.835 1.83L.932 11v2l18.305.002-1.821 1.828 1.416 1.412 4.236-4.25z"
         fill="currentColor"
@@ -120,9 +120,9 @@ export const ArrowLongRight = props => {
   )
 }
 
-export const ShoppingBag = props => {
+export const ShoppingBag = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -133,9 +133,9 @@ export const ShoppingBag = props => {
   )
 }
 
-export const Bell = props => {
+export const Bell = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -146,9 +146,9 @@ export const Bell = props => {
   )
 }
 
-export const Search = props => {
+export const Search = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -159,9 +159,9 @@ export const Search = props => {
   )
 }
 
-export const Close = props => {
+export const Close = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M6.225 4.811a1 1 0 00-1.414 1.414L10.586 12 4.81 17.775a1 1 0 101.414 1.414L12 13.414l5.775 5.775a1 1 0 001.414-1.414L13.414 12l5.775-5.775a1 1 0 00-1.414-1.414L12 10.586 6.225 4.81z"
         fill="currentColor"
@@ -170,9 +170,9 @@ export const Close = props => {
   )
 }
 
-export const Pen = props => {
+export const Pen = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -184,9 +184,9 @@ export const Pen = props => {
   )
 }
 
-export const User = props => {
+export const User = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -201,9 +201,9 @@ export const User = props => {
   )
 }
 
-export const Gift = props => {
+export const Gift = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -214,11 +214,35 @@ export const Gift = props => {
   )
 }
 
-export const ChevronRight = props => {
+export const ChevronRight = ({ size , ...props }) => {
   return (
-    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         d="M10.586 6.343L12 4.93 19.071 12 12 19.071l-1.414-1.414L16.243 12l-5.657-5.657z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const SortAZ = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M6 8a1 1 0 011-1h10a1 1 0 110 2H7a1 1 0 01-1-1zM8 12a1 1 0 011-1h6a1 1 0 110 2H9a1 1 0 01-1-1zM11 15a1 1 0 100 2h2a1 1 0 100-2h-2z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const Filters = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.708 15.44a6.968 6.968 0 003.997 1.266 7 7 0 106.59-9.413A7 7 0 104.708 15.44zM5.855 13.8a4.976 4.976 0 002.432.886 6.97 6.97 0 011.256-4.408 6.97 6.97 0 013.713-2.687 5 5 0 10-7.4 6.21zm12.29-3.603a4.977 4.977 0 00-2.432-.885 6.97 6.97 0 01-1.256 4.408 6.97 6.97 0 01-3.713 2.687 5 5 0 107.4-6.21z"
         fill="currentColor"
       />
     </Svg>

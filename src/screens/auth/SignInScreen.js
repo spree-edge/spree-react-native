@@ -12,7 +12,7 @@ const SignInScreen = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
-      <ChevronLeft style={[globalStyles.mt32, {color: colors.black}]} 
+      <ChevronLeft size={24} style={[globalStyles.mt32, {color: colors.black}]} 
         onPress={navigation.goBack}
       />
       <Text style={[globalStyles.title, globalStyles.mt16]}>Welcome Back!</Text>
@@ -39,7 +39,7 @@ const SignInScreen = ({ navigation }) => {
           containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
           inputStyle={{fontFamily: 'lato-regular',}}
           inputContainerStyle={{ borderBottomColor: '#fff'}}
-          rightIcon={<Eye style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
+          rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
         />
         <Button 
           title="Password help ?"

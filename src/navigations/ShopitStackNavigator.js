@@ -1,6 +1,7 @@
 import * as React from "react"
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
+import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
 import { Menu, ShoppingBag, Bell } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
@@ -12,15 +13,10 @@ function ShopitStackNavigator () {
   return (
     <ShopitStack.Navigator
       screenOptions={{
-        headerLeft: () => <Menu style={{color: colors.black}} />,
         headerRight: () => <>
-          <Bell style={{color: colors.black, marginRight: 14}} />
-          <ShoppingBag style={{color: colors.black}} />
+          <Bell size={24} style={{color: colors.black, marginRight: 14}} />
+          <ShoppingBag size={24} style={{color: colors.black}} />
         </>,
-        headerLeftContainerStyle: {
-          // borderWidth: 2,
-          paddingHorizontal: 22
-        },
         headerTitleStyle: {
           ...globalStyles.headline3
         },
@@ -32,7 +28,18 @@ function ShopitStackNavigator () {
         }
       }}
     >
-      <ShopitStack.Screen name="Shopit" component={HomeScreen} />
+      <ShopitStack.Screen name="Shopit" component={HomeScreen}
+        options={{
+          headerLeft: () => <Menu size={24} style={{color: colors.black}} />,
+          headerLeftContainerStyle: {
+            // borderWidth: 2,
+            paddingHorizontal: 22
+          }
+        }}
+      />
+      <ShopitStack.Screen name="WomensDressList" component={WomensDressListScreen}
+        options={{ headerTitle: 'Womens Dress'}}
+      />
     </ShopitStack.Navigator>
   )
 }

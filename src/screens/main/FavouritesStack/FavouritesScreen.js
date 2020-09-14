@@ -31,9 +31,9 @@ const FavouriteCard = ({ imageSource, name, description, color, size, discounted
             </View>
           </View>
           <View style={styles.actionsContainer}>
-            <Close style={{color: colors.black}} />
+            <Close size={24} style={{color: colors.black}} />
             <View style={styles.activeShoppingBag}>
-              <ShoppingBag style={{color: colors.white}} />
+              <ShoppingBag size={24} style={{color: colors.white}} />
             </View>
           </View>
         </View>

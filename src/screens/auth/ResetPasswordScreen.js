@@ -11,7 +11,7 @@ const ResetPasswordScreen = ({ navigation }) => {
 
   return (
     <View style={globalStyles.container}>
-      <ChevronLeft style={[globalStyles.mt32, {color: colors.black}]} 
+      <ChevronLeft size={24} style={[globalStyles.mt32, {color: colors.black}]} 
         onPress={navigation.goBack}
       />
       <Text style={[globalStyles.title, globalStyles.mt16]}>Reset Password</Text>
@@ -28,7 +28,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
           inputStyle={{fontFamily: 'lato-regular',}}
           inputContainerStyle={{ borderBottomColor: '#fff'}}
-          rightIcon={<Eye style={{color: colors.gray}} onPress={() => setNewPasswordSecureEntryToggle(!newPasswordSecureEntryToggle)} />}
+          rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setNewPasswordSecureEntryToggle(!newPasswordSecureEntryToggle)} />}
         />
         <Input
           // ref={password}
@@ -37,7 +37,7 @@ const ResetPasswordScreen = ({ navigation }) => {
           containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
           inputStyle={{fontFamily: 'lato-regular',}}
           inputContainerStyle={{ borderBottomColor: '#fff'}}
-          rightIcon={<Eye style={{color: colors.gray}} onPress={() => setConfPasswordSecureEntryToggle(!confPasswordSecureEntryToggle)} />}
+          rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setConfPasswordSecureEntryToggle(!confPasswordSecureEntryToggle)} />}
         />
         <TouchableHighlight
           style={[globalStyles.btnBlock, globalStyles.primary, globalStyles.mt32 ]}

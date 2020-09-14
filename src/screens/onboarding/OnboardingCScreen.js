@@ -29,7 +29,7 @@ const OnboardingCScreen = ({ navigation }) => {
             >
               <Text style={globalStyles.descriptiveItem}
               >Login</Text>
-              <ArrowLongRight style={{color: '#fff', marginLeft: 8}} />
+              <ArrowLongRight size={24} style={{color: '#fff', marginLeft: 8}} />
             </TouchableOpacity>
           </View>
         </View>

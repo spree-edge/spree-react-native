@@ -9,7 +9,7 @@ const CategoryMenu = ({ headline, subheading }) => {
     <View style={styles.menuContainer}>
       <View>
         <Text>{headline}</Text>
-        <ChevronDown style={{color: colors.black}}/>
+        <ChevronDown size={24} style={{color: colors.black}}/>
       </View>
       <Text>{subheading}</Text>
     </View>

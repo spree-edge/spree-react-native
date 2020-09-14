@@ -4,7 +4,7 @@ import { SearchBar, Image } from 'react-native-elements'
 import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
 
-const Item = ({item}) => {
+const Item = ({ item }) => {
   return (
     <TouchableOpacity onPress={() => console.log(item)} style={{ marginHorizontal: 7, marginBottom: 24}}>
       <Image source={item.source} style={{width: 109, height: 160}} />
@@ -12,18 +12,18 @@ const Item = ({item}) => {
   )
 }
 
-const FlatListItem = ({ item, onPress, imageStyle, itemContainerStyle }) => (
+const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => (
   <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
     <Image source={item.source} style={{width: imageStyle.width, height: imageStyle.height }} />
   </TouchableOpacity>
 );
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = React.useState('')
 
   const newJustInRenderItem = ({ item }) => {
     return (
-      <FlatListItem
+      <FlatListImageItem
         item={item}
         onPress={() => console.log(item.id)}
         imageStyle={styles.newJustInImage}
@@ -53,6 +53,7 @@ const HomeScreen = () => {
       <Image
         source={require('../../../../assets/images/banner-first-order-discount/banner-first-order-discount.png')}
         style={{ width: '100%', height: 329 }}
+        onPress={() => navigation.navigate('WomensDressList')}
       />
       <Image
         source={require('../../../../assets/images/discount-stripe/DiscountStripe.png')}

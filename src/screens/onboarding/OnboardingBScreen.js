@@ -29,7 +29,7 @@ const OnboardingBScreen = ({ navigation }) => {
               style={globalStyles.descriptiveItem}
               onPress={() => navigation.navigate('OnboardingC')}
             >Next</Text>
-            <ArrowLongRight style={{color: '#fff', marginLeft: 8}} />
+            <ArrowLongRight size={24} style={{color: '#fff', marginLeft: 8}} />
           </TouchableOpacity>
         </View>
       </View>
