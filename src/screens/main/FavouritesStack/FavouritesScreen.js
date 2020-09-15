@@ -25,7 +25,7 @@ const FavouriteCard = ({ imageSource, name, description, color, size, discounted
               </View>
             </View>
             <View style={styles.pricingContainer}>
-              <Text style={[styles.prices, {color: '#000'}]}>${discountedPrice}</Text>
+              <Text style={[styles.prices, styles.discountedPrice]}>${discountedPrice}</Text>
               <Text style={[styles.prices, styles.price]}>${price}</Text>
               <Text style={[styles.prices, styles.discountPercent]}>({discountPercent}% OFF)</Text>
             </View>
@@ -100,13 +100,16 @@ const styles = StyleSheet.create({
   discountPercent: {
     color: colors.error
   },
+  discountedPrice: {
+    color: colors.black
+  },
   paletteBlack: {
     color: colors.black
   },
   description: {
     fontSize: 11,
     marginTop: 4,
-    color: '#9b9b9b'
+    color: colors.gray
   },
   productSizeStyle: {
     minWidth: 24,

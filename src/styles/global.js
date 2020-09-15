@@ -1,6 +1,10 @@
 import { StyleSheet } from 'react-native'
+import { colors } from '../res/palette'
 
 export const globalStyles = StyleSheet.create({
+  /**
+   * Wrappers
+   */
   container: {
     flex: 1,
     width: '90%',
@@ -9,6 +13,55 @@ export const globalStyles = StyleSheet.create({
   containerFluid: {
     flex: 1
   },
+
+  /**
+   * Typography
+   */
+  textSuccess: {
+    color: colors.success
+  },
+  textPrimary: {
+    color: colors.primary
+  },
+  textDark: {
+    color: colors.black
+  },
+  bgWhite: {
+    backgroundColor: colors.white
+  },
+  descriptionText: {
+    fontFamily: 'lato-regular',
+    fontSize: 14,
+    color: '#fff'
+  },
+  descriptiveItem: {
+    fontFamily: 'lato-bold',
+    fontSize: 14,
+    color: '#fff'
+  },
+  title: {
+    fontFamily: 'lato-bold',
+    fontSize: 34,
+  },
+  headline3: {
+    fontFamily: 'lato-bold',
+    fontSize: 18,
+  },
+  subhead: {
+    fontFamily: 'lato-bold',
+    fontSize: 16
+  },
+  label: {
+    fontFamily: 'lato-regular',
+    color: colors.gray,
+    fontSize: 12
+  },
+  latoRegular: {
+    fontFamily: 'lato-regular',
+    fontSize: 12,
+    color: colors.black
+  },
+
   onboardingCover: {
     resizeMode: 'cover',
     flex: 2,
@@ -27,6 +80,10 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: '#EE3168',
     borderRadius: 24
   },
+  roundedBtnBlock: {
+    flex: 1,
+    borderRadius: 24
+  },
   btnBlock: {
     borderWidth: 1,
     borderRadius: 24,
@@ -40,29 +97,6 @@ export const globalStyles = StyleSheet.create({
   centeredContent: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  descriptionText: {
-    fontFamily: 'lato-regular',
-    fontSize: 14,
-    color: '#fff'
-  },
-  descriptiveItem: {
-    fontFamily: 'lato-bold',
-    fontSize: 14,
-    color: '#fff'
-  },
-  title: {
-    fontFamily: 'lato-bold',
-    fontSize: 34,
-    lineHeight: 40,
-  },
-  headline3: {
-    fontFamily: 'lato-bold',
-    fontSize: 18,
-  },
-  subhead: {
-    fontFamily: 'lato-bold',
-    fontSize: 16
   },
   primary: {
     backgroundColor: '#EE3168',
@@ -94,5 +128,9 @@ export const globalStyles = StyleSheet.create({
   },
   mb114: {
     marginBottom: 114
+  },
+  btn: {
+    borderColor: colors.primary,
+    borderRadius: 24
   }
 })

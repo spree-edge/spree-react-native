@@ -20,14 +20,14 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle, ...p
   </TouchableOpacity>
 )
 
-const WomensDressListScreen = () => {
+const WomensDressListScreen = ({ navigation }) => {
 
   const newJustInRenderItem = ({ item }) => {
     return (
       <FlatListImageItem
         key={item.id}
         item={item}
-        onPress={() => console.log(item.id)}
+        onPress={() => navigation.navigate('ProductDetail', {itemId: item.id})}
         imageStyle={styles.newJustInImage}
         itemContainerStyle={styles.newJustInItemContainer}
       />

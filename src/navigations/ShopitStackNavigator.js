@@ -1,8 +1,10 @@
 import * as React from "react"
+import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
 import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
-import { Menu, ShoppingBag, Bell } from '../library/icons'
+import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
+import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
 
@@ -40,8 +42,32 @@ function ShopitStackNavigator () {
       <ShopitStack.Screen name="WomensDressList" component={WomensDressListScreen}
         options={{ headerTitle: 'Womens Dress'}}
       />
+      <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}
+        options={{
+          headerTitle: 'Tokyo Talkies',
+          headerRightContainerStyle: styles.headerRight,
+          headerRight: () => (
+            <>
+              <Share size={24} style={{color: colors.black}} />
+              <Heart size={24} style={{color: colors.black}} />
+              <ShoppingBag size={24} style={{color: colors.black}} />
+            </>
+          ),
+        }}
+      />
     </ShopitStack.Navigator>
   )
 }
 
 export default ShopitStackNavigator
+
+const styles = StyleSheet.create({
+  headerRight: {
+    // borderWidth: 1,
+    borderColor: '#000',
+    width: '30%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  }
+})

@@ -24,10 +24,9 @@ const OnboardingBScreen = ({ navigation }) => {
           >
             <Text style={globalStyles.descriptiveItem}>Go Shopping</Text>
           </TouchableHighlight>
-          <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => navigation.navigate('OnboardingC')}>
             <Text
               style={globalStyles.descriptiveItem}
-              onPress={() => navigation.navigate('OnboardingC')}
             >Next</Text>
             <ArrowLongRight size={24} style={{color: '#fff', marginLeft: 8}} />
           </TouchableOpacity>

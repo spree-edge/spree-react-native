@@ -248,3 +248,48 @@ export const Filters = ({ size , ...props }) => {
     </Svg>
   )
 }
+
+export const Share = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M18 9a3 3 0 10-2.977-2.63l-6.94 3.47a3 3 0 100 4.319l6.94 3.47a3 3 0 10.895-1.789l-6.94-3.47a3.03 3.03 0 000-.74l6.94-3.47C16.456 8.68 17.19 9 18 9z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const Smile = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M16 13h-2a2 2 0 11-4 0H8a4 4 0 008 0zM10 10a1 1 0 11-2 0 1 1 0 012 0zM15 11a1 1 0 100-2 1 1 0 000 2z"
+        fill="currentColor"
+      />
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 11-16 0 8 8 0 0116 0z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const SmileSad = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M9 11a1 1 0 100-2 1 1 0 000 2zM14 17a2 2 0 10-4 0H8a4 4 0 018 0h-2zM16 10a1 1 0 11-2 0 1 1 0 012 0z"
+        fill="currentColor"
+      />
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10zm-2 0a8 8 0 11-16 0 8 8 0 0116 0z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
