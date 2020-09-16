@@ -61,6 +61,9 @@ export const globalStyles = StyleSheet.create({
     fontSize: 12,
     color: colors.black
   },
+  textBold: {
+    fontFamily: 'lato-bold'
+  },
 
   onboardingCover: {
     resizeMode: 'cover',

@@ -1,12 +1,58 @@
 import * as React from 'react'
-import { View, ScrollView, Text, FlatList, TouchableHighlight, StyleSheet } from 'react-native'
+import { View, ScrollView, Text, FlatList, TouchableHighlight, StyleSheet, Image } from 'react-native'
 import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
-import { Avatar, Button } from 'react-native-elements'
-import { Smile, SmileSad } from '../../../library/icons'
+import { Avatar, Input, Button, Card } from 'react-native-elements'
+import { Smile,
+  SmileSad,
+  Dollar,
+  ShoppingCart,
+  Repeat,
+  CustomIconTruck,
+  CustomIconOriginal,
+  IcOutlineAssignmentReturn,
+  RiSecurePaymentFill
+} from '../../../library/icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
+const CarouselProductCard = () => {
+  return (
+    // <Card>
+    //   <Card.Title>Tokyo Talkies</Card.Title>
+    //   <Card.Divider/>
+    //   <Card.Image source={require('../images/pic2.jpg')}>
+    //     <Text style={{marginBottom: 10}}>
+    //     Women Printed A-Line...
+    //     </Text>
+    //     <Button
+    //       icon={<Icon name='code' color='#ffffff' />}
+    //       buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+    //       title='VIEW NOW' />
+    //   </Card.Image>
+    // </Card>
+    <View style={styles.carouselProductCard}>
+      <Image
+        source={require('../../../../assets/images/womens-dress-product-list-images/product-img.png')}
+        style={{
+          width: 140,
+          height: 186
+        }}
+      />
+      <View>
+        <Text style={[globalStyles.descriptiveItem, styles.paletteBlack]}>Tokyo Talkies</Text>
+        <Text style={globalStyles.label}>Women Printed A-Line...</Text>
+        <View style={styles.carouselCardPricingContainer}>
+          <Text style={[styles.carouselCardPrices, styles.carouselCardDiscountedPrice]}>$29.90</Text>
+          <Text style={[styles.carouselCardPrices, styles.carouselCardPrice]}>$32.90</Text>
+          <Text style={[styles.carouselCardPrices, styles.carouselCardDiscountPercent]}>(20% OFF)</Text>
+        </View>
+      </View>
+    </View>
+  )
+}
+
 const ProductDetailScreen = ({ route, navigation }) => {
+  const [inputBorder, setInputBorder] = React.useState(false)
 
   return (
     <ScrollView style={globalStyles.containerFluid}>
@@ -183,6 +229,68 @@ const ProductDetailScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
+      <View style={[ globalStyles.containerFluid, globalStyles.bgWhite , globalStyles.mt16 ]}>
+        <View style={[ globalStyles.container, globalStyles.mt8, globalStyles.mb8 ]}>
+          <Text style={[ styles.titleMedium, globalStyles.mb8 ]}>Check Delivery</Text>
+          <Input
+            placeholder="Enter PIN Code" 
+            keyboardType="default"
+            onFocus={() => setInputBorder(true)}
+            onBlur={() => setInputBorder(false)}
+            containerStyle={[globalStyles.mb16, {
+              backgroundColor: '#fff', 
+              height: 52, 
+              borderRadius: 4,
+              borderWidth: 1,
+              borderColor: inputBorder ? colors.primary : '#ccc',
+            }]}
+            inputStyle={globalStyles.latoRegular}
+            inputContainerStyle={{ borderBottomColor: '#fff'}}
+            rightIcon={() => <Text style={styles.inputRight}>Apply</Text>}
+          />
+          <View style={styles.deliveryOffersContainer}>
+            <ShoppingCart size={18} style={{color: colors.black, marginRight: 8, transform: [{ rotateY: '180deg' }] }}/>
+            <Text style={[globalStyles.descriptiveItem, {color: colors.black}]}>Delivery by Thursday, Sep 05</Text>
+          </View>
+          <View style={styles.deliveryOffersContainer}>
+            <Dollar size={18} style={{color: colors.black, marginRight: 8}}/>
+            <Text style={[globalStyles.descriptiveItem, {color: colors.black}]}>Cash on delivery available</Text>
+          </View>
+          <View style={styles.deliveryOffersContainer}>
+            <Repeat size={18} style={{color: colors.black, marginRight: 8}}/>
+            <Text style={[globalStyles.descriptiveItem, {color: colors.black}]}>Return & exchange available within 10 days</Text>
+          </View>
+        </View>
+      </View>
+      <View style={[ globalStyles.containerFluid, globalStyles.bgWhite , globalStyles.mt16 ]}>
+        <View style={[ globalStyles.container, globalStyles.mt8, globalStyles.mb8 ]}>
+          <View style={styles.alikeProductsHeader}>
+            <Text style={[ styles.titleMedium, globalStyles.mb8 ]}>Your might also like</Text>
+            <Text style={[ globalStyles.label, globalStyles.textBold ]}>12 more</Text>
+          </View>
+          <CarouselProductCard />
+        </View>
+      </View>
+      <View style={styles.footerContainer}>
+        <View style={styles.footerItemListContainer}>
+          <View style={styles.footerItemContainer}>
+            <CustomIconTruck size={32} style={{color: colors.gray}} />
+            <Text style={styles.footerText}>Fastest Delivery</Text>
+          </View>
+          <View style={styles.footerItemContainer}>
+            <CustomIconOriginal size={32} style={{color: colors.gray}} />
+            <Text style={styles.footerText}>100% Original</Text>
+          </View>
+          <View style={styles.footerItemContainer}>
+            <IcOutlineAssignmentReturn size={32} style={{color: colors.gray}} />
+            <Text style={styles.footerText}>Easy Returns</Text>
+          </View>
+          <View style={styles.footerItemContainer}>
+            <RiSecurePaymentFill size={32} style={{color: colors.gray}} />
+            <Text style={styles.footerText}>Secure Payment</Text>
+          </View>
+        </View>
+      </View>
     </ScrollView>
   )
 }
@@ -274,5 +382,78 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  inputRight: {
+    ...globalStyles.latoRegular,
+    ...globalStyles.textPrimary,
+  },
+  deliveryOffersContainer: {
+    ...globalStyles.mt8,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  footerContainer: {
+    ...globalStyles.containerFluid,
+    ...globalStyles.mt32,
+    ...globalStyles.mb114, 
+    backgroundColor: colors.background
+  },
+  footerItemListContainer: {
+    ...globalStyles.container, 
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  footerItemContainer: {
+    alignItems: 'center'
+  },
+  footerText: {
+    ...globalStyles.textBold,
+    ...globalStyles.mt8,
+    fontSize: 11
+  },
+  alikeProductsHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  carouselProductCard: {
+    borderWidth: 2,
+    width: 140
+  },
+  pricingContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    width: 180,
+    // borderWidth: 2
+  },
+  carouselCardPrice: {
+    color: colors.gray,
+    textDecorationLine: 'line-through'
+  },
+  carouselCardDiscountPercent: {
+    fontSize: 12,
+    color: colors.error
+  },
+  carouselCardDiscountedPrice: {
+    fontSize: 12,
+    color: colors.black
+  },
+  paletteBlack: {
+    fontSize: 12,
+    color: colors.black
+  },
+  carouselProductBrand: {
+    fontFamily: 'lato-bold',
+    fontSize: 11,
+  },
+  carouselCardPrices: {
+    fontFamily: 'lato-bold',
+    paddingRight: 2
+  },
+  carouselCardPricingContainer: {
+    ...globalStyles.mt8,
+    borderWidth: 2,
+    flex: 1
   }
 })

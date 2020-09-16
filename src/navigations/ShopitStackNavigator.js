@@ -4,20 +4,23 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
 import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
 import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
+import BagScreen from '../screens/main/ShopitStack/BagScreen'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
 
 const ShopitStack = createStackNavigator()
 
-function ShopitStackNavigator () {
+function ShopitStackNavigator ({ navigation }) {
 
   return (
     <ShopitStack.Navigator
       screenOptions={{
         headerRight: () => <>
           <Bell size={24} style={{color: colors.black, marginRight: 14}} />
-          <ShoppingBag size={24} style={{color: colors.black}} />
+          <ShoppingBag size={24} style={{color: colors.black}} 
+            onPress={() => navigation.navigate('Bag')}
+          />
         </>,
         headerTitleStyle: {
           ...globalStyles.headline3
@@ -55,6 +58,12 @@ function ShopitStackNavigator () {
           ),
         }}
       />
+      <ShopitStack.Screen name="Bag" component={BagScreen}
+        options={{
+          headerTitle: 'Your Bag',
+          headerRight: () => <Heart size={24} style={{color: colors.black}} />
+        }}
+      />
     </ShopitStack.Navigator>
   )
 }
@@ -63,11 +72,11 @@ export default ShopitStackNavigator
 
 const styles = StyleSheet.create({
   headerRight: {
-    // borderWidth: 1,
     borderColor: '#000',
     width: '30%',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    // borderWidth: 1,
   }
 })

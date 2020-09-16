@@ -293,3 +293,117 @@ export const SmileSad = ({ size , ...props }) => {
     </Svg>
   )
 }
+
+export const MathMinus = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M4 12a1 1 0 011-1h14a1 1 0 110 2H5a1 1 0 01-1-1z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const MathPlus = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M12 4a1 1 0 00-1 1v6H5a1 1 0 100 2h6v6a1 1 0 102 0v-6h6a1 1 0 100-2h-6V5a1 1 0 00-1-1z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const Dollar = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11 19v3h2v-3h1a4 4 0 000-8h-1V7h2v2h2V5h-4V2h-2v3h-1a4 4 0 100 8h1v4H9v-2H7v4h4zm2-2h1a2 2 0 100-4h-1v4zm-2-6V7h-1a2 2 0 100 4h1z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+
+export const Repeat = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M18.37 8l-4.5 2.598V9H6.89v4h-2V7h8.98V5.402L18.37 8zM10.13 17h8.98v-6h-2v4h-6.98v-1.598L5.63 16l4.5 2.598V17z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const ShoppingCart = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5.792 2H1v2h3.218l2.77 12.678H7V17h13v-.248l2.193-9.661L22.531 6H6.655l-.57-2.611L5.792 2zm14.195 6H7.092l1.529 7h9.777l1.589-7z"
+        fill="currentColor"
+      />
+      <Path
+        d="M10 22a2 2 0 100-4 2 2 0 000 4zM19 20a2 2 0 11-4 0 2 2 0 014 0z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const CustomIconTruck = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} fill="none" viewBox="0 0 32 32" {...props}>
+      <Path
+        fill="#9B9B9B"
+        d="M1 10h13l1 2H2l-1-2zm1.333 4h13l1 2h-13l-1-2zM24 24.667c1.107 0 2-.894 2-2 0-1.107-.893-2-2-2s-2 .893-2 2c0 1.106.893 2 2 2zm2-12h-3.333V16h5.946L26 12.667zm-15.333 12c1.106 0 2-.894 2-2 0-1.107-.894-2-2-2-1.107 0-2 .893-2 2 0 1.106.893 2 2 2zm16-14l4 5.333v6.667H28c0 2.213-1.787 4-4 4s-4-1.787-4-4h-5.333c0 2.213-1.8 4-4 4-2.214 0-4-1.787-4-4H4V18h2.667v2H7.68a4.018 4.018 0 012.987-1.333c1.186 0 2.253.52 2.986 1.333H20V8H4a2.658 2.658 0 012.667-2.667h16v5.334h4z"
+      />
+    </Svg>
+  )
+}
+
+export const CustomIconOriginal = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} fill="none" viewBox="0 0 32 32" {...props}>
+      <Path
+        fill="#9B9B9B"
+        fillRule="evenodd"
+        d="M19.338 1.728L16 0l-3.338 1.728-3.716.564-1.684 3.36-2.674 2.64L5.2 12l-.612 3.708 2.674 2.64 1.684 3.36 3.716.564L16 24l3.338-1.728 3.716-.564 1.684-3.36 2.674-2.64L26.8 12l.612-3.708-2.674-2.64-1.684-3.36-3.716-.564zm2.392 2.386l-3.02-.458L16 2.252l-2.71 1.404-3.02.458-1.368 2.73L6.73 8.988 7.228 12l-.5 3.012 2.174 2.144 1.368 2.73 3.02.458L16 21.748l2.712-1.404 3.018-.458 1.368-2.73 2.172-2.144L24.774 12l.496-3.012-2.172-2.144-1.368-2.73z"
+        clipRule="evenodd"
+      />
+      <Path
+        fill="#9B9B9B"
+        d="M8 23.588V32l8-2 8 2v-8.412l-4.036.612L16 26.252 12.036 24.2 8 23.588zM16 6l1.347 4.146h4.36l-3.527 2.562 1.347 4.146L16 14.292l-3.527 2.562 1.347-4.146-3.526-2.562h4.359L16 6z"
+      />
+    </Svg>
+  )
+}
+
+export const IcOutlineAssignmentReturn = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} fill="none" viewBox="0 0 32 32" {...props}>
+      <Path
+        fill="#9B9B9B"
+        d="M16 18.667h5.333v-5.334H16v-4L9.333 16 16 22.667v-4zM25.333 4H19.76C19.2 2.453 17.733 1.333 16 1.333c-1.733 0-3.2 1.12-3.76 2.667H6.667c-.187 0-.36.013-.534.053a2.685 2.685 0 00-1.92 1.587A2.575 2.575 0 004 6.667v18.666c0 .36.08.72.213 1.04.134.32.334.6.574.854.36.36.826.626 1.346.733.174.027.347.04.534.04h18.666C26.8 28 28 26.8 28 25.333V6.667C28 5.2 26.8 4 25.333 4zM16 3.667c.547 0 1 .453 1 1 0 .546-.453 1-1 1-.547 0-1-.454-1-1 0-.547.453-1 1-1zm9.333 21.666H6.667V6.667h18.666v18.666z"
+      />
+    </Svg>
+  )
+}
+
+export const RiSecurePaymentFill = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} fill="none" viewBox="0 0 32 32" {...props}>
+      <Path
+        fill="#9B9B9B"
+        d="M14.667 2.667l9.73 3.04a1.33 1.33 0 01.937 1.273v2.353H28a1.335 1.335 0 011.333 1.334v2.666H12v-2.666a1.333 1.333 0 011.333-1.333h9.334V7.96l-8-2.501-8 2.501v9.872a5.336 5.336 0 002.077 4.225l.252.182 5.67 3.868 5.043-3.44h-6.376A1.335 1.335 0 0112 21.333V16h17.333v5.333A1.333 1.333 0 0128 22.666l-4.293.002a7.977 7.977 0 01-1.867 1.773l-7.173 4.892-7.174-4.89A8.001 8.001 0 014 17.832V6.98a1.333 1.333 0 01.936-1.272l9.73-3.041z"
+      />
+    </Svg>
+  )
+}

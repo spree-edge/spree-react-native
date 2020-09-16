@@ -15,7 +15,7 @@ const FavouriteCard = ({ imageSource, name, description, color, size, discounted
           style={styles.favouriteCardImage}
         />
         <View style={styles.favouriteProductDetailsContainer}>
-          <View style={{flex: 1}}>
+          <View style={globalStyles.containerFluid}>
             <Text style={[globalStyles.descriptiveItem, styles.paletteBlack]}>{name}</Text>
             <Text style={[globalStyles.descriptionText, styles.description]}>{description}</Text>
             <View style={styles.attributeContainer}>
