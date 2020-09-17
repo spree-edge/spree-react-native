@@ -35,7 +35,9 @@ function ShopitStackNavigator ({ navigation }) {
     >
       <ShopitStack.Screen name="Shopit" component={HomeScreen}
         options={{
-          headerLeft: () => <Menu size={24} style={{color: colors.black}} />,
+          headerLeft: () => <Menu size={24} style={{color: colors.black}}
+            onPress={() => navigation.openDrawer()}
+          />,
           headerLeftContainerStyle: {
             // borderWidth: 2,
             paddingHorizontal: 22

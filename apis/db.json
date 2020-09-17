@@ -1,0 +1,45 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "relatedProducts": [
+    {
+      "title": "Tokyo Talkies",
+      "description": "Women Printed A-Line...",
+      "discountedPrice": 29.9,
+      "price": 55.99,
+      "discountPercent": 20,
+      "source": "require('../assets/images/womens-dress-product-list-images/product-img.jpg')",
+      "id": 1
+    },
+    {
+      "title": "Tokyo Talkies",
+      "description": "Women Printed A-Line...",
+      "discountedPrice": 29.9,
+      "price": 55.99,
+      "discountPercent": 20,
+      "source": "require('../assets/images/womens-dress-product-list-images/product-img-1.jpg')",
+      "id": 2
+    },
+    {
+      "title": "Tokyo Talkies",
+      "description": "Women Printed A-Line...",
+      "discountedPrice": 29.9,
+      "price": 55.99,
+      "discountPercent": 20,
+      "source": "require('../assets/images/womens-dress-product-list-images/product-img-2.jpg')",
+      "id": 3
+    }
+  ]
+}

@@ -7,12 +7,14 @@ import { globalStyles } from '../styles/global'
 
 const FavouritesStack = createStackNavigator()
 
-function FavouritesStackNavigator () {
+function FavouritesStackNavigator ({ navigation }) {
 
   return (
     <FavouritesStack.Navigator
       screenOptions={{
-        headerLeft: () => <Menu size={24} style={{color: colors.black}} />,
+        headerLeft: () => <Menu size={24} style={{color: colors.black}}
+        onPress={() => navigation.openDrawer()}
+        />,
         headerRight: () => <>
           <Search size={24} style={{color: colors.black, marginRight: 14}} />
           <ShoppingBag size={24} style={{color: colors.black}} />

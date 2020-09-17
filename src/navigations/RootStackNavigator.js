@@ -1,7 +1,9 @@
 import * as React from "react"
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import MainTabNavigator from './MainTabNavigator'
+
+import MainDrawerNavigator from './MainDrawerNavigator'
+
 import SignInScreen from '../screens/auth/SignInScreen'
 import SignUpScreen from '../screens/auth/SignUpScreen'
 import OnboardingAScreen from '../screens/onboarding/OnboardingAScreen'
@@ -30,7 +32,7 @@ export default function RootStackNavigator() {
         {
           isSignedIn ? (
             <>
-              <RootStack.Screen name="MainTabNavigator" component={MainTabNavigator} />
+              <RootStack.Screen name="MainDrawerNavigator" component={MainDrawerNavigator} />
             </>
           ) : (
             <>

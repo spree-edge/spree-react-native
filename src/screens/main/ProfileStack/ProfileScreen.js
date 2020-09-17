@@ -77,9 +77,8 @@ export default ProfileScreen
 
 const styles = StyleSheet.create({
   centeredContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...globalStyles.containerFluid,
+    ...globalStyles.centeredContent
     // borderWidth: 2
   },
   avatar: {

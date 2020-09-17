@@ -7,12 +7,14 @@ import { globalStyles } from '../styles/global'
 
 const CategoriesStack = createStackNavigator()
 
-function CategoriesStackNavigator () {
+function CategoriesStackNavigator ({ navigation }) {
 
   return (
     <CategoriesStack.Navigator
       screenOptions={{
-        headerLeft: () => <Menu size={24} style={{color: colors.black}} />,
+        headerLeft: () => <Menu size={24} style={{color: colors.black}}
+        onPress={() => navigation.openDrawer()}
+        />,
         headerRight: () => <>
           <Search size={24} style={{color: colors.black, marginRight: 14}} />
           <ShoppingBag size={24} style={{color: colors.black}} />

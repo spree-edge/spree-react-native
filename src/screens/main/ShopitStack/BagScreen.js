@@ -104,7 +104,7 @@ const BagScreen = () => {
             title="Proceed to Checkout"
             type="solid"
             containerStyle={{flex: 1}}
-            buttonStyle={[ globalStyles.btn, globalStyles.primary, styles.btnSolid, globalStyles.mt16]}
+            buttonStyle={[ globalStyles.btn, globalStyles.primary, globalStyles.mt16]}
           />
         </View>
       </View>
