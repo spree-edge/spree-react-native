@@ -41,12 +41,12 @@ const WomensDressListScreen = ({ navigation }) => {
           <SortAZ size={22} style={{color: colors.black}}/>
           <Text style={[globalStyles.lead]}>Sort</Text>
         </View>
-        <View style={styles.filterBlock}>
+        <TouchableOpacity style={[styles.filterBlock, {borderWidth: 2}]} onPress={() => navigation.navigate('FiltersDrawerNavigator')}>
           <Filters size={22} style={{color: colors.black,
           transform: [{ rotate: "90deg" }]
         }}/>
           <Text style={[globalStyles.lead]}>Filter</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <View style={[globalStyles.container, globalStyles.mt24]}>
         <FlatList

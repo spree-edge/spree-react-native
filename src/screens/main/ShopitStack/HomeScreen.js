@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView style={globalStyles.containerFluid}>
       <View style={globalStyles.container}>
-        <SearchBar
+        {/* <SearchBar
           placeholder="Search shopit catalogue"
           platform="android"
           value={searchQuery}
@@ -48,6 +48,26 @@ const HomeScreen = ({ navigation }) => {
           onChangeText={text => setSearchQuery(text)}
           lightTheme={true}
           round={true}
+        /> */}
+        <SearchBar
+          platform="ios"
+          value={searchQuery}        
+          placeholder="Search shopit catalogue"
+          onChangeText={text => setSearchQuery(text)}
+          inputContainerStyle={{
+            // borderWidth: 2,
+            backgroundColor: colors.white
+          }}
+          containerStyle={{
+            backgroundColor: colors.background
+          }}
+          inputStyle={{
+            fontFamily: 'lato-regular',
+            fontSize: 15
+          }}
+          searchIcon={{
+            color: colors.black
+          }}
         />
       </View>
       <Image

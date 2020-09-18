@@ -1,10 +1,11 @@
 import * as React from "react"
-import { StyleSheet } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
 import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
 import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
 import BagScreen from '../screens/main/ShopitStack/BagScreen'
+import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
@@ -66,6 +67,12 @@ function ShopitStackNavigator ({ navigation }) {
           headerRight: () => <Heart size={24} style={{color: colors.black}} />
         }}
       />
+      <ShopitStack.Screen name="FiltersDrawerNavigator" component={FiltersDrawerNavigator}
+        options={{
+          headerTitle: 'Filters',
+          headerRight: () => <Text style={styles.resetButton}>Reset All</Text>
+        }}
+      />
     </ShopitStack.Navigator>
   )
 }
@@ -80,5 +87,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     // borderWidth: 1,
+  },
+  resetButton: {
+    ...globalStyles.textPrimary
   }
 })
