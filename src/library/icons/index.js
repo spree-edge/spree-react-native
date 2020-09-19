@@ -457,3 +457,31 @@ export const CheckR = ({ size , ...props }) => {
     </Svg>
   )
 }
+
+export const CreditCard = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M4 9a1 1 0 011-1h4a1 1 0 010 2H5a1 1 0 01-1-1z"
+        fill="currentColor"
+      />
+      <Path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4 3a4 4 0 00-4 4v10a4 4 0 004 4h16a4 4 0 004-4V7a4 4 0 00-4-4H4zm16 2H4a2 2 0 00-2 2v7h20V7a2 2 0 00-2-2zm2 11H2v1a2 2 0 002 2h16a2 2 0 002-2v-1z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}
+
+export const ChevronUp = ({ size , ...props }) => {
+  return (
+    <Svg width={size || 50} height={size || 50} viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M17.657 16.243l1.414-1.414-7.07-7.072-7.072 7.072 1.414 1.414L12 10.586l5.657 5.657z"
+        fill="currentColor"
+      />
+    </Svg>
+  )
+}

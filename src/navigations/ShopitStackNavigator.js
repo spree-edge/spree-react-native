@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
 import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
 import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
+import ShippingAddressScreen from '../screens/main/ShopitStack/ShippingAddressScreen'
+import CheckoutPaymentScreen from '../screens/main/ShopitStack/CheckoutPaymentScreen'
 import BagScreen from '../screens/main/ShopitStack/BagScreen'
 import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
@@ -71,6 +73,18 @@ function ShopitStackNavigator ({ navigation }) {
         options={{
           headerTitle: 'Filters',
           headerRight: () => <Text style={styles.resetButton}>Reset All</Text>
+        }}
+      />
+      <ShopitStack.Screen name="ShippingAddress" component={ShippingAddressScreen}
+        options={{
+          headerTitle: 'Shipping Address',
+          headerRight: () => <Heart size={24} style={{color: colors.black}} />
+        }}
+      />
+      <ShopitStack.Screen name="CheckoutPayment" component={CheckoutPaymentScreen}
+        options={{
+          headerTitle: 'Payment',
+          headerRight: () => <Heart size={24} style={{color: colors.black}} />
         }}
       />
     </ShopitStack.Navigator>

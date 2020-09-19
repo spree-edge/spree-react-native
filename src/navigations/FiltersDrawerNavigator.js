@@ -5,7 +5,6 @@ import FiltersScreen from '../screens/main/ShopitStack/FiltersScreen'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
 import { SearchBar } from 'react-native-elements'
-import { List } from 'react-native-paper'
 import { CheckR } from '../library/icons'
 
 function Brand({ navigation }) {
@@ -117,8 +116,8 @@ function Brand({ navigation }) {
       
       }
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </ScrollView>
   );
@@ -129,8 +128,8 @@ function Color({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Color</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );
@@ -141,8 +140,8 @@ function Size({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Size</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );
@@ -153,8 +152,8 @@ function PriceRange({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>PriceRange</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );
@@ -165,8 +164,8 @@ function Pattern({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Pattern</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );
@@ -177,8 +176,8 @@ function FabricType({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Fabric Type</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );
@@ -189,8 +188,8 @@ function WashCare({ navigation }) {
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Wash Care</Text>
       <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
+        onPress={navigation.goBack}
+        title="Go Back"
       />
     </View>
   );

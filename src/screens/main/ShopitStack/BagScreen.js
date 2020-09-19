@@ -48,7 +48,7 @@ const BagItemCard = ({ imageSource, name, description, color, size, discountedPr
   )
 }
 
-const BagScreen = () => {
+const BagScreen = ({ navigation }) => {
   const [inputBorder, setInputBorder] = React.useState(false)
 
   return (
@@ -105,6 +105,7 @@ const BagScreen = () => {
             type="solid"
             containerStyle={{flex: 1}}
             buttonStyle={[ globalStyles.btn, globalStyles.primary, globalStyles.mt16]}
+            onPress={() => navigation.navigate('ShippingAddress')}
           />
         </View>
       </View>
