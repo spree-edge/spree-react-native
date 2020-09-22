@@ -24,6 +24,22 @@ const CategoriesScreen = () => {
   return (
     <ScrollView>
       <View>
+        <View style={{flexDirection: 'row'}}>
+          <View style={[styles.accordionItem, {backgroundColor: '#d7e5cc'}]}>
+            <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+              <Text style={styles.accordionLevel1Title}>NEW IN</Text>
+              <ChevronDown size={24} style={{color: colors.black}}/>
+            </View>
+            <Text style={styles.accordionLevel1Description}>Upgrade Your Closet</Text>
+          </View>
+          <View style={[styles.accordionItem, {backgroundColor: '#d7e5cc'}]}>
+            <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+              <Text style={styles.accordionLevel1Title}>ON SALE</Text>
+              <ChevronDown size={24} style={{color: colors.black}}/>
+            </View>
+            <Text style={styles.accordionLevel1Description}>We Can’t Get Enough</Text>
+          </View>
+        </View>
         <List.Section>
           <List.Accordion
             title="MEN"
@@ -255,5 +271,9 @@ const styles = StyleSheet.create({
   listItem: {
     backgroundColor: '#f5f5f5',
     marginLeft: 10
+  },
+  accordionItem: {
+    flex: 1,
+    padding: 24
   }
 })

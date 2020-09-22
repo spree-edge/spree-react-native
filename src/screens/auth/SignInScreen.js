@@ -5,10 +5,17 @@ import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
 
+import { AuthContext } from '../../library/components/context'
+
 const SignInScreen = ({ navigation }) => {
   // const password = React.createRef()
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
   const [inputBorder, setInputBorder] = React.useState(false)
+
+  const [email, setEmail] = React.useState('')
+  const [password, setPassword] = React.useState('')
+
+  const { signIn } = React.useContext(AuthContext)
 
   return (
     <View style={globalStyles.container}>
@@ -31,6 +38,8 @@ const SignInScreen = ({ navigation }) => {
           }]}
           inputStyle={{fontFamily: 'lato-regular',}}
           inputContainerStyle={{ paddingTop: 5, borderBottomColor: '#fff'}}
+          onChangeText={text => setEmail(text)}
+          // onEndEditing={() => console.log(email)}
         />
         <Input
           // ref={password}
@@ -40,6 +49,8 @@ const SignInScreen = ({ navigation }) => {
           inputStyle={{fontFamily: 'lato-regular',}}
           inputContainerStyle={{ borderBottomColor: '#fff'}}
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
+          onChangeText={text => setPassword(text)}
+          // onEndEditing={() => console.log(password)}
         />
         <Button 
           title="Password help ?"
@@ -50,6 +61,7 @@ const SignInScreen = ({ navigation }) => {
         />
         <TouchableHighlight
           style={[globalStyles.btnBlock, globalStyles.primary, globalStyles.mt32 ]}
+          onPress={() => signIn(email, password)}
         >
           <Text style={[globalStyles.subhead, { color: "#fff" }]}>
             Login to Shopit

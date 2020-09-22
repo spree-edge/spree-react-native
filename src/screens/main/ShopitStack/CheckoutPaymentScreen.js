@@ -2,10 +2,9 @@ import * as React from 'react'
 import { ScrollView, View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 import { Divider, Input, Button, Overlay } from 'react-native-elements'
 import { globalStyles } from '../../../styles/global'
-import { List } from 'react-native-paper'
 import { colors } from '../../../res/palette'
 import Collapsible from 'react-native-collapsible'
-import { CheckR, Close, Dollar, CreditCard, ChevronDown, ChevronUp } from '../../../library/icons'
+import { CheckR, Close, Dollar, CreditCard, ChevronDown, ChevronUp, CheckO } from '../../../library/icons'
 
 const CheckoutPaymentScreen = ({ navigation }) => {
   
@@ -17,6 +16,8 @@ const CheckoutPaymentScreen = ({ navigation }) => {
 
   const [cardNumberInputBorder, setCardNumberInputBorder] = React.useState(false)
   const [cardNameInputBorder, setCardNameInputBorder] = React.useState(false)
+  const [validThruInputBorder, setValidThruInputBorder] = React.useState(false)
+  const [cvvInputBorder, setCvvInputBorder] = React.useState(false)
 
   const [overlayVisible, setOverlayVisible] = React.useState(false);
 
@@ -27,6 +28,43 @@ const CheckoutPaymentScreen = ({ navigation }) => {
   return (
     <View style={ globalStyles.containerFluid }>
       <ScrollView>
+        {/* Status Bar Starts */}
+        <View style={[globalStyles.containerFluid, globalStyles.bgWhite, {borderBottomWidth: 1, borderColor: '#ccc' }]}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.success}]} />
+              <Text style={ globalStyles.latoRegular, {color: colors.success}}>Bag</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: colors.success,
+                marginBottom: 10,
+                marginHorizontal: 10
+              }}
+            />
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.success}]} />
+              <Text style={ globalStyles.latoRegular, {color: colors.success}}>Address</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: colors.success,
+                marginBottom: 10,
+                marginHorizontal: 10
+              }}
+            />
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.black}]} />
+              <Text style={ globalStyles.latoRegular }>Payment</Text>
+            </View>
+          </View>
+        </View>
+        {/* Status Bar Ends */}
+
         <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
           <View style={[ globalStyles.container, globalStyles.mt8 ]}>
             <Text style={globalStyles.subhead}>Payment Type</Text>
@@ -58,7 +96,7 @@ const CheckoutPaymentScreen = ({ navigation }) => {
           {/*Code for Single Collapsible Start*/}
           <TouchableOpacity style={globalStyles.container} onPress={toggleAccordionExpanded2}>
             <View style={styles.accordionSelectorContainer}>
-              <Dollar size={16} style={{color: colors.black}} />
+              <CreditCard size={16} style={{color: colors.black}} />
               <Text style={styles.accordionSelectorTitle}>Credit/Debit Card</Text>
               {
                 accordionExpanded2
@@ -98,40 +136,34 @@ const CheckoutPaymentScreen = ({ navigation }) => {
               <Input
                 placeholder="Valid Thru (MM/YY)" 
                 keyboardType="default"
-                containerStyle={[styles.containerStyle, styles.w48]}
+                onFocus={() => setValidThruInputBorder(true)}
+                onBlur={() => setValidThruInputBorder(false)}
+                containerStyle={[styles.containerStyle, styles.w48, {
+                  borderWidth: 1,
+                  borderColor: validThruInputBorder ? colors.primary : '#ccc',
+                }]}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={styles.inputContainerStyle}
               />
               <Input
-                placeholder="Valid Thru (MM/YY)" 
+                placeholder="CVV" 
                 keyboardType="default"
-                containerStyle={[styles.containerStyle, styles.w48]}
+                onFocus={() => setCvvInputBorder(true)}
+                onBlur={() => setCvvInputBorder(false)}
+                containerStyle={[styles.containerStyle, styles.w48, {
+                  borderWidth: 1,
+                  borderColor: cvvInputBorder ? colors.primary : '#ccc',
+                }]}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={styles.inputContainerStyle}
               />
             </View>
+            <View style={[styles.rowContainer, globalStyles.mt16, globalStyles.mb16]}>
+              <CheckR size={16} style={styles.iconStyle} />
+              <Text style={[styles.label]}>Save Card</Text>
+            </View>
           </Collapsible>
           {/*Code for Single Collapsible Ends*/}
-
-          {/* <View style={globalStyles.container}>
-            <List.AccordionGroup>
-              <List.Accordion title="Pay on Delivery" id="1"
-                titleStyle={globalStyles.latoRegular}
-                left={props => <Dollar size={16} style={{color: colors.black}} />}
-              >
-                <List.Item title="Item 1" />
-              </List.Accordion>
-                <List.Accordion title="Credit/Debit Card" id="2"
-                  titleStyle={globalStyles.latoRegular}
-                  left={() => <View><CreditCard size={16} style={{color: colors.black}} /></View>}
-                >
-                  <List.Item title="Item 2" />
-                  <View>
-                    <Text>Text</Text>
-                  </View>
-                </List.Accordion>
-            </List.AccordionGroup>
-          </View> */}
         </View>
 
         <View style={styles.orderTotalContainer}>
@@ -156,6 +188,10 @@ const CheckoutPaymentScreen = ({ navigation }) => {
               <Text style={[ globalStyles.label, styles.productDetailsText]}>Shipping Fee</Text>
               <Text style={[ globalStyles.label, styles.productDetailsText]}>$0.00</Text>
             </View>
+          </View>
+          <Divider style={styles.dividerStyle} />
+          <View style={[ globalStyles.container, globalStyles.mt8 ]}>
+            <Text style={[{textAlign: 'right'}, styles.productDetailsText]}>$49.60</Text>
           </View>
         </View>
 
@@ -227,6 +263,7 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
     color: colors.primary,
+    marginRight: 6
   },
   label: {
     ...globalStyles.descriptionText,

@@ -1,15 +1,51 @@
 import * as React from 'react'
 import { ScrollView, View, StyleSheet, Text } from 'react-native'
 import { globalStyles } from '../../../styles/global'
-import { Divider, Input, Button } from 'react-native-elements'
+import { Divider, Input, Button, } from 'react-native-elements'
 import { colors } from '../../../res/palette'
-import { CheckR } from '../../../library/icons'
+import { CheckR, CheckO } from '../../../library/icons'
 
 const ShoppingAddressScreen = ({ navigation }) => {
 
   return (
     <View style={ globalStyles.containerFluid }>
       <ScrollView>
+        {/* Status Bar Starts */}
+        <View style={[globalStyles.containerFluid, globalStyles.bgWhite, {borderBottomWidth: 1, borderColor: '#ccc' }]}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.success}]} />
+              <Text style={ globalStyles.latoRegular, {color: colors.success}}>Bag</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: colors.success,
+                marginBottom: 10,
+                marginHorizontal: 10
+              }}
+            />
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.black}]} />
+              <Text style={ globalStyles.latoRegular}>Address</Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                borderBottomColor: colors.success,
+                marginBottom: 10,
+                marginHorizontal: 10
+              }}
+            />
+            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[styles.iconStyle, {color: colors.black}]} />
+              <Text style={ globalStyles.latoRegular }>Payment</Text>
+            </View>
+          </View>
+        </View>
+        {/* Status Bar Ends */}
         <View style={globalStyles.container}>
           <Input
             placeholder="Name" 
@@ -69,7 +105,7 @@ const ShoppingAddressScreen = ({ navigation }) => {
             inputStyle={styles.inputStyle}
             inputContainerStyle={styles.inputContainerStyle}
           />
-          <View style={[styles.rowContainer, globalStyles.mt16]}>
+          <View style={[styles.rowContainer, globalStyles.mt16, globalStyles.mb16]}>
             <CheckR size={16} style={styles.iconStyle} />
             <Text style={[styles.label]}>Default Address</Text>
           </View>
@@ -97,6 +133,10 @@ const ShoppingAddressScreen = ({ navigation }) => {
               <Text style={[ globalStyles.label, styles.productDetailsText]}>Shipping Fee</Text>
               <Text style={[ globalStyles.label, styles.productDetailsText]}>$0.00</Text>
             </View>
+          </View>
+          <Divider style={styles.dividerStyle} />
+          <View style={[ globalStyles.container, globalStyles.mt8 ]}>
+            <Text style={[{textAlign: 'right'}, styles.productDetailsText]}>$49.60</Text>
           </View>
         </View>
       </ScrollView>

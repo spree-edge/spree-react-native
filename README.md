@@ -1,1 +1,1 @@
-# shopit
+# spree-react-native

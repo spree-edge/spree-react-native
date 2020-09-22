@@ -27,7 +27,8 @@ export default function MainDrawerNavigator() {
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}
         drawerContentOptions={{
-          activeTintColor: colors.primary
+          activeTintColor: colors.primary,
+          activeBackgroundColor: colors.white
         }}
       >
         <Drawer.Screen name="Shopit" component={MainTabNavigator} options={{

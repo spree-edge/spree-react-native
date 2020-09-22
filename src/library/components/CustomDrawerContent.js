@@ -11,7 +11,12 @@ import {
   DrawerItem
 } from '@react-navigation/drawer';
 
+import { AuthContext } from './context'
+
 function CustomDrawerContent(props) {
+
+  const { signOut } = React.useContext(AuthContext)
+
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.jumbotron}>
@@ -70,6 +75,7 @@ function CustomDrawerContent(props) {
         containerStyle={{flex: 1, marginRight: 16}}
         buttonStyle={[globalStyles.btn, styles.btnOutline ]}
         titleStyle={styles.titleStyle}
+        onPress={() => {signOut()}}
       />
     </DrawerContentScrollView>
   );
