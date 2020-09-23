@@ -190,8 +190,9 @@ const CheckoutPaymentScreen = ({ navigation }) => {
             </View>
           </View>
           <Divider style={styles.dividerStyle} />
-          <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-            <Text style={[{textAlign: 'right'}, styles.productDetailsText]}>$49.60</Text>
+          <View style={[ globalStyles.container, globalStyles.mt8, styles.rowContainer, {justifyContent: 'space-between'} ]}>
+            <Text style={ styles.productDetailsText }>Total Amount</Text>
+            <Text style={ styles.productDetailsText }>$49.60</Text>
           </View>
         </View>
 

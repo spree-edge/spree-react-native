@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper'
 import { ThemeProvider } from 'react-native-elements'
 import RootStackNavigator from './src/navigations/RootStackNavigator'
+import { Provider } from 'react-redux'
+import store from './src/redux/store'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
@@ -15,11 +17,13 @@ export default function App() {
 
   if(fontsLoaded) {
     return (
-      <ThemeProvider>
-        <PaperProvider>
-          <RootStackNavigator />
-        </PaperProvider>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <PaperProvider>
+            <RootStackNavigator />
+          </PaperProvider>
+        </ThemeProvider>
+      </Provider>
     )
   } else {
     return (

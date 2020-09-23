@@ -17,6 +17,8 @@ import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 import { globalStyles } from '../styles/global'
 import { AuthContext } from '../library/components/context'
 import AsyncStorage from '@react-native-community/async-storage'
+import { retrieveToken, userLogin, userLogout, userRegister } from '../redux/actionCreators/authentication'
+import { connect } from 'react-redux'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -28,56 +30,11 @@ const MyTheme = {
 
 const RootStack = createStackNavigator()
 
-export default function RootStackNavigator() {
-  // const [isSignedIn, setIsSignedIn] = React.useState(false)  //Try making signed in
-
-  // const [isLoading, setIsLoading] = React.useState(true)
-  // const [userToken, setUserToken] = React.useState(null)
-
-  const initialLoginState = {
-    isLoading: true,
-    userName: null,
-    userToken: null
-  }
-
-  const loginReducer = (prevState, action) => {
-    switch( action.type ) {
-      case 'RETRIEVE_TOKEN':
-        return {
-          ...prevState,
-          userToken: action.token,
-          isLoading: false
-        }
-      case 'LOGIN':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false
-        }
-      case 'LOGOUT':
-        return {
-          ...prevState,
-          userName: null,
-          userToken: null,
-          isLoading: false
-        }
-      case 'REGISTER':
-        return {
-          ...prevState,
-          userName: action.id,
-          userToken: action.token,
-          isLoading: false
-        }
-    }
-  }
-
-  const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState)
+function RootStackNavigator({ authState, dispatch}) {
 
   const authContext = React.useMemo(
     () => ({
     signIn: (userName, password) => {
-      let userToken = null
       
       fetch('http://10.0.2.2:3000/spree_oauth/token', {
         method: 'POST',
@@ -95,36 +52,52 @@ export default function RootStackNavigator() {
       .then(async data => {
         try{
           await AsyncStorage.setItem('userToken', data.access_token)
-          dispatch({ type: 'LOGIN', id: userName, token: data.access_token })
+          dispatch(userLogin(userName, data.access_token))
         } catch(e) {
           console.log(e)
         }
       })
     },
     signOut: async () => {
+
       try{
         await AsyncStorage.removeItem('userToken')
       } catch(e) {
         console.log(e)
       }
-      dispatch({ type: 'LOGOUT' })
+      dispatch(userLogout())
     },
-    signUp: () => {
-      setUserToken('fgkj')
-      setIsLoading(false)
+    signUp: (email, password) => {
+      fetch('http://10.0.2.2:3000/api/v2/storefront/account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+        },
+        body: JSON.stringify({
+          'user': {
+            'email': email,
+            'password': password,
+            'password_confirmation': password
+          }
+        })
+      })
+      .then(res => res.json())
+      .then(() => {
+        dispatch(userRegister(email, password, password))
+      })
     },
   }), [])
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {
-      let userToken;
+      let userToken = null;
 
       try {
         userToken = await AsyncStorage.getItem('userToken')
       } catch (e) {
         console.log(e)
       }
-      dispatch({ type: 'RETRIEVE_TOKEN', token: userToken})
+      dispatch(retrieveToken(userToken))
     }
 
     bootstrapAsync();
@@ -133,9 +106,9 @@ export default function RootStackNavigator() {
     // }
   }, [])
 
-  if( loginState.isLoading ) {    //Splash Screen can be shown
+  if( authState.isLoading ) {    //Splash Screen can be shown
     return (
-      <View style={[globalStyles.containerFluid, globalStyles.centeredContent ]}>
+      <View style={[ globalStyles.containerFluid, globalStyles.centeredContent ]}>
         <ActivityIndicator size="large" />
       </View>
     )
@@ -146,7 +119,7 @@ export default function RootStackNavigator() {
       <NavigationContainer theme={MyTheme}>
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           {
-            loginState.userToken !== null ? (
+            authState.userToken !== null ? (
               <>
                 <RootStack.Screen name="MainDrawerNavigator" component={MainDrawerNavigator} />
               </>
@@ -168,3 +141,9 @@ export default function RootStackNavigator() {
     </AuthContext.Provider>
   )
 }
+
+const mapStateToProps = state => ({
+  authState: state.authentication
+})
+
+export default connect(mapStateToProps)(RootStackNavigator)
