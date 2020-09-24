@@ -11,7 +11,7 @@ import {
   DrawerItem
 } from '@react-navigation/drawer';
 
-import { AuthContext } from './context'
+import { AuthContext } from '../utils/context'
 
 function CustomDrawerContent(props) {
 

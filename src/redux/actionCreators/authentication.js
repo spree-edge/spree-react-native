@@ -1,23 +1,22 @@
 
-export const retrieveToken = token => ({
+export const retrieveToken = (token, email) => ({
   type: 'RETRIEVE_TOKEN',
-  payload: { token }
+  payload: { token, email }
 })
 
-export const userLogin = (id, token) => ({
+export const userLogin = (email, token) => ({
   type: 'LOGIN',
-  payload: { id, token }
+  payload: { email, token }
 })
 
 export const userLogout = () => ({
   type: 'LOGOUT'
 })
 
-export const userRegister = (email, password, confPassword) => ({
+export const userRegister = (userName, email) => ({
   type: 'REGISTER',
   payload: {
-    email,
-    password,
-    confPassword
+    userName,
+    email
   }
 })

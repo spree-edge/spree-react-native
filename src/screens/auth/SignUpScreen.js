@@ -4,12 +4,13 @@ import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-import { AuthContext } from '../../library/components/context'
+import { AuthContext } from '../../library/utils/context'
 
 const SignUpScreen = ({ navigation }) => {
   // const password = React.createRef()
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
-  
+
+  const [userName, setUserName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
@@ -28,6 +29,8 @@ const SignUpScreen = ({ navigation }) => {
             containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
             inputStyle={{fontFamily: 'lato-regular',}}
             inputContainerStyle={{ paddingTop: 5, borderBottomColor: '#fff'}}
+            onChangeText={setUserName}
+            // onEndEditing={() => console.log(userName)}
           />
           <Input
             placeholder="Email" 
@@ -35,7 +38,7 @@ const SignUpScreen = ({ navigation }) => {
             containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
             inputStyle={{fontFamily: 'lato-regular',}}
             inputContainerStyle={{ paddingTop: 5, borderBottomColor: '#fff'}}
-            onChangeText={text => setEmail(text)}
+            onChangeText={setEmail}
             // onEndEditing={() => console.log(email)}
           />
           <Input
@@ -46,12 +49,12 @@ const SignUpScreen = ({ navigation }) => {
             inputStyle={{fontFamily: 'lato-regular',}}
             inputContainerStyle={{ borderBottomColor: '#fff'}}
             rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
-            onChangeText={text => setPassword(text)}
+            onChangeText={setPassword}
             // onEndEditing={() => console.log(password)}
           />
           <TouchableHighlight
             style={[globalStyles.btnBlock, globalStyles.primary, globalStyles.mt32 ]}
-            // onPress={() => signUp(email, password)}
+            onPress={() => signUp(userName, email, password)}
           >
             <Text style={[globalStyles.subhead, { color: "#fff" }]}>
               Create Account

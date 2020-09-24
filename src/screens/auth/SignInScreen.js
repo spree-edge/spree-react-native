@@ -4,7 +4,7 @@ import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-import { AuthContext } from '../../library/components/context'
+import { AuthContext } from '../../library/utils/context'
 
 const SignInScreen = ({ navigation }) => {
   // const password = React.createRef()

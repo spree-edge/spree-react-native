@@ -1,7 +1,8 @@
 const initialAuthState = {
   isLoading: true,
   userName: null,
-  userToken: null
+  email: null,
+  userToken: null,
 }
 
 const authReducer = (prevState = initialAuthState, action) => {
@@ -10,13 +11,14 @@ const authReducer = (prevState = initialAuthState, action) => {
       return {
         ...prevState,
         userToken: action.payload.token,
+        email: action.payload.email,
         isLoading: false
       }
     case 'LOGIN':
       return {
         ...prevState,
-        userName: action.id,
-        userToken: action.token,
+        email: action.payload.email,
+        userToken: action.payload.token,
         isLoading: false
       }
     case 'LOGOUT':
@@ -24,13 +26,14 @@ const authReducer = (prevState = initialAuthState, action) => {
         ...prevState,
         userName: null,
         userToken: null,
+        email: null,
         isLoading: false
       }
     case 'REGISTER':
       return {
         ...prevState,
+        userName: action.payload.userName,
         email: action.payload.email,
-        password: action.payload.password,
         isLoading: false
       }
     default: return prevState

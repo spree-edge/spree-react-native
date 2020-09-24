@@ -15,7 +15,7 @@ import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen'
 import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 
 import { globalStyles } from '../styles/global'
-import { AuthContext } from '../library/components/context'
+import { AuthContext } from '../library/utils/context'
 import AsyncStorage from '@react-native-community/async-storage'
 import { retrieveToken, userLogin, userLogout, userRegister } from '../redux/actionCreators/authentication'
 import { connect } from 'react-redux'
@@ -34,7 +34,7 @@ function RootStackNavigator({ authState, dispatch}) {
 
   const authContext = React.useMemo(
     () => ({
-    signIn: (userName, password) => {
+    signIn: (email, password) => {
       
       fetch('http://10.0.2.2:3000/spree_oauth/token', {
         method: 'POST',
@@ -43,7 +43,7 @@ function RootStackNavigator({ authState, dispatch}) {
           'Cookie': 'token=InpmWTRUckMwTHVNZ202d2RVTVg4N0ExNTkwNTYxMTc5MDk5Ig%3D%3D--751c67228985fd14c7edbeddfd9952518997f1e5; guest_token=InpmWTRUckMwTHVNZ202d2RVTVg4N0ExNTkwNTYxMTc5MDk5Ig%3D%3D--751c67228985fd14c7edbeddfd9952518997f1e5; connect.sid=s%3AYJFykEuccStMImXWZtqGrv97Qg5dpOMy.yLOFiVNLb1no8MB9a%2BfvhEu1UZYSOzfVrTcB77oBxW8'
         },
         body: JSON.stringify({
-          'username': userName,
+          'username': email,
           'password': password,
           'grant_type': "password"
         })
@@ -52,7 +52,8 @@ function RootStackNavigator({ authState, dispatch}) {
       .then(async data => {
         try{
           await AsyncStorage.setItem('userToken', data.access_token)
-          dispatch(userLogin(userName, data.access_token))
+          await AsyncStorage.setItem('email', email)
+          dispatch(userLogin(email, data.access_token))
         } catch(e) {
           console.log(e)
         }
@@ -62,12 +63,13 @@ function RootStackNavigator({ authState, dispatch}) {
 
       try{
         await AsyncStorage.removeItem('userToken')
+        await AsyncStorage.removeItem('email')
       } catch(e) {
         console.log(e)
       }
       dispatch(userLogout())
     },
-    signUp: (email, password) => {
+    signUp: (userName, email, password) => {
       fetch('http://10.0.2.2:3000/api/v2/storefront/account', {
         method: 'POST',
         headers: {
@@ -82,22 +84,25 @@ function RootStackNavigator({ authState, dispatch}) {
         })
       })
       .then(res => res.json())
-      .then(() => {
-        dispatch(userRegister(email, password, password))
+      .then(data => {
+        // console.log(data, email, password)
+        dispatch(userRegister(userName, email))
       })
     },
   }), [])
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {
-      let userToken = null;
+      let userToken = null
+      let email = null
 
       try {
         userToken = await AsyncStorage.getItem('userToken')
+        email = await AsyncStorage.getItem('email')
       } catch (e) {
         console.log(e)
       }
-      dispatch(retrieveToken(userToken))
+      dispatch(retrieveToken(userToken, email))
     }
 
     bootstrapAsync();

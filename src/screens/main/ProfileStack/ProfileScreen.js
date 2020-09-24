@@ -5,6 +5,7 @@ import { colors } from '../../../res/palette'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Pen, User, Home, ShoppingBag, Heart, Gift, ChevronRight } from '../../../library/icons'
 import { Divider } from 'react-native-elements'
+import { AuthContext } from '../../../library/utils/context'
 
 const list = [
   {
@@ -30,6 +31,8 @@ const list = [
 ]
 
 const ProfileScreen = () => {
+  const { signOut } = React.useContext(AuthContext)
+
   return (
     <View style={[globalStyles.containerFluid, {backgroundColor: colors.white}]}>
       <View style={styles.jumbotron}>
@@ -66,7 +69,9 @@ const ProfileScreen = () => {
           )
         )}
       </View>
-      <TouchableHighlight style={[globalStyles.centeredContent, styles.btnBlock]}>
+      <TouchableHighlight style={[globalStyles.centeredContent, styles.btnBlock]}
+        onPress={signOut}
+      >
         <Text style={[globalStyles.descriptiveItem]}>Logout Account</Text>
       </TouchableHighlight>
     </View>
