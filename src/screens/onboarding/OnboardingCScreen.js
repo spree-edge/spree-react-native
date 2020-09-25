@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { View, ImageBackground, Text, Button, StyleSheet, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { View, ImageBackground, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ArrowLongRight } from '../../library/icons'
+import { styles } from './styles'
+import { Button } from 'react-native-elements'
 
 const OnboardingCScreen = ({ navigation }) => {
   return (
@@ -11,25 +13,26 @@ const OnboardingCScreen = ({ navigation }) => {
         style={{flex: 1, justifyContent: 'flex-end', paddingVertical: 48, paddingHorizontal: '10%',}}
       >
         <View>
-          <Text style={[globalStyles.title, {color: '#fff'}]}>You got it</Text>
-          <Text style={globalStyles.descriptionText}> Save product for later or buy in three easy steps.</Text>
-          <View style={[styles.dotsContainer, globalStyles.mt32]}>
+          <Text style={styles.title}>You got it</Text>
+          <Text style={styles.description}> Save product for later or buy in three easy steps.</Text>
+          <View style={styles.dotsContainer}>
             <View style={styles.inactive}/>
             <View style={styles.inactive}/>
             <View style={styles.active}/>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 24}}>
-            <TouchableHighlight style={[globalStyles.roundedButton, globalStyles.centeredContent]}
+          <View style={styles.footerActions}>
+            <Button 
+              title="Go Shopping"
+              type="solid"
+              buttonStyle={globalStyles.roundedButton}
+              titleStyle={styles.descriptive}
+              onPress={() => navigation.navigate('SignIn')}
+            />
+            <TouchableOpacity style={styles.footerAction}
               onPress={() => navigation.navigate('SignIn')}
             >
-              <Text style={globalStyles.descriptiveItem}>Go Shopping</Text>
-            </TouchableHighlight>
-            <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}}
-              onPress={() => navigation.navigate('SignIn')}
-            >
-              <Text style={globalStyles.descriptiveItem}
-              >Login</Text>
-              <ArrowLongRight size={24} style={{color: '#fff', marginLeft: 8}} />
+              <Text style={styles.descriptive}> Login </Text>
+              <ArrowLongRight size={24} style={styles.footerIcon} />
             </TouchableOpacity>
           </View>
         </View>
@@ -39,24 +42,3 @@ const OnboardingCScreen = ({ navigation }) => {
 }
 
 export default OnboardingCScreen
-
-const styles = StyleSheet.create({
-  inactive: {
-    width: 6,
-    height: 6,
-    borderRadius: 10,
-    backgroundColor: "#fff"
-  },
-  active: {
-    width: 16,
-    height: 6,
-    borderRadius: 10,
-    backgroundColor: "#ee3168"
-  },
-  dotsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: 70,
-    // borderWidth: 2,
-  }
-})

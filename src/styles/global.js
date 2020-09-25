@@ -32,12 +32,12 @@ export const globalStyles = StyleSheet.create({
   descriptionText: {
     fontFamily: 'lato-regular',
     fontSize: 14,
-    color: '#fff'
+    // color: '#fff'
   },
   descriptiveItem: {
     fontFamily: 'lato-bold',
     fontSize: 14,
-    color: '#fff'
+    // color: '#fff'
   },
   title: {
     fontFamily: 'lato-bold',
@@ -65,22 +65,13 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold'
   },
 
-  onboardingCover: {
-    resizeMode: 'cover',
-    flex: 2,
-    width: '100%',
-  },
-  onboardingCardContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: '10%',
-    alignSelf: 'center',
-    backgroundColor: '#C8BBB5'
-  },
+  /**
+   * Buttons
+   */
   roundedButton: {
     width: 128,
     height: 36,
-    backgroundColor: '#EE3168',
+    backgroundColor: colors.primary,
     borderRadius: 24
   },
   roundedBtnBlock: {
@@ -94,6 +85,11 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  btn: {
+    borderColor: colors.primary,
+    borderRadius: 24
+  },
+
   blockTextInput: {
     borderRadius: 4,
   },
@@ -102,9 +98,13 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center'
   },
   primary: {
-    backgroundColor: '#EE3168',
-    borderColor: '#EE3168'
+    backgroundColor: colors.primary,
+    borderColor: colors.primary
   },
+
+  /**
+   * Spacing
+   */
   mt8: {
     marginTop: 8
   },
@@ -116,6 +116,9 @@ export const globalStyles = StyleSheet.create({
   },
   mt32: {
     marginTop: 32
+  },
+  mt48: {
+    marginTop: 48
   },
   mb8: {
     marginBottom: 8
@@ -131,9 +134,5 @@ export const globalStyles = StyleSheet.create({
   },
   mb114: {
     marginBottom: 114
-  },
-  btn: {
-    borderColor: colors.primary,
-    borderRadius: 24
   }
 })
