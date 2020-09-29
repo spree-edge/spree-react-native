@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { View, Text, Image, TouchableHighlight, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ArrowLongRight } from '../../library/icons'
 import { styles } from './styles'
-import { colors } from '../../res/palette'
 import { Button } from 'react-native-elements'
 
 const OnboardingAScreen = ({ navigation }) => {
@@ -42,50 +41,3 @@ const OnboardingAScreen = ({ navigation }) => {
 }
 
 export default OnboardingAScreen
-
-// const styles = StyleSheet.create({
-//   inactive: {
-//     width: 6,
-//     height: 6,
-//     borderRadius: 10,
-//     backgroundColor: "#fff"
-//   },
-//   active: {
-//     width: 16,
-//     height: 6,
-//     borderRadius: 10,
-//     backgroundColor: "#ee3168"
-//   },
-//   dotsContainer: {
-//     ...globalStyles.mt32,
-//     flexDirection: 'row',
-//     justifyContent: 'space-around',
-//     width: 70,
-//   },
-//   footerActions: { 
-//     flexDirection: 'row', 
-//     justifyContent: 'space-between', 
-//     alignItems: 'baseline', 
-//     marginTop: 24
-//   },
-//   title: {
-//     ...globalStyles.title,
-//     color: colors.white
-//   },
-//   description: {
-//     ...globalStyles.descriptionText,
-//     color: colors.white
-//   },
-//   descriptive: {
-//     ...globalStyles.descriptiveItem,
-//     color: colors.white
-//   },
-//   footerIcon: {
-//     color: '#fff',
-//     marginLeft: 8
-//   },
-//   footerAction: {
-//     flexDirection: 'row',
-//     alignItems: 'center'
-//   }
-// })

@@ -1,56 +1,67 @@
 import * as React from 'react'
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
-import { Input } from 'react-native-elements'
+import { Input, Button } from 'react-native-elements'
+import { styles } from './styles'
 
 const ResetPasswordScreen = ({ navigation }) => {
   const [newPasswordSecureEntryToggle, setNewPasswordSecureEntryToggle] = React.useState(true)
   const [confPasswordSecureEntryToggle, setConfPasswordSecureEntryToggle] = React.useState(true)
 
+  const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
+  const [inputConfPasswordBorder, setInputConfPasswordBorder] = React.useState(false)
+
+  const [password, setPassword] = React.useState('')
+  const [confPassword, setConfPassword] = React.useState('')
+
   return (
     <View style={globalStyles.container}>
-      <ChevronLeft size={24} style={[globalStyles.mt32, {color: colors.black}]} 
+      <ChevronLeft size={24} style={styles.backButton} 
         onPress={navigation.goBack}
       />
-      <Text style={[globalStyles.title, globalStyles.mt16]}>Reset Password</Text>
+      <Text style={styles.title}>Reset Password</Text>
       <Text
-        style={[globalStyles.mt16, globalStyles.mb32, {color: colors.gray, lineHeight: 20}]}
+        style={[ styles.label, globalStyles.mt16, globalStyles.mb32 ]}
       >
         Hi John Doe. Create new password for your Shopit account.
       </Text>
-      <View style={[globalStyles.containerFluid, { justifyContent: "flex-start" }]}>
+      <View style={globalStyles.containerFluid}>
         <Input
-          // ref={password}
           placeholder="New Password" 
+          onFocus={() => setInputPasswordBorder(true)}
+          onBlur={() => setInputPasswordBorder(false)}
           secureTextEntry={newPasswordSecureEntryToggle}
-          containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
-          inputStyle={{fontFamily: 'lato-regular',}}
-          inputContainerStyle={{ borderBottomColor: '#fff'}}
+          containerStyle={[ styles.inputMainContainer, { borderWidth: inputPasswordBorder ? 1 : 0 }]}
+          inputStyle={ styles.inputStyle }
+          inputContainerStyle={ styles.inputContainerStyle }
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setNewPasswordSecureEntryToggle(!newPasswordSecureEntryToggle)} />}
+          onChangeText={setPassword}
+          // onEndEditing={() => console.log(password)}
         />
         <Input
-          // ref={password}
-          placeholder="Re-enter Password" 
+          placeholder="Re-enter Password"
+          onFocus={() => setInputConfPasswordBorder(true)}
+          onBlur={() => setInputConfPasswordBorder(false)}
           secureTextEntry={confPasswordSecureEntryToggle}
-          containerStyle={[globalStyles.mb16, {backgroundColor: '#fff', height: 52, borderRadius: 4, }]}
-          inputStyle={{fontFamily: 'lato-regular',}}
-          inputContainerStyle={{ borderBottomColor: '#fff'}}
+          containerStyle={[ styles.inputMainContainer, { borderWidth: inputConfPasswordBorder ? 1 : 0 }]}
+          inputStyle={ styles.inputStyle }
+          inputContainerStyle={ styles.inputContainerStyle }
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setConfPasswordSecureEntryToggle(!confPasswordSecureEntryToggle)} />}
+          onChangeText={setConfPassword}
+          // onEndEditing={() => console.log(confPassword)}
         />
-        <TouchableHighlight
-          style={[globalStyles.btnBlock, globalStyles.primary, globalStyles.mt32 ]}
+        <Button
+          title="Submit & Login"
+          buttonStyle={ styles.buttonBlockStyle }
+          titleStyle={ globalStyles.subhead }
           onPress={() => navigation.navigate('SignIn')}
-        >
-          <Text style={[globalStyles.subhead, { color: "#fff" }]}>
-            Submit & Login
-          </Text>
-        </TouchableHighlight>
-        <View style={[globalStyles.mt32, {flexDirection: 'row', alignSelf: 'center', alignItems: 'center'}]}>
-          <Text style={{color: colors.gray, fontSize: 16}}>Don't have and account ? </Text>
+        />
+        <View style={styles.footer}>
+          <Text style={styles.label}>Don't have an account ? </Text>
           <Text
-            style={[globalStyles.descriptionText, {color: colors.primary, fontSize: 16}]}
+            style={styles.footerAction}
             onPress={() => navigation.navigate('SignUp')}
           > Signup</Text>
         </View>

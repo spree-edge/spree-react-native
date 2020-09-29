@@ -3,7 +3,7 @@ import { colors } from '../res/palette'
 
 export const globalStyles = StyleSheet.create({
   /**
-   * Wrappers
+   * Containers
    */
   container: {
     flex: 1,
@@ -22,6 +22,9 @@ export const globalStyles = StyleSheet.create({
   },
   textPrimary: {
     color: colors.primary
+  },
+  textSecondary: {
+    color: colors.gray
   },
   textDark: {
     color: colors.black
@@ -61,7 +64,15 @@ export const globalStyles = StyleSheet.create({
     fontSize: 12,
     color: colors.black
   },
-  textBold: {
+  latoRegular16: {
+    fontFamily: 'lato-regular',
+    fontSize: 16
+  },
+  latoRegular14: {
+    fontFamily: 'lato-regular',
+    fontSize: 14
+  },
+  textBold: { //lato-bold
     fontFamily: 'lato-bold'
   },
 
@@ -89,7 +100,6 @@ export const globalStyles = StyleSheet.create({
     borderColor: colors.primary,
     borderRadius: 24
   },
-
   blockTextInput: {
     borderRadius: 4,
   },

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Text, TouchableHighlight } from 'react-native'
+import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
@@ -29,8 +29,8 @@ const SignInScreen = ({ navigation }) => {
           keyboardType="email-address"
           onFocus={() => setInputEmailBorder(true)}
           onBlur={() => setInputEmailBorder(false)}
-          containerStyle={[styles.inputMainContainer, {borderWidth: inputEmailBorder ? 1 : 0}]}
-          inputStyle={styles.inputStyle}
+          containerStyle={[ styles.inputMainContainer, { borderWidth: inputEmailBorder ? 1 : 0 } ]}
+          inputStyle={ styles.inputStyle }
           inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
           onChangeText={setEmail}
           // onEndEditing={() => console.log(email)}
@@ -40,7 +40,7 @@ const SignInScreen = ({ navigation }) => {
           secureTextEntry={secureTextEntryToggle}
           onFocus={() => setInputPasswordBorder(true)}
           onBlur={() => setInputPasswordBorder(false)}
-          containerStyle={[styles.inputMainContainer, {borderWidth: inputPasswordBorder ? 1 : 0}]}
+          containerStyle={[ styles.inputMainContainer, {borderWidth: inputPasswordBorder ? 1 : 0 }]}
           inputStyle={styles.inputStyle}
           inputContainerStyle={styles.inputContainerStyle}
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
@@ -50,22 +50,22 @@ const SignInScreen = ({ navigation }) => {
         <Button 
           title="Password help ?"
           type="clear"
-          containerStyle={{alignSelf: 'flex-end'}}
-          titleStyle={[globalStyles.descriptionText, { color: colors.primary }]}
+          containerStyle={{ alignSelf: 'flex-end' }}
+          titleStyle={styles.formClearActionButton}
           onPress={() => navigation.navigate('ForgotPassword')}
         />
         <Button
           title="Login to Shopit"
-          buttonStyle={styles.buttonBlockStyle}
-          titleStyle={[globalStyles.subhead]}
+          buttonStyle={ styles.buttonBlockStyle }
+          titleStyle={ globalStyles.subhead }
           onPress={() => signIn(email, password)}
         />
         <View style={styles.footer}>
-          <Text style={{color: colors.gray, fontSize: 16}}>Don't have an account ? </Text>
+          <Text style={styles.label}>Don't have an account ? </Text>
           <Text
-            style={[globalStyles.descriptionText, {color: colors.primary, fontSize: 16}]}
+            style={styles.footerAction}
             onPress={() => navigation.navigate('SignUp')}
-          >Signup</Text>
+          > Signup</Text>
         </View>
       </View>
     </View>

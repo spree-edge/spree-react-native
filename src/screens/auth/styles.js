@@ -29,6 +29,10 @@ export const styles = StyleSheet.create({
   inputContainerStyle: {
     borderBottomColor: '#fff'
   },
+  formClearActionButton: {
+    ...globalStyles.textPrimary,
+    ...globalStyles.latoRegular14,
+  },
   buttonBlockStyle: {
     ...globalStyles.mt32,
     backgroundColor: colors.primary,
@@ -40,5 +44,30 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center'
+  },
+  label: {
+    ...globalStyles.textSecondary,
+    ...globalStyles.latoRegular16,
+  },
+  footerAction: {
+    ...globalStyles.textPrimary,
+    ...globalStyles.latoRegular16,
+  },
+  inputRoundedBackground: {
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "#ffffff",
+    shadowColor: "rgba(0, 0, 0, 0.05)",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowRadius: 8,
+    shadowOpacity: 1,
+    borderStyle: "solid",
+    borderWidth: 1,
+  },
+  inputRoundedContainer: { 
+    width: 73
   }
 })
