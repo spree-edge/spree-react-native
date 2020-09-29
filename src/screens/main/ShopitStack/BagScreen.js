@@ -2,51 +2,8 @@ import * as React from 'react'
 import { StyleSheet, View, Text, Image, ScrollView } from 'react-native'
 import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
-import { Close, MathMinus, MathPlus } from '../../../library/icons'
 import { Divider, Input, Button } from 'react-native-elements'
-
-const BagItemCard = ({ imageSource, name, description, color, size, discountedPrice, price, discountPercent, soldOut }) => {
-  return (
-    <View style={{marginTop: 16}}>
-      <View style={[styles.favouriteCardContainer,
-        soldOut ? styles.inactiveCard : null
-      ]}>
-        <Image
-          source={imageSource}
-          style={styles.favouriteCardImage}
-        />
-        <View style={styles.favouriteProductDetailsContainer}>
-          <View style={globalStyles.containerFluid}>
-            <Text style={[globalStyles.descriptiveItem, styles.paletteBlack]}>{name}</Text>
-            <Text style={[globalStyles.descriptionText, styles.description]}>{description}</Text>
-            <View style={styles.attributeCounterContainer}>
-              <View style={styles.attributeContainer}>
-                <View style={[styles.colorBadge, {backgroundColor: `${color}`}]} />
-                <View style={[styles.productSizeStyle]}>
-                  <Text style={{paddingHorizontal: 5}}>{size}</Text>
-                </View>
-              </View>
-              <View style={styles.counterContainer}>
-                <MathMinus size={14} style={{color: colors.primary}} />
-                <Text style={{color: colors.primary}}>1</Text>
-                <MathPlus size={14} style={{color: colors.primary}} />
-              </View>
-            </View>
-            <View style={styles.pricingContainer}>
-              <Text style={[styles.prices, styles.discountedPrice]}>${discountedPrice}</Text>
-              <Text style={[styles.prices, styles.price]}>${price}</Text>
-              <Text style={[styles.prices, styles.discountPercent]}>({discountPercent}% OFF)</Text>
-            </View>
-          </View>
-          <View style={styles.actionsContainer}>
-            <Close size={18} style={{color: colors.black}} />
-          </View>
-        </View>
-      </View>
-      {soldOut ? <Text style={[globalStyles.descriptionText, styles.description]}>Sorry, this item is currently sold out.</Text> : null}
-    </View>
-  )
-}
+import ProductCard from '../../../library/components/ProductCard'
 
 const BagScreen = ({ navigation }) => {
   const [inputBorder, setInputBorder] = React.useState(false)
@@ -55,8 +12,9 @@ const BagScreen = ({ navigation }) => {
     <ScrollView>
       <View style={globalStyles.container}>
         {
-          BAG.map(ele => <BagItemCard 
+          BAG.map(ele => <ProductCard 
             key={ele.id}
+            counter
             {...ele}
           />)
         }
@@ -119,103 +77,6 @@ const BagScreen = ({ navigation }) => {
 export default BagScreen
 
 const styles = StyleSheet.create({
-  favouriteCardContainer: {
-    flexDirection: 'row'
-  },
-  inactiveCard: {
-    opacity: 0.5
-  },
-  favouriteCardImage: {
-    width: 100,
-    height: 112
-  },
-  colorBadge: {
-    width: 24,
-    height: 24,
-    borderRadius: 24,
-    marginRight: 15
-  },
-  attributeContainer: {
-    flexDirection: 'row',
-    marginRight: 30,
-    // borderWidth: 2
-  },
-  pricingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    width: 180,
-    // borderWidth: 2
-  },
-  price: {
-    color: colors.gray,
-    textDecorationLine: 'line-through'
-  },
-  prices: {
-    fontFamily: 'lato-bold',
-  },
-  discountPercent: {
-    color: colors.error
-  },
-  discountedPrice: {
-    color: colors.black
-  },
-  paletteBlack: {
-    color: colors.black
-  },
-  description: {
-    fontSize: 11,
-    marginTop: 4,
-    color: colors.gray
-  },
-  productSizeStyle: {
-    minWidth: 24,
-    height: 24,
-    borderRadius: 24,
-    borderWidth: 0.5,
-    borderColor: "#222222",
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  activeShoppingBag: {
-    width: 38,
-    height: 38,
-    borderRadius: 24,
-    backgroundColor: "#ee3168",
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  favouriteProductDetailsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: '3%',
-    backgroundColor: '#fff',
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    height: 112,
-    // borderWidth: 1
-  },
-  actionsContainer: {
-    justifyContent: 'space-between',
-    alignItems: 'flex-end'
-  },
-  counterContainer: {
-    width: 62,
-    height: 24,
-    borderRadius: 12,
-    backgroundColor: "#ee316819",
-    flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignItems: 'center'
-  },
-  attributeCounterContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 6,
-    // borderWidth: 2,
-  },
   titleMedium: {
     ...globalStyles.descriptiveItem,
     ...globalStyles.textDark,
@@ -243,7 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5'
   },
   footer: {
-    ...globalStyles.containerFluid, 
+    ...globalStyles.containerFluid,
     ...globalStyles.centeredContent,
     ...globalStyles.mb114,
     ...globalStyles.mt32

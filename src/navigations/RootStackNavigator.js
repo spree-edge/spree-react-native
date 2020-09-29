@@ -58,14 +58,15 @@ function RootStackNavigator({ authState, dispatch}) {
           console.log(e)
         }
       })
+      .catch(err => alert(err))
     },
     signOut: async () => {
 
       try{
         await AsyncStorage.removeItem('userToken')
         await AsyncStorage.removeItem('email')
-      } catch(e) {
-        console.log(e)
+      } catch(err) {
+        alert(err)
       }
       dispatch(userLogout())
     },
@@ -88,6 +89,7 @@ function RootStackNavigator({ authState, dispatch}) {
         // console.log(data, email, password)
         dispatch(userRegister(userName, email))
       })
+      .catch(err => alert(err))
     },
   }), [])
 
@@ -100,7 +102,8 @@ function RootStackNavigator({ authState, dispatch}) {
         userToken = await AsyncStorage.getItem('userToken')
         email = await AsyncStorage.getItem('email')
       } catch (e) {
-        console.log(e)
+        // console.log(e)
+        alert(e)
       }
       dispatch(retrieveToken(userToken, email))
     }
