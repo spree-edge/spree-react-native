@@ -35,7 +35,6 @@ function RootStackNavigator({ authState, dispatch}) {
   const authContext = React.useMemo(
     () => ({
     signIn: (email, password) => {
-      
       fetch('http://10.0.2.2:3000/spree_oauth/token', {
         method: 'POST',
         headers: {
@@ -60,8 +59,8 @@ function RootStackNavigator({ authState, dispatch}) {
       })
       .catch(err => alert(err))
     },
-    signOut: async () => {
 
+    signOut: async () => {
       try{
         await AsyncStorage.removeItem('userToken')
         await AsyncStorage.removeItem('email')
@@ -70,6 +69,7 @@ function RootStackNavigator({ authState, dispatch}) {
       }
       dispatch(userLogout())
     },
+    
     signUp: (userName, email, password) => {
       fetch('http://10.0.2.2:3000/api/v2/storefront/account', {
         method: 'POST',

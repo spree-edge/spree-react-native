@@ -1,30 +1,20 @@
 import * as React from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
-import { ChevronDown } from '../../../library/icons'
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import { ChevronDown, ChevronUp } from '../../../library/icons'
 import { colors } from '../../../res/palette'
 import { List } from 'react-native-paper'
-
-const CategoryMenu = ({ headline, subheading }) => {
-  return (
-    <View style={styles.menuContainer}>
-      <View>
-        <Text>{headline}</Text>
-        <ChevronDown size={24} style={{color: colors.black}}/>
-      </View>
-      <Text>{subheading}</Text>
-    </View>
-  )
-}
+import { styles } from './styles'
+import { globalStyles } from '../../../styles/global'
+import Collapsible from 'react-native-collapsible'
 
 const CategoriesScreen = () => {
-  // const [expanded, setExpanded] = React.useState(true);
-
-  // const handlePress = () => setExpanded(!expanded);
+  const [accordionMenExpanded, setAccordionMenExpanded] = React.useState(false);
+  const toggleAccordionMenExpanded = () => setAccordionMenExpanded(!accordionMenExpanded);
 
   return (
     <ScrollView>
       <View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.rowContainer}>
           <View style={[styles.accordionItem, {backgroundColor: '#d7e5cc'}]}>
             <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
               <Text style={styles.accordionLevel1Title}>NEW IN</Text>
@@ -40,6 +30,36 @@ const CategoriesScreen = () => {
             <Text style={styles.accordionLevel1Description}>We Can’t Get Enough</Text>
           </View>
         </View>
+
+        {/* Code for Single Collapsible Start */}
+        {/* <TouchableOpacity style={[globalStyles.containerFluid, styles.accordionLevel1, {backgroundColor: '#ececec'}]} onPress={toggleAccordionMenExpanded}>
+          <View style={styles.accordionSelectorContainer}>
+            <View style={styles.accordionLevel1TitleNew}>
+              <Text style={styles.accordionLevel1Title}>MEN  </Text>
+              {
+                accordionMenExpanded
+                ? <ChevronDown size={16} style={{color: colors.black}} />
+                : <ChevronUp size={16} style={{color: colors.black}} />
+              }
+            </View>
+            <Text style={styles.accordionLevel1Description}>Spruce Up Your Look</Text>
+          </View>
+        </TouchableOpacity> */}
+        {/* Content of Single Collapsible */}
+        {/* <Collapsible collapsed={accordionMenExpanded} align="center">
+          <View style={[styles.accordionLevel2Style, {backgroundColor: '#fff'}]}>
+            <View style={styles.accordionLevel1TitleNew}>
+              <Text style={styles.accordionLevel1Title}>MEN  </Text>
+              {
+                accordionMenExpanded
+                ? <ChevronDown size={16} style={{color: colors.black}} />
+                : <ChevronUp size={16} style={{color: colors.black}} />
+              }
+            </View>
+          </View>
+        </Collapsible> */}
+        {/* Code for Single Collapsible Ends */}
+
         <List.Section>
           <List.Accordion
             title="MEN"
@@ -214,66 +234,3 @@ const CategoriesScreen = () => {
 }
 
 export default CategoriesScreen
-
-const styles = StyleSheet.create({
-  centeredContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  menuContainer: {
-    width: '93.6%',
-    alignSelf: 'center'
-  },
-  accordionLevel1: {
-    // borderWidth: 2,
-    height: 93,
-    marginTop: 2
-  },
-  accordionLevel2Style: {
-    marginBottom: 1
-    // borderWidth: 2,
-    // height: 93
-  },
-  accordionLevel1Title: {
-    fontFamily: "lato-bold",
-    fontSize: 18,
-    fontStyle: "normal",
-    lineHeight: 24,
-    letterSpacing: 0,
-    color: "#222222",
-    // borderWidth: 2,
-    marginTop: 5
-  },
-  accordionLevel1Description: {
-    opacity: 0.7,
-    fontFamily: "lato-regular",
-    fontSize: 12,
-    lineHeight: 24,
-    letterSpacing: 0,
-    color: "#222222"
-  },
-  accordionLevel2TitleStyle: {
-    fontFamily: "lato-regular",
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0,
-    color: "#9B9B9B"
-  },
-  listItemTitle: {
-    fontFamily: "lato-regular",
-    fontSize: 14,
-    fontStyle: "normal",
-    lineHeight: 20,
-    letterSpacing: 0,
-    color: "#222222"
-  },
-  listItem: {
-    backgroundColor: '#f5f5f5',
-    marginLeft: 10
-  },
-  accordionItem: {
-    flex: 1,
-    padding: 24
-  }
-})

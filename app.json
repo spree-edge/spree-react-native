@@ -4,7 +4,7 @@
     "slug": "shopit",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logoicon.png",
     "splash": {
       "image": "./assets/images/splash/logo.png",
       "resizeMode": "contain",

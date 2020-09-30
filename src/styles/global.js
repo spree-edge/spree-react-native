@@ -50,6 +50,10 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold',
     fontSize: 18,
   },
+  latoBold18: {
+    fontFamily: 'lato-bold',
+    fontSize: 18,
+  },
   subhead: {
     fontFamily: 'lato-bold',
     fontSize: 16

@@ -3,6 +3,7 @@ import { View, ScrollView, Text, FlatList, TouchableHighlight, StyleSheet, Image
 import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
 import { Avatar, Input, Button, Card } from 'react-native-elements'
+import MyCarousel from '../../../library/components/MyCarousel'
 import { Smile,
   SmileSad,
   Dollar,
@@ -30,6 +31,7 @@ const CarouselProductCard = () => {
     //       title='VIEW NOW' />
     //   </Card.Image>
     // </Card>
+
     <View style={styles.carouselProductCard}>
       <Image
         source={require('../../../../assets/images/womens-dress-product-list-images/product-img.png')}
@@ -56,6 +58,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
 
   return (
     <ScrollView style={globalStyles.containerFluid}>
+      <MyCarousel />
       <View style={[ globalStyles.containerFluid, globalStyles.bgWhite ]}>
         <View style={[ globalStyles.container, globalStyles.mt16, globalStyles.mb16 ]}>
           <Text style={[ globalStyles.descriptiveItem, styles.title ]}>Tokyo Talkies</Text>
