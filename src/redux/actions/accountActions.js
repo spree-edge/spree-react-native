@@ -1,4 +1,4 @@
-import { handleAPI, API_VERSION_STOREFRONT } from '../../utils/apiUtils';
+import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 
 export function accountCreate(data, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/account/`;

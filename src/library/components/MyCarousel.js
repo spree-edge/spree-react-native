@@ -1,91 +1,91 @@
 import * as React from 'react'
-import { View, Image } from 'react-native'
-import Carousel, { Pagination } from 'react-native-snap-carousel';
+import { View, Image, Dimensions } from 'react-native'
+import Carousel, { Pagination } from 'react-native-snap-carousel'
+import { colors } from '../../res/palette'
 
 const MySlideComponent = ({ data }) => {
   return (
-    <View
-      style={{
-        alignItems: 'flex-start',
-      }}
-    >
+    <View>
       <Image
         source={data.source}
+        style={{
+          width: '100%',
+          height: 500,
+          resizeMode: 'cover'
+        }}
       />
     </View>
   )
 }
 
-export default class MyCarousel extends React.Component {
-
-  constructor(props){
-    super(props)
-    this.state = {
-      activeSlide: 1,
-      entries: [
-        {
-          id: 1,
-          source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
-        },
-        {
-          id: 2,
-          source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
-        },
-        {
-          id: 3,
-          source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
-        },
-        {
-          id: 4,
-          source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
-        },
-        {
-          id: 5,
-          source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
-        },
-      ]
-    }
-  }
-
-  _renderItem ({item, index}) {
-      return <MySlideComponent key={item.id} data={item} />
-  }
-
-  get pagination () {
-      const { entries, activeSlide } = this.state;
-      return (
-          <Pagination
-            dotsLength={entries.length}
-            activeDotIndex={activeSlide}
-            containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
-            dotStyle={{
-                width: 10,
-                height: 10,
-                borderRadius: 5,
-                marginHorizontal: 8,
-                backgroundColor: 'rgba(255, 255, 255, 0.92)'
-            }}
-            inactiveDotStyle={{
-                // Define styles for inactive dots here
-            }}
-            inactiveDotOpacity={0.4}
-            inactiveDotScale={0.6}
-          />
-      );
-  }
-
-  render () {
-      return (
-          <View>
-              <Carousel
-                data={this.state.entries}
-                renderItem={this._renderItem}
-                onSnapToItem={(index) => this.setState({ activeSlide: index }) }
-                sliderWidth={200}
-                itemWidth={250}
-              />
-              { this.pagination }
-          </View>
-      );
-  }
+const _renderItem = ({ item, index }) => {
+  return <MySlideComponent key={item.id} data={item} />
 }
+
+const MyCarousel = props => {
+  const [activeSlide, setActiveSlide] = React.useState(3)
+  const { width, height } = Dimensions.get('screen');
+  const [entries, setEntries] = React.useState([
+    {
+      id: 1,
+      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+    },
+    {
+      id: 2,
+      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+    },
+    {
+      id: 3,
+      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+    },
+    {
+      id: 4,
+      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+    },
+    {
+      id: 5,
+      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+    },
+  ])
+
+  return (
+    <View>
+      <Carousel
+        data={entries}
+        renderItem={_renderItem}
+        onSnapToItem={index => setActiveSlide(index)}
+        sliderWidth={width}
+        itemWidth={width}
+      />
+      <Pagination
+        dotsLength={entries.length}
+        activeDotIndex={activeSlide}
+        containerStyle={{ 
+          backgroundColor: colors.white,
+          borderColor: 'black',
+          paddingTop: 8,
+          paddingBottom: 5
+          // borderWidth: 2,
+        }}
+        dotColor={colors.primary}
+        dotStyle={{
+          width: 20,
+          height: 7,
+          borderRadius: 10,
+          marginHorizontal: -4,
+          backgroundColor: colors.white
+        }}
+        inactiveDotStyle={{
+          width: 12,
+          height: 12,
+          borderRadius: 10,
+        }}
+        inactiveDotColor={colors.gray}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    </View>
+  )
+}
+
+export default MyCarousel

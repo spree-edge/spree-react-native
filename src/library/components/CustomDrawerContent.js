@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { ChevronRight, Support, ShoppingBag } from '../icons'
@@ -9,11 +10,12 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem
-} from '@react-navigation/drawer';
+} from '@react-navigation/drawer'
+import { userLogout } from '../../redux/actions/authActions'
 
 import { AuthContext } from '../utils/context'
 
-function CustomDrawerContent(props) {
+function CustomDrawerContent({ dispatch, ...props }) {
 
   const { signOut } = React.useContext(AuthContext)
 
@@ -33,7 +35,7 @@ function CustomDrawerContent(props) {
               style={styles.avatar}
             />
             <View style={styles.profileDetails}>
-              <Text style={[globalStyles.subhead, styles.profileName]}>Jane Pinto</Text>
+              <Text style={ styles.profileName }>Jane Pinto</Text>
               <ChevronRight size={20} style={{color: colors.white}} />
             </View>
           </View>
@@ -43,45 +45,45 @@ function CustomDrawerContent(props) {
       <Divider />
       <DrawerItem
         label="Orders"
-        labelStyle={[globalStyles.label, {fontSize: 14}]}
-        icon={({ focused, color, size }) => <ShoppingBag size={size} style={{color, ...globalStyles.label}} />}
+        labelStyle={styles.menuTitle}
+        icon={({ color, size }) => <ShoppingBag size={size} style={{color, ...globalStyles.label}} />}
         onPress={() => props.navigation.navigate('Bag')}
       />
       <Divider />
       <DrawerItem
         label="Support & More"
-        labelStyle={[globalStyles.label, {fontSize: 14}]}
+        labelStyle={styles.menuTitle}
         icon={({ color, size }) => <Support size={size} style={{color, ...globalStyles.label}} />}
         onPress={() => props.navigation.navigate('Support')}
       />
       <DrawerItem
         label="FAQs"
-        labelStyle={[globalStyles.label, {marginLeft: 60}]}
+        labelStyle={styles.subMenuTitle}
         onPress={() => props.navigation.navigate('Support')}
       />
       <DrawerItem
         label="Contact Us"
-        labelStyle={[globalStyles.label, {marginLeft: 60}]}
+        labelStyle={styles.subMenuTitle}
         onPress={() => props.navigation.navigate('Support')}
       />
       <DrawerItem
         label="Privacy Policy"
-        labelStyle={[globalStyles.label, {marginLeft: 60}]}
+        labelStyle={styles.subMenuTitle}
         onPress={() => props.navigation.navigate('Support')}
       />
       <Button
         title="Logout Account"
         type="outline"
-        containerStyle={{flex: 1, marginRight: 16}}
-        buttonStyle={[globalStyles.btn, styles.btnOutline ]}
-        titleStyle={styles.titleStyle}
-        onPress={() => {signOut()}}
+        containerStyle={ styles.btnOutlineContainer }
+        buttonStyle={ styles.btnOutline }
+        titleStyle={ styles.titleStyle }
+        onPress={() => dispatch(userLogout())}
       />
     </DrawerContentScrollView>
   );
 }
 
-export default CustomDrawerContent
+export default connect()(CustomDrawerContent)
 
 const styles = StyleSheet.create({
   centeredContent: {
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   profileName: {
+    ...globalStyles.latoBold16,
     color: colors.white,
     marginRight: 4
   },
@@ -112,10 +115,23 @@ const styles = StyleSheet.create({
     fontFamily: 'lato-bold',
     color: colors.primary
   },
+  btnOutlineContainer: {
+    flex: 1,
+    marginRight: 16
+  },
   btnOutline: {
+    ...globalStyles.btn,
     borderWidth: 1,
     width: '90%',
     alignSelf: 'center',
     marginTop: 40
+  },
+  menuTitle: {
+    ...globalStyles.label,
+    fontSize: 14,
+  },
+  subMenuTitle: {
+    ...globalStyles.label,
+    marginLeft: 60
   }
 })
