@@ -13,11 +13,3 @@ export function userLogin(data, filters={}) {
 export const userLogout = () => ({
   type: 'LOGOUT'
 })
-
-export const userRegister = (userName, email) => ({
-  type: 'REGISTER',
-  payload: {
-    userName,
-    email
-  }
-})
