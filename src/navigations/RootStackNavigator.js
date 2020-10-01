@@ -17,7 +17,7 @@ import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 import { globalStyles } from '../styles/global'
 import { AuthContext } from '../library/utils/context'
 import AsyncStorage from '@react-native-community/async-storage'
-import { retrieveToken, userLogin, userLogout, userRegister } from '../redux/actionCreators/authentication'
+import { retrieveToken, userLogin, userLogout, userRegister } from '../redux/actions/authActions'
 import { connect } from 'react-redux'
 
 const MyTheme = {
@@ -34,78 +34,15 @@ function RootStackNavigator({ authState, dispatch}) {
 
   const authContext = React.useMemo(
     () => ({
-    signIn: (email, password) => {
-      fetch('http://10.0.2.2:3000/spree_oauth/token', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Cookie': 'token=InpmWTRUckMwTHVNZ202d2RVTVg4N0ExNTkwNTYxMTc5MDk5Ig%3D%3D--751c67228985fd14c7edbeddfd9952518997f1e5; guest_token=InpmWTRUckMwTHVNZ202d2RVTVg4N0ExNTkwNTYxMTc5MDk5Ig%3D%3D--751c67228985fd14c7edbeddfd9952518997f1e5; connect.sid=s%3AYJFykEuccStMImXWZtqGrv97Qg5dpOMy.yLOFiVNLb1no8MB9a%2BfvhEu1UZYSOzfVrTcB77oBxW8'
-        },
-        body: JSON.stringify({
-          'username': email,
-          'password': password,
-          'grant_type': "password"
-        })
-      })
-      .then(res => res.json())
-      .then(async data => {
-        try{
-          await AsyncStorage.setItem('userToken', data.access_token)
-          await AsyncStorage.setItem('email', email)
-          dispatch(userLogin(email, data.access_token))
-        } catch(e) {
-          console.log(e)
-        }
-      })
-      .catch(err => alert(err))
-    },
 
-    signOut: async () => {
-      try{
-        await AsyncStorage.removeItem('userToken')
-        await AsyncStorage.removeItem('email')
-      } catch(err) {
-        alert(err)
-      }
-      dispatch(userLogout())
-    },
-    
-    signUp: (userName, email, password) => {
-      fetch('http://10.0.2.2:3000/api/v2/storefront/account', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/vnd.api+json',
-        },
-        body: JSON.stringify({
-          'user': {
-            'email': email,
-            'password': password,
-            'password_confirmation': password
-          }
-        })
-      })
-      .then(res => res.json())
-      .then(data => {
-        // console.log(data, email, password)
-        dispatch(userRegister(userName, email))
-      })
-      .catch(err => alert(err))
-    },
   }), [])
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {
-      let userToken = null
-      let email = null
-
-      try {
-        userToken = await AsyncStorage.getItem('userToken')
-        email = await AsyncStorage.getItem('email')
-      } catch (e) {
-        // console.log(e)
-        alert(e)
-      }
-      dispatch(retrieveToken(userToken, email))
+      dispatch(userLogin({
+        refresh_token: await AsyncStorage.getItem('refreshToken'), 
+        grant_type: "refresh_token"
+      }))
     }
 
     bootstrapAsync();
@@ -121,13 +58,12 @@ function RootStackNavigator({ authState, dispatch}) {
       </View>
     )
   }
-
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer theme={MyTheme}>
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           {
-            authState.userToken !== null ? (
+            authState.access_token ? (
               <>
                 <RootStack.Screen name="MainDrawerNavigator" component={MainDrawerNavigator} />
               </>
@@ -151,7 +87,7 @@ function RootStackNavigator({ authState, dispatch}) {
 }
 
 const mapStateToProps = state => ({
-  authState: state.authentication
+  authState: state.auth
 })
 
 export default connect(mapStateToProps)(RootStackNavigator)

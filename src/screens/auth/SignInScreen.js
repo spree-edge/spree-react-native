@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
@@ -6,8 +7,12 @@ import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
 import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
+import { userLogin } from '../../redux/actions/authActions'
 
-const SignInScreen = ({ navigation }) => {
+
+
+const SignInScreen = ({ navigation, dispatch }) => {
+  // const password = React.createRef()
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
   const [inputEmailBorder, setInputEmailBorder] = React.useState(false)
   const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
@@ -16,6 +21,15 @@ const SignInScreen = ({ navigation }) => {
   const [password, setPassword] = React.useState('')
 
   const { signIn } = React.useContext(AuthContext)
+
+  const handleLogin = () =>  {
+    dispatch(userLogin({
+      username: email, 
+      password: password,
+      grant_type: "password"
+    }))
+  }
+
 
   return (
     <View style={globalStyles.container}>
@@ -58,7 +72,7 @@ const SignInScreen = ({ navigation }) => {
           title="Login to Shopit"
           buttonStyle={ styles.buttonBlockStyle }
           titleStyle={ globalStyles.subhead }
-          onPress={() => signIn(email, password)}
+          onPress={ handleLogin }
         />
         <View style={styles.footer}>
           <Text style={styles.label}>Don't have an account ? </Text>
@@ -72,4 +86,4 @@ const SignInScreen = ({ navigation }) => {
   )
 }
 
-export default SignInScreen
+export default connect()(SignInScreen)

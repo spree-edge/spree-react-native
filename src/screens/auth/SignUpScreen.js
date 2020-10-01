@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
@@ -7,18 +8,35 @@ import { Button, Input } from 'react-native-elements'
 import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
 
-const SignUpScreen = ({ navigation }) => {
+import { accountCreate } from '../../redux/actions/accountActions'
+
+
+const SignUpScreen = ({ navigation, dispatch }) => {
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
   
   const [inputUserNameBorder, setInputUserNameBorder] = React.useState(false)
   const [inputEmailBorder, setInputEmailBorder] = React.useState(false)
   const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
+  const [inputPasswordConfirmationBorder, setInputPasswordConfirmationBorder] = React.useState(false)
 
   const [userName, setUserName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = React.useState('')
 
   const { signUp } = React.useContext(AuthContext)
+
+  const handleSignup = () =>  {
+    dispatch(accountCreate(
+      {
+        user: {
+          email: email, 
+          password: password,
+          password_confirmation: passwordConfirmation
+        }
+      }
+    ))
+  }
 
   return (
     <View style={globalStyles.container}>
@@ -61,11 +79,23 @@ const SignUpScreen = ({ navigation }) => {
             onChangeText={setPassword}
             // onEndEditing={() => console.log(password)}
           />
+          <Input
+            placeholder="Password Confirmation"
+            secureTextEntry={secureTextEntryToggle}
+            onFocus={() => setInputPasswordConfirmationBorder(true)}
+            onBlur={() => setInputPasswordConfirmationBorder(false)}
+            containerStyle={[ styles.inputMainContainer, { borderWidth: inputPasswordBorder ? 1 : 0 }]}
+            inputStyle={ styles.inputStyle }
+            inputContainerStyle={ styles.inputContainerStyle }
+            rightIcon={<Eye size={24} style={{ color: colors.gray }} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
+            onChangeText={setPasswordConfirmation}
+            // onEndEditing={() => console.log(password)}
+          />
           <Button
             title="Create Account"
             buttonStyle={styles.buttonBlockStyle}
             titleStyle={globalStyles.subhead}
-            onPress={() => signUp(userName, email, password)}
+            onPress={handleSignup}
           />
           <View style={styles.footer}>
             <Text style={styles.label}>Already have an account? </Text>
@@ -86,4 +116,4 @@ const SignUpScreen = ({ navigation }) => {
   )
 }
 
-export default SignUpScreen
+export default connect()(SignUpScreen)
