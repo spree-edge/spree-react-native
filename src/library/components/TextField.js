@@ -1,30 +1,45 @@
-import * as React from "react";
-import { View, TextInput } from "react-native";
+import * as React from "react"
+import { View, StyleSheet } from "react-native"
 import { globalStyles } from '../../styles/global'
 import { colors } from '../../res/palette'
-import Eye from '../../../assets/icons/Eye'
+import { Eye } from '../icons'
+import { Input, Text } from 'react-native-elements'
 
-const TextField = ({ secureTextEntry, }) => {
+const TextField = ({ placeholder, keyboardType, containerStyle, rightElement, onChangeText, value }) => {
+  const [inputBorder, setInputBorder] = React.useState(false)
+
   return (
-    <View
-      style={[
-        globalStyles.blockTextInput,
-        globalStyles.mb16,
-        { 
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          backgroundColor: '#fff', 
-        },
-      ]}
-    >
-      <TextInput
-        placeholderTextColor={colors.gray}
-        style={{ fontFamily: 'lato-regular', padding: 16 }}
+    <View>
+      <Input
+        placeholder={placeholder || "Please Apply a placeholder"}
+        keyboardType={keyboardType || "default"}
+        onFocus={() => setInputBorder(true)}
+        onBlur={() => setInputBorder(false)}
+        containerStyle={[containerStyle, {
+          borderColor: inputBorder ? colors.primary : '#ccc',
+        }]}
+        inputStyle={globalStyles.latoRegular}
+        inputContainerStyle={{ borderBottomColor: '#fff'}}
+        rightIcon={() => rightElement}
+        onChangeText={onChangeText}
+        onEndEditing={() => console.log(value)}
       />
-      <Eye style={{color: colors.gray, paddingHorizontal: 20}} />
     </View>
   )
 }
 
 export default TextField
+
+const styles = StyleSheet.create({
+  container: {
+    ...globalStyles.mb16,
+    backgroundColor: '#fff', 
+    height: 52, 
+    borderRadius: 4,
+    borderWidth: 1,
+  },
+  inputRight: {
+    ...globalStyles.latoRegular,
+    ...globalStyles.textPrimary,
+  },
+})

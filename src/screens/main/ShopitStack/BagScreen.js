@@ -4,9 +4,10 @@ import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
 import { Divider, Input, Button } from 'react-native-elements'
 import ProductCard from '../../../library/components/ProductCard'
+import TextField from '../../../library/components/TextField'
 
 const BagScreen = ({ navigation }) => {
-  const [inputBorder, setInputBorder] = React.useState(false)
+  const [promoCode, setPromoCode] = React.useState('')
 
   return (
     <ScrollView>
@@ -21,29 +22,20 @@ const BagScreen = ({ navigation }) => {
       </View>
       <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
         <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-          <Text style={[ styles.titleMedium, globalStyles.mb8 ]}>Promo Code</Text>
-          <Input
-            placeholder="Enter Promo Code" 
-            keyboardType="default"
-            onFocus={() => setInputBorder(true)}
-            onBlur={() => setInputBorder(false)}
-            containerStyle={[globalStyles.mb16, {
-              backgroundColor: '#fff', 
-              height: 52, 
-              borderRadius: 4,
-              borderWidth: 1,
-              borderColor: inputBorder ? colors.primary : '#ccc',
-            }]}
-            inputStyle={globalStyles.latoRegular}
-            inputContainerStyle={{ borderBottomColor: '#fff'}}
-            rightIcon={() => <Text style={styles.inputRight}>Apply</Text>}
+          <Text style={[ globalStyles.latoBold14, globalStyles.mb8 ]}>Promo Code</Text>
+          <TextField
+            placeholder=" Enter Promo Code"
+            containerStyle={styles.inputWrapperStyle}
+            rightElement={<Text style={styles.inputRight}>Apply</Text>}
+            onChangeText={setPromoCode}
+            value={promoCode}
           />
         </View>
       </View>
 
       <View style={styles.priceDetailsContainer}>
         <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-          <Text style={[ styles.titleMedium]}>Price Details</Text>
+          <Text style={[ globalStyles.latoBold14]}>Price Details</Text>
         </View>
         <Divider style={styles.dividerStyle} />
         <View style={[ globalStyles.container, globalStyles.mt8 ]}>
@@ -62,7 +54,7 @@ const BagScreen = ({ navigation }) => {
             title="Proceed to Checkout"
             type="solid"
             containerStyle={{flex: 1}}
-            buttonStyle={[ globalStyles.btn, globalStyles.primary, globalStyles.mt16]}
+            buttonStyle={styles.btnStyle}
             onPress={() => navigation.navigate('ShippingAddress')}
           />
         </View>
@@ -77,12 +69,20 @@ const BagScreen = ({ navigation }) => {
 export default BagScreen
 
 const styles = StyleSheet.create({
-  titleMedium: {
-    ...globalStyles.descriptiveItem,
-    ...globalStyles.textDark,
-  },
   productDetailsText: {
     fontSize: 14
+  },
+  inputWrapperStyle: {
+    ...globalStyles.mb16,
+    backgroundColor: '#fff', 
+    height: 52, 
+    borderRadius: 4,
+    borderWidth: 1,
+  },
+  btnStyle: {
+    ...globalStyles.btnBlock,
+    ...globalStyles.mt16,
+    backgroundColor: colors.primary
   },
   inputRight: {
     ...globalStyles.latoRegular,

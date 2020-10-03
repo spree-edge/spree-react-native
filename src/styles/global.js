@@ -32,11 +32,6 @@ export const globalStyles = StyleSheet.create({
   bgWhite: {
     backgroundColor: colors.white
   },
-  descriptionText: {
-    fontFamily: 'lato-regular',
-    fontSize: 14,
-    // color: '#fff'
-  },
   descriptiveItem: {
     fontFamily: 'lato-bold',
     fontSize: 14,
@@ -58,6 +53,23 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold',
     fontSize: 16
   },
+  textBold: { //lato-bold
+    fontFamily: 'lato-bold'
+  },
+  latoBold14: {
+    fontFamily: 'lato-bold',
+    fontSize: 14,
+  },
+  latoBold16: {
+    fontFamily: 'lato-bold',
+    fontSize: 16,
+  },
+
+  descriptionText: {
+    fontFamily: 'lato-regular',
+    fontSize: 14,
+    // color: '#fff'
+  },
   label: {
     fontFamily: 'lato-regular',
     color: colors.gray,
@@ -76,17 +88,15 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-regular',
     fontSize: 14
   },
-  textBold: { //lato-bold
-    fontFamily: 'lato-bold'
-  },
-  latoBold14: {
+
+  /**
+  * Pricing Text Typograhpy
+  */
+  prices: {
     fontFamily: 'lato-bold',
-    fontSize: 14,
+    paddingRight: 8
   },
-  latoBold16: {
-    fontFamily: 'lato-bold',
-    fontSize: 16,
-  },
+    
 
   /**
    * Buttons
@@ -102,7 +112,6 @@ export const globalStyles = StyleSheet.create({
     borderRadius: 24
   },
   btnBlock: {
-    borderWidth: 1,
     borderRadius: 24,
     height: 48,
     justifyContent: 'center',
@@ -156,5 +165,14 @@ export const globalStyles = StyleSheet.create({
   },
   mb114: {
     marginBottom: 114
+  },
+  mv8: {
+    marginVertical: 8
+  },
+  pv8: {
+    paddingVertical: 8
+  },
+  pv16: {
+    paddingVertical: 16
   }
 })
