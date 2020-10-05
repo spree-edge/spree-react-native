@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     flex: 1
   },
-  inputContainer: {
+  inputWrapperStyle: {
     ...globalStyles.mb16,
     backgroundColor: '#fff', 
     height: 52, 

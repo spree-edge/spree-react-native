@@ -32,11 +32,6 @@ export const globalStyles = StyleSheet.create({
   bgWhite: {
     backgroundColor: colors.white
   },
-  descriptiveItem: {
-    fontFamily: 'lato-bold',
-    fontSize: 14,
-    // color: '#fff'
-  },
   title: {
     fontFamily: 'lato-bold',
     fontSize: 34,

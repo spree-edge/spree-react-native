@@ -25,13 +25,13 @@ const OnboardingCScreen = ({ navigation }) => {
               title="Go Shopping"
               type="solid"
               buttonStyle={globalStyles.roundedButton}
-              titleStyle={styles.descriptive}
+              titleStyle={styles.footerActionText}
               onPress={() => navigation.navigate('SignIn')}
             />
             <TouchableOpacity style={styles.footerAction}
               onPress={() => navigation.navigate('SignIn')}
             >
-              <Text style={styles.descriptive}> Login </Text>
+              <Text style={styles.footerActionText}> Login </Text>
               <ArrowLongRight size={24} style={styles.footerIcon} />
             </TouchableOpacity>
           </View>

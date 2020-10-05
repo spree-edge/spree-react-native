@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { ScrollView, View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
 import { Divider, Input, Button, Overlay } from 'react-native-elements'
-import { globalStyles } from '../../../styles/global'
-import { colors } from '../../../res/palette'
+import { globalStyles } from '../../../../../styles/global'
+import { colors } from '../../../../../res/palette'
 import Collapsible from 'react-native-collapsible'
-import { CheckR, Close, Dollar, CreditCard, ChevronDown, ChevronUp, CheckO } from '../../../library/icons'
+import { CheckR, Close, Dollar, CreditCard, ChevronDown, ChevronUp, CheckO } from '../../../../../library/icons'
+import { styles } from './styles'
 
-const CheckoutPaymentScreen = ({ navigation }) => {
+const PaymentScreen = ({ navigation }) => {
   
   const [expanded, setExpanded] = React.useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
@@ -212,7 +213,7 @@ const CheckoutPaymentScreen = ({ navigation }) => {
               <Close size={24}  style={{color: colors.black}} onPress={toggleOverlay} />
             </View>
             <View style={{ alignItems: 'center' }}>
-              <Image source={require('../../../../assets/images/order-icon-confirm/order-icon-confirm.png')} />
+              <Image source={require('../../../../../../assets/images/order-icon-confirm/order-icon-confirm.png')} />
               <Text style={globalStyles.title}>Order Success!</Text>
               <Text style={[globalStyles.label, { fontSize: 15, textAlign: 'center'}]}>Your order has been placed successfully! for more details check your account. </Text>
             </View>
@@ -232,101 +233,4 @@ const CheckoutPaymentScreen = ({ navigation }) => {
   )
 }
 
-export default CheckoutPaymentScreen
-
-const styles = StyleSheet.create({
-  inputStyle: { 
-    ...globalStyles.latoRegular,
-    fontSize: 14, color: colors.gray
-  },
-  inputContainerStyle: {
-    paddingTop: 5,
-    paddingLeft: 5,
-    borderBottomColor: '#fff'
-  },
-  containerStyle: {
-    ...globalStyles.mt16,
-    backgroundColor: '#fff', 
-    height: 52, 
-    borderRadius: 4,
-  },
-  rowContainer: {
-    flexDirection: 'row',
-  },
-  w48: {
-    width: '48%',
-  },
-  inlineContainer: {
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    width: '100%',
-    // borderWidth: 2
-  },
-  iconStyle: {
-    color: colors.primary,
-    marginRight: 6
-  },
-  label: {
-    ...globalStyles.descriptionText,
-    color: colors.black
-  },
-  btnFixed: {
-    margin: '2%',
-    height: 48,
-  },
-  footer: {
-    backgroundColor: colors.white,
-    // borderWidth: 1
-  },
-  dividerStyle: {
-    ...globalStyles.mt8,
-    backgroundColor: '#f5f5f5'
-  },
-  orderTotalContainer: {
-    ...globalStyles.containerFluid,
-    ...globalStyles.bgWhite,
-    ...globalStyles.mt16,
-    paddingBottom: 32
-  },
-  orderDetailsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    // borderWidth: 1
-  },
-  titleMedium: {
-    ...globalStyles.descriptiveItem,
-    ...globalStyles.textDark,
-  },
-  modalCloseIcon: {
-    alignSelf: 'flex-end'
-  },
-  btnOutlined: {
-    backgroundColor: colors.white,
-    borderWidth: 1,
-    height: 48
-  },
-  titleStyle: {
-    fontFamily: 'lato-bold',
-    color: colors.primary,
-    fontSize: 18,
-  },
-  modalContainer: {
-    justifyContent: 'space-between',
-    paddingVertical: '4%'
-  },
-  accordionSelectorContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 16
-  },
-  accordionSelectorTitle: {
-    // borderWidth: 1,
-    ...globalStyles.latoRegular,
-    flex: 1,
-    marginLeft: 8 
-  },
-  outlinedInputContainer: {
-    borderWidth: 1,
-  },
-})
+export default PaymentScreen

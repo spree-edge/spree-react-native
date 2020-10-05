@@ -4,6 +4,7 @@ import { globalStyles } from '../../styles/global'
 import { ArrowLongRight } from '../../library/icons'
 import { styles } from './styles'
 import { Button } from 'react-native-elements'
+import { colors } from '../../res/palette'
 
 const OnboardingAScreen = ({ navigation }) => {
   return (
@@ -25,13 +26,13 @@ const OnboardingAScreen = ({ navigation }) => {
             title="Go Shopping"
             type="solid"
             buttonStyle={globalStyles.roundedButton}
-            titleStyle={styles.descriptive}
+            titleStyle={styles.footerActionText}
             onPress={() => navigation.navigate('SignIn')}
           />
           <TouchableOpacity style={styles.footerAction}
             onPress={() => navigation.navigate('OnboardingB')}
           >
-            <Text style={styles.descriptive}> Next </Text>
+            <Text style={styles.footerActionText}> Next </Text>
             <ArrowLongRight size={24} style={styles.footerIcon} />
           </TouchableOpacity>
         </View>

@@ -44,7 +44,7 @@ const ProductCard = ({ imageSource, name, description, color, size, discountedPr
           </View>
         </View>
       </View>
-      {soldOut ? <Text style={[globalStyles.descriptionText, styles.description]}>Sorry, this item is currently sold out.</Text> : null}
+      {soldOut ? <Text style={[globalStyles.latoRegular14, styles.description]}>Sorry, this item is currently sold out.</Text> : null}
     </View>
   )
 }

@@ -25,13 +25,13 @@ const OnboardingBScreen = ({ navigation }) => {
             title="Go Shopping"
             type="solid"
             buttonStyle={globalStyles.roundedButton}
-            titleStyle={styles.descriptive}
+            titleStyle={styles.footerActionText}
             onPress={() => navigation.navigate('SignIn')}
           />
           <TouchableOpacity style={styles.footerAction}
             onPress={() => navigation.navigate('OnboardingC')}
           >
-            <Text style={styles.descriptive}>Next</Text>
+            <Text style={styles.footerActionText}>Next</Text>
             <ArrowLongRight size={24} style={styles.footerIcon} />
           </TouchableOpacity>
         </View>

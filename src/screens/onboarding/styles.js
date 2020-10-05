@@ -44,11 +44,7 @@ export const styles = StyleSheet.create({
     color: colors.white
   },
   description: {
-    ...globalStyles.descriptionText,
-    color: colors.white
-  },
-  descriptive: {
-    ...globalStyles.descriptiveItem,
+    ...globalStyles.latoRegular14,
     color: colors.white
   },
   footerIcon: {
@@ -58,5 +54,9 @@ export const styles = StyleSheet.create({
   footerAction: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  footerActionText: {
+    ...globalStyles.latoBold14,
+    color: colors.white
   }
 })

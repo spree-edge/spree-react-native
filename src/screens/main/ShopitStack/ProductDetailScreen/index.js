@@ -16,9 +16,11 @@ import {
   RiSecurePaymentFill
 } from '../../../../library/icons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import TextField from '../../../../library/components/TextField'
 import { styles } from './styles'
 
 const CarouselProductCard = () => {
+
   return (
     <View style={styles.carouselProductCard}>
       <Image
@@ -29,7 +31,7 @@ const CarouselProductCard = () => {
         }}
       />
       <View>
-        <Text style={[globalStyles.descriptiveItem, styles.paletteBlack]}>Tokyo Talkies</Text>
+        <Text style={globalStyles.latoBold14}>Tokyo Talkies</Text>
         <Text style={globalStyles.label}>Women Printed A-Line...</Text>
         <View style={styles.carouselCardPricingContainer}>
           <Text style={[styles.carouselCardPrices, styles.carouselCardDiscountedPrice]}>$29.90</Text>
@@ -43,6 +45,7 @@ const CarouselProductCard = () => {
 
 const ProductDetailScreen = ({ route, navigation }) => {
   const [inputBorder, setInputBorder] = React.useState(false)
+  const [pincode, setPincode] = React.useState('')
 
   return (
     <ScrollView style={globalStyles.containerFluid}>
@@ -226,18 +229,12 @@ const ProductDetailScreen = ({ route, navigation }) => {
       <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv16 ]}>
         <View style={ globalStyles.container }>
           <Text style={[ globalStyles.latoBold14, globalStyles.mb8 ]}>Check Delivery</Text>
-          <Input
-            placeholder="Enter PIN Code"
-            keyboardType="default"
-            onFocus={() => setInputBorder(true)}
-            onBlur={() => setInputBorder(false)}
-            containerStyle={[
-              styles.inputContainer, {
-              borderColor: inputBorder ? colors.primary : '#ccc',
-            }]}
-            inputStyle={globalStyles.latoRegular}
-            inputContainerStyle={{ borderBottomColor: '#fff'}}
-            rightIcon={() => <Text style={styles.inputRight}>Check</Text>}
+          <TextField
+            placeholder=" Enter PIN Code"
+            containerStyle={styles.inputWrapperStyle}
+            rightElement={<Text style={styles.inputRight}>Check</Text>}
+            onChangeText={setPincode}
+            value={pincode}
           />
           <View style={ styles.deliveryOffersContainer }>
             <ShoppingCart size={18} style={[styles.deliveryOffersIcon, {transform: [{ rotateY: '180deg' }]} ]}/>

@@ -5,7 +5,16 @@ import { colors } from '../../res/palette'
 import { Eye } from '../icons'
 import { Input, Text } from 'react-native-elements'
 
-const TextField = ({ placeholder, keyboardType, containerStyle, rightElement, onChangeText, value }) => {
+const TextField = ({
+  placeholder,
+  keyboardType,
+  containerStyle,
+  inputStyle,
+  inputContainerStyle,
+  rightElement,
+  onChangeText,
+  value
+}) => {
   const [inputBorder, setInputBorder] = React.useState(false)
 
   return (
@@ -18,8 +27,8 @@ const TextField = ({ placeholder, keyboardType, containerStyle, rightElement, on
         containerStyle={[containerStyle, {
           borderColor: inputBorder ? colors.primary : '#ccc',
         }]}
-        inputStyle={globalStyles.latoRegular}
-        inputContainerStyle={{ borderBottomColor: '#fff'}}
+        inputStyle={ inputStyle || globalStyles.latoRegular}
+        inputContainerStyle={inputContainerStyle || { borderBottomColor: '#fff'}}
         rightIcon={() => rightElement}
         onChangeText={onChangeText}
         onEndEditing={() => console.log(value)}

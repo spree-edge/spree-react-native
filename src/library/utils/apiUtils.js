@@ -9,7 +9,7 @@ function handleAPI( path, params, method, data = null) {
   const headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
-    'Content-Length': data.length
+    // 'Content-Length': data.length
   };
   let url = API_ROOT + path;
   url = url +'?'+ qs.stringify(params, { arrayFormat: 'brackets' })
