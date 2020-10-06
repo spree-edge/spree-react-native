@@ -5,18 +5,22 @@ import { globalStyles } from '../../../../../styles/global'
 import { colors } from '../../../../../res/palette'
 import Collapsible from 'react-native-collapsible'
 import { CheckR, Close, Dollar, CreditCard, ChevronDown, ChevronUp, CheckO } from '../../../../../library/icons'
+import TextField from '../../../../../library/components/TextField'
 import { styles } from './styles'
+import { checkoutStyles } from '../styles'
+import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
+import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 
 const PaymentScreen = ({ navigation }) => {
-  
+  const [cardNumber, setCardNumber] = React.useState('')
+  const [nameOnCard, setNameOnCard] = React.useState('')
+
   const [expanded, setExpanded] = React.useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
 
   const [accordionExpanded2, setAccordionExpanded2] = React.useState(false);
   const toggleAccordionExpanded2 = () => setAccordionExpanded2(!accordionExpanded2);
 
-  const [cardNumberInputBorder, setCardNumberInputBorder] = React.useState(false)
-  const [cardNameInputBorder, setCardNameInputBorder] = React.useState(false)
   const [validThruInputBorder, setValidThruInputBorder] = React.useState(false)
   const [cvvInputBorder, setCvvInputBorder] = React.useState(false)
 
@@ -28,38 +32,51 @@ const PaymentScreen = ({ navigation }) => {
 
   return (
     <View style={ globalStyles.containerFluid }>
+      <Overlay isVisible={overlayVisible} onBackdropPress={toggleOverlay} fullScreen={true}>
+        <View style={[globalStyles.container, styles.modalContainer]}>
+          <View style={styles.modalCloseIcon}>
+            <Close size={24}  style={{color: colors.black}} onPress={toggleOverlay} />
+          </View>
+          <View style={{ alignItems: 'center' }}>
+            <Image source={require('../../../../../../assets/images/order-icon-confirm/order-icon-confirm.png')} />
+            <Text style={globalStyles.title}>Order Success!</Text>
+            <Text style={[globalStyles.label, { fontSize: 15, textAlign: 'center'}]}>Your order has been placed successfully! for more details check your account. </Text>
+          </View>
+          <View>
+            <Button
+              title="Continue Shopping"
+              type="outline"
+              buttonStyle={[ globalStyles.btn, styles.btnOutlined]}
+              titleStyle={styles.titleStyle}
+              onPress={() => navigation.navigate('Shopit')}
+            />
+          </View>
+        </View>
+      </Overlay>
       <ScrollView>
         {/* Status Bar Starts */}
-        <View style={[globalStyles.containerFluid, globalStyles.bgWhite, {borderBottomWidth: 1, borderColor: '#ccc' }]}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 16 }}>
-            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
-              <CheckO size={16} style={[styles.iconStyle, {color: colors.success}]} />
+        <View style={checkoutStyles.statusBarWrapper}>
+          <View style={checkoutStyles.statusBarContainer}>
+            <View style={[ checkoutStyles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[checkoutStyles.iconStyle, {color: colors.success}]} />
               <Text style={ globalStyles.latoRegular, {color: colors.success}}>Bag</Text>
             </View>
             <View
-              style={{
-                flex: 1,
-                borderBottomWidth: StyleSheet.hairlineWidth,
+              style={[checkoutStyles.shippingIndicatorLine, {
                 borderBottomColor: colors.success,
-                marginBottom: 10,
-                marginHorizontal: 10
-              }}
+              }]}
             />
-            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
-              <CheckO size={16} style={[styles.iconStyle, {color: colors.success}]} />
-              <Text style={ globalStyles.latoRegular, {color: colors.success}}>Address</Text>
+            <View style={[ checkoutStyles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[checkoutStyles.iconStyle, {color: colors.black}]} />
+              <Text style={ globalStyles.latoRegular }>Address</Text>
             </View>
             <View
-              style={{
-                flex: 1,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: colors.success,
-                marginBottom: 10,
-                marginHorizontal: 10
-              }}
+              style={[checkoutStyles.shippingIndicatorLine, {
+                borderBottomColor: colors.black,
+              }]}
             />
-            <View style={[ styles.rowContainer, { alignItems: 'center'} ]}>
-              <CheckO size={16} style={[styles.iconStyle, {color: colors.black}]} />
+            <View style={[ checkoutStyles.rowContainer, { alignItems: 'center'} ]}>
+              <CheckO size={16} style={[checkoutStyles.iconStyle, {color: colors.black}]} />
               <Text style={ globalStyles.latoRegular }>Payment</Text>
             </View>
           </View>
@@ -68,7 +85,7 @@ const PaymentScreen = ({ navigation }) => {
 
         <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
           <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-            <Text style={globalStyles.subhead}>Payment Type</Text>
+            <Text style={globalStyles.latoBold14}>Payment Type</Text>
           </View>
           <Divider style={styles.dividerStyle} />
 
@@ -108,32 +125,42 @@ const PaymentScreen = ({ navigation }) => {
           </TouchableOpacity>
           {/*Content of Single Collapsible*/}
           <Collapsible collapsed={accordionExpanded2} align="center" style={globalStyles.container}>
-            <Input
-              placeholder="Card Number" 
-              keyboardType="default"
-              onFocus={() => setCardNumberInputBorder(true)}
-              onBlur={() => setCardNumberInputBorder(false)}
-              containerStyle={[ styles.containerStyle, {
-                borderColor: cardNumberInputBorder ? colors.primary : '#ccc',
-                borderWidth: 1
-              }]}
-              inputStyle={globalStyles.latoRegular}
-              inputContainerStyle={{ borderBottomColor: '#fff'}}
-              rightIcon={() => <CreditCard size={18} style={{color: colors.black}} />}
+            <TextField
+              placeholder="Card Number"
+              containerStyle={checkoutStyles.inputWrapperStyle}
+              rightElement={<CreditCard size={18} style={{color: colors.black}} />}
+              onChangeText={setCardNumber}
+              value={cardNumber}
             />
-            <Input
-              placeholder="Name on Card" 
-              keyboardType="default"
-              onFocus={() => setCardNameInputBorder(true)}
-              onBlur={() => setCardNameInputBorder(false)}
-              containerStyle={[styles.containerStyle, {
-                borderColor: cardNameInputBorder ? colors.primary : '#ccc',
-                borderWidth: 1
-              }]}
-              inputStyle={[globalStyles.latoRegular, { marginTop: 5 }]}
-              inputContainerStyle={{ borderBottomColor: '#fff'}}
+            <TextField
+              placeholder="Name on Card"
+              containerStyle={checkoutStyles.inputWrapperStyle}
+              onChangeText={setNameOnCard}
+              value={nameOnCard}
             />
             <View style={[styles.rowContainer, styles.inlineContainer]}> 
+              {/* <TextField
+                placeholder="Valid Thru (MM/YY)"
+                containerStyle={{
+                  backgroundColor: '#fff', 
+                  height: 52, 
+                  borderRadius: 4,
+                  borderWidth: 1,
+                  flex: 1
+                }}
+                onChangeText={setNameOnCard}
+                value={nameOnCard}
+              />
+              <TextField
+                placeholder="Valid Thru (MM/YY)"
+                containerStyle={{
+                  backgroundColor: '#fff', 
+                  height: 52, 
+                  borderRadius: 4,
+                  borderWidth: 5,
+                  flex: 1
+                }}
+              /> */}
               <Input
                 placeholder="Valid Thru (MM/YY)" 
                 keyboardType="default"
@@ -166,69 +193,16 @@ const PaymentScreen = ({ navigation }) => {
           </Collapsible>
           {/*Code for Single Collapsible Ends*/}
         </View>
-
-        <View style={styles.orderTotalContainer}>
-          <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-            <Text style={[ styles.titleMedium]}>Order Total</Text>
-          </View>
-          <Divider style={styles.dividerStyle} />
-          <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-            <View style={[ styles.orderDetailsRow, globalStyles.mt8 ]}>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>Subtotal</Text>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>$50.00</Text>
-            </View>
-            <View style={[ styles.orderDetailsRow, globalStyles.mt8 ]}>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>Promo Discount</Text>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>-$3.40</Text>
-            </View>
-            <View style={[ styles.orderDetailsRow, globalStyles.mt8 ]}>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>Estimated Tax</Text>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>$2.40</Text>
-            </View>
-            <View style={[ styles.orderDetailsRow, globalStyles.mt8 ]}>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>Shipping Fee</Text>
-              <Text style={[ globalStyles.label, styles.productDetailsText]}>$0.00</Text>
-            </View>
-          </View>
-          <Divider style={styles.dividerStyle} />
-          <View style={[ globalStyles.container, globalStyles.mt8, styles.rowContainer, {justifyContent: 'space-between'} ]}>
-            <Text style={ styles.productDetailsText }>Total Amount</Text>
-            <Text style={ styles.productDetailsText }>$49.60</Text>
-          </View>
-        </View>
+        
+        <CheckoutDetailsCard title="Order Total" />
 
       </ScrollView>
-      <View style={styles.footer}>
-        <Button
-          title="Payment & Confirm"
-          type="solid"
-          titleStyle={globalStyles.latoRegular, globalStyles.display3}
-          // containerStyle={{flex: 1}}
-          buttonStyle={[ globalStyles.btn, globalStyles.primary, styles.btnFixed ]}
-          onPress={toggleOverlay}
-        />
-        <Overlay isVisible={overlayVisible} onBackdropPress={toggleOverlay} fullScreen={true}>
-          <View style={[globalStyles.container, styles.modalContainer]}>
-            <View style={styles.modalCloseIcon}>
-              <Close size={24}  style={{color: colors.black}} onPress={toggleOverlay} />
-            </View>
-            <View style={{ alignItems: 'center' }}>
-              <Image source={require('../../../../../../assets/images/order-icon-confirm/order-icon-confirm.png')} />
-              <Text style={globalStyles.title}>Order Success!</Text>
-              <Text style={[globalStyles.label, { fontSize: 15, textAlign: 'center'}]}>Your order has been placed successfully! for more details check your account. </Text>
-            </View>
-            <View>
-              <Button
-                title="Continue Shopping"
-                type="outline"
-                buttonStyle={[ globalStyles.btn, styles.btnOutlined]}
-                titleStyle={styles.titleStyle}
-                onPress={() => navigation.navigate('Shopit')}
-              />
-            </View>
-          </View>
-        </Overlay>
-      </View>
+
+      <ActionButtonFooter
+        title="Payment & Confirm"
+        onPress={toggleOverlay}
+      />
+      
     </View>
   )
 }

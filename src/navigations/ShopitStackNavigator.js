@@ -6,7 +6,7 @@ import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListSc
 import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
 import ShippingAddressScreen from '../screens/main/ShopitStack/CheckoutScreens/ShippingAddressScreen'
 import PaymentScreen from '../screens/main/ShopitStack/CheckoutScreens/PaymentScreen'
-import BagScreen from '../screens/main/ShopitStack/BagScreen'
+import BagScreen from '../screens/main/ShopitStack/CheckoutScreens/BagScreen'
 import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'

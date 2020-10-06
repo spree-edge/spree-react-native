@@ -29,9 +29,6 @@ export const styles = StyleSheet.create({
     height: 52, 
     borderRadius: 4,
   },
-  rowContainer: {
-    flexDirection: 'row',
-  },
   w48: {
     width: '48%',
   },
@@ -88,7 +85,7 @@ export const styles = StyleSheet.create({
   footerAction: {
     ...globalStyles.btn,
     ...globalStyles.primary,
-    margin: '2%',
+    margin: '4%',
     height: 48,
   }
 })

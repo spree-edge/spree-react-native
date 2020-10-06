@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#fff'
   },
   containerStyle: {
-    ...globalStyles.mt16,
     backgroundColor: '#fff', 
     height: 52, 
     borderRadius: 4,
