@@ -82,10 +82,4 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  footerAction: {
-    ...globalStyles.btn,
-    ...globalStyles.primary,
-    margin: '4%',
-    height: 48,
-  }
 })

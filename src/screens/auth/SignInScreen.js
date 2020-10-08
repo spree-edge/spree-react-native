@@ -71,7 +71,7 @@ const SignInScreen = ({ navigation, dispatch }) => {
         <Button
           title="Login to Shopit"
           buttonStyle={ styles.buttonBlockStyle }
-          titleStyle={ globalStyles.subhead }
+          titleStyle={ globalStyles.latoBold16 }
           onPress={ handleLogin }
         />
         <View style={styles.footer}>

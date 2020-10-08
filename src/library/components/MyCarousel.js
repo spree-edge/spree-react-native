@@ -23,9 +23,9 @@ const _renderItem = ({ item, index }) => {
 }
 
 const MyCarousel = props => {
-  const [activeSlide, setActiveSlide] = React.useState(3)
+  const [activeSlide, setActiveSlide] = React.useState(0)
   const { width, height } = Dimensions.get('screen');
-  const [entries, setEntries] = React.useState([
+  const [entries] = React.useState([
     {
       id: 1,
       source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')

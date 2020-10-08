@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   footerAction: {
     ...globalStyles.btn,
-    ...globalStyles.primary,
+    ...globalStyles.btnSolid,
     margin: '4%',
     height: 48,
   },

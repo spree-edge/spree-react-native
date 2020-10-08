@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { View, ScrollView, Text, FlatList, StyleSheet, Image } from 'react-native'
+import { View, ScrollView, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
-import { Avatar, Input, Button, Divider } from 'react-native-elements'
+import { Avatar, Button, Divider } from 'react-native-elements'
 import MyCarousel from '../../../../library/components/MyCarousel'
 import { 
   Smile,
@@ -15,12 +15,12 @@ import {
   IcOutlineAssignmentReturn,
   RiSecurePaymentFill
 } from '../../../../library/icons'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import TextField from '../../../../library/components/TextField'
+import { getProduct } from '../../../../redux/actions/productActions'
+import { connect } from 'react-redux'
 import { styles } from './styles'
 
 const CarouselProductCard = () => {
-
   return (
     <View style={styles.carouselProductCard}>
       <Image
@@ -43,19 +43,32 @@ const CarouselProductCard = () => {
   )
 }
 
-const ProductDetailScreen = ({ route, navigation }) => {
-  const [inputBorder, setInputBorder] = React.useState(false)
+const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) => {
   const [pincode, setPincode] = React.useState('')
 
+  // console.log(product)
+  // console.log(route)
+
+  React.useEffect(() => {
+    dispatch(getProduct(route.params.itemId))
+  }, [])
+
+  if(saving) {
+    return (
+      <View style={[ globalStyles.containerFluid, globalStyles.centeredContent ]}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  } else
   return (
     <ScrollView style={globalStyles.containerFluid}>
       <MyCarousel />
       <View style={ styles.containerFluid }>
-        <View style={[ globalStyles.container, globalStyles.mb16 ]}>
-          <Text style={ styles.title }>Tokyo Talkies</Text>
-          <Text style={ styles.description }>Women Sea Wash Pleated Dress</Text>
+        <View style={[ globalStyles.container, globalStyles.pb16 ]}>
+          <Text style={ globalStyles.latoBold18 }>{ product.name }</Text>
+          <Text style={ styles.description }>{ product.description }</Text>
           <View style={[ styles.pricingContainer, globalStyles.mt8 ]}>
-            <Text style={ styles.discountedPrice }>$29.90</Text>
+            <Text style={ styles.discountedPrice }>{ product.display_price }</Text>
             <Text style={ styles.price }>$32.90</Text>
             <Text style={ styles.discountPercent }>(20% OFF)</Text>
             <Text style={[ globalStyles.latoBold14, globalStyles.textSuccess ]}>Inclusive of all taxes</Text>
@@ -63,28 +76,28 @@ const ProductDetailScreen = ({ route, navigation }) => {
         </View>
       </View>
       <View style={[ styles.containerFluid, globalStyles.mt16 ]}>
-        <View style={[ globalStyles.container, globalStyles.mv8 ]}>
+        <View style={[ globalStyles.container, globalStyles.pv8 ]}>
           <Text style={ globalStyles.latoBold14 }>You get it for
-            <Text style={[ styles.prices, globalStyles.textPrimary ]}> $25.49</Text>
-            <Text style={[ styles.prices, globalStyles.textSuccess ]}> (Save $4.50)</Text>
+            <Text style={[ globalStyles.prices, globalStyles.textPrimary ]}> $25.49</Text>
+            <Text style={[ globalStyles.prices, globalStyles.textSuccess ]}> (Save $4.50)</Text>
           </Text>
         </View>
       </View>
       <View style={[ styles.containerFluid, globalStyles.mt8 ]}>
-        <View style={[ globalStyles.container, globalStyles.mv8 ]}>
+        <View style={[ globalStyles.container, globalStyles.pv8 ]}>
           <View style={styles.rowContainer}>
             <Button
               title="Save For Later"
               type="outline"
               containerStyle={{ flex: 1, marginRight: 16 }}
-              buttonStyle={[ globalStyles.btn, styles.btnOutlined]}
+              buttonStyle={globalStyles.btn}
               titleStyle={styles.titleStyle}
             />
             <Button
               title="Add To Bag"
               type="solid"
               containerStyle={{flex: 1}}
-              buttonStyle={[ globalStyles.btn, styles.btnSolid]}
+              buttonStyle={[ globalStyles.btn, globalStyles.btnSolid ]}
             />
           </View>
           <View style={ globalStyles.mt16 }>
@@ -142,44 +155,46 @@ const ProductDetailScreen = ({ route, navigation }) => {
           </View>
         </View>
       </View>
-      <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv16 ]}>
+      <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv8 ]}>
         <View style={ globalStyles.container }>
-          <Text style={ globalStyles.latoBold14 }>Product Detail & Care</Text>
-          <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Color: Periwinkle blue
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Fit n flared, flowy silhouette
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Peter-pan collar, front button closure
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Three-quarter sleeves
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Buckle belted waist front
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Mid-weight georgette
-            </Text>
-            <Text style={globalStyles.label}>
-              {'\u2022'} Machine Wash
-            </Text>
+          <View>
+            <Text style={ globalStyles.latoBold14 }>Product Detail & Care</Text>
+            <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Color: Periwinkle blue
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Fit n flared, flowy silhouette
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Peter-pan collar, front button closure
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Three-quarter sleeves
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Buckle belted waist front
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Mid-weight georgette
+              </Text>
+              <Text style={globalStyles.label}>
+                {'\u2022'} Machine Wash
+              </Text>
+            </View>
           </View>
-        </View>
-        <View style={[ globalStyles.container, globalStyles.mt16 ]}>
-          <Text style={ globalStyles.latoBold14 }>Description</Text>
-          <Text style={[ globalStyles.label, globalStyles.mt8 ]}>Periwinkle blue woven accordian pleats empire dress. This midi dress is cut from pleated poly georgette. It has a peterpan collar neckline, sheer billowy three-quarter sleeves, and a toned buckle waist to balance the sweeping accordion skirt.</Text>
-        </View>
-        <View style={[ globalStyles.container, globalStyles.mt16 ]}>
-          <Text style={ globalStyles.latoBold14 }>Manufacturer</Text>
-          <Text style={[ globalStyles.label, globalStyles.mt8 ]}>Freeway Clothing Co, 768/1, Vijaynagar, New Delhi 116708</Text>
-        </View>
-        <View style={[ globalStyles.container, globalStyles.mt16 ]}>
-          <Text style={ globalStyles.latoBold14 }>Manufacturer Country</Text>
-          <Text style={[ globalStyles.label, globalStyles.mt8 ]}>India</Text>
+          <View style={ globalStyles.mt16 }>
+            <Text style={ globalStyles.latoBold14 }>Description</Text>
+            <Text style={[ globalStyles.label, globalStyles.mt8 ]}>Periwinkle blue woven accordian pleats empire dress. This midi dress is cut from pleated poly georgette. It has a peterpan collar neckline, sheer billowy three-quarter sleeves, and a toned buckle waist to balance the sweeping accordion skirt.</Text>
+          </View>
+          <View style={ globalStyles.mt16 }>
+            <Text style={ globalStyles.latoBold14 }>Manufacturer</Text>
+            <Text style={[ globalStyles.label, globalStyles.mt8 ]}>Freeway Clothing Co, 768/1, Vijaynagar, New Delhi 116708</Text>
+          </View>
+          <View style={ globalStyles.mt16 }>
+            <Text style={ globalStyles.latoBold14 }>Manufacturer Country</Text>
+            <Text style={[ globalStyles.label, globalStyles.mt8 ]}>India</Text>
+          </View>
         </View>
       </View>
       <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv8 ]}>
@@ -226,7 +241,7 @@ const ProductDetailScreen = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv16 ]}>
+      <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv8 ]}>
         <View style={ globalStyles.container }>
           <Text style={[ globalStyles.latoBold14, globalStyles.mb8 ]}>Check Delivery</Text>
           <TextField
@@ -250,8 +265,8 @@ const ProductDetailScreen = ({ route, navigation }) => {
           </View>
         </View>
       </View>
-      <View style={[ styles.containerFluid, globalStyles.mt16 ]}>
-        <View style={[ globalStyles.container, globalStyles.mt8, globalStyles.mb8 ]}>
+      <View style={[ styles.containerFluid, globalStyles.mt8, globalStyles.pv16 ]}>
+        <View style={globalStyles.container}>
           <View style={styles.alikeProductsHeader}>
             <Text style={[ globalStyles.latoBold14, globalStyles.mb16 ]}>Your might also like</Text>
             <Text style={[ globalStyles.label, globalStyles.latoBold14 ]}>12 more</Text>
@@ -283,4 +298,9 @@ const ProductDetailScreen = ({ route, navigation }) => {
   )
 }
 
-export default ProductDetailScreen
+const mapStateToProps = state => ({
+  product: state.products.product,
+  saving: state.products.saving
+})
+
+export default connect(mapStateToProps)(ProductDetailScreen)

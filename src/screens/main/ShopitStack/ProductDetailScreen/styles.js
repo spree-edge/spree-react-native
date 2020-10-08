@@ -15,10 +15,6 @@ export const styles = StyleSheet.create({
     alignItems: 'flex-end',
     // borderWidth: 2
   },
-  prices: {
-    fontFamily: 'lato-bold',
-    paddingRight: 8
-  },
   discountedPrice: {
     ...globalStyles.prices,
     color: colors.black
@@ -40,12 +36,6 @@ export const styles = StyleSheet.create({
   title: {
     ...globalStyles.latoBold18,
     color: colors.black
-  },
-  btnOutlined: {
-    backgroundColor: colors.white,
-  },
-  btnSolid: {
-    backgroundColor: colors.primary
   },
   titleStyle: {
     fontFamily: 'lato-bold',
@@ -108,7 +98,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   footerText: {
-    ...globalStyles.textBold,
+    ...globalStyles.latoBold14,
     ...globalStyles.mt8,
     fontSize: 11
   },
@@ -128,9 +118,6 @@ export const styles = StyleSheet.create({
   pricingContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    width: 180,
     // borderWidth: 2
   },
   carouselCardPrice: {

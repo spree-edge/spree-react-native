@@ -26,7 +26,7 @@ function ShopitStackNavigator ({ navigation }) {
           />
         </>,
         headerTitleStyle: {
-          ...globalStyles.headline3
+          ...globalStyles.latoBold18
         },
         headerRightContainerStyle: {
           // borderWidth: 2,

@@ -8,7 +8,6 @@ const DEFAULT_STATE = {
     iso: null
   },
   countriesList: [],
-  country: {}
 };
 
 let changes = null;
@@ -67,7 +66,7 @@ export default function checkoutReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_COUNTRY_FULFILLED':
       changes = {
-        country: dataFormatter.deserialize(response),
+        defaultCountry: dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };

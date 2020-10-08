@@ -24,7 +24,7 @@ function FavouritesStackNavigator ({ navigation }) {
           paddingHorizontal: 22
         },
         headerTitleStyle: {
-          ...globalStyles.headline3
+          ...globalStyles.latoBold18
         },
         headerRightContainerStyle: {
           // borderWidth: 2,

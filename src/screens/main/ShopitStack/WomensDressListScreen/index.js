@@ -1,10 +1,12 @@
 import * as React from 'react'
-import { View, Text, Image, FlatList, ScrollView, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native'
 import { Filters, SortAZ } from '../../../../library/icons'
-// import FlatListImageItem  from '../../../library/components/FlatListImageItem'
+import FlatListProductCard from '../../../../library/components/FlatListProductCard'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
 import { styles } from './styles'
+import { connect } from 'react-redux'
+import { getProductsList } from '../../../../redux/actions/productActions'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => (
   <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
@@ -21,17 +23,32 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   </TouchableOpacity>
 )
 
-const WomensDressListScreen = ({ navigation }) => {
+const WomensDressListScreen = ({ navigation, dispatch, productsList }) => {
+  // console.log(productsList)
+
+  React.useEffect(() => {
+    dispatch(getProductsList())
+    // return () => {
+    //   cleanup
+    // }
+  }, [])
 
   const newJustInRenderItem = ({ item }) => {
     return (
-      <FlatListImageItem
+      <FlatListProductCard
         key={item.id}
         item={item}
-        onPress={() => navigation.navigate('ProductDetail', { itemId: item.id })}
+        onPress={() => navigation.navigate('ProductDetail', { itemId: item.id + 1, defaultVariant: 117/* item.default_variant */ })}
         imageStyle={styles.newJustInImage}
         itemContainerStyle={styles.newJustInItemContainer}
       />
+      // <FlatListImageItem
+      //   key={item.id}
+      //   item={item}
+      //   onPress={() => navigation.navigate('ProductDetail', { itemId: item.id + 1, defaultVariant: 117/* item.default_variant */ })}
+      //   imageStyle={styles.newJustInImage}
+      //   itemContainerStyle={styles.newJustInItemContainer}
+      // />
     )
   }
 
@@ -62,11 +79,15 @@ const WomensDressListScreen = ({ navigation }) => {
   )
 }
 
-export default WomensDressListScreen
+const mapStateToProps = state => ({
+  productsList: state.products.productsList
+})
+
+export default connect(mapStateToProps)(WomensDressListScreen)
 
 const WOMENS_DRESS_LIST = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: 0,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -75,7 +96,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img.png')
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    id: 1,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -84,7 +105,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-2.png')
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: 2,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -93,7 +114,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-3.png')
   },
   {
-    id: 'bd7abcde-c1b1-46c2-aed5-3ad53abb28ba',
+    id: 3,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -102,7 +123,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-4.png')
   },
   {
-    id: 'bd7fghij-c1b1-46c2-aed5-3ad53abb28ba',
+    id: 4,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -111,7 +132,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-5.png')
   },
   {
-    id: 'bd7klmno-c1b1-46c2-aed5-3ad53abb28ba',
+    id: 5,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -120,7 +141,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-6.png')
   },
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bb',
+    id: 6,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -129,7 +150,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-7.png')
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f64',
+    id: 7,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -138,7 +159,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-8.png')
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d73',
+    id: 8,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -147,7 +168,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-9.png')
   },
   {
-    id: 'bd7abcde-c1b1-46c2-aed5-3ad53abb28bb',
+    id: 9,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -156,7 +177,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-10.png')
   },
   {
-    id: 'bd7fghij-c1b1-46c2-aed5-3ad53abb28bb',
+    id: 10,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -165,7 +186,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-11.png')
   },
   {
-    id: 'bd7klmno-c1b1-46c2-aed5-3ad53abb28bb',
+    id: 11,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -174,7 +195,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-12.png')
   },
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28bc',
+    id: 12,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -183,7 +204,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-13.png')
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f65',
+    id: 13,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -192,7 +213,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-14.png')
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d74',
+    id: 14,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -201,7 +222,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-15.png')
   },
   {
-    id: 'bd7abcde-c1b1-46c2-aed5-3ad53abb28bc',
+    id: 15,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -210,7 +231,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-16.png')
   },
   {
-    id: 'bd7fghij-c1b1-46c2-aed5-3ad53abb28bc',
+    id: 16,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,
@@ -219,7 +240,7 @@ const WOMENS_DRESS_LIST = [
     source: require('../../../../../assets/images/womens-dress-product-list-images/product-img-17.png')
   },
   {
-    id: 'bd7klmno-c1b1-46c2-aed5-3ad53abb28bc',
+    id: 17,
     name: 'Tokyo Talkies',
     price: 32.90,
     discountedPrice: 29.90,

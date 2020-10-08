@@ -51,10 +51,4 @@ export const styles = StyleSheet.create({
     borderTopColor: colors.background,
     // borderWidth: 1
   },
-  footerAction: {
-    ...globalStyles.btn,
-    ...globalStyles.primary,
-    margin: '4%',
-    height: 48,
-  },
 })

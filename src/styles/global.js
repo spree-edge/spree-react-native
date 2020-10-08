@@ -36,21 +36,6 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold',
     fontSize: 34,
   },
-  headline3: {
-    fontFamily: 'lato-bold',
-    fontSize: 18,
-  },
-  latoBold18: {
-    fontFamily: 'lato-bold',
-    fontSize: 18,
-  },
-  subhead: {
-    fontFamily: 'lato-bold',
-    fontSize: 16
-  },
-  textBold: { //lato-bold
-    fontFamily: 'lato-bold'
-  },
   latoBold14: {
     fontFamily: 'lato-bold',
     fontSize: 14,
@@ -59,11 +44,9 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold',
     fontSize: 16,
   },
-
-  descriptionText: {
-    fontFamily: 'lato-regular',
-    fontSize: 14,
-    // color: '#fff'
+  latoBold18: {
+    fontFamily: 'lato-bold',
+    fontSize: 18,
   },
   label: {
     fontFamily: 'lato-regular',
@@ -91,7 +74,6 @@ export const globalStyles = StyleSheet.create({
     fontFamily: 'lato-bold',
     paddingRight: 8
   },
-    
 
   /**
    * Buttons
@@ -100,10 +82,6 @@ export const globalStyles = StyleSheet.create({
     width: 128,
     height: 36,
     backgroundColor: colors.primary,
-    borderRadius: 24
-  },
-  roundedBtnBlock: {
-    flex: 1,
     borderRadius: 24
   },
   btnBlock: {
@@ -116,16 +94,15 @@ export const globalStyles = StyleSheet.create({
     borderColor: colors.primary,
     borderRadius: 24
   },
-  blockTextInput: {
-    borderRadius: 4,
+  btnSolid: {
+    backgroundColor: colors.primary,
+  },
+  btnOutlined: {
+    backgroundColor: colors.white,
   },
   centeredContent: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  primary: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary
   },
 
   /**
@@ -160,6 +137,9 @@ export const globalStyles = StyleSheet.create({
   },
   mb114: {
     marginBottom: 114
+  },
+  pb16: {
+    paddingBottom: 16
   },
   mv8: {
     marginVertical: 8

@@ -55,7 +55,7 @@ const ResetPasswordScreen = ({ navigation }) => {
         <Button
           title="Submit & Login"
           buttonStyle={ styles.buttonBlockStyle }
-          titleStyle={ globalStyles.subhead }
+          titleStyle={ globalStyles.latoBold16 }
           onPress={() => navigation.navigate('SignIn')}
         />
         <View style={styles.footer}>

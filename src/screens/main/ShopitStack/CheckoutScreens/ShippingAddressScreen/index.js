@@ -137,7 +137,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
               itemStyle={styles.inputStyle}
               onValueChange={(itemValue, itemIndex) => {
                 setCountryPickerSelectedValue(itemValue)
-                dispatch(getCountry({iso: itemValue}))
+                dispatch(getCountry(itemValue))
               }}
             >
               {

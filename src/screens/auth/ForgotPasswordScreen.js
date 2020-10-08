@@ -33,7 +33,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
       <Button
         title="Send Me Now"
         buttonStyle={styles.buttonBlockStyle}
-        titleStyle={globalStyles.subhead}
+        titleStyle={globalStyles.latoBold16}
         onPress={() => navigation.navigate('EnterCode')}
       />
     </View>

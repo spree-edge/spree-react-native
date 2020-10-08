@@ -18,11 +18,11 @@ export function getCountriesList(data, filters={}) {
   };
 }
 
-export function getCountry(data, filters={}) {
-  const url = `/${API_VERSION_STOREFRONT}/countries/:iso`;
+export function getCountry(id, filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/countries/${id}`;
   const method = 'GET';
   return {
     type: 'GET_COUNTRY',
-    payload: handleAPI(url, filters, method, data)
+    payload: handleAPI(url, filters, method)
   };
 }

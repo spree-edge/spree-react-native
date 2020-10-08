@@ -94,7 +94,7 @@ const SignUpScreen = ({ navigation, dispatch }) => {
           <Button
             title="Create Account"
             buttonStyle={styles.buttonBlockStyle}
-            titleStyle={globalStyles.subhead}
+            titleStyle={globalStyles.latoBold16}
             onPress={handleSignup}
           />
           <View style={styles.footer}>

@@ -40,7 +40,7 @@ const BagScreen = ({ navigation }) => {
         <CheckoutDetailsCard title="Price Details" />
 
         <View style={styles.footer}>
-          <Text style={[globalStyles.textPrimary, globalStyles.subhead]}>Continue Shopping</Text>
+          <Text style={[globalStyles.textPrimary, globalStyles.latoBold16]}>Continue Shopping</Text>
         </View>
       </ScrollView>
       
