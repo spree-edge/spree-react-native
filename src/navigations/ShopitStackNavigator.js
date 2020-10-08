@@ -2,7 +2,7 @@ import * as React from "react"
 import { Text, StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import HomeScreen from '../screens/main/ShopitStack/HomeScreen'
-import WomensDressListScreen from '../screens/main/ShopitStack/WomensDressListScreen'
+import ProductsListScreen from '../screens/main/ShopitStack/ProductsListScreen'
 import ProductDetailScreen from '../screens/main/ShopitStack/ProductDetailScreen'
 import ShippingAddressScreen from '../screens/main/ShopitStack/CheckoutScreens/ShippingAddressScreen'
 import PaymentScreen from '../screens/main/ShopitStack/CheckoutScreens/PaymentScreen'
@@ -47,7 +47,7 @@ function ShopitStackNavigator ({ navigation }) {
           }
         }}
       />
-      <ShopitStack.Screen name="WomensDressList" component={WomensDressListScreen}
+      <ShopitStack.Screen name="WomensDressList" component={ProductsListScreen}
         options={{ headerTitle: 'Womens Dress'}}
       />
       <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}

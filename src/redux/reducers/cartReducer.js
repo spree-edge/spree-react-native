@@ -3,30 +3,35 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  user: {}
+  cart: {}
 };
 
 let changes = null;
-export default function accountReducer(state = DEFAULT_STATE, action) {
+export default function cartReducer(state = DEFAULT_STATE, action) {
   const response = action.payload && (action.payload.data || action.payload.response)
-  
   switch (action.type) {
-    case 'ACCOUNT_CREATE_PENDING':
+    /**
+     * ADD_ITEM
+     */
+    case 'ADD_ITEM_PENDING':
       return { ...state, saving: true };
 
-    case 'ACCOUNT_CREATE_REJECTED':
+    case 'ADD_ITEM_REJECTED':
       changes = {
         saving: false
       };
       return { ...state, ...changes };
 
-    case 'ACCOUNT_CREATE_FULFILLED':
+    case 'ADD_ITEM_FULFILLED':
       changes = {
-        account: dataFormatter.deserialize(response),
+        cart: dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };
-
+    
+    /**
+     * Default State
+     */
     default:
       return state
   }

@@ -23,10 +23,19 @@ export const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: colors.primary,
   },
-  inputStyle: {
-    fontFamily: 'lato-regular'
+  containerStyle: {
+    // ...globalStyles.mb16,
+    backgroundColor: '#fff',
+    height: 52,
+    borderRadius: 4,
+    borderWidth: 1,
+  },
+  inputStyle: { 
+    ...globalStyles.latoRegular16
   },
   inputContainerStyle: {
+    // paddingTop: 5,
+    paddingLeft: 5,
     borderBottomColor: '#fff'
   },
   formClearActionButton: {

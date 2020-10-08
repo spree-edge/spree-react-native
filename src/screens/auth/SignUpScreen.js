@@ -7,15 +7,13 @@ import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
 import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
-
+import TextField from '../../library/components/TextField'
 import { accountCreate } from '../../redux/actions/accountActions'
 
 
 const SignUpScreen = ({ navigation, dispatch }) => {
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
   
-  const [inputUserNameBorder, setInputUserNameBorder] = React.useState(false)
-  const [inputEmailBorder, setInputEmailBorder] = React.useState(false)
   const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
   const [inputPasswordConfirmationBorder, setInputPasswordConfirmationBorder] = React.useState(false)
 
@@ -46,7 +44,23 @@ const SignUpScreen = ({ navigation, dispatch }) => {
       <Text style={styles.title}>Join Shopit</Text>
       <View style={[globalStyles.containerFluid, { justifyContent: 'space-evenly',}]}>
         <View>
-          <Input
+          <TextField
+            placeholder="Name"
+            inputStyle={styles.inputStyle}
+            containerStyle={[styles.containerStyle, globalStyles.mb16]}
+            inputContainerStyle={styles.inputContainerStyle}
+            onChangeText={setUserName}
+            value={userName}
+          />
+          <TextField
+            placeholder="Email"
+            inputStyle={styles.inputStyle}
+            containerStyle={[styles.containerStyle, globalStyles.mb16]}
+            inputContainerStyle={styles.inputContainerStyle}
+            onChangeText={setEmail}
+            value={email}
+          />
+          {/* <Input
             placeholder="Name"
             onFocus={() => setInputUserNameBorder(true)}
             onBlur={() => setInputUserNameBorder(false)}
@@ -66,7 +80,7 @@ const SignUpScreen = ({ navigation, dispatch }) => {
             inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
             onChangeText={setEmail}
             // onEndEditing={() => console.log(email)}
-          />
+          /> */}
           <Input
             placeholder="Password"
             secureTextEntry={secureTextEntryToggle}
@@ -77,19 +91,17 @@ const SignUpScreen = ({ navigation, dispatch }) => {
             inputContainerStyle={ styles.inputContainerStyle }
             rightIcon={<Eye size={24} style={{ color: colors.gray }} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
             onChangeText={setPassword}
-            // onEndEditing={() => console.log(password)}
           />
           <Input
             placeholder="Password Confirmation"
             secureTextEntry={secureTextEntryToggle}
             onFocus={() => setInputPasswordConfirmationBorder(true)}
             onBlur={() => setInputPasswordConfirmationBorder(false)}
-            containerStyle={[ styles.inputMainContainer, { borderWidth: inputPasswordBorder ? 1 : 0 }]}
+            containerStyle={[ styles.inputMainContainer, { borderWidth: inputPasswordConfirmationBorder ? 1 : 0 }]}
             inputStyle={ styles.inputStyle }
             inputContainerStyle={ styles.inputContainerStyle }
             rightIcon={<Eye size={24} style={{ color: colors.gray }} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
             onChangeText={setPasswordConfirmation}
-            // onEndEditing={() => console.log(password)}
           />
           <Button
             title="Create Account"

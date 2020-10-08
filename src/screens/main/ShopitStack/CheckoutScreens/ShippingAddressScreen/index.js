@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { ScrollView, View, StyleSheet, Text, ActivityIndicator } from 'react-native'
+import { ScrollView, View, Text } from 'react-native'
 import { globalStyles } from '../../../../../styles/global'
-import { Divider, Input, Button, } from 'react-native-elements'
+import { Input } from 'react-native-elements'
 import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
@@ -12,6 +12,7 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
+import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 
 const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countriesList, saving }) => {
   const [statePickerSelectedValue, setStatePickerSelectedValue] = React.useState('Set API Default State')
@@ -25,9 +26,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
 
   if(saving) {
     return (
-      <View style={[globalStyles.containerFluid, globalStyles.centeredContent]}>
-        <ActivityIndicator size="large" />
-      </View>
+      <ActivityIndicatorCard />
     )
   } else {
     return (

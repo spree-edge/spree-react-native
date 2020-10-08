@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native"
 import { globalStyles } from '../../styles/global'
 import { colors } from '../../res/palette'
 import { Eye } from '../icons'
-import { Input, Text } from 'react-native-elements'
+import { Input } from 'react-native-elements'
 
 const TextField = ({
   placeholder,

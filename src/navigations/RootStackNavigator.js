@@ -1,7 +1,6 @@
 import * as React from "react"
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { ActivityIndicator, View } from 'react-native'
 
 import MainDrawerNavigator from './MainDrawerNavigator'
 
@@ -14,11 +13,11 @@ import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen'
 import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 
-import { globalStyles } from '../styles/global'
 import { AuthContext } from '../library/utils/context'
 import AsyncStorage from '@react-native-community/async-storage'
-import { retrieveToken, userLogin, userLogout, userRegister } from '../redux/actions/authActions'
+import { userLogin } from '../redux/actions/authActions'
 import { connect } from 'react-redux'
+import ActivityIndicatorCard from '../library/components/ActivityIndicatorCard'
 
 const MyTheme = {
   ...DefaultTheme,
@@ -46,16 +45,11 @@ function RootStackNavigator({ authState, dispatch}) {
     }
 
     bootstrapAsync();
-    // return () => {
-    //   cleanup
-    // }
   }, [])
 
   if( authState.isLoading ) {    //Splash Screen can be shown
     return (
-      <View style={[ globalStyles.containerFluid, globalStyles.centeredContent ]}>
-        <ActivityIndicator size="large" />
-      </View>
+      <ActivityIndicatorCard />
     )
   }
   return (

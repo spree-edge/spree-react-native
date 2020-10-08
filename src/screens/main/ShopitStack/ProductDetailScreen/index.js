@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { View, ScrollView, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
 import { Avatar, Button, Divider } from 'react-native-elements'
 import MyCarousel from '../../../../library/components/MyCarousel'
-import { 
+import {
   Smile,
   SmileSad,
   Dollar,
@@ -16,7 +16,9 @@ import {
   RiSecurePaymentFill
 } from '../../../../library/icons'
 import TextField from '../../../../library/components/TextField'
+import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 import { getProduct } from '../../../../redux/actions/productActions'
+import { addItem } from '../../../../redux/actions/cartActions'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
@@ -49,15 +51,22 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) =
   // console.log(product)
   // console.log(route)
 
+  const handleAddItemToCart = () => {
+    dispatch(addItem(
+      {
+        variant_id: route.params.itemId,
+        quantity: 1,
+      }
+    ))
+  }
+
   React.useEffect(() => {
     dispatch(getProduct(route.params.itemId))
   }, [])
 
   if(saving) {
     return (
-      <View style={[ globalStyles.containerFluid, globalStyles.centeredContent ]}>
-        <ActivityIndicator size="large" />
-      </View>
+      <ActivityIndicatorCard />
     )
   } else
   return (
@@ -98,6 +107,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) =
               type="solid"
               containerStyle={{flex: 1}}
               buttonStyle={[ globalStyles.btn, globalStyles.btnSolid ]}
+              onPress={ handleAddItemToCart }
             />
           </View>
           <View style={ globalStyles.mt16 }>

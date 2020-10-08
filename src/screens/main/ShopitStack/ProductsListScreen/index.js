@@ -23,7 +23,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   </TouchableOpacity>
 )
 
-const WomensDressListScreen = ({ navigation, dispatch, productsList }) => {
+const ProductListScreen = ({ navigation, dispatch, productsList }) => {
   // console.log(productsList)
 
   React.useEffect(() => {
@@ -83,7 +83,7 @@ const mapStateToProps = state => ({
   productsList: state.products.productsList
 })
 
-export default connect(mapStateToProps)(WomensDressListScreen)
+export default connect(mapStateToProps)(ProductListScreen)
 
 const WOMENS_DRESS_LIST = [
   {
