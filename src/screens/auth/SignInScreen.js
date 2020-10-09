@@ -5,9 +5,9 @@ import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-import { AuthContext } from '../../library/utils/context'
+// import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
-import { userLogin } from '../../redux/actions/authActions'
+import { userLogin } from '../../redux'
 import TextField from '../../library/components/TextField'
 
 
@@ -20,7 +20,7 @@ const SignInScreen = ({ navigation, dispatch }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
 
-  const { signIn } = React.useContext(AuthContext)
+  // const { signIn } = React.useContext(AuthContext)
 
   const handleLogin = () =>  {
     dispatch(userLogin({
@@ -46,17 +46,6 @@ const SignInScreen = ({ navigation, dispatch }) => {
           onChangeText={setEmail}
           value={email}
         />
-        {/* <Input
-          placeholder="Email" 
-          keyboardType="email-address"
-          onFocus={() => setInputEmailBorder(true)}
-          onBlur={() => setInputEmailBorder(false)}
-          containerStyle={[ styles.inputMainContainer, { borderWidth: inputEmailBorder ? 1 : 0 } ]}
-          inputStyle={ styles.inputStyle }
-          inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
-          onChangeText={setEmail}
-          // onEndEditing={() => console.log(email)}
-        /> */}
         <Input
           placeholder="Password" 
           secureTextEntry={secureTextEntryToggle}

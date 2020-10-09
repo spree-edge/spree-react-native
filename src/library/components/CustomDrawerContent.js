@@ -13,11 +13,11 @@ import {
 } from '@react-navigation/drawer'
 import { userLogout } from '../../redux/actions/authActions'
 
-import { AuthContext } from '../utils/context'
+// import { AuthContext } from '../utils/context'
 
 function CustomDrawerContent({ dispatch, ...props }) {
 
-  const { signOut } = React.useContext(AuthContext)
+  // const { signOut } = React.useContext(AuthContext)
 
   return (
     <DrawerContentScrollView {...props}>

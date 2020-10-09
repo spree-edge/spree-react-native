@@ -13,7 +13,7 @@ import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen'
 import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 
-import { AuthContext } from '../library/utils/context'
+// import { AuthContext } from '../library/utils/context'
 import AsyncStorage from '@react-native-community/async-storage'
 import { userLogin } from '../redux/actions/authActions'
 import { connect } from 'react-redux'
@@ -31,10 +31,10 @@ const RootStack = createStackNavigator()
 
 function RootStackNavigator({ authState, dispatch}) {
 
-  const authContext = React.useMemo(
-    () => ({
+  // const authContext = React.useMemo(
+  //   () => ({
 
-  }), [])
+  // }), [])
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {
@@ -53,7 +53,7 @@ function RootStackNavigator({ authState, dispatch}) {
     )
   }
   return (
-    <AuthContext.Provider value={authContext}>
+    // <AuthContext.Provider value={authContext}>
       <NavigationContainer theme={MyTheme}>
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           {
@@ -76,7 +76,7 @@ function RootStackNavigator({ authState, dispatch}) {
           }
         </RootStack.Navigator>
       </NavigationContainer>
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
   )
 }
 

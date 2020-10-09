@@ -28,7 +28,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     height: 52,
     borderRadius: 4,
-    borderWidth: 1,
   },
   inputStyle: { 
     ...globalStyles.latoRegular16

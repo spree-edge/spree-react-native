@@ -18,7 +18,7 @@ import {
 import TextField from '../../../../library/components/TextField'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 import { getProduct } from '../../../../redux/actions/productActions'
-import { addItem } from '../../../../redux/actions/cartActions'
+import { getCart, addItem } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
@@ -45,16 +45,18 @@ const CarouselProductCard = () => {
   )
 }
 
-const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) => {
+const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, saving }) => {
   const [pincode, setPincode] = React.useState('')
 
   // console.log(product)
   // console.log(route)
 
-  const handleAddItemToCart = () => {
+  const handleAddToBag = () => {
+    // dispatch(getCart())
     dispatch(addItem(
+      auth.access_token,
       {
-        variant_id: route.params.itemId,
+        variant_id: product.default_variant.id,
         quantity: 1,
       }
     ))
@@ -107,7 +109,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) =
               type="solid"
               containerStyle={{flex: 1}}
               buttonStyle={[ globalStyles.btn, globalStyles.btnSolid ]}
-              onPress={ handleAddItemToCart }
+              onPress={ handleAddToBag }
             />
           </View>
           <View style={ globalStyles.mt16 }>
@@ -310,6 +312,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, saving }) =
 
 const mapStateToProps = state => ({
   product: state.products.product,
+  auth: state.auth,
   saving: state.products.saving
 })
 

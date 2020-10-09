@@ -3,7 +3,7 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  user: {}
+  account: {}
 };
 
 let changes = null;

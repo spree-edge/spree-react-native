@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image } from 'react-native'
 import { globalStyles } from '../../../styles/global'
 import { colors } from '../../../res/palette'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Pen, User, Home, ShoppingBag, Heart, Gift, ChevronRight } from '../../../library/icons'
 import { Divider, Button } from 'react-native-elements'
-import { AuthContext } from '../../../library/utils/context'
-import { userLogout } from '../../../redux/actions/authActions'
+// import { AuthContext } from '../../../library/utils/context'
+import { userLogout } from '../../../redux'
 import { styles } from './styles'
 
 const list = [
