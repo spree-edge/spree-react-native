@@ -17,3 +17,21 @@ export function getCart(filters={}) {
     payload: handleAPI(url, filters, method)
   };
 }
+
+export function removeLineItem(lineItemId, filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/cart/remove_line_item/${lineItemId}`;
+  const method = 'DELETE';
+  return {
+    type: 'REMOVE_LINE_ITEM',
+    payload: handleAPI(url, filters, method)
+  };
+}
+
+export function setQuantity(data, filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/cart/set_quantity`;
+  const method = 'PATCH';
+  return {
+    type: 'SET_QUANTITY',
+    payload: handleAPI(url, filters, method, data)
+  };
+}

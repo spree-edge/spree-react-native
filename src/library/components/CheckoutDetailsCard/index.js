@@ -4,7 +4,7 @@ import { globalStyles } from '../../../styles/global'
 import { styles } from './styles'
 import { Divider } from 'react-native-elements'
 
-const CheckoutDetailsCard = ({ title }) => {
+const CheckoutDetailsCard = ({ title, display_total }) => {
   return (
     <View style={styles.orderTotalContainer}>
       <View style={[ globalStyles.container, globalStyles.mt8 ]}>
@@ -32,7 +32,7 @@ const CheckoutDetailsCard = ({ title }) => {
       <Divider style={styles.dividerStyle} />
       <View style={ styles.orderTotalAmountContainer }>
         <Text style={ globalStyles.latoBold14 }>Total Amount</Text>
-        <Text style={ globalStyles.latoBold14 }>$51.40</Text>
+        <Text style={ globalStyles.latoBold14 }>{display_total || '$51.4'}</Text>
       </View>
     </View>
   )

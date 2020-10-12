@@ -26,3 +26,13 @@ export function getCountry(id, filters={}) {
     payload: handleAPI(url, filters, method)
   };
 }
+
+
+export function getPaymentMethods(filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/checkout/payment_methods`;
+  const method = 'GET';
+  return {
+    type: 'GET_PAYMENT_METHODS',
+    payload: handleAPI(url, filters, method)
+  };
+}

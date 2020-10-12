@@ -8,6 +8,7 @@ const DEFAULT_STATE = {
     iso: null
   },
   countriesList: [],
+  paymentMethods: []
 };
 
 let changes = null;
@@ -67,6 +68,25 @@ export default function checkoutReducer(state = DEFAULT_STATE, action) {
     case 'GET_COUNTRY_FULFILLED':
       changes = {
         defaultCountry: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    /**
+     * GET_PAYMENT_METHODS
+     */
+    case 'GET_PAYMENT_METHODS_PENDING':
+      return { ...state, saving: true };
+
+    case 'GET_PAYMENT_METHODS_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'GET_PAYMENT_METHODS_FULFILLED':
+      changes = {
+        paymentMethods: dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };

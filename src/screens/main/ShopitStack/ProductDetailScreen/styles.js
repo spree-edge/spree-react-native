@@ -111,9 +111,18 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
+  carouselProductsContainer: {
+    marginLeft: '5%'
+  },
   carouselProductCard: {
-    borderWidth: 2,
-    width: 140
+    // borderWidth: 2,
+    width: 150,
+    marginRight: 8,
+  },
+  carouselProductDescription: {
+    borderWidth: 3,
+    borderColor: colors.background,
+    padding: 4,
   },
   pricingContainer: {
     flex: 1,
@@ -125,24 +134,20 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'line-through'
   },
   carouselCardDiscountPercent: {
-    fontSize: 12,
     color: colors.error
   },
   carouselCardDiscountedPrice: {
-    fontSize: 12,
     color: colors.black
-  },
-  carouselProductBrand: {
-    fontFamily: 'lato-bold',
-    fontSize: 11,
   },
   carouselCardPrices: {
     fontFamily: 'lato-bold',
+    fontSize: 11,
     paddingRight: 2
   },
   carouselCardPricingContainer: {
     ...globalStyles.mt8,
-    borderWidth: 2,
+    flexDirection: 'row',
+    // borderWidth: 2,
     flex: 1
   },
   inputWrapperStyle: {

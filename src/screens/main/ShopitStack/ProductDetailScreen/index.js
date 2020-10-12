@@ -18,21 +18,21 @@ import {
 import TextField from '../../../../library/components/TextField'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 import { getProduct } from '../../../../redux/actions/productActions'
-import { getCart, addItem } from '../../../../redux'
+import { addItem } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
 const CarouselProductCard = () => {
   return (
-    <View style={styles.carouselProductCard}>
+    <View style={styles.carouselProductCard}> 
       <Image
         source={require('../../../../../assets/images/womens-dress-product-list-images/product-img.png')}
         style={{
-          width: 140,
-          height: 186
+          width: 150,
+          height: 196
         }}
       />
-      <View>
+      <View style={styles.carouselProductDescription}>
         <Text style={globalStyles.latoBold14}>Tokyo Talkies</Text>
         <Text style={globalStyles.label}>Women Printed A-Line...</Text>
         <View style={styles.carouselCardPricingContainer}>
@@ -52,7 +52,6 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
   // console.log(route)
 
   const handleAddToBag = () => {
-    // dispatch(getCart())
     dispatch(addItem(
       auth.access_token,
       {
@@ -283,8 +282,12 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
             <Text style={[ globalStyles.latoBold14, globalStyles.mb16 ]}>Your might also like</Text>
             <Text style={[ globalStyles.label, globalStyles.latoBold14 ]}>12 more</Text>
           </View>
-          <CarouselProductCard />
         </View>
+        <ScrollView horizontal={true} style={styles.carouselProductsContainer}>
+          <CarouselProductCard />
+          <CarouselProductCard />
+          <CarouselProductCard />
+        </ScrollView>
       </View>
       <View style={styles.footerContainer}>
         <View style={styles.footerItemListContainer}>

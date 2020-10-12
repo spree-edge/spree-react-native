@@ -47,6 +47,44 @@ export default function cartReducer(state = DEFAULT_STATE, action) {
         saving: false
       };
       return { ...state, ...changes };
+
+    /**
+     * SET_QUANTITY
+     */
+    case 'SET_QUANTITY_PENDING':
+      return { ...state, saving: true };
+
+    case 'SET_QUANTITY_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'SET_QUANTITY_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+    
+    /**
+     * REMOVE_LINE_ITEM
+     */
+    case 'REMOVE_LINE_ITEM_PENDING':
+      return { ...state, saving: true };
+
+    case 'REMOVE_LINE_ITEM_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'REMOVE_LINE_ITEM_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
     
     /**
      * Default State

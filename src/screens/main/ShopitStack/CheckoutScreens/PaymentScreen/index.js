@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, Image, TouchableOpacity } from 'react-native'
 import { Divider, Input, Button, Overlay } from 'react-native-elements'
 import { globalStyles } from '../../../../../styles/global'
 import { colors } from '../../../../../res/palette'
@@ -10,8 +10,11 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
+import { getPaymentMethods } from '../../../../../redux'
+import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
+import { connect } from 'react-redux'
 
-const PaymentScreen = ({ navigation }) => {
+const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
   const [cardNumber, setCardNumber] = React.useState('')
   const [nameOnCard, setNameOnCard] = React.useState('')
 
@@ -30,6 +33,17 @@ const PaymentScreen = ({ navigation }) => {
     setOverlayVisible(!overlayVisible);
   };
 
+  // console.log(saving, paymentMethods)
+  
+  React.useEffect(() => {
+    dispatch(getPaymentMethods())
+  }, [])
+
+  if(saving) {
+    return (
+      <ActivityIndicatorCard />
+    )
+  } else
   return (
     <View style={ globalStyles.containerFluid }>
       <Overlay isVisible={overlayVisible} onBackdropPress={toggleOverlay} fullScreen={true}>
@@ -207,4 +221,9 @@ const PaymentScreen = ({ navigation }) => {
   )
 }
 
-export default PaymentScreen
+const mapStateToProps = state => ({
+  saving: state.checkout.saving,
+  paymentMethods: state.checkout.paymentMethods
+})
+
+export default connect(mapStateToProps)(PaymentScreen)
