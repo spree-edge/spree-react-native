@@ -11,10 +11,13 @@ export function addItem(auth_token, data, filters={}) {
 
 export function getCart(filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/cart`;
+  const params = {
+    include: 'line_items'
+  }
   const method = 'GET';
   return {
     type: 'GET_CART',
-    payload: handleAPI(url, filters, method)
+    payload: handleAPI(url, params, method, filters)
   };
 }
 

@@ -5,7 +5,9 @@ import { Close, ShoppingBag, MathMinus, MathPlus } from '../../icons'
 import { colors } from '../../../res/palette'
 import styles from './styles'
 
-const ProductCard = ({ imageSource, name, description, color, size, discountedPrice, price, discountPercent, soldOut, counter, shoppingBag, onRemoveLineItem }) => {
+const ProductCard = ({ imageSource, name, description, color, size,
+   discountedPrice, price, discountPercent, soldOut, counter, shoppingBag,
+   onRemoveLineItem, onIncrementQuantity, onDecrementQuantity }) => {
   return (
     <View style={styles.productCardWrapper}>
       <View style={[styles.productCardContainer,
@@ -25,9 +27,9 @@ const ProductCard = ({ imageSource, name, description, color, size, discountedPr
                 <Text style={{paddingHorizontal: 5}}>{size}</Text>
               </View>
               { counter && <View style={styles.counterContainer}>
-                <MathMinus size={14} style={{color: colors.primary}} />
+                <MathMinus size={14} style={{color: colors.primary}} onPress={onDecrementQuantity} />
                 <Text style={{color: colors.primary}}>1</Text>
-                <MathPlus size={14} style={{color: colors.primary}} />
+                <MathPlus size={14} style={{color: colors.primary}} onPress={onIncrementQuantity} />
               </View> }
             </View>
             <View style={styles.pricingContainer}>

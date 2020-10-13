@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, View, ScrollView, Text, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import FiltersScreen from '../screens/main/ShopitStack/FiltersScreen'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
 import { SearchBar } from 'react-native-elements'
@@ -235,7 +234,6 @@ export default function FiltersDrawerNavigator() {
       <Drawer.Screen name="Pattern" component={Pattern} />
       <Drawer.Screen name="FabricType" component={FabricType} />
       <Drawer.Screen name="WashCare" component={WashCare} />
-      <Drawer.Screen name="Filters" component={FiltersScreen} />
     </Drawer.Navigator>
   );
 }

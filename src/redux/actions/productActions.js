@@ -1,11 +1,11 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 
-export function getProductsList(data, filters={}) {
+export function getProductsList(filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/products`;
   const method = 'GET';
   return {
     type: 'GET_PRODUCTS_LIST',
-    payload: handleAPI(url, filters, method, data)
+    payload: handleAPI(url, filters, method)
   };
 }
 

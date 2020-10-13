@@ -15,6 +15,7 @@ function handleAPI( path, params, method, data = null) {
   };
   let url = API_ROOT + path;
   url = url +'?'+ qs.stringify(params, { arrayFormat: 'brackets' })
+
   return axios({
     method,
     url,

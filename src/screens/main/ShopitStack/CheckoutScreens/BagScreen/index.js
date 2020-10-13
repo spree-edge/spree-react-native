@@ -12,9 +12,10 @@ import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetai
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 
-const BagScreen = ({ navigation, dispatch, saving, cart }) => {
+const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
-  // console.log(cart)
+  // console.log(car, saving)
+  // console.log(lineItemQuantity)
 
   React.useEffect(() => {
     dispatch(getCart())
@@ -27,8 +28,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   const handleIncrementQuantity = (lineItemId, lineItemQuantity)=> {
     dispatch(setQuantity(
       {
-        lineItemId: 5,
-        quantity: 1  //Line Item Quantity + 1
+        lineItemId: 3,
+        quantity: lineItemQuantity + 1  //Line Item Quantity + 1
       }
     ))
   }
@@ -39,8 +40,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
     } else {
       dispatch(setQuantity(
         {
-          line_item_id: 5,
-          quantity: 1  //Line Item Quantity - 1
+          line_item_id: 3,
+          quantity: lineItemQuantity - 1  //Line Item Quantity - 1
         }
       ))
     }
@@ -59,8 +60,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
             BAG.map(ele => <ProductCard 
               key={ele.id}
               counter
-              // onIncrementQuantity={handleIncrementQuantity}
-              // onDecrementQuantity={handleDecrementQuantity}
+              onIncrementQuantity={() => handleIncrementQuantity(ele.id + 2, lineItemQuantity)}
+              onDecrementQuantity={() => handleDecrementQuantity(ele.id + 2, lineItemQuantity)}
               onRemoveLineItem={() => handleRemoveLineItem(ele.id + 2)}
               {...ele}
             />)
@@ -79,7 +80,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
           </View>
         </View>
 
-        <CheckoutDetailsCard title="Price Details" display_total={cart.display_total} />
+        <CheckoutDetailsCard title="Price Details" display_total={cart && cart.display_total} />
 
         <View style={styles.footer}>
           <Text style={[globalStyles.textPrimary, globalStyles.latoBold16]}>Continue Shopping</Text>
@@ -96,7 +97,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
 
 const mapStateToProps = state => ({
   saving: state.cart.saving,
-  cart: state.cart.cart
+  cart: state.cart.cart,
+  lineItemQuantity: state.cart.cart.line_items[0].quantity
 })
 
 export default connect(mapStateToProps)(BagScreen)

@@ -6,11 +6,25 @@ import { List } from 'react-native-paper'
 import { styles } from './styles'
 import { globalStyles } from '../../../styles/global'
 import Collapsible from 'react-native-collapsible'
+import { getTaxonsList } from '../../../redux'
+import { connect } from 'react-redux'
+import ActivityIndicatorCard from '../../../library/components/ActivityIndicatorCard'
 
-const CategoriesScreen = () => {
+const CategoriesScreen = ({ navigation, dispatch, taxonsList, saving }) => {
   const [accordionMenExpanded, setAccordionMenExpanded] = React.useState(false);
   const toggleAccordionMenExpanded = () => setAccordionMenExpanded(!accordionMenExpanded);
 
+  // console.log(taxonsList)
+
+  React.useEffect(() => {
+    dispatch(getTaxonsList())
+  }, [])
+
+  if(saving) {
+    return (
+      <ActivityIndicatorCard />
+    )
+  } else
   return (
     <ScrollView>
       <View>
@@ -30,6 +44,91 @@ const CategoriesScreen = () => {
             <Text style={styles.accordionLevel1Description}>We Can’t Get Enough</Text>
           </View>
         </View>
+
+        {
+          taxonsList.map((taxonLevel1, index) => {
+            if(index !== 0) {
+              return (
+                <List.Accordion
+                  key={taxonLevel1.id}
+                  title={taxonLevel1.name}
+                  description="Spruce Up Your Look"
+                  titleStyle={styles.accordionLevel1Title}
+                  descriptionStyle={styles.accordionLevel1Description}
+                  style={[styles.accordionLevel1, {backgroundColor: '#fab7bf'}]}
+                >
+                  <List.Item title="First Item"
+                    style={styles.listItem}
+                    titleStyle={styles.listItemTitle}
+                  />
+                </List.Accordion>
+              )
+            }
+          }
+        )}
+
+        <List.Accordion
+          title="WOMEN"
+          description="Spruce Up Your Look"
+          titleStyle={styles.accordionLevel1Title}
+          descriptionStyle={styles.accordionLevel1Description}
+          style={[styles.accordionLevel1, {backgroundColor: '#fab7bf'}]}
+        >
+          <List.Accordion
+            title="Indianwear"
+            titleStyle={styles.accordionLevel2TitleStyle}
+            style={[styles.accordionLevel2Style, {backgroundColor: '#fff'}]}
+          >
+            <List.Item title="First Item" 
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Second Item"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+          </List.Accordion>
+          <List.Accordion
+            title="Westernwear"
+            titleStyle={styles.accordionLevel2TitleStyle}
+            style={[styles.accordionLevel2Style, {backgroundColor: '#fff'}]}
+          >
+            <List.Item title="First Item" 
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Second Item"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+          </List.Accordion>
+          <List.Accordion
+            title="Footwear"
+            titleStyle={styles.accordionLevel2TitleStyle}
+            style={[styles.accordionLevel2Style, {backgroundColor: '#fff'}]}
+          >
+            <List.Item title="Flats & Heels" 
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Casual Shoes"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Sports Shoes"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Flip Flops"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+            <List.Item title="Sports Sandals"
+              style={styles.listItem}
+              titleStyle={styles.listItemTitle}
+            />
+          </List.Accordion>
+        </List.Accordion>
 
         {/* Code for Single Collapsible Start */}
         {/* <TouchableOpacity style={[globalStyles.containerFluid, styles.accordionLevel1, {backgroundColor: '#ececec'}]} onPress={toggleAccordionMenExpanded}>
@@ -233,4 +332,9 @@ const CategoriesScreen = () => {
   )
 }
 
-export default CategoriesScreen
+const mapStateToProps = state => ({
+  taxonsList: state.taxons.taxonsList,
+  saving: state.taxons.saving,
+})
+
+export default connect(mapStateToProps)(CategoriesScreen)
