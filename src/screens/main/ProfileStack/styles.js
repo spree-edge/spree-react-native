@@ -28,8 +28,6 @@ export const styles = StyleSheet.create({
   },
   jumbotron: {
     height: 168,
-    // backgroundColor: '#f5f5f5',
-    // borderWidth: 2
   },
   listContainer: {
     flexDirection: 'row',
@@ -37,18 +35,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
+    ...globalStyles.latoRegular16,
+    ...globalStyles.textDark,
     flex: 1,
-    color: colors.black,
-    fontFamily: 'lato-regular',
-    fontSize: 16
   },
   listIcon: {
     padding: 12
   },
   buttonBlockStyle: {
     ...globalStyles.mt32,
-    backgroundColor: colors.primary,
-    borderRadius: 24,
-    height: 48,
+    ...globalStyles.btnBlock,
+    ...globalStyles.btnPrimary
   },
 })

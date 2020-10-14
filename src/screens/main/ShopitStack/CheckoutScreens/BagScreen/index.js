@@ -15,7 +15,9 @@ import ActivityIndicatorCard from '../../../../../library/components/ActivityInd
 const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
   // console.log(car, saving)
-  // console.log(lineItemQuantity)
+  console.log(lineItemQuantity)
+
+  //SetQuantity is variable is for experiment purpose, comment while connecting it with redux
 
   React.useEffect(() => {
     dispatch(getCart())
@@ -98,7 +100,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
 const mapStateToProps = state => ({
   saving: state.cart.saving,
   cart: state.cart.cart,
-  lineItemQuantity: state.cart.cart.line_items[0].quantity
+  // lineItemQuantity: state.cart.cart.line_items[0].quantity
 })
 
 export default connect(mapStateToProps)(BagScreen)

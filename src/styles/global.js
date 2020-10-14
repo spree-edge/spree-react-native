@@ -94,6 +94,9 @@ export const globalStyles = StyleSheet.create({
     borderColor: colors.primary,
     borderRadius: 24
   },
+  btnPrimary: {
+    backgroundColor: colors.primary
+  },
   btnSolid: {
     backgroundColor: colors.primary,
   },

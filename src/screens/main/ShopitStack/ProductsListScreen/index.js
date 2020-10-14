@@ -8,20 +8,32 @@ import { styles } from './styles'
 import { connect } from 'react-redux'
 import { getProductsList } from '../../../../redux/actions/productActions'
 
-const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => (
-  <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
-    <Image source={item.source} style={{ width: imageStyle.width, height: imageStyle.height }} />
-    <View style={styles.detailsContainer}>
-      <Text style={styles.title}>{item.name}</Text>
-      <Text style={styles.description}>{item.description}</Text>
-      <View style={styles.pricingContainer}>
-        <Text style={[styles.prices, {color: colors.black}]}>${item.discountedPrice}</Text>
-        <Text style={[styles.prices, styles.price]}>${item.price}</Text>
-        <Text style={[styles.prices, styles.discountPercent]}>({item.discountPercent}% OFF)</Text>
+const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
+  // console.log(item)
+  const imageURI = item && item.images[0].styles[4].url
+  console.log(imageURI)
+
+  return (
+    <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
+      <Image
+        // source={{
+        //   uri: `http://192.168.1.7:3000/${item.images[0].styles[4].url}`
+        // }}
+        // source={item.source}
+        style={{ width: imageStyle.width, height: imageStyle.height }}
+      />
+      <View style={styles.detailsContainer}>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.description}>{item.description}</Text>
+        <View style={styles.pricingContainer}>
+          <Text style={[styles.prices, {color: colors.black}]}>${item.discountedPrice}</Text>
+          <Text style={[styles.prices, styles.price]}>${item.price}</Text>
+          <Text style={[styles.prices, styles.discountPercent]}>({item.discountPercent}% OFF)</Text>
+        </View>
       </View>
-    </View>
-  </TouchableOpacity>
-)
+    </TouchableOpacity>
+  )
+}
 
 const ProductListScreen = ({ navigation, dispatch, productsList }) => {
   // console.log(productsList)
@@ -45,7 +57,7 @@ const ProductListScreen = ({ navigation, dispatch, productsList }) => {
       // <FlatListImageItem
       //   key={item.id}
       //   item={item}
-      //   onPress={() => navigation.navigate('ProductDetail', { itemId: item.id + 1, defaultVariant: 117/* item.default_variant */ })}
+      //   onPress={() => navigation.navigate('ProductDetail', { itemId: item.id })}
       //   imageStyle={styles.newJustInImage}
       //   itemContainerStyle={styles.newJustInItemContainer}
       // />
@@ -74,6 +86,13 @@ const ProductListScreen = ({ navigation, dispatch, productsList }) => {
           numColumns={2}
           // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
         />
+        {/* <FlatList
+          data={productsList}
+          keyExtractor={item => item.id}
+          renderItem={newJustInRenderItem}
+          numColumns={2}
+          // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
+        /> */}
       </View>
     </ScrollView>
   )

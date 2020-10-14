@@ -4,7 +4,19 @@ const dataFormatter = new Jsona();
 const DEFAULT_STATE = {
   saving: false,
   product: {},
-  productsList: []
+  productsList: [
+    {
+      images: [
+        {
+          styles: [
+            {
+              url: ''
+            }
+          ]
+        }
+      ]
+    }
+  ]
 };
 
 let changes = null;

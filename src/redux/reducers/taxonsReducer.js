@@ -4,7 +4,23 @@ const dataFormatter = new Jsona();
 const DEFAULT_STATE = {
   saving: false,
   taxon: {},
-  taxonsList: []
+  taxonsList: [
+    {
+      children: [
+        // {
+        //   children: [
+        //     {
+        //       children: [
+        //         {
+        //           name: ''
+        //         }
+        //       ]
+        //     }
+        //   ]
+        // }
+      ]
+    }
+  ]
 };
 
 let changes = null;

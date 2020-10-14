@@ -15,6 +15,7 @@ export function getCart(filters={}) {
     include: 'line_items'
   }
   const method = 'GET';
+  debugger
   return {
     type: 'GET_CART',
     payload: handleAPI(url, params, method, filters)
