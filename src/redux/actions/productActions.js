@@ -1,9 +1,11 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 
-export function getProductsList(filters={}) {
+export function getProductsList(pageIndex, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/products`;
   const params = {
-    include: 'images'
+    include: 'images',
+    page: pageIndex,
+    per_page: 18
   }
   const method = 'GET';
   return {
@@ -14,9 +16,12 @@ export function getProductsList(filters={}) {
 
 export function getProduct(id, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/products/${id}`;
+  const params = {
+    include: 'images'
+  }
   const method = 'GET';
   return {
     type: 'GET_PRODUCT',
-    payload: handleAPI(url, filters, method)
+    payload: handleAPI(url, params, method, filters)
   };
 }

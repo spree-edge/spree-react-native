@@ -22,13 +22,13 @@ import { addItem } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
-const CarouselProductCard = () => {
+const CarouselProductCard = ({ imageURI }) => {
   return (
     <View style={styles.carouselProductCard}> 
       <Image
-        // source={{
-        //   uri: 'http://192.168.1.7:3000/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--bf7daa959a6f67af82b3c92751521a58e9440a9f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9VWTI5dFltbHVaVjl2Y0hScGIyNXpld282REdkeVlYWnBkSGxKSWd0alpXNTBaWElHT2daRlZEb0xjbVZ6YVhwbFNTSU5NalF3ZURJME1ENEdPd2RVT2d0bGVIUmxiblJBQ0RvUFltRmphMmR5YjNWdVpFa2lDbk51YjNjeUJqc0hWRG9NY1hWaGJHbDBlV2xWIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--b29f3166e859db6170af576489593388d4460108/product-img-2.png'
-        // }}
+        source={{
+          uri: imageURI
+        }}
         // source={require('../../../../../assets/images/womens-dress-product-list-images/product-img.png')}
         style={{
           width: 150,
@@ -53,6 +53,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
 
   // console.log(product)
   // console.log(route)
+  const imageURI = `http://192.168.1.7:3000/${product.images[0].styles[3].url}`
 
   const handleAddToBag = () => {
     dispatch(addItem(
@@ -75,7 +76,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
   } else
   return (
     <ScrollView style={globalStyles.containerFluid}>
-      <MyCarousel />
+      <MyCarousel imageURI={imageURI} />
       <View style={ styles.containerFluid }>
         <View style={[ globalStyles.container, globalStyles.pb16 ]}>
           <Text style={ globalStyles.latoBold18 }>{ product.name }</Text>
@@ -287,9 +288,9 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
           </View>
         </View>
         <ScrollView horizontal={true} style={styles.carouselProductsContainer}>
-          <CarouselProductCard />
-          <CarouselProductCard />
-          <CarouselProductCard />
+          <CarouselProductCard imageURI={imageURI} />
+          <CarouselProductCard imageURI={imageURI} />
+          <CarouselProductCard imageURI={imageURI} />
         </ScrollView>
       </View>
       <View style={styles.footerContainer}>

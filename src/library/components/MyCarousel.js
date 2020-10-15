@@ -3,11 +3,13 @@ import { View, Image, Dimensions } from 'react-native'
 import Carousel, { Pagination } from 'react-native-snap-carousel'
 import { colors } from '../../res/palette'
 
-const MySlideComponent = ({ data }) => {
+const MySlideComponent = ({ item }) => {
   return (
     <View>
       <Image
-        source={data.source}
+        source={{
+          uri: item.source
+        }}
         style={{
           width: '100%',
           height: 500,
@@ -19,32 +21,54 @@ const MySlideComponent = ({ data }) => {
 }
 
 const _renderItem = ({ item, index }) => {
-  return <MySlideComponent key={item.id} data={item} />
+  return <MySlideComponent key={item.id} item={item} />
 }
 
-const MyCarousel = props => {
+const MyCarousel = ({ imageURI }) => {
   const [activeSlide, setActiveSlide] = React.useState(0)
   const { width, height } = Dimensions.get('screen');
+  // const [entries] = React.useState([
+  //   {
+  //     id: 1,
+  //     source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+  //   },
+  //   {
+  //     id: 2,
+  //     source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+  //   },
+  //   {
+  //     id: 3,
+  //     source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+  //   },
+  //   {
+  //     id: 4,
+  //     source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+  //   },
+  //   {
+  //     id: 5,
+  //     source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+  //   },
+  // ])
   const [entries] = React.useState([
     {
       id: 1,
-      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+      source: imageURI
     },
     {
       id: 2,
-      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+      source: imageURI
     },
     {
       id: 3,
-      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+      source: imageURI
     },
     {
       id: 4,
-      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+      source: imageURI
     },
     {
       id: 5,
-      source: require('../../../assets/images/womens-dress-product-list-images/product-img.png')
+      source: imageURI
     },
   ])
 
