@@ -15,7 +15,6 @@ import ActivityIndicatorCard from '../../../../../library/components/ActivityInd
 const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
   // console.log(car, saving)
-  console.log(lineItemQuantity)
 
   //SetQuantity is variable is for experiment purpose, comment while connecting it with redux
 
@@ -30,7 +29,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
   const handleIncrementQuantity = (lineItemId, lineItemQuantity)=> {
     dispatch(setQuantity(
       {
-        lineItemId: 3,
+        lineItemId: lineItemId,
         quantity: lineItemQuantity + 1  //Line Item Quantity + 1
       }
     ))
@@ -42,7 +41,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
     } else {
       dispatch(setQuantity(
         {
-          line_item_id: 3,
+          line_item_id: lineItemId,
           quantity: lineItemQuantity - 1  //Line Item Quantity - 1
         }
       ))
@@ -59,12 +58,22 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
       <ScrollView>
         <View style={globalStyles.container}>
           {
+            cart.line_items.map(ele => <ProductCard 
+              key={ele.id}
+              counter
+              onIncrementQuantity={() => handleIncrementQuantity(ele.id, ele.quantity)}
+              onDecrementQuantity={() => handleDecrementQuantity(ele.id, ele.quantity)}
+              onRemoveLineItem={() => handleRemoveLineItem(ele.id)}
+              {...ele}
+            />)
+          }
+          {
             BAG.map(ele => <ProductCard 
               key={ele.id}
               counter
-              onIncrementQuantity={() => handleIncrementQuantity(ele.id + 2, lineItemQuantity)}
-              onDecrementQuantity={() => handleDecrementQuantity(ele.id + 2, lineItemQuantity)}
-              onRemoveLineItem={() => handleRemoveLineItem(ele.id + 2)}
+              // onIncrementQuantity={() => handleIncrementQuantity(ele.id + 2, lineItemQuantity)}
+              // onDecrementQuantity={() => handleDecrementQuantity(ele.id + 2, lineItemQuantity)}
+              // onRemoveLineItem={() => handleRemoveLineItem(ele.id + 2)}
               {...ele}
             />)
           }
@@ -100,7 +109,6 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
 const mapStateToProps = state => ({
   saving: state.cart.saving,
   cart: state.cart.cart,
-  // lineItemQuantity: state.cart.cart.line_items[0].quantity
 })
 
 export default connect(mapStateToProps)(BagScreen)
@@ -132,42 +140,6 @@ const BAG = [
   },
   {
     id: 3,
-    name: 'Joy Colors',
-    color: '#c5496c',
-    size: '',
-    price: 3.90,
-    soldOut: false,
-    discountedPrice: 2.00,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-3/product-image-3.png'),
-    description: 'Metallic Lipstick Pink 4 - 3.7 g'
-  },
-  {
-    id: 4,
-    name: 'Tokyo Talkies',
-    color: '#c4d5ef',
-    size: 'M',
-    price: 32.90,
-    soldOut: false,
-    discountedPrice: 29.90,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-1/product-image.png'),
-    description: 'Women Sea Wash Pleated Dress'
-  },
-  {
-    id: 5,
-    name: 'W',
-    color: '#feeb7d',
-    size: 'M',
-    price: 19.90,
-    soldOut: false,
-    discountedPrice: 25.90,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-2/product-image-2.png'),
-    description: 'Women Yellow & Green Floral Print Kurta'
-  },
-  {
-    id: 6,
     name: 'Joy Colors',
     color: '#c5496c',
     size: '',

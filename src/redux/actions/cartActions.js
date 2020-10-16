@@ -1,11 +1,11 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 
-export function addItem(auth_token, data, filters={}) {
+export function addItem(/* auth_token, */ data, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/cart/add_item`;
   const method = 'POST';
   return {
     type: 'ADD_ITEM',
-    payload: handleAPI(url, filters, method, data, auth_token)
+    payload: handleAPI(url, filters, method, data /* , auth_token */)
   };
 }
 
@@ -15,7 +15,7 @@ export function getCart(filters={}) {
     include: 'line_items'
   }
   const method = 'GET';
-  debugger
+  // debugger
   return {
     type: 'GET_CART',
     payload: handleAPI(url, params, method, filters)
@@ -24,10 +24,13 @@ export function getCart(filters={}) {
 
 export function removeLineItem(lineItemId, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/cart/remove_line_item/${lineItemId}`;
+  const params = {
+    include: 'line_items'
+  }
   const method = 'DELETE';
   return {
     type: 'REMOVE_LINE_ITEM',
-    payload: handleAPI(url, filters, method)
+    payload: handleAPI(url, params, method, filters)
   };
 }
 

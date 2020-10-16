@@ -27,12 +27,21 @@ export function getCountry(id, filters={}) {
   };
 }
 
-
 export function getPaymentMethods(filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/checkout/payment_methods`;
   const method = 'GET';
   return {
     type: 'GET_PAYMENT_METHODS',
     payload: handleAPI(url, filters, method)
+  };
+}
+
+export function updateCheckout(data, filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/checkout`;
+
+  const method = 'PATCH';
+  return {
+    type: 'UPDATE_CHECKOUT',
+    payload: handleAPI(url, filters, method, data)
   };
 }

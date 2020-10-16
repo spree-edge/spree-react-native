@@ -13,6 +13,7 @@ function handleAPI( path, params, method, data = null) {
     // 'Authorization': `Bearer ${auth_token}`,
     // 'Content-Length': data.length
   };
+  // debugger
   let url = API_ROOT + path;
   url = url +'?'+ qs.stringify(params, { arrayFormat: 'brackets' })
   // debugger

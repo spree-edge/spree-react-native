@@ -6,8 +6,8 @@ import { colors } from '../../../res/palette'
 import styles from './styles'
 
 const ProductCard = ({ imageSource, name, description, color, size,
-   discountedPrice, price, discountPercent, soldOut, counter, shoppingBag,
-   onRemoveLineItem, onIncrementQuantity, onDecrementQuantity }) => {
+   discountedPrice, price, display_price, discountPercent, soldOut, counter, shoppingBag,
+   onRemoveLineItem, quantity, onIncrementQuantity, onDecrementQuantity }) => {
   return (
     <View style={styles.productCardWrapper}>
       <View style={[styles.productCardContainer,
@@ -20,7 +20,7 @@ const ProductCard = ({ imageSource, name, description, color, size,
         <View style={styles.favouriteProductDetailsContainer}>
           <View style={globalStyles.containerFluid}>
             <Text style={styles.title}>{name}</Text>
-            <Text style={styles.description}>{description}</Text>
+            <Text style={styles.description}>{description || 'Women Sea Wash Pleated D ress'}</Text>
             <View style={styles.attributeContainer}>
               <View style={[styles.colorBadge, {backgroundColor: `${color}`}]} />
               <View style={styles.productSizeStyle}>
@@ -28,13 +28,13 @@ const ProductCard = ({ imageSource, name, description, color, size,
               </View>
               { counter && <View style={styles.counterContainer}>
                 <MathMinus size={14} style={{color: colors.primary}} onPress={onDecrementQuantity} />
-                <Text style={{color: colors.primary}}>1</Text>
+                <Text style={{color: colors.primary}}>{quantity || '1'}</Text>
                 <MathPlus size={14} style={{color: colors.primary}} onPress={onIncrementQuantity} />
               </View> }
             </View>
             <View style={styles.pricingContainer}>
               <Text style={[styles.prices, styles.discountedPrice]}>${discountedPrice}</Text>
-              <Text style={[styles.prices, styles.price]}>${price}</Text>
+              <Text style={[styles.prices, styles.price]}>${price || display_price}</Text>
               <Text style={[styles.prices, styles.discountPercent]}>({discountPercent}% OFF)</Text>
             </View>
           </View>

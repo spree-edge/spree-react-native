@@ -3,12 +3,37 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  product: {},
+  product: {
+    images: [
+      {
+        styles: [
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          }
+        ]
+      }
+    ]
+  },
   productsList: [
     {
       images: [
         {
           styles: [
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
             {
               url: ''
             }
@@ -37,7 +62,8 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_PRODUCTS_LIST_FULFILLED':
       changes = {
-        productsList: dataFormatter.deserialize(response),
+        // productsList: [...state.productsList, dataFormatter.deserialize(response)],
+        productsList: [...state.productsList, ...dataFormatter.deserialize(response)],
         saving: false
       };
       return { ...state, ...changes };

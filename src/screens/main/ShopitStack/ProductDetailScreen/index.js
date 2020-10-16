@@ -57,9 +57,10 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
 
   const handleAddToBag = () => {
     dispatch(addItem(
-      auth.access_token,
+      // auth.access_token,
       {
-        variant_id: product.default_variant.id,
+        // variant_id: product.default_variant.id,
+        variant_id: product.id,
         quantity: 1,
       }
     ))

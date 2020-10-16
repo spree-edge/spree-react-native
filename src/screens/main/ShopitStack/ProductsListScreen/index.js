@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Text, Image, FlatList, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { Filters, SortAZ } from '../../../../library/icons'
 import FlatListProductCard from '../../../../library/components/FlatListProductCard'
 import { globalStyles } from '../../../../styles/global'
@@ -41,6 +41,8 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
   const [pageIndex, setPageIndex] = React.useState(1)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
 
+  const incrementPageIndex = () => setPageIndex(pageIndex + 1)
+ 
   const productsSortList = [
     { title: 'Newest' },
     { title: 'Popular' },
@@ -95,15 +97,16 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
       <View style={[globalStyles.container, globalStyles.mt24]}>
         <FlatList
           data={productsList}
-          keyExtractor={item => item.id}
+          // keyExtractor={item => item.id}
           renderItem={newJustInRenderItem}
           numColumns={2}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) => {
             // console.log('on end reached ', distanceFromEnd)
-            setPageIndex(pageIndex + 1)
+            incrementPageIndex()
             dispatch(getProductsList(pageIndex))
           }}
+          ListFooterComponent={() => <ActivityIndicator size="large" /> }
           // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
         />
       </View>
