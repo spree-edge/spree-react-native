@@ -7,7 +7,7 @@ import styles from './styles'
 
 const ProductCard = ({ imageSource, name, description, color, size,
    discountedPrice, price, display_price, discountPercent, soldOut, counter, shoppingBag,
-   onRemoveLineItem, quantity, onIncrementQuantity, onDecrementQuantity }) => {
+   onRemoveLineItem, quantity, variant, onIncrementQuantity, onDecrementQuantity }) => {
   return (
     <View style={styles.productCardWrapper}>
       <View style={[styles.productCardContainer,
@@ -15,6 +15,9 @@ const ProductCard = ({ imageSource, name, description, color, size,
       ]}>
         <Image
           source={imageSource}
+          // source={{
+          //   uri: variant.images[0].styles[0].url
+          // }}
           style={styles.productCardImage}
         />
         <View style={styles.favouriteProductDetailsContainer}>

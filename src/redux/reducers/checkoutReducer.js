@@ -92,6 +92,63 @@ export default function checkoutReducer(state = DEFAULT_STATE, action) {
       return { ...state, ...changes };
 
     /**
+     * CHECKOUT_NEXT
+     */
+    case 'CHECKOUT_NEXT_PENDING':
+      return { ...state, saving: true };
+
+    case 'CHECKOUT_NEXT_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'CHECKOUT_NEXT_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    /**
+     * UPDATE_CHECKOUT
+     */
+    case 'UPDATE_CHECKOUT_PENDING':
+      return { ...state, saving: true };
+
+    case 'UPDATE_CHECKOUT_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'UPDATE_CHECKOUT_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    /**
+     * COMPLETE_CHECKOUT
+     */
+    case 'COMPLETE_CHECKOUT_PENDING':
+      return { ...state, saving: true };
+
+    case 'COMPLETE_CHECKOUT_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'COMPLETE_CHECKOUT_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    /**
      * Default State
      */
     default:

@@ -3,7 +3,23 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  cart: {}
+  cart: {
+    line_items: [
+      {
+        variant: {
+          images: [
+            {
+              styles: [
+                {
+                  url: ''
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
 };
 
 let changes = null;

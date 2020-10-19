@@ -40,15 +40,19 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
 
   const [pageIndex, setPageIndex] = React.useState(1)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
-
-  const incrementPageIndex = () => setPageIndex(pageIndex + 1)
  
   const productsSortList = [
     { title: 'Newest' },
     { title: 'Popular' },
     { title: 'Customer review' },
-    { title: 'Price: lowest to high' },
-    { title: 'Price: highest to low' },
+    { 
+      title: 'Price: lowest to high',
+      onPress: () => setProductListLowToHigh()
+    },
+    {
+      title: 'Price: highest to low',
+      onPress: () => setProductListHighToLow()
+    },
     {
       title: 'Cancel',
       containerStyle: { backgroundColor: 'red' },
@@ -56,6 +60,16 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
       onPress: () => setIsSortOverlayVisible(false),
     },
   ];
+
+  const setProductListHighToLow = () => {
+    productsList.sort((a, b) => a.price < b.price ? 1 : -1)
+    setIsSortOverlayVisible(false)
+  }
+
+  const setProductListLowToHigh = () => {
+    productsList.sort((a, b) => a.price > b.price ? 1 : -1)
+    setIsSortOverlayVisible(false)
+  }
 
   React.useEffect(() => {
     dispatch(getProductsList(pageIndex))
@@ -103,8 +117,8 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) => {
             // console.log('on end reached ', distanceFromEnd)
-            incrementPageIndex()
-            dispatch(getProductsList(pageIndex))
+            setPageIndex(pageIndex + 1)
+            dispatch(getProductsList(pageIndex+1))
           }}
           ListFooterComponent={() => <ActivityIndicator size="large" /> }
           // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}

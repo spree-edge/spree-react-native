@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { globalStyles } from '../../../../../styles/global'
-import { Button } from 'react-native-elements'
 import ProductCard from '../../../../../library/components/ProductCard'
 import TextField from '../../../../../library/components/TextField'
 import { styles } from './styles'
@@ -14,9 +13,7 @@ import ActivityIndicatorCard from '../../../../../library/components/ActivityInd
 
 const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
-  // console.log(car, saving)
-
-  //SetQuantity is variable is for experiment purpose, comment while connecting it with redux
+  // console.log(cart, saving)
 
   React.useEffect(() => {
     dispatch(getCart())
@@ -29,7 +26,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
   const handleIncrementQuantity = (lineItemId, lineItemQuantity)=> {
     dispatch(setQuantity(
       {
-        lineItemId: lineItemId,
+        line_item_id: lineItemId,
         quantity: lineItemQuantity + 1  //Line Item Quantity + 1
       }
     ))
@@ -67,7 +64,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
               {...ele}
             />)
           }
-          {
+          {/* {
             BAG.map(ele => <ProductCard 
               key={ele.id}
               counter
@@ -76,7 +73,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
               // onRemoveLineItem={() => handleRemoveLineItem(ele.id + 2)}
               {...ele}
             />)
-          }
+          } */}
         </View>
         <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
           <View style={[ globalStyles.container, globalStyles.mt8 ]}>

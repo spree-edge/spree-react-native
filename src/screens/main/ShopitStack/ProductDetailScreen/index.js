@@ -53,7 +53,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
 
   // console.log(product)
   // console.log(route)
-  const imageURI = `http://192.168.1.7:3000/${product.images[0].styles[3].url}`
+  const imageURI = `http://192.168.1.6:3000/${product.images[0].styles[3].url}`
 
   const handleAddToBag = () => {
     dispatch(addItem(

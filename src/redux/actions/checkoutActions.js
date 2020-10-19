@@ -36,6 +36,15 @@ export function getPaymentMethods(filters={}) {
   };
 }
 
+export function checkoutNext(filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/checkout/next`;
+  const method = 'PATCH';
+  return {
+    type: 'CHECKOUT_NEXT',
+    payload: handleAPI(url, filters, method)
+  };
+}
+
 export function updateCheckout(data, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/checkout`;
 
@@ -43,5 +52,14 @@ export function updateCheckout(data, filters={}) {
   return {
     type: 'UPDATE_CHECKOUT',
     payload: handleAPI(url, filters, method, data)
+  };
+}
+
+export function completeCheckout(filters={}) {
+  const url = `/${API_VERSION_STOREFRONT}/checkout/complete`;
+  const method = 'PATCH';
+  return {
+    type: 'COMPLETE_CHECKOUT',
+    payload: handleAPI(url, filters, method)
   };
 }

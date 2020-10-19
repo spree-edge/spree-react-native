@@ -10,13 +10,13 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
-import { getPaymentMethods } from '../../../../../redux'
+import { getPaymentMethods, updateCheckout, checkoutNext, completeCheckout } from '../../../../../redux'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 import { connect } from 'react-redux'
 
 const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
-  const [cardNumber, setCardNumber] = React.useState('')
-  const [nameOnCard, setNameOnCard] = React.useState('')
+  const [cardNumber, setCardNumber] = React.useState('4111111111111111')
+  const [nameOnCard, setNameOnCard] = React.useState('John Snow')
 
   const [expanded, setExpanded] = React.useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
@@ -24,6 +24,8 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
   const [accordionExpanded2, setAccordionExpanded2] = React.useState(false);
   const toggleAccordionExpanded2 = () => setAccordionExpanded2(!accordionExpanded2);
 
+  const [validThruInput, setValidThruInput] = React.useState('01/2022')
+  const [cvvInput, setCvvInput] = React.useState('123')
   const [validThruInputBorder, setValidThruInputBorder] = React.useState(false)
   const [cvvInputBorder, setCvvInputBorder] = React.useState(false)
 
@@ -33,6 +35,28 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
     setOverlayVisible(!overlayVisible);
   };
 
+  const handlePaymentConfirmation = () => {
+    dispatch(updateCheckout(
+      {
+        order: {
+          payments_attributes: [
+            {
+              payment_method_id: 2,
+              source_attributes: {
+                number: cardNumber,
+                month: '01',
+                year: '2022',
+                verification_value: cvvInput,
+                name: nameOnCard
+              }
+            }
+          ]
+        }
+      }
+    ))
+    // dispatch(completeCheckout())
+    toggleOverlay()
+  }
   // console.log(saving, paymentMethods)
   
   React.useEffect(() => {
@@ -176,6 +200,8 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
                 }}
               /> */}
               <Input
+                value={validThruInput}
+                onChangeText={setValidThruInput}
                 placeholder="Valid Thru (MM/YY)" 
                 keyboardType="default"
                 onFocus={() => setValidThruInputBorder(true)}
@@ -188,6 +214,8 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
                 inputContainerStyle={styles.inputContainerStyle}
               />
               <Input
+                value={cvvInput}
+                onChangeText={setCvvInput}
                 placeholder="CVV" 
                 keyboardType="default"
                 onFocus={() => setCvvInputBorder(true)}
@@ -214,7 +242,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
 
       <ActionButtonFooter
         title="Payment & Confirm"
-        onPress={toggleOverlay}
+        onPress={handlePaymentConfirmation}
       />
       
     </View>

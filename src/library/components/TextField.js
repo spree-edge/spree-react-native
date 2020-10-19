@@ -13,7 +13,7 @@ const TextField = ({
   inputContainerStyle,
   rightElement,
   onChangeText,
-  value
+  value,
 }) => {
   const [inputBorder, setInputBorder] = React.useState(false)
 
@@ -31,6 +31,7 @@ const TextField = ({
         inputContainerStyle={inputContainerStyle || { borderBottomColor: '#fff'}}
         rightIcon={() => rightElement}
         onChangeText={onChangeText}
+        value={value}
         onEndEditing={() => console.log(value)}
       />
     </View>

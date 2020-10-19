@@ -6,7 +6,7 @@ import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
 import { Picker } from '@react-native-community/picker'
-import { getDefaultCountry, getCountriesList, getCountry } from '../../../../../redux/actions/checkoutActions'
+import { getDefaultCountry, getCountriesList, getCountry, updateCheckout, checkoutNext } from '../../../../../redux/actions/checkoutActions'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import { checkoutStyles } from '../styles'
@@ -17,6 +17,60 @@ import ActivityIndicatorCard from '../../../../../library/components/ActivityInd
 const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countriesList, saving }) => {
   const [statePickerSelectedValue, setStatePickerSelectedValue] = React.useState('Set API Default State')
   const [countryPickerSelectedValue, setCountryPickerSelectedValue] = React.useState('Set API Default Country')
+
+  const [name, setName] = React.useState('John Snow')
+  const [email, setEmail] = React.useState('john@snow.org')
+  const [address, setAddress] = React.useState('7735 Old Georgetown Road')
+  const [pinCode, setPinCode] = React.useState('20814')
+  const [city, setCity] = React.useState('Bethesda')
+  const [phone, setPhone] = React.useState('3014445002')
+
+  const handleUpdateCheckout = () => {
+    dispatch(
+      updateCheckout(
+        {
+          order: {
+            email: email,
+            special_instructions: 'Please leave at door',
+            bill_address_attributes: {
+              firstname: name,
+              lastname: name,
+              address1: address,
+              city: city,
+              phone: phone,
+              zipcode: pinCode,
+              state_name: 'MD',
+              country_iso: 'US'
+            },
+            ship_address_attributes: {
+              firstname: name,
+              lastname: name,
+              address1: address,
+              city: city,
+              phone: phone,
+              zipcode: pinCode,
+              state_name: 'MD',
+              country_iso: 'US'
+            }/* ,
+            payments_attributes: [
+              {
+                payment_method_id: 1,
+                source_attributes: {
+                  number: '4111111111111111',
+                  month: '01',
+                  year: '2022',
+                  verification_value: '123',
+                  name: 'John Doe'
+                }
+              }
+            ] */
+          }
+        }
+      )
+    )
+    navigation.navigate('CheckoutPayment')
+  }
+
 
   React.useEffect(() => {
     dispatch(getCountriesList())
@@ -67,30 +121,40 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
               inputStyle={styles.inputStyle}
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
+              value={name}
+              onValueChange={setName}
             />
             <TextField
               placeholder="Email"
               inputStyle={styles.inputStyle}
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
+              value={email}
+              onValueChange={setEmail}
             />
             <TextField
               placeholder="Phone No."
               inputStyle={styles.inputStyle}
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
+              value={phone}
+              onValueChange={setPhone}
             />
             <TextField
               placeholder="Pin Code"
               inputStyle={styles.inputStyle}
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
+              value={pinCode}
+              onValueChange={setPinCode}
             />
             <TextField
               placeholder="Address ( House No, Street, Area )"
               inputStyle={styles.inputStyle}
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
+              value={address}
+              onValueChange={setAddress}
             />
             <View style={[checkoutStyles.rowContainer, styles.inlineContainer]}>
               {/* <TextField
@@ -105,6 +169,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
                 containerStyle={[styles.containerStyle, styles.w48, {paddingTop: 5}]}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={styles.inputContainerStyle}
+                value={city}
+                onValueChange={setCity}
               />
               <Picker
                 mode="dialog"
@@ -163,7 +229,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
         
         <ActionButtonFooter
           title="Save Address & Continue"
-          onPress={() => navigation.navigate('CheckoutPayment')}
+          onPress={handleUpdateCheckout}
         />
       </View>
     )

@@ -63,7 +63,9 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
     case 'GET_PRODUCTS_LIST_FULFILLED':
       changes = {
         // productsList: [...state.productsList, dataFormatter.deserialize(response)],
-        productsList: [...state.productsList, ...dataFormatter.deserialize(response)],
+        productsList: state.productsList.length !== 1
+          ? [...state.productsList, ...dataFormatter.deserialize(response)] 
+          : dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };
