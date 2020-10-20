@@ -55,7 +55,7 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
     },
     {
       title: 'Cancel',
-      containerStyle: { backgroundColor: 'red' },
+      containerStyle: { backgroundColor: colors.error },
       titleStyle: { color: 'white' },
       onPress: () => setIsSortOverlayVisible(false),
     },

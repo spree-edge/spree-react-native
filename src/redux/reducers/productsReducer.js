@@ -21,7 +21,28 @@ const DEFAULT_STATE = {
           }
         ]
       }
-    ]
+    ],
+    option_types: [
+      {
+        option_values: []
+      },
+      {
+        option_values: []
+      }
+    ],
+    variants: [
+      {
+        option_values: [
+          {
+            presentation: ''
+          },
+          {
+            presentation: ''
+          }
+        ]
+      }
+    ],
+    product_properties: []
   },
   productsList: [
     {
@@ -41,7 +62,7 @@ const DEFAULT_STATE = {
         }
       ]
     }
-  ]
+  ],
 };
 
 let changes = null;

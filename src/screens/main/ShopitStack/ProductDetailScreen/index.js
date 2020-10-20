@@ -118,8 +118,8 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
           </View>
           <View style={ globalStyles.mt16 }>
             <Text style={ globalStyles.latoBold14 }>Select Color</Text>
-            <View style={[ styles.rowContainer, globalStyles.mt8 ]}>
-              {
+            <ScrollView horizontal={true} style={[ styles.rowContainer, globalStyles.mt8 ]}>
+              {/* {
                 [
                   '#c4d5ef',
                   '#cfefc4',
@@ -134,8 +134,40 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                     containerStyle={{backgroundColor: `${color}`, marginRight: 16}}
                   />
                 ))
+              } */}
+              {/* {
+                product.option_types[0].option_values.map((color, index) => (
+                  <Avatar
+                    key={color.id}
+                    size="small"
+                    rounded 
+                    containerStyle={{
+                      backgroundColor: `${color.presentation}`,
+                      marginRight: 16,
+                      borderWidth: index !== 0 ? .3 : 1,
+                      padding: 1,
+                      borderColor: index !== 0 ? colors.gray : colors.primary
+                    }}
+                  />
+                ))
+              } */}
+              {
+                product.variants.map((variant, index) => (
+                  <Avatar
+                    key={variant.id}
+                    size="small"
+                    rounded 
+                    containerStyle={{
+                      backgroundColor: `${variant.option_values[0].presentation}`,
+                      marginRight: 16,
+                      borderWidth: 1,
+                      padding: 1,
+                      borderColor: colors.gray
+                    }}
+                  />
+                ))
               }
-            </View>
+            </ScrollView>
           </View>
           <View>
             <View style={[ styles.sizingTitleContainer, globalStyles.mt16 ]}>
@@ -143,7 +175,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               <Text style={[ globalStyles.latoBold14, globalStyles.textPrimary ]}>Size Help?</Text>
             </View>
             <View style={[ styles.rowContainer, globalStyles.mt8 ]}>
-              {
+              {/* {
                 [
                   'S',
                   'M',
@@ -166,6 +198,42 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                     titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
                   />
                 ))
+              } */}
+              {/* {
+                product.option_types[1].option_values.map((size, index) => (
+                  <Avatar
+                    key={size.id}
+                    size="small"
+                    title={`${size.presentation}`}
+                    rounded
+                    activeOpacity={0.7}
+                    containerStyle={{
+                      backgroundColor: `${colors.white}`,
+                      marginRight: 16,
+                      borderColor: `${colors.black}`,
+                      borderWidth: 1
+                    }}
+                    titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
+                  />
+                ))
+              } */}
+              {
+                product.variants.map((variant, index) => (
+                  <Avatar
+                    key={variant.id}
+                    size="small"
+                    title={`${variant.option_values[1].presentation}`}
+                    rounded
+                    activeOpacity={0.7}
+                    containerStyle={{
+                      backgroundColor: `${colors.white}`,
+                      marginRight: 16,
+                      borderColor: `${colors.black}`,
+                      borderWidth: 1
+                    }}
+                    titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
+                  />
+                ))
               }
             </View>
           </View>
@@ -175,7 +243,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
         <View style={ globalStyles.container }>
           <View>
             <Text style={ globalStyles.latoBold14 }>Product Detail & Care</Text>
-            <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
+            {/* <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
               <Text style={globalStyles.label}>
                 {'\u2022'} Color: Periwinkle blue
               </Text>
@@ -197,11 +265,22 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               <Text style={globalStyles.label}>
                 {'\u2022'} Machine Wash
               </Text>
+            </View> */}
+            <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
+              {
+                product.product_properties.map(property => (
+                  <Text key={property.id} style={globalStyles.label}>
+                    {'\u2022'} {property.name}: {property.value}
+                  </Text>
+                ))
+              }
             </View>
           </View>
           <View style={ globalStyles.mt16 }>
             <Text style={ globalStyles.latoBold14 }>Description</Text>
-            <Text style={[ globalStyles.label, globalStyles.mt8 ]}>Periwinkle blue woven accordian pleats empire dress. This midi dress is cut from pleated poly georgette. It has a peterpan collar neckline, sheer billowy three-quarter sleeves, and a toned buckle waist to balance the sweeping accordion skirt.</Text>
+            <Text style={[ globalStyles.label, globalStyles.mt8 ]}>
+              { product.description }
+            </Text>
           </View>
           <View style={ globalStyles.mt16 }>
             <Text style={ globalStyles.latoBold14 }>Manufacturer</Text>
