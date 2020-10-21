@@ -51,19 +51,39 @@ const CarouselProductCard = ({ imageURI }) => {
 const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, saving }) => {
   const [pincode, setPincode] = React.useState('')
 
-  // console.log(product)
-  // console.log(route)
+  
+  
+  const [activeColor, setActiveColor] = React.useState(product.default_variant.option_values[0].presentation)
+  const [activeSize, setActiveSize] = React.useState('')
+  const [activeProductColorSizes, setActiveProductColorSizes] = React.useState([])
+  const [selectedVariantId, setSelectedVariantId] = React.useState('')
+
+  // product.variants.map(variant => {
+  //   if(variant.option_values[0].presentation === product.default_variant.option_values[0].presentation) {
+  //     activeProductColorSizes.push(variant.option_values[1].presentation)
+  //     return 0
+  //   }
+  // })
+  // console.log(activeProductColorSizes)
+  
   const imageURI = `http://192.168.1.6:3000/${product.images[0].styles[3].url}`
+
+  const handleColorSelection = color => {
+    setActiveColor(color)
+    setActiveSize('')
+    setSelectedVariantId('')
+  }
 
   const handleAddToBag = () => {
     dispatch(addItem(
       // auth.access_token,
       {
         // variant_id: product.default_variant.id,
-        variant_id: product.id,
+        variant_id: selectedVariantId,
         quantity: 1,
       }
     ))
+    // console.log(selectedVariantId)
   }
 
   React.useEffect(() => {
@@ -154,15 +174,16 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               {
                 product.variants.map((variant, index) => (
                   <Avatar
-                    key={variant.id}
+                    key={index}
                     size="small"
-                    rounded 
+                    rounded
+                    onPress={() => handleColorSelection(variant.option_values[0].presentation)}
                     containerStyle={{
                       backgroundColor: `${variant.option_values[0].presentation}`,
                       marginRight: 16,
                       borderWidth: 1,
                       padding: 1,
-                      borderColor: colors.gray
+                      borderColor: variant.option_values[0].presentation !== activeColor ? colors.gray : colors.primary
                     }}
                   />
                 ))
@@ -218,22 +239,31 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                 ))
               } */}
               {
-                product.variants.map((variant, index) => (
-                  <Avatar
-                    key={variant.id}
-                    size="small"
-                    title={`${variant.option_values[1].presentation}`}
-                    rounded
-                    activeOpacity={0.7}
-                    containerStyle={{
-                      backgroundColor: `${colors.white}`,
-                      marginRight: 16,
-                      borderColor: `${colors.black}`,
-                      borderWidth: 1
-                    }}
-                    titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
-                  />
-                ))
+                product.variants.map((variant, index) => {
+                  if(variant.option_values[0].presentation === activeColor) {
+                    return <Avatar
+                      key={index}
+                      size="small"
+                      title={`${variant.option_values[1].presentation}`}
+                      onPress={() => {
+                          setActiveSize(variant.option_values[1].presentation)
+                          setSelectedVariantId(variant.id)
+                        }
+                      }
+                      rounded
+                      activeOpacity={0.7}
+                      containerStyle={{
+                        backgroundColor: colors.white,
+                        marginRight: 16,
+                        borderColor: variant.option_values[1].presentation !== activeSize ? colors.black : colors.primary,
+                        borderWidth: 1
+                      }}
+                      titleStyle={[globalStyles.latoBold14, 
+                        variant.option_values[1].presentation !== activeSize ? globalStyles.textDark : globalStyles.textPrimary
+                      ]}
+                    />
+                  } else { return null }
+                })
               }
             </View>
           </View>
