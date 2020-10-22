@@ -64,7 +64,7 @@ const HomeScreen = ({ navigation }) => {
       <Image
         source={require('../../../../../assets/images/banner-first-order-discount/banner-first-order-discount.png')}
         style={styles.bannerFirst}
-        onPress={() => navigation.navigate('WomensDressList')}
+        onPress={() => navigation.navigate('ProductsList')}
       />
       <Image
         source={require('../../../../../assets/images/discount-stripe/DiscountStripe.png')}

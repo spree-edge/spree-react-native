@@ -39,10 +39,32 @@ const DEFAULT_STATE = {
           {
             presentation: ''
           }
+        ],
+        images: [
+          {
+            styles: [
+              {},
+              {},
+              {},
+              {
+                url: ''
+              }
+            ]
+          }
         ]
       }
     ],
-    product_properties: []
+    product_properties: [],
+    default_variant: {
+      option_values: [
+        {
+          presentation: ''
+        },
+        {
+          presentation: ''
+        }
+      ]
+    }
   },
   productsList: [
     {

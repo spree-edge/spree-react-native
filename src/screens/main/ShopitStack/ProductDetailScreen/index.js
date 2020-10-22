@@ -51,27 +51,19 @@ const CarouselProductCard = ({ imageURI }) => {
 const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, saving }) => {
   const [pincode, setPincode] = React.useState('')
 
-  
-  
+  const [addToBagButtonState, setAddToBagButtonState] = React.useState(true)
   const [activeColor, setActiveColor] = React.useState(product.default_variant.option_values[0].presentation)
   const [activeSize, setActiveSize] = React.useState('')
-  const [activeProductColorSizes, setActiveProductColorSizes] = React.useState([])
   const [selectedVariantId, setSelectedVariantId] = React.useState('')
+  const [imageURI, setImageURI] = React.useState(`http://192.168.1.6:3000/${product.images[0].styles[3].url}`)
 
-  // product.variants.map(variant => {
-  //   if(variant.option_values[0].presentation === product.default_variant.option_values[0].presentation) {
-  //     activeProductColorSizes.push(variant.option_values[1].presentation)
-  //     return 0
-  //   }
-  // })
-  // console.log(activeProductColorSizes)
-  
-  const imageURI = `http://192.168.1.6:3000/${product.images[0].styles[3].url}`
-
-  const handleColorSelection = color => {
+  const handleColorSelection = ({index, color}) => {
     setActiveColor(color)
     setActiveSize('')
     setSelectedVariantId('')
+    setAddToBagButtonState(true)
+    setImageURI(`http://192.168.1.6:3000/${product.variants[index].images[0].styles[3].url}`)
+    console.log(`http://192.168.1.6:3000/${product.variants[index].images[0].styles[3].url}`)
   }
 
   const handleAddToBag = () => {
@@ -131,6 +123,9 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
             <Button
               title="Add To Bag"
               type="solid"
+              disabled={addToBagButtonState}
+              disabledStyle={{ backgroundColor: colors.gray }}
+              disabledTitleStyle={{ color: colors.white }}
               containerStyle={{flex: 1}}
               buttonStyle={[ globalStyles.btn, globalStyles.btnSolid ]}
               onPress={ handleAddToBag }
@@ -139,45 +134,18 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
           <View style={ globalStyles.mt16 }>
             <Text style={ globalStyles.latoBold14 }>Select Color</Text>
             <ScrollView horizontal={true} style={[ styles.rowContainer, globalStyles.mt8 ]}>
-              {/* {
-                [
-                  '#c4d5ef',
-                  '#cfefc4',
-                  '#d16b6e',
-                  '#221f25',
-                  '#b9d7d4',
-                ].map((color, index) => (
-                  <Avatar
-                    key={index}
-                    size="small"
-                    rounded 
-                    containerStyle={{backgroundColor: `${color}`, marginRight: 16}}
-                  />
-                ))
-              } */}
-              {/* {
-                product.option_types[0].option_values.map((color, index) => (
-                  <Avatar
-                    key={color.id}
-                    size="small"
-                    rounded 
-                    containerStyle={{
-                      backgroundColor: `${color.presentation}`,
-                      marginRight: 16,
-                      borderWidth: index !== 0 ? .3 : 1,
-                      padding: 1,
-                      borderColor: index !== 0 ? colors.gray : colors.primary
-                    }}
-                  />
-                ))
-              } */}
               {
                 product.variants.map((variant, index) => (
                   <Avatar
                     key={index}
                     size="small"
                     rounded
-                    onPress={() => handleColorSelection(variant.option_values[0].presentation)}
+                    onPress={() => handleColorSelection(
+                      {
+                        index: index,
+                        color: variant.option_values[0].presentation
+                      }
+                    )}
                     containerStyle={{
                       backgroundColor: `${variant.option_values[0].presentation}`,
                       marginRight: 16,
@@ -196,48 +164,6 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               <Text style={[ globalStyles.latoBold14, globalStyles.textPrimary ]}>Size Help?</Text>
             </View>
             <View style={[ styles.rowContainer, globalStyles.mt8 ]}>
-              {/* {
-                [
-                  'S',
-                  'M',
-                  'L',
-                  'XL',
-                  'XXL',
-                ].map((size, index) => (
-                  <Avatar
-                    key={index}
-                    size="small"
-                    title={`${size}`}
-                    rounded
-                    activeOpacity={0.7}
-                    containerStyle={{
-                      backgroundColor: `${colors.white}`,
-                      marginRight: 16,
-                      borderColor: `${colors.black}`,
-                      borderWidth: 1
-                    }}
-                    titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
-                  />
-                ))
-              } */}
-              {/* {
-                product.option_types[1].option_values.map((size, index) => (
-                  <Avatar
-                    key={size.id}
-                    size="small"
-                    title={`${size.presentation}`}
-                    rounded
-                    activeOpacity={0.7}
-                    containerStyle={{
-                      backgroundColor: `${colors.white}`,
-                      marginRight: 16,
-                      borderColor: `${colors.black}`,
-                      borderWidth: 1
-                    }}
-                    titleStyle={[globalStyles.latoBold14, globalStyles.textDark]}
-                  />
-                ))
-              } */}
               {
                 product.variants.map((variant, index) => {
                   if(variant.option_values[0].presentation === activeColor) {
@@ -248,6 +174,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                       onPress={() => {
                           setActiveSize(variant.option_values[1].presentation)
                           setSelectedVariantId(variant.id)
+                          setAddToBagButtonState(false)
                         }
                       }
                       rounded
@@ -273,29 +200,6 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
         <View style={ globalStyles.container }>
           <View>
             <Text style={ globalStyles.latoBold14 }>Product Detail & Care</Text>
-            {/* <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Color: Periwinkle blue
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Fit n flared, flowy silhouette
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Peter-pan collar, front button closure
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Three-quarter sleeves
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Buckle belted waist front
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Mid-weight georgette
-              </Text>
-              <Text style={globalStyles.label}>
-                {'\u2022'} Machine Wash
-              </Text>
-            </View> */}
             <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
               {
                 product.product_properties.map(property => (

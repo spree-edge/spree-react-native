@@ -17,7 +17,7 @@ function FavouritesStackNavigator ({ navigation }) {
         />,
         headerRight: () => <>
           <Search size={24} style={{color: colors.black, marginRight: 14}} />
-          <ShoppingBag size={24} style={{color: colors.black}} />
+          <ShoppingBag size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Bag')} />
         </>,
         headerLeftContainerStyle: {
           // borderWidth: 2,

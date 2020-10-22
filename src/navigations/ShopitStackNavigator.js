@@ -47,7 +47,7 @@ function ShopitStackNavigator ({ navigation }) {
           }
         }}
       />
-      <ShopitStack.Screen name="WomensDressList" component={ProductsListScreen}
+      <ShopitStack.Screen name="ProductsList" component={ProductsListScreen}
         options={{ headerTitle: 'Womens Dress'}}
       />
       <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}
@@ -58,7 +58,7 @@ function ShopitStackNavigator ({ navigation }) {
             <>
               <Share size={24} style={{color: colors.black}} />
               <Heart size={24} style={{color: colors.black}} />
-              <ShoppingBag size={24} style={{color: colors.black}} />
+              <ShoppingBag size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Bag')} />
             </>
           ),
         }}
