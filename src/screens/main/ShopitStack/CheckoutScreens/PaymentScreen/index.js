@@ -105,12 +105,12 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
               }]}
             />
             <View style={[ checkoutStyles.rowContainer, { alignItems: 'center'} ]}>
-              <CheckO size={16} style={[checkoutStyles.iconStyle, {color: colors.black}]} />
-              <Text style={ globalStyles.latoRegular }>Address</Text>
+              <CheckO size={16} style={[checkoutStyles.iconStyle, {color: colors.success}]} />
+              <Text style={ globalStyles.latoRegular, {color: colors.success}}>Address</Text>
             </View>
             <View
               style={[checkoutStyles.shippingIndicatorLine, {
-                borderBottomColor: colors.black,
+                borderBottomColor: colors.success,
               }]}
             />
             <View style={[ checkoutStyles.rowContainer, { alignItems: 'center'} ]}>

@@ -33,8 +33,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
-  // console.log(productsList)
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }) => {
 
   const [productsListData, setProductsListData] = React.useState([])
 
@@ -72,8 +71,9 @@ const ProductListScreen = ({ navigation, dispatch, productsList, saving }) => {
   }
 
   React.useEffect(() => {
-    dispatch(getProductsList(pageIndex))
+    dispatch(getProductsList({pageIndex, queryString: route.params.searchQuery}))
     setProductsListData(productsList)
+    navigation.setOptions({ title: route.params.title || route.params.searchQuery })
     // debugger
   }, [])
 

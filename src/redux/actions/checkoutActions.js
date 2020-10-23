@@ -1,11 +1,14 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 
-export function getDefaultCountry(data, filters={}) {
+export function getDefaultCountry(data, params={}) {
   const url = `/${API_VERSION_STOREFRONT}/countries/default`;
   const method = 'GET';
+  params = {
+    include: 'states'
+  }
   return {
     type: 'GET_DEFAULT_COUNTRY',
-    payload: handleAPI(url, filters, method, data)
+    payload: handleAPI(url, params, method, data)
   };
 }
 
@@ -18,12 +21,15 @@ export function getCountriesList(data, filters={}) {
   };
 }
 
-export function getCountry(id, filters={}) {
+export function getCountry(id, params={}) {
   const url = `/${API_VERSION_STOREFRONT}/countries/${id}`;
   const method = 'GET';
+  params = {
+    include: 'states'
+  }
   return {
     type: 'GET_COUNTRY',
-    payload: handleAPI(url, filters, method)
+    payload: handleAPI(url, params, method)
   };
 }
 
@@ -47,7 +53,6 @@ export function checkoutNext(filters={}) {
 
 export function updateCheckout(data, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/checkout`;
-
   const method = 'PATCH';
   return {
     type: 'UPDATE_CHECKOUT',

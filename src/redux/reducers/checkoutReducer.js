@@ -3,7 +3,7 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  defaultCountry: {
+  country: {
     states: [],
     iso: null
   },
@@ -29,7 +29,7 @@ export default function checkoutReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_DEFAULT_COUNTRY_FULFILLED':
       changes = {
-        defaultCountry: dataFormatter.deserialize(response),
+        country: dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };
@@ -67,7 +67,7 @@ export default function checkoutReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_COUNTRY_FULFILLED':
       changes = {
-        defaultCountry: dataFormatter.deserialize(response),
+        country: dataFormatter.deserialize(response),
         saving: false
       };
       return { ...state, ...changes };

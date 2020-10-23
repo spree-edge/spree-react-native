@@ -59,12 +59,13 @@ const HomeScreen = ({ navigation }) => {
           containerStyle={{ backgroundColor: colors.background }}
           inputStyle={ globalStyles.latoRegular16 }
           searchIcon={{ color: colors.black }}
+          onSubmitEditing={() => navigation.navigate('ProductsList', { searchQuery })}
         />
       </View>
       <Image
         source={require('../../../../../assets/images/banner-first-order-discount/banner-first-order-discount.png')}
         style={styles.bannerFirst}
-        onPress={() => navigation.navigate('ProductsList')}
+        onPress={() => navigation.navigate('ProductsList', { title: 'Womens Dress' })}
       />
       <Image
         source={require('../../../../../assets/images/discount-stripe/DiscountStripe.png')}

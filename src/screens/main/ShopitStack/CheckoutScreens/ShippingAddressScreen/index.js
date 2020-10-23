@@ -14,9 +14,9 @@ import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetai
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 
-const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countriesList, saving }) => {
+const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, saving }) => {
   const [statePickerSelectedValue, setStatePickerSelectedValue] = React.useState('Set API Default State')
-  const [countryPickerSelectedValue, setCountryPickerSelectedValue] = React.useState('Set API Default Country')
+  const [countryPickerSelectedValue, setCountryPickerSelectedValue] = React.useState(country.iso)
 
   const [name, setName] = React.useState('John Snow')
   const [email, setEmail] = React.useState('john@snow.org')
@@ -39,8 +39,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
               city: city,
               phone: phone,
               zipcode: pinCode,
-              state_name: 'MD',
-              country_iso: 'US'
+              state_name: statePickerSelectedValue,
+              country_iso: countryPickerSelectedValue
             },
             ship_address_attributes: {
               firstname: name,
@@ -49,8 +49,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
               city: city,
               phone: phone,
               zipcode: pinCode,
-              state_name: 'MD',
-              country_iso: 'US'
+              state_name: statePickerSelectedValue,
+              country_iso: countryPickerSelectedValue
             }/* ,
             payments_attributes: [
               {
@@ -73,9 +73,9 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
 
 
   React.useEffect(() => {
-    dispatch(getCountriesList())
     dispatch(getDefaultCountry())
-    setCountryPickerSelectedValue(defaultCountry.iso)
+    dispatch(getCountriesList())
+    setCountryPickerSelectedValue(country.iso)
   }, [])
 
   if(saving) {
@@ -182,8 +182,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
                 }
               >
                 {
-                  defaultCountry.states.map(state => 
-                    <Picker.Item key={state.id} label={state.id} value={state.id} />  
+                  country.states.map(state => 
+                    <Picker.Item key={state.id} label={state.name} value={state.id} />  
                   )
                 }
               </Picker>
@@ -237,7 +237,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, defaultCountry, countries
 }
 
 const mapStateToProps = state => ({
-  defaultCountry: state.checkout.defaultCountry,
+  country: state.checkout.country,
   countriesList: state.checkout.countriesList,
   saving: state.checkout.saving
 })

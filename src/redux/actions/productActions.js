@@ -1,13 +1,18 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
+import QueryString from 'qs';
 
-export function getProductsList(pageIndex, filters={}) {
+export function getProductsList({pageIndex, queryString}, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/products`;
   const params = {
     include: 'images',
+    filter: {
+      name: queryString || '',
+    },
     page: pageIndex,
     per_page: 18
   }
   const method = 'GET';
+  // debugger
   return {
     type: 'GET_PRODUCTS_LIST',
     payload: handleAPI(url, params, method, filters)

@@ -47,9 +47,7 @@ function ShopitStackNavigator ({ navigation }) {
           }
         }}
       />
-      <ShopitStack.Screen name="ProductsList" component={ProductsListScreen}
-        options={{ headerTitle: 'Womens Dress'}}
-      />
+      <ShopitStack.Screen name="ProductsList" component={ProductsListScreen} />
       <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}
         options={{
           headerTitle: 'Tokyo Talkies',
