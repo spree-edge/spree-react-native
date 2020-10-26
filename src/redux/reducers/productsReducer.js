@@ -3,6 +3,13 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
+  filters: {
+    priceRange: {
+      minimum: '',
+      maximum: '',
+    }
+  },
+  freshProductList: false,
   product: {
     images: [
       {
@@ -106,9 +113,10 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
     case 'GET_PRODUCTS_LIST_FULFILLED':
       changes = {
         // productsList: [...state.productsList, dataFormatter.deserialize(response)],
-        productsList: state.productsList.length !== 1
+        productsList: state.productsList.length !== 1 && !state.freshProductList
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 
           : dataFormatter.deserialize(response),
+        freshProductList: false,
         saving: false
       };
       return { ...state, ...changes };
@@ -133,6 +141,40 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       };
       return { ...state, ...changes };
 
+    /**
+     * PRICE_RANGE
+     */
+    case 'SET_MINIMUM_PRICE_RANGE':
+      return {
+        ...state,
+        filters: {
+          priceRange: {
+            ...state.filters.priceRange,
+            minimum: action.payload,
+          }
+        }
+      }
+
+    case 'SET_MAXIMUM_PRICE_RANGE':
+      return {
+        ...state,
+        filters: {
+          priceRange: {
+            ...state.filters.priceRange,
+            maximum: action.payload,
+          }
+        }
+      }
+    
+    /**
+     * FRESH_PRODUCT_LIST
+     */
+    case 'SET_FRESH_PRODUCT_LIST':
+      return {
+        ...state,
+        freshProductList: true
+      }
+    
     /**
      * Default State
      */

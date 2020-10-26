@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { globalStyles } from '../../../styles/global'
-import { colors } from '../../../res/palette'
 import { Button } from 'react-native-elements'
+import { styles } from './styles'
 
 const ActionButtonFooter = ({ title, onPress }) => {
   return (
@@ -20,20 +20,3 @@ const ActionButtonFooter = ({ title, onPress }) => {
 }
 
 export default ActionButtonFooter
-
-const styles = StyleSheet.create({
-  footer: {
-    height: 80,
-    justifyContent: 'center',
-    backgroundColor: colors.white,
-    borderTopWidth: 2,
-    borderTopColor: colors.background,
-    // borderWidth: 1
-  },
-  footerAction: {
-    ...globalStyles.btn,
-    ...globalStyles.btnSolid,
-    margin: '4%',
-    height: 48,
-  },
-})

@@ -16,7 +16,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
         source={{
-          uri: `http://192.168.1.6:3000/${item.images[0].styles[2].url}`
+          uri: `http://192.168.1.5:3000/${item.images[0].styles[2].url}`
         }}
         style={{ width: imageStyle.width, height: imageStyle.height }}
       />
@@ -101,7 +101,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }
           <SortAZ size={22} style={{ color: colors.black }}/>
           <Text style={globalStyles.latoRegular14}>Sort</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.filterBlock, { borderWidth: 2 }]} onPress={() => navigation.navigate('FiltersDrawerNavigator')}>
+        <TouchableOpacity style={[styles.filterBlock, { borderWidth: 2 }]} onPress={() => navigation.navigate('FiltersTabNavigator')}>
           <Filters size={22} style={{ color: colors.black,
             transform: [{ rotate: "90deg" }]
           }} />

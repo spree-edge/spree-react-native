@@ -8,6 +8,7 @@ import ShippingAddressScreen from '../screens/main/ShopitStack/CheckoutScreens/S
 import PaymentScreen from '../screens/main/ShopitStack/CheckoutScreens/PaymentScreen'
 import BagScreen from '../screens/main/ShopitStack/CheckoutScreens/BagScreen'
 import FiltersDrawerNavigator from './FiltersDrawerNavigator'
+import FiltersTabNavigator from './FiltersTabNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
@@ -67,7 +68,7 @@ function ShopitStackNavigator ({ navigation }) {
           headerRight: () => <Heart size={24} style={{color: colors.black}} />
         }}
       />
-      <ShopitStack.Screen name="FiltersDrawerNavigator" component={FiltersDrawerNavigator}
+      <ShopitStack.Screen name="FiltersTabNavigator" component={FiltersTabNavigator}
         options={{
           headerTitle: 'Filters',
           headerRight: () => <Text style={styles.resetButton}>Reset All</Text>

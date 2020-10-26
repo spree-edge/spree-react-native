@@ -30,3 +30,23 @@ export function getProduct(id, filters={}) {
     payload: handleAPI(url, params, method, filters)
   };
 }
+
+export function setMinimumPriceRange(minimum) {
+  return {
+    type: 'SET_MINIMUM_PRICE_RANGE',
+    payload: minimum
+  }
+}
+
+export function setMaximumPriceRange(maximum) {
+  return {
+    type: 'SET_MAXIMUM_PRICE_RANGE',
+    payload: maximum
+  }
+}
+
+export function setFreshProductList() {
+  return {
+    type: 'SET_FRESH_PRODUCT_LIST',
+  }
+}

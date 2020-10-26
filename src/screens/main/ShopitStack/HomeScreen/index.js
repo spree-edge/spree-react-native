@@ -3,6 +3,8 @@ import { View, ScrollView, Text, FlatList, TouchableOpacity, StyleSheet } from '
 import { SearchBar, Image } from 'react-native-elements'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
+import { setFreshProductList } from '../../../../redux'
+import { connect } from 'react-redux'
 import { styles } from './styles'
 
 const Item = ({ item }) => {
@@ -19,7 +21,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   </TouchableOpacity>
 );
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ navigation, dispatch }) => {
   const [searchQuery, setSearchQuery] = React.useState('')
 
   const newJustInRenderItem = ({ item }) => {
@@ -59,13 +61,19 @@ const HomeScreen = ({ navigation }) => {
           containerStyle={{ backgroundColor: colors.background }}
           inputStyle={ globalStyles.latoRegular16 }
           searchIcon={{ color: colors.black }}
-          onSubmitEditing={() => navigation.navigate('ProductsList', { searchQuery })}
+          onSubmitEditing={() => {
+            dispatch(setFreshProductList())
+            navigation.navigate('ProductsList', { searchQuery })
+          }}
         />
       </View>
       <Image
         source={require('../../../../../assets/images/banner-first-order-discount/banner-first-order-discount.png')}
         style={styles.bannerFirst}
-        onPress={() => navigation.navigate('ProductsList', { title: 'Womens Dress' })}
+        onPress={() => {
+          dispatch(setFreshProductList())
+          navigation.navigate('ProductsList', { title: 'Womens Dress' })
+        }}
       />
       <Image
         source={require('../../../../../assets/images/discount-stripe/DiscountStripe.png')}
@@ -127,7 +135,7 @@ const HomeScreen = ({ navigation }) => {
   )
 }
 
-export default HomeScreen
+export default connect()(HomeScreen)
 
 const DATA = [
   {
