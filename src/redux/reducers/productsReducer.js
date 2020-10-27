@@ -3,13 +3,14 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  filters: {
+  params: {
     priceRange: {
       minimum: '',
       maximum: '',
     }
   },
   freshProductList: false,
+  title: '',
   product: {
     images: [
       {
@@ -147,9 +148,9 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
     case 'SET_MINIMUM_PRICE_RANGE':
       return {
         ...state,
-        filters: {
+        params: {
           priceRange: {
-            ...state.filters.priceRange,
+            ...state.params.priceRange,
             minimum: action.payload,
           }
         }
@@ -158,9 +159,9 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
     case 'SET_MAXIMUM_PRICE_RANGE':
       return {
         ...state,
-        filters: {
+        params: {
           priceRange: {
-            ...state.filters.priceRange,
+            ...state.params.priceRange,
             maximum: action.payload,
           }
         }

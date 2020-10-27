@@ -1,13 +1,11 @@
 import { handleAPI, API_VERSION_STOREFRONT } from '../../library/utils/apiUtils';
 import QueryString from 'qs';
 
-export function getProductsList({pageIndex, queryString}, filters={}) {
+export function getProductsList(data, {pageIndex, filter}) {
   const url = `/${API_VERSION_STOREFRONT}/products`;
   const params = {
     include: 'images',
-    filter: {
-      name: queryString || '',
-    },
+    filter: filter,
     page: pageIndex,
     per_page: 18
   }
@@ -15,7 +13,7 @@ export function getProductsList({pageIndex, queryString}, filters={}) {
   // debugger
   return {
     type: 'GET_PRODUCTS_LIST',
-    payload: handleAPI(url, params, method, filters)
+    payload: handleAPI(url, params, method, data)
   };
 }
 
@@ -45,8 +43,6 @@ export function setMaximumPriceRange(maximum) {
   }
 }
 
-export function setFreshProductList() {
-  return {
-    type: 'SET_FRESH_PRODUCT_LIST',
-  }
-}
+export const setFreshProductList = () => ({
+  type: 'SET_FRESH_PRODUCT_LIST',
+})

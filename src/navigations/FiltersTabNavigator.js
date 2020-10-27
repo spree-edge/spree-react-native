@@ -7,10 +7,12 @@ import { Button } from 'react-native-elements'
 import { globalStyles } from '../styles/global'
 import { setFreshProductList } from '../redux'
 import { connect } from 'react-redux'
+import { getProductsList } from '../redux'
 
 const Tab = createBottomTabNavigator();
 
-function FiltersTabNavigator({ navigation, dispatch }) {
+function FiltersTabNavigator({ route, navigation, dispatch, params }) {
+
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -67,7 +69,7 @@ function FiltersTabNavigator({ navigation, dispatch }) {
             // titleStyle={{ color: colors.primary }}
             onPress={() => {
               dispatch(setFreshProductList())
-              navigation.navigate('ProductsList')
+              navigation.push('ProductsList', { filterParams: params, title: route.params.title })
             }}
           />
         }}
@@ -76,7 +78,11 @@ function FiltersTabNavigator({ navigation, dispatch }) {
   );
 }
 
-export default connect()(FiltersTabNavigator)
+const mapStateToProps = state => ({
+  params: state.products.params
+})
+
+export default connect(mapStateToProps)(FiltersTabNavigator)
 
 
 {/* <TouchableOpacity

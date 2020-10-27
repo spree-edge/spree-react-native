@@ -33,9 +33,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }) => {
-
-  const [productsListData, setProductsListData] = React.useState([])
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice }) => {
 
   const [pageIndex, setPageIndex] = React.useState(1)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
@@ -71,9 +69,16 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }
   }
 
   React.useEffect(() => {
-    dispatch(getProductsList({pageIndex, queryString: route.params.searchQuery}))
-    setProductsListData(productsList)
+    dispatch(getProductsList(null, {
+      pageIndex,
+      filter: {
+        // price: minimumPrice && `${minimumPrice},${maximumPrice}` || null
+        name: route.params.searchQuery || '',
+        price: `${minimumPrice},${maximumPrice}`
+      }
+    }))
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
+    
     // debugger
   }, [])
 
@@ -101,7 +106,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }
           <SortAZ size={22} style={{ color: colors.black }}/>
           <Text style={globalStyles.latoRegular14}>Sort</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.filterBlock, { borderWidth: 2 }]} onPress={() => navigation.navigate('FiltersTabNavigator')}>
+        <TouchableOpacity style={[styles.filterBlock, { borderWidth: 2 }]} onPress={() => navigation.navigate('FiltersTabNavigator', {titie: route.params.title})}>
           <Filters size={22} style={{ color: colors.black,
             transform: [{ rotate: "90deg" }]
           }} />
@@ -118,7 +123,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }
           onEndReached={({ distanceFromEnd }) => {
             // console.log('on end reached ', distanceFromEnd)
             setPageIndex(pageIndex + 1)
-            dispatch(getProductsList(pageIndex+1))
+            dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
           }}
           ListFooterComponent={() => <ActivityIndicator size="large" /> }
           // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
@@ -139,7 +144,9 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving }
 
 const mapStateToProps = state => ({
   productsList: state.products.productsList,
-  saving: state.products.saving
+  saving: state.products.saving,
+  minimumPrice: state.products.params.priceRange.minimum,
+  maximumPrice: state.products.params.priceRange.maximum
 })
 
 export default connect(mapStateToProps)(ProductListScreen)

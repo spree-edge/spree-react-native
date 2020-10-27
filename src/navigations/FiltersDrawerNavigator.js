@@ -7,24 +7,13 @@ import { Button, SearchBar } from 'react-native-elements'
 import { CheckR } from '../library/icons'
 import BrandScreen from '../screens/main/ShopitStack/FiltersDrawer/BrandScreen'
 import PriceRange from '../screens/main/ShopitStack/FiltersDrawer/PriceRangeScreen'
+import SizeScreen from '../screens/main/ShopitStack/FiltersDrawer/SizeScreen'
 import { Slider, Icon } from 'react-native-elements';
 
 function Color({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Color</Text>
-      <Button
-        onPress={navigation.goBack}
-        title="Go Back"
-      />
-    </View>
-  );
-}
-
-function Size({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Size</Text>
       <Button
         onPress={navigation.goBack}
         title="Go Back"
@@ -104,7 +93,7 @@ export default function FiltersDrawerNavigator() {
     >
       <Drawer.Screen name="Brand" component={BrandScreen} />
       <Drawer.Screen name="Color" component={Color} />
-      <Drawer.Screen name="Size" component={Size} />
+      <Drawer.Screen name="Size" component={SizeScreen} />
       <Drawer.Screen name="PriceRange" component={PriceRange} />
       <Drawer.Screen name="Pattern" component={Pattern} />
       <Drawer.Screen name="FabricType" component={FabricType} />
