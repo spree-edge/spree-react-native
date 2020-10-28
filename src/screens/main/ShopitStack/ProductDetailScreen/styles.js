@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
-    // borderWidth: 2
   },
   discountedPrice: {
     ...globalStyles.prices,
@@ -43,7 +42,6 @@ export const styles = StyleSheet.create({
   },
   rowContainer: {
     flexDirection: 'row',
-    // borderWidth: 2
   },
   sizingTitleContainer: {
     flexDirection: 'row',
@@ -115,7 +113,6 @@ export const styles = StyleSheet.create({
     marginLeft: '5%'
   },
   carouselProductCard: {
-    // borderWidth: 2,
     width: 150,
     marginRight: 8,
   },
@@ -147,7 +144,6 @@ export const styles = StyleSheet.create({
   carouselCardPricingContainer: {
     ...globalStyles.mt8,
     flexDirection: 'row',
-    // borderWidth: 2,
     flex: 1
   },
   inputWrapperStyle: {

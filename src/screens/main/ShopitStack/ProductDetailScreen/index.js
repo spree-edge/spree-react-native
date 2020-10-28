@@ -29,7 +29,6 @@ const CarouselProductCard = ({ imageURI }) => {
         source={{
           uri: imageURI
         }}
-        // source={require('../../../../../assets/images/womens-dress-product-list-images/product-img.png')}
         style={{
           width: 150,
           height: 196
@@ -63,19 +62,16 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
     setSelectedVariantId('')
     setAddToBagButtonState(true)
     setImageURI(`http://192.168.1.5:3000/${product.variants[index].images[0].styles[3].url}`)
-    console.log(`http://192.168.1.5:3000/${product.variants[index].images[0].styles[3].url}`)
   }
 
   const handleAddToBag = () => {
     dispatch(addItem(
       // auth.access_token,
       {
-        // variant_id: product.default_variant.id,
         variant_id: selectedVariantId,
         quantity: 1,
       }
     ))
-    // console.log(selectedVariantId)
   }
 
   React.useEffect(() => {
@@ -200,7 +196,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
         <View style={ globalStyles.container }>
           <View>
             <Text style={ globalStyles.latoBold14 }>Product Detail & Care</Text>
-            <View style={[ styles.unorderedListItem, globalStyles.mt8 ] }>
+            <View style={[ styles.unorderedListItem, globalStyles.mt8 ]}>
               {
                 product.product_properties.map(property => (
                   <Text key={property.id} style={globalStyles.label}>

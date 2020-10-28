@@ -60,27 +60,6 @@ const SignUpScreen = ({ navigation, dispatch }) => {
             onChangeText={setEmail}
             value={email}
           />
-          {/* <Input
-            placeholder="Name"
-            onFocus={() => setInputUserNameBorder(true)}
-            onBlur={() => setInputUserNameBorder(false)}
-            containerStyle={[styles.inputMainContainer, { borderWidth: inputUserNameBorder ? 1 : 0 }]}
-            inputStyle={styles.inputStyle}
-            inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
-            onChangeText={setUserName}
-            // onEndEditing={() => console.log(userName)}
-          />
-          <Input
-            placeholder="Email" 
-            keyboardType="email-address"
-            onFocus={() => setInputEmailBorder(true)}
-            onBlur={() => setInputEmailBorder(false)}
-            containerStyle={[styles.inputMainContainer, { borderWidth: inputEmailBorder ? 1 : 0 }]}
-            inputStyle={styles.inputStyle}
-            inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
-            onChangeText={setEmail}
-            // onEndEditing={() => console.log(email)}
-          /> */}
           <Input
             placeholder="Password"
             secureTextEntry={secureTextEntryToggle}

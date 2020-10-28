@@ -7,7 +7,37 @@ const DEFAULT_STATE = {
     priceRange: {
       minimum: '',
       maximum: '',
-    }
+    },
+    sizeFilterList: [
+      {
+        name: 'XS',
+        active: false,
+      },
+      {
+        name: 'S',
+        active: false,
+      },
+      {
+        name: 'M',
+        active: false,
+      },
+      {
+        name: 'L',
+        active: false,
+      },
+      {
+        name: 'XL',
+        active: false,
+      },
+      {
+        name: 'XXL',
+        active: false,
+      },
+      {
+        name: 'XXXL',
+        active: false,
+      }
+    ]
   },
   freshProductList: false,
   title: '',
@@ -149,6 +179,7 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         params: {
+          ...state.params,
           priceRange: {
             ...state.params.priceRange,
             minimum: action.payload,
@@ -160,6 +191,7 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         params: {
+          ...state.params,
           priceRange: {
             ...state.params.priceRange,
             maximum: action.payload,
@@ -175,6 +207,18 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
         ...state,
         freshProductList: true
       }
+
+    /**
+     * TOGGLE_PRODUCT_SIZE_FILTER
+     */
+    case 'TOGGLE_PRODUCT_SIZE_FILTER':
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          sizeFilterList: state.params.sizeFilterList.map(item => item.name !== action.payload.name ? item : { ...item, active: !item.active})
+        }
+      }
     
     /**
      * Default State
@@ -183,3 +227,5 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return state
   }
 }
+
+// [...sizeFilterList.slice(0, i), {...sizeFilterList[i], active: !sizeFilterList[i].active}, ...sizeFilterList.slice(i+1)]

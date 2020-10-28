@@ -46,3 +46,8 @@ export function setMaximumPriceRange(maximum) {
 export const setFreshProductList = () => ({
   type: 'SET_FRESH_PRODUCT_LIST',
 })
+
+export const toggleProductsSizeFilter = size => ({
+  type: 'TOGGLE_PRODUCT_SIZE_FILTER',
+  payload: size
+})

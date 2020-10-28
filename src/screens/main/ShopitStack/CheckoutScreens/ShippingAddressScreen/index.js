@@ -1,7 +1,6 @@
 import * as React from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Text, Dimensions } from 'react-native'
 import { globalStyles } from '../../../../../styles/global'
-import { Input } from 'react-native-elements'
 import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
@@ -24,6 +23,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
   const [pinCode, setPinCode] = React.useState('20814')
   const [city, setCity] = React.useState('Bethesda')
   const [phone, setPhone] = React.useState('3014445002')
+
+  const [windowWidth] = React.useState(Dimensions.get('window').width)
 
   const handleUpdateCheckout = () => {
     dispatch(
@@ -51,23 +52,17 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               zipcode: pinCode,
               state_name: statePickerSelectedValue,
               country_iso: countryPickerSelectedValue
-            }/* ,
-            payments_attributes: [
-              {
-                payment_method_id: 1,
-                source_attributes: {
-                  number: '4111111111111111',
-                  month: '01',
-                  year: '2022',
-                  verification_value: '123',
-                  name: 'John Doe'
-                }
-              }
-            ] */
+            }
           }
         }
       )
     )
+    setTimeout(() => {
+      dispatch(checkoutNext())
+    }, 500);
+    setTimeout(() => {
+      dispatch(checkoutNext())
+    }, 500);
     navigation.navigate('CheckoutPayment')
   }
 
@@ -157,25 +152,25 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               onValueChange={setAddress}
             />
             <View style={[checkoutStyles.rowContainer, styles.inlineContainer]}>
-              {/* <TextField
+              <TextField
                 placeholder="City"
-                inputStyle={styles.inputStyle}
-                containerStyle={[styles.containerStyle, styles.w48]}
-                inputContainerStyle={styles.inputContainerStyle}
-              /> */}
-              <Input
-                placeholder="City" 
                 keyboardType="default"
-                containerStyle={[styles.containerStyle, styles.w48, {paddingTop: 5}]}
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={styles.inputContainerStyle}
                 value={city}
                 onValueChange={setCity}
+                containerStyle={[styles.containerStyle, {
+                  paddingTop: 5,
+                  width: windowWidth / 2.3
+                }]}
               />
               <Picker
                 mode="dialog"
                 selectedValue={statePickerSelectedValue}
-                style={[styles.containerStyle, styles.inputStyle, styles.w48, {paddingTop: 5}]}
+                style={[styles.containerStyle, styles.inputStyle, {
+                  paddingTop: 5,
+                  width: windowWidth / 2.3
+                }]}
                 itemStyle={styles.inputStyle}
                 onValueChange={(itemValue, itemIndex) =>
                   setStatePickerSelectedValue(itemValue)
@@ -187,13 +182,6 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
                   )
                 }
               </Picker>
-              {/* <Input
-                placeholder="State" 
-                keyboardType="default"
-                containerStyle={[styles.containerStyle, styles.w48, {paddingTop: 5}]}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={styles.inputContainerStyle}
-              /> */}
             </View>
             <Picker
               mode="dialog"
@@ -211,12 +199,6 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
                 )
               }
             </Picker>
-            {/* <TextField
-              placeholder="Country"
-              inputStyle={styles.inputStyle}
-              containerStyle={styles.containerStyle}
-              inputContainerStyle={styles.inputContainerStyle}
-            /> */}
             <View style={[checkoutStyles.rowContainer, globalStyles.mt24]}>
               <CheckR size={16} style={styles.iconStyle} />
               <Text style={globalStyles.latoRegular14}>Default Address</Text>

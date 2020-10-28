@@ -31,7 +31,6 @@ export const styles = StyleSheet.create({
   priceDetailsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderWidth: 1
   },
   dividerStyle: {
     ...globalStyles.mt8,
@@ -49,6 +48,5 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderTopWidth: 2,
     borderTopColor: colors.background,
-    // borderWidth: 1
   },
 })

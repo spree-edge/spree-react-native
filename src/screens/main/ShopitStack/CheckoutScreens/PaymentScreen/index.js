@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { ScrollView, View, Text, Image, TouchableOpacity } from 'react-native'
-import { Divider, Input, Button, Overlay } from 'react-native-elements'
+import { ScrollView, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
+import { Divider, Button, Overlay } from 'react-native-elements'
 import { globalStyles } from '../../../../../styles/global'
 import { colors } from '../../../../../res/palette'
 import Collapsible from 'react-native-collapsible'
@@ -10,13 +10,15 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
-import { getPaymentMethods, updateCheckout, checkoutNext, completeCheckout } from '../../../../../redux'
+import { getPaymentMethods, updateCheckout, completeCheckout, createCart } from '../../../../../redux'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 import { connect } from 'react-redux'
 
 const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
   const [cardNumber, setCardNumber] = React.useState('4111111111111111')
   const [nameOnCard, setNameOnCard] = React.useState('John Snow')
+  const [validThru, setValidThru] = React.useState('01/2022')
+  const [cvvInput, setCvvInput] = React.useState('123')
 
   const [expanded, setExpanded] = React.useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
@@ -24,10 +26,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
   const [accordionExpanded2, setAccordionExpanded2] = React.useState(false);
   const toggleAccordionExpanded2 = () => setAccordionExpanded2(!accordionExpanded2);
 
-  const [validThruInput, setValidThruInput] = React.useState('01/2022')
-  const [cvvInput, setCvvInput] = React.useState('123')
-  const [validThruInputBorder, setValidThruInputBorder] = React.useState(false)
-  const [cvvInputBorder, setCvvInputBorder] = React.useState(false)
+  const [windowWidth] = React.useState(Dimensions.get('window').width)
 
   const [overlayVisible, setOverlayVisible] = React.useState(false);
 
@@ -54,7 +53,12 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
         }
       }
     ))
-    // dispatch(completeCheckout())
+    setTimeout(() => {
+      dispatch(completeCheckout())
+    }, 500);
+    setTimeout(() => {
+      dispatch(createCart())
+    }, 500);
     toggleOverlay()
   }
   // console.log(saving, paymentMethods)
@@ -162,6 +166,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
             </View>
           </TouchableOpacity>
           {/*Content of Single Collapsible*/}
+
           <Collapsible collapsed={accordionExpanded2} align="center" style={globalStyles.container}>
             <TextField
               placeholder="Card Number"
@@ -177,55 +182,27 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
               value={nameOnCard}
             />
             <View style={[styles.rowContainer, styles.inlineContainer]}> 
-              {/* <TextField
+              <TextField
+                value={validThru}
                 placeholder="Valid Thru (MM/YY)"
-                containerStyle={{
-                  backgroundColor: '#fff', 
-                  height: 52, 
-                  borderRadius: 4,
+                inputStyle={styles.inputStyle}
+                containerStyle={[styles.containerStyle, {
                   borderWidth: 1,
-                  flex: 1
-                }}
-                onChangeText={setNameOnCard}
-                value={nameOnCard}
+                  width: windowWidth / 2.3
+                }]}
+                inputContainerStyle={styles.inputContainerStyle}
+                onValueChange={setValidThru}
               />
               <TextField
-                placeholder="Valid Thru (MM/YY)"
-                containerStyle={{
-                  backgroundColor: '#fff', 
-                  height: 52, 
-                  borderRadius: 4,
-                  borderWidth: 5,
-                  flex: 1
-                }}
-              /> */}
-              <Input
-                value={validThruInput}
-                onChangeText={setValidThruInput}
-                placeholder="Valid Thru (MM/YY)" 
-                keyboardType="default"
-                onFocus={() => setValidThruInputBorder(true)}
-                onBlur={() => setValidThruInputBorder(false)}
-                containerStyle={[styles.containerStyle, styles.w48, {
-                  borderWidth: 1,
-                  borderColor: validThruInputBorder ? colors.primary : '#ccc',
-                }]}
-                inputStyle={styles.inputStyle}
-                inputContainerStyle={styles.inputContainerStyle}
-              />
-              <Input
                 value={cvvInput}
-                onChangeText={setCvvInput}
-                placeholder="CVV" 
-                keyboardType="default"
-                onFocus={() => setCvvInputBorder(true)}
-                onBlur={() => setCvvInputBorder(false)}
-                containerStyle={[styles.containerStyle, styles.w48, {
-                  borderWidth: 1,
-                  borderColor: cvvInputBorder ? colors.primary : '#ccc',
-                }]}
+                placeholder="CVV"
                 inputStyle={styles.inputStyle}
+                containerStyle={[styles.containerStyle, {
+                  borderWidth: 1,
+                  width: windowWidth / 2.3
+                }]}
                 inputContainerStyle={styles.inputContainerStyle}
+                onValueChange={setCvvInput}
               />
             </View>
             <View style={[styles.rowContainer, globalStyles.mt16, globalStyles.mb16]}>
@@ -244,7 +221,6 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
         title="Payment & Confirm"
         onPress={handlePaymentConfirmation}
       />
-      
     </View>
   )
 }

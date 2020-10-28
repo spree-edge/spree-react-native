@@ -29,9 +29,6 @@ export const styles = StyleSheet.create({
     height: 52, 
     borderRadius: 4,
   },
-  w48: {
-    width: '48%',
-  },
   inlineContainer: {
     justifyContent: 'space-between',
     flexWrap: 'wrap',

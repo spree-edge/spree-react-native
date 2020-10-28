@@ -9,16 +9,24 @@ export function addItem(/* auth_token, */ data, filters={}) {
   };
 }
 
-export function getCart(filters={}) {
+export function getCart() {
   const url = `/${API_VERSION_STOREFRONT}/cart`;
   const params = {
     include: 'line_items.variant.images'
   }
   const method = 'GET';
-  // debugger
   return {
     type: 'GET_CART',
-    payload: handleAPI(url, params, method, filters)
+    payload: handleAPI(url, params, method)
+  };
+}
+
+export function createCart() {
+  const url = `/${API_VERSION_STOREFRONT}/cart`;
+  const method = 'POST';
+  return {
+    type: 'CREATE_CART',
+    payload: handleAPI(url, params, method)
   };
 }
 

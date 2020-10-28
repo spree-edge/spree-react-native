@@ -8,14 +8,6 @@ import { colors } from '../../../../res/palette'
 const BrandScreen = ({ navigation }) => {
   const [search, setSearch] = React.useState('')
 
-  // React.useEffect(() => {
-    
-
-    // return () => {
-    //   cleanup
-    // }
-  // }, [])
-
   return (
     <>
       <ScrollView style={globalStyles.containerFluid}>
@@ -25,7 +17,6 @@ const BrandScreen = ({ navigation }) => {
           placeholder="Search shopit catalogue"
           onChangeText={setSearch}
           inputContainerStyle={{
-            // borderWidth: 2,
             backgroundColor: colors.background
           }}
           inputStyle={{
@@ -44,13 +35,6 @@ const BrandScreen = ({ navigation }) => {
             </View>
             <Text style={{color: item.active ? colors.primary : colors.gray}}>{item.count}</Text>
           </View>
-          // <List.Item
-          //   key={i}
-          //   title={item.name}
-          //   left={props => <CheckR size={17} style={{color: colors.black}} />}
-          //   right={props => <Text>{item.count}</Text>}
-          //   style={{borderWidth: 2, alignItems: 'center'}}
-          // />
         ))}
       </ScrollView>
       {/* <View

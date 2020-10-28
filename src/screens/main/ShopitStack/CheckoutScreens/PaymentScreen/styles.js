@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
     fontSize: 14, color: colors.gray
   },
   inputContainerStyle: {
-    paddingTop: 5,
     paddingLeft: 5,
     borderBottomColor: '#fff'
   },

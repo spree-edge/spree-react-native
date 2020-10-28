@@ -38,20 +38,6 @@ const HomeScreen = ({ navigation, dispatch }) => {
   return (
     <ScrollView style={globalStyles.containerFluid}>
       <View style={globalStyles.container}>
-        {/* <SearchBar
-          placeholder="Search shopit catalogue"
-          platform="android"
-          value={searchQuery}
-          searchIcon={{
-            color: colors.black
-          }}
-          inputContainerStyle={{
-            borderWidth: 2,
-          }}
-          onChangeText={text => setSearchQuery(text)}
-          lightTheme={true}
-          round={true}
-        /> */}
         <SearchBar
           platform="ios"
           value={searchQuery}

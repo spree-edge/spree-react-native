@@ -72,8 +72,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     dispatch(getProductsList(null, {
       pageIndex,
       filter: {
-        // price: minimumPrice && `${minimumPrice},${maximumPrice}` || null
-        name: route.params.searchQuery || '',
+        name: route.params?.searchQuery || '',
         price: `${minimumPrice},${maximumPrice}`
       }
     }))
@@ -116,7 +115,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
       <View style={[globalStyles.container, globalStyles.mt24]}>
         <FlatList
           data={productsList}
-          // keyExtractor={item => item.id}
           renderItem={newJustInRenderItem}
           numColumns={2}
           onEndReachedThreshold={0.3}
@@ -126,7 +124,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
             dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
           }}
           ListFooterComponent={() => <ActivityIndicator size="large" /> }
-          // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
         />
       </View>
       <BottomSheet isVisible={isSortOverlayVisible}>

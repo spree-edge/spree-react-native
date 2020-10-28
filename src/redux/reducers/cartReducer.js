@@ -46,6 +46,25 @@ export default function cartReducer(state = DEFAULT_STATE, action) {
       return { ...state, ...changes };
 
     /**
+     * CREATE_CART
+     */
+    case 'CREATE_CART_PENDING':
+      return { ...state, saving: true };
+
+    case 'CREATE_CART_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'CREATE_CART_FULFILLED':
+      changes = {
+        cart: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    /**
      * ADD_ITEM
      */
     case 'ADD_ITEM_PENDING':

@@ -33,7 +33,6 @@ export const styles = StyleSheet.create({
     ...globalStyles.latoRegular16
   },
   inputContainerStyle: {
-    // paddingTop: 5,
     paddingLeft: 5,
     borderBottomColor: '#fff'
   },

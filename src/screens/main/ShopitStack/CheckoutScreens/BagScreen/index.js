@@ -13,7 +13,6 @@ import ActivityIndicatorCard from '../../../../../library/components/ActivityInd
 
 const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
-  // console.log(cart, saving)
 
   React.useEffect(() => {
     dispatch(getCart())
@@ -23,11 +22,11 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
     dispatch(removeLineItem(lineItemId))
   }
 
-  const handleIncrementQuantity = (lineItemId, lineItemQuantity)=> {
+  const handleIncrementQuantity = (lineItemId, lineItemQuantity) => {
     dispatch(setQuantity(
       {
         line_item_id: lineItemId,
-        quantity: lineItemQuantity + 1  //Line Item Quantity + 1
+        quantity: lineItemQuantity + 1
       }
     ))
   }
@@ -39,7 +38,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
       dispatch(setQuantity(
         {
           line_item_id: lineItemId,
-          quantity: lineItemQuantity - 1  //Line Item Quantity - 1
+          quantity: lineItemQuantity - 1
         }
       ))
     }
@@ -64,16 +63,6 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
               {...ele}
             />)
           }
-          {/* {
-            BAG.map(ele => <ProductCard 
-              key={ele.id}
-              counter
-              // onIncrementQuantity={() => handleIncrementQuantity(ele.id + 2, lineItemQuantity)}
-              // onDecrementQuantity={() => handleDecrementQuantity(ele.id + 2, lineItemQuantity)}
-              // onRemoveLineItem={() => handleRemoveLineItem(ele.id + 2)}
-              {...ele}
-            />)
-          } */}
         </View>
         <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
           <View style={[ globalStyles.container, globalStyles.mt8 ]}>
@@ -109,42 +98,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(BagScreen)
-
-const BAG = [
-  {
-    id: 1,
-    name: 'Tokyo Talkies',
-    color: '#c4d5ef',
-    size: 'M',
-    price: 32.90,
-    soldOut: false,
-    discountedPrice: 29.90,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-1/product-image.png'),
-    description: 'Women Sea Wash Pleated Dress'
-  },
-  {
-    id: 2,
-    name: 'W',
-    color: '#feeb7d',
-    size: 'M',
-    price: 19.90,
-    soldOut: false,
-    discountedPrice: 25.90,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-2/product-image-2.png'),
-    description: 'Women Yellow & Green Floral Print Kurta'
-  },
-  {
-    id: 3,
-    name: 'Joy Colors',
-    color: '#c5496c',
-    size: '',
-    price: 3.90,
-    soldOut: false,
-    discountedPrice: 2.00,
-    discountPercent: 20,
-    imageSource: require('../../../../../../assets/images/favorites/product-image-3/product-image-3.png'),
-    description: 'Metallic Lipstick Pink 4 - 3.7 g'
-  }
-]

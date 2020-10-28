@@ -30,7 +30,6 @@ export const checkoutStyles = StyleSheet.create({
     ...globalStyles.textPrimary,
   },
   inputContainerStyle: {
-    // paddingTop: 5,
     paddingLeft: 5,
     borderBottomColor: '#fff'
   },
@@ -50,7 +49,6 @@ export const checkoutStyles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     width: '100%',
-    // borderWidth: 2
   },
   iconStyle: {
     color: colors.primary,
