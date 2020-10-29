@@ -6,19 +6,7 @@ const DEFAULT_STATE = {
   taxon: {},
   taxonsList: [
     {
-      children: [
-        // {
-        //   children: [
-        //     {
-        //       children: [
-        //         {
-        //           name: ''
-        //         }
-        //       ]
-        //     }
-        //   ]
-        // }
-      ]
+      children: []
     }
   ]
 };

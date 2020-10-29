@@ -13,12 +13,7 @@ import {
 } from '@react-navigation/drawer'
 import { userLogout } from '../../redux/actions/authActions'
 
-// import { AuthContext } from '../utils/context'
-
 function CustomDrawerContent({ dispatch, ...props }) {
-
-  // const { signOut } = React.useContext(AuthContext)
-
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.jumbotron}>
@@ -42,13 +37,6 @@ function CustomDrawerContent({ dispatch, ...props }) {
         </LinearGradient>
       </View>
       <DrawerItemList {...props} />
-      <Divider />
-      <DrawerItem
-        label="Orders"
-        labelStyle={styles.menuTitle}
-        icon={({ color, size }) => <ShoppingBag size={size} style={{color, ...globalStyles.label}} />}
-        onPress={() => props.navigation.navigate('Bag')}
-      />
       <Divider />
       <DrawerItem
         label="Support & More"
@@ -88,14 +76,12 @@ export default connect()(CustomDrawerContent)
 const styles = StyleSheet.create({
   centeredContent: {
     ...globalStyles.containerFluid,
-    ...globalStyles.centeredContent
-    // borderWidth: 2
+    ...globalStyles.centeredContent,
   },
   jumbotron: {
     width: '100%',
     height: 168,
     backgroundColor: '#f5f5f5',
-    // borderWidth: 2
   },
   avatar: {
     width: 80,

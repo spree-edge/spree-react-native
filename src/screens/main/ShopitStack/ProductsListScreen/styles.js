@@ -43,7 +43,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     width: 160,
-    // borderWidth: 2
   },
   prices: {
     fontFamily: 'lato-bold',

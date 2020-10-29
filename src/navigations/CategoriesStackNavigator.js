@@ -20,14 +20,12 @@ function CategoriesStackNavigator ({ navigation }) {
           <ShoppingBag size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Bag')} />
         </>,
         headerLeftContainerStyle: {
-          // borderWidth: 2,
           paddingHorizontal: 22
         },
         headerTitleStyle: {
           ...globalStyles.latoBold18
         },
         headerRightContainerStyle: {
-          // borderWidth: 2,
           paddingHorizontal: 18,
           flexDirection: 'row',
           alignItems: 'center',

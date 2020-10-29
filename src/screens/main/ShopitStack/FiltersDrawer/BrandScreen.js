@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
 import { CheckR } from '../../../../library/icons'
-import { SearchBar, Button } from 'react-native-elements'
+import { SearchBar } from 'react-native-elements'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
 
@@ -37,35 +37,6 @@ const BrandScreen = ({ navigation }) => {
           </View>
         ))}
       </ScrollView>
-      {/* <View
-        style={[{
-          flexDirection: 'row',
-          paddingVertical: 8,
-          justifyContent: 'space-evenly',
-          borderTopWidth: 1,
-          borderTopColor: colors.background
-        }]}
-      >
-        <Button
-          title='Close'
-          buttonStyle={[globalStyles.btnOutlined, globalStyles.btn, {
-            borderWidth: 1,
-            paddingVertical: 8,
-            paddingHorizontal: 30,
-            marginHorizontal: 3,
-            // flex: 1,
-          }]}
-          titleStyle={{ color: colors.primary }}
-        />
-        <Button
-          title='Apply Filter'
-          buttonStyle={[globalStyles.btnSolid, globalStyles.btn, {
-            paddingVertical: 8,
-            paddingHorizontal: 30,
-            marginHorizontal: 3,
-          }]}
-        />
-      </View> */}
     </>
   );
 }

@@ -5,22 +5,18 @@ import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-// import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
 import { userLogin } from '../../redux'
 import TextField from '../../library/components/TextField'
 
 
 const SignInScreen = ({ navigation, dispatch }) => {
-  // const password = React.createRef()
   const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
   const [inputEmailBorder, setInputEmailBorder] = React.useState(false)
   const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-
-  // const { signIn } = React.useContext(AuthContext)
 
   const handleLogin = () =>  {
     dispatch(userLogin({
@@ -56,7 +52,6 @@ const SignInScreen = ({ navigation, dispatch }) => {
           inputContainerStyle={styles.inputContainerStyle}
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setSecureTextEntryToggle(!secureTextEntryToggle)} />}
           onChangeText={setPassword}
-          // onEndEditing={() => console.log(password)}
         />
         <Button 
           title="Password help ?"

@@ -67,7 +67,6 @@ export default function FiltersDrawerNavigator() {
       drawerType="permanent"
       drawerStyle={{
         width: '30%',
-        // borderWidth: 2,
       }}
       drawerContentOptions={{
         activeTintColor: '#000',
@@ -81,13 +80,11 @@ export default function FiltersDrawerNavigator() {
           borderBottomColor: colors.gray,
           marginBottom: 0
         },
-        // borderWidth: 2,
         contentContainerStyle: {
           paddingTop: 0
         }
       }}
       sceneContainerStyle={{
-        // borderWidth: 2,
         backgroundColor: '#fff'
       }}
     >

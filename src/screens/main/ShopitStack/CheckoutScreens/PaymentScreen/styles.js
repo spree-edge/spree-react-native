@@ -26,7 +26,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     width: '100%',
-    // borderWidth: 2
   },
   iconStyle: {
     color: colors.primary,
@@ -42,7 +41,6 @@ export const styles = StyleSheet.create({
   },
   footer: {
     backgroundColor: colors.white,
-    // borderWidth: 1
   },
   dividerStyle: {
     ...globalStyles.mt8,
@@ -57,7 +55,6 @@ export const styles = StyleSheet.create({
   orderDetailsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderWidth: 1
   },
   titleMedium: {
     ...globalStyles.latoBold14,
@@ -87,7 +84,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 16
   },
   accordionSelectorTitle: {
-    // borderWidth: 1,
     ...globalStyles.latoRegular,
     flex: 1,
     marginLeft: 8 

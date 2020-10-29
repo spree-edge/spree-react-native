@@ -12,9 +12,6 @@ import ActivityIndicatorCard from '../../../library/components/ActivityIndicator
 
 const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
   const [accordionMenExpanded, setAccordionMenExpanded] = React.useState(false);
-  const toggleAccordionMenExpanded = () => setAccordionMenExpanded(!accordionMenExpanded);
-
-  // console.log(taxonomy)
 
   React.useEffect(() => {
     dispatch(getTaxonsList())
@@ -86,35 +83,6 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
             )
           }
         )}
-
-        {/* Code for Single Collapsible Start */}
-        {/* <TouchableOpacity style={[globalStyles.containerFluid, styles.accordionLevel1, {backgroundColor: '#ececec'}]} onPress={toggleAccordionMenExpanded}>
-          <View style={styles.accordionSelectorContainer}>
-            <View style={styles.accordionLevel1TitleNew}>
-              <Text style={styles.accordionLevel1Title}>MEN  </Text>
-              {
-                accordionMenExpanded
-                ? <ChevronDown size={16} style={{color: colors.black}} />
-                : <ChevronUp size={16} style={{color: colors.black}} />
-              }
-            </View>
-            <Text style={styles.accordionLevel1Description}>Spruce Up Your Look</Text>
-          </View>
-        </TouchableOpacity> */}
-        {/* Content of Single Collapsible */}
-        {/* <Collapsible collapsed={accordionMenExpanded} align="center">
-          <View style={[styles.accordionLevel2Style, {backgroundColor: '#fff'}]}>
-            <View style={styles.accordionLevel1TitleNew}>
-              <Text style={styles.accordionLevel1Title}>MEN  </Text>
-              {
-                accordionMenExpanded
-                ? <ChevronDown size={16} style={{color: colors.black}} />
-                : <ChevronUp size={16} style={{color: colors.black}} />
-              }
-            </View>
-          </View>
-        </Collapsible> */}
-        {/* Code for Single Collapsible Ends */}
 
         <List.Section>
           <List.Accordion
@@ -282,8 +250,6 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
             />
           </List.Accordion>
         </List.Section>
-        {/* <CategoryMenu headline="MEN" subheading="Spruce Up Your Look" /> */}
-        {/* <Text>CategoriesScreen</Text> */}
       </View>
     </ScrollView>
   )

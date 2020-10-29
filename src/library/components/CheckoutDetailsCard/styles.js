@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     ...globalStyles.mt8,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderWidth: 1
   },
   dividerStyle: {
     ...globalStyles.mt8,

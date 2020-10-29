@@ -6,7 +6,6 @@ import { colors } from '../../../res/palette'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Pen, User, Home, ShoppingBag, Heart, Gift, ChevronRight } from '../../../library/icons'
 import { Divider, Button } from 'react-native-elements'
-// import { AuthContext } from '../../../library/utils/context'
 import { userLogout } from '../../../redux'
 import { styles } from './styles'
 
@@ -34,7 +33,6 @@ const list = [
 ]
 
 const ProfileScreen = ({ dispatch }) => {
-  // const { signOut } = React.useContext(AuthContext) todo
 
   return (
     <View style={styles.mainContainer}>

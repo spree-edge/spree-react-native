@@ -6,18 +6,15 @@ export const styles = StyleSheet.create({
   accordionLevel1: {
     height: 93,
     marginTop: 2,
-    // borderWidth: 1,
   },
   accordionLevel2Style: {
     marginBottom: 1
-    // borderWidth: 1,
   },
   accordionLevel1Title: {
     ...globalStyles.latoBold18,
     lineHeight: 24,
     color: colors.black,
     marginTop: 5,
-    // borderWidth: 1,
   },
   accordionLevel1Description: {
     ...globalStyles.latoRegular,

@@ -30,7 +30,6 @@ function ShopitStackNavigator ({ navigation }) {
           ...globalStyles.latoBold18
         },
         headerRightContainerStyle: {
-          // borderWidth: 2,
           paddingHorizontal: 18,
           flexDirection: 'row',
           alignItems: 'center',
@@ -43,7 +42,6 @@ function ShopitStackNavigator ({ navigation }) {
             onPress={() => navigation.openDrawer()}
           />,
           headerLeftContainerStyle: {
-            // borderWidth: 2,
             paddingHorizontal: 22
           }
         }}
@@ -99,7 +97,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    // borderWidth: 1,
   },
   resetButton: {
     ...globalStyles.textPrimary

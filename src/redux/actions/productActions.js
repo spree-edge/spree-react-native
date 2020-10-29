@@ -10,7 +10,6 @@ export function getProductsList(data, {pageIndex, filter}) {
     per_page: 18
   }
   const method = 'GET';
-  // debugger
   return {
     type: 'GET_PRODUCTS_LIST',
     payload: handleAPI(url, params, method, data)

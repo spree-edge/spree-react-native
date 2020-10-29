@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     height: 112,
-    // borderWidth: 1
   },
   title: {
     ...globalStyles.latoBold14,
@@ -39,7 +38,6 @@ const styles = StyleSheet.create({
   attributeContainer: {
     flexDirection: 'row',
     marginTop: 6,
-    // borderWidth: 2
   },
   colorBadge: {
     width: 24,
@@ -72,7 +70,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     width: 180,
-    // borderWidth: 2
   },
   prices: {
     fontFamily: 'lato-bold',

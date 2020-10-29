@@ -1,13 +1,11 @@
 import * as React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { colors } from '../res/palette'
-import { Text } from 'react-native';
 import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Button } from 'react-native-elements'
 import { globalStyles } from '../styles/global'
 import { setFreshProductList } from '../redux'
 import { connect } from 'react-redux'
-import { getProductsList } from '../redux'
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +19,6 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
         tabStyle: {
           borderWidth: 2,
           borderColor: colors.success,
-          // justifyContent: 'space-around',
 
         },
         style: {
@@ -29,9 +26,6 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
           borderTopColor: colors.background,
           height: 60,
           justifyContent: 'center'
-          // borderWidth: 2,
-          // borderColor: colors.success,
-          // alignItems: 'stretch'
         }
       }}
     >
@@ -46,7 +40,6 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
               paddingHorizontal: 55,
               marginHorizontal: 8,
               marginTop: 5
-              // flex: 1,
             }]}
             titleStyle={{ color: colors.primary }}
             onPress={() => navigation.navigate('ProductsList')}
@@ -64,9 +57,7 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
               paddingHorizontal: 55,
               marginHorizontal: 8,
               marginTop: 5
-              // flex: 1,
             }]}
-            // titleStyle={{ color: colors.primary }}
             onPress={() => {
               dispatch(setFreshProductList())
               navigation.push('ProductsList', { filterParams: true, title: route.params.title })
@@ -83,11 +74,3 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(FiltersTabNavigator)
-
-
-{/* <TouchableOpacity
-{...props}
-onPress={() => navigation.navigate('ProductsList')}
->
-<Text>Close</Text>
-</TouchableOpacity> */}

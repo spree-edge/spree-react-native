@@ -61,7 +61,6 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
     }, 500);
     toggleOverlay()
   }
-  // console.log(saving, paymentMethods)
   
   React.useEffect(() => {
     dispatch(getPaymentMethods())

@@ -10,7 +10,6 @@ const ActionButtonFooter = ({ title, onPress }) => {
       <Button
         title={title}
         type="solid"
-        // containerStyle={{flex: 1}}
         buttonStyle={ styles.footerAction }
         titleStyle={ globalStyles.latoBold16 }
         onPress={onPress}

@@ -28,7 +28,6 @@ const ForgotPasswordScreen = ({ navigation }) => {
         inputStyle={styles.inputStyle}
         inputContainerStyle={[ styles.inputContainerStyle, { paddingTop: 5 }]}
         onChangeText={setEmail}
-        // onEndEditing={() => console.log(email)}
       />
       <Button
         title="Send Me Now"

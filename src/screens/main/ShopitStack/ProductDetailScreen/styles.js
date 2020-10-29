@@ -61,7 +61,6 @@ export const styles = StyleSheet.create({
     width: '25%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderWidth: 2
   },
   likesContainer: {
     flexDirection: 'row',
@@ -124,7 +123,6 @@ export const styles = StyleSheet.create({
   pricingContainer: {
     flex: 1,
     flexDirection: 'row',
-    // borderWidth: 2
   },
   carouselCardPrice: {
     color: colors.gray,

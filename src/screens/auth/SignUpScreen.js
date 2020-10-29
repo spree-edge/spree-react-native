@@ -5,7 +5,6 @@ import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
 import { colors } from '../../res/palette'
 import { Button, Input } from 'react-native-elements'
-// import { AuthContext } from '../../library/utils/context'
 import { styles } from './styles'
 import TextField from '../../library/components/TextField'
 import { accountCreate } from '../../redux'
@@ -21,8 +20,6 @@ const SignUpScreen = ({ navigation, dispatch }) => {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [passwordConfirmation, setPasswordConfirmation] = React.useState('')
-
-  // const { signUp } = React.useContext(AuthContext)
 
   const handleSignup = () =>  {
     dispatch(accountCreate(

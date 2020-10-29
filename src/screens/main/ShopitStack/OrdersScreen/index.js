@@ -1,18 +1,17 @@
 import * as React from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import { globalStyles } from '../../../../../styles/global'
-import ProductCard from '../../../../../library/components/ProductCard'
-import TextField from '../../../../../library/components/TextField'
+import { globalStyles } from '../../../../styles/global'
+import ProductCard from '../../../../library/components/ProductCard'
+import TextField from '../../../../library/components/TextField'
 import { styles } from './styles'
-import { checkoutStyles } from '../styles'
 import { connect } from 'react-redux'
-import { getCart, removeLineItem, setQuantity, checkoutNext } from '../../../../../redux'
-import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
-import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
-import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
+import { getCart, removeLineItem, setQuantity, checkoutNext } from '../../../../redux'
+import CheckoutDetailsCard from '../../../../library/components/CheckoutDetailsCard'
+import ActionButtonFooter from '../../../../library/components/ActionButtonFooter'
+import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 import { Snackbar } from 'react-native-paper'
 
-const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
+const OrdersScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
   const [promoCode, setPromoCode] = React.useState('')
   const [snackbarVisible, setSnackbarVisible] = React.useState(false)
 
@@ -72,8 +71,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
               <Text style={[ globalStyles.latoBold14, globalStyles.mb8 ]}>Promo Code</Text>
               <TextField
                 placeholder=" Enter Promo Code"
-                containerStyle={checkoutStyles.inputWrapperStyle}
-                rightElement={<Text style={checkoutStyles.inputRightText}>Apply</Text>}
+                containerStyle={styles.inputWrapperStyle}
+                rightElement={<Text style={styles.inputRightText}>Apply</Text>}
                 onChangeText={setPromoCode}
                 value={promoCode}
               />
@@ -110,4 +109,4 @@ const mapStateToProps = state => ({
   cart: state.cart.cart,
 })
 
-export default connect(mapStateToProps)(BagScreen)
+export default connect(mapStateToProps)(OrdersScreen)

@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   containerStyle: {
-    // ...globalStyles.mb16,
     backgroundColor: '#fff',
     height: 52,
     borderRadius: 4,

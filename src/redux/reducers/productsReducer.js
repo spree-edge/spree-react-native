@@ -143,7 +143,6 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_PRODUCTS_LIST_FULFILLED':
       changes = {
-        // productsList: [...state.productsList, dataFormatter.deserialize(response)],
         productsList: state.productsList.length !== 1 && !state.freshProductList
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 
           : dataFormatter.deserialize(response),
@@ -227,5 +226,3 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return state
   }
 }
-
-// [...sizeFilterList.slice(0, i), {...sizeFilterList[i], active: !sizeFilterList[i].active}, ...sizeFilterList.slice(i+1)]

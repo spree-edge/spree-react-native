@@ -15,9 +15,6 @@ const ProductCard = ({ imageSource, name, description, color, size,
       ]}>
         <Image
           source={imageSource}
-          // source={{
-          //   uri: variant.images[0].styles[0].url
-          // }}
           style={styles.productCardImage}
         />
         <View style={styles.favouriteProductDetailsContainer}>

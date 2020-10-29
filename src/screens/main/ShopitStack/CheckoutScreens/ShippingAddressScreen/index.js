@@ -57,12 +57,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
         }
       )
     )
-    setTimeout(() => {
-      dispatch(checkoutNext())
-    }, 500);
-    setTimeout(() => {
-      dispatch(checkoutNext())
-    }, 500);
+    dispatch(checkoutNext())
+    dispatch(checkoutNext())
     navigation.navigate('CheckoutPayment')
   }
 

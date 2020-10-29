@@ -38,7 +38,6 @@ const ResetPasswordScreen = ({ navigation }) => {
           inputContainerStyle={ styles.inputContainerStyle }
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setNewPasswordSecureEntryToggle(!newPasswordSecureEntryToggle)} />}
           onChangeText={setPassword}
-          // onEndEditing={() => console.log(password)}
         />
         <Input
           placeholder="Re-enter Password"
@@ -50,7 +49,6 @@ const ResetPasswordScreen = ({ navigation }) => {
           inputContainerStyle={ styles.inputContainerStyle }
           rightIcon={<Eye size={24} style={{color: colors.gray}} onPress={() => setConfPasswordSecureEntryToggle(!confPasswordSecureEntryToggle)} />}
           onChangeText={setConfPassword}
-          // onEndEditing={() => console.log(confPassword)}
         />
         <Button
           title="Submit & Login"

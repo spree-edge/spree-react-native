@@ -11,7 +11,6 @@ import { getProductsList } from '../../../../redux/actions/productActions'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
-  // console.log(item)
   return (
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
@@ -77,8 +76,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
       }
     }))
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
-    
-    // debugger
   }, [])
 
   const newJustInRenderItem = ({ item }) => {
@@ -119,7 +116,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
           numColumns={2}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) => {
-            // console.log('on end reached ', distanceFromEnd)
             setPageIndex(pageIndex + 1)
             dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
           }}

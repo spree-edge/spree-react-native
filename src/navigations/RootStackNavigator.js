@@ -13,7 +13,6 @@ import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import ResetPasswordScreen from '../screens/auth/ResetPasswordScreen'
 import EnterCodeScreen from '../screens/auth/EnterCodeScreen'
 
-// import { AuthContext } from '../library/utils/context'
 import AsyncStorage from '@react-native-community/async-storage'
 import { userLogin } from '../redux/actions/authActions'
 import { connect } from 'react-redux'
@@ -24,18 +23,12 @@ const MyTheme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    // background: 'rgb(255, 255, 255)',
   },
 };
 
 const RootStack = createStackNavigator()
 
 function RootStackNavigator({ authState, dispatch}) {
-
-  // const authContext = React.useMemo(
-  //   () => ({
-
-  // }), [])
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {
@@ -54,30 +47,28 @@ function RootStackNavigator({ authState, dispatch}) {
     )
   }
   return (
-    // <AuthContext.Provider value={authContext}>
-      <NavigationContainer ref={navigationRef} theme={MyTheme}>
-        <RootStack.Navigator screenOptions={{headerShown: false}}>
-          {
-            authState.access_token ? (
-              <>
-                <RootStack.Screen name="MainDrawerNavigator" component={MainDrawerNavigator} />
-              </>
-            ) : (
-              <>
-                <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} />
-                <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} />
-                <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} />
-                <RootStack.Screen name="SignIn" component={SignInScreen} />
-                <RootStack.Screen name="SignUp" component={SignUpScreen} />
-                <RootStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                <RootStack.Screen name="ResetPassword" component={ResetPasswordScreen} />
-                <RootStack.Screen name="EnterCode" component={EnterCodeScreen} />
-              </>
-            )
-          }
-        </RootStack.Navigator>
-      </NavigationContainer>
-    // </AuthContext.Provider>
+    <NavigationContainer ref={navigationRef} theme={MyTheme}>
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
+        {
+          authState.access_token ? (
+            <>
+              <RootStack.Screen name="MainDrawerNavigator" component={MainDrawerNavigator} />
+            </>
+          ) : (
+            <>
+              <RootStack.Screen name="OnboardingA" component={OnboardingAScreen} />
+              <RootStack.Screen name="OnboardingB" component={OnboardingBScreen} />
+              <RootStack.Screen name="OnboardingC" component={OnboardingCScreen} />
+              <RootStack.Screen name="SignIn" component={SignInScreen} />
+              <RootStack.Screen name="SignUp" component={SignUpScreen} />
+              <RootStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+              <RootStack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+              <RootStack.Screen name="EnterCode" component={EnterCodeScreen} />
+            </>
+          )
+        }
+      </RootStack.Navigator>
+    </NavigationContainer>
   )
 }
 

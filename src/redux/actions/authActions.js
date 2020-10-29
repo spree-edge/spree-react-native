@@ -1,7 +1,6 @@
 import { handleAPI } from '../../library/utils/apiUtils';
 
 export function userLogin(data, filters={}) {
-  //const url = `/${API_VERSION_ONE}/sessions/`;
   const url = `/spree_oauth/token`;
   const method = 'POST';
   return {

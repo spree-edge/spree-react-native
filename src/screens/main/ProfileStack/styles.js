@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
   centeredContent: {
     ...globalStyles.containerFluid,
     ...globalStyles.centeredContent
-    // borderWidth: 2
   },
   avatar: {
     width: 80,
