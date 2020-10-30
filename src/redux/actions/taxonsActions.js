@@ -9,11 +9,14 @@ export function getTaxonsList(filters={}) {
   };
 }
 
-export function getTaxon(id, filters={}) {
+export function getTaxon(id) {
   const url = `/${API_VERSION_STOREFRONT}/taxons/${id}`;
   const method = 'GET';
+  const params = {
+    include: 'products.images'
+  }
   return {
     type: 'GET_TAXON',
-    payload: handleAPI(url, filters, method)
+    payload: handleAPI(url, params, method)
   };
 }

@@ -7,7 +7,7 @@ import styles from './styles'
 
 const ProductCard = ({ imageSource, name, description, color, size,
    discountedPrice, price, display_price, discountPercent, soldOut, counter, shoppingBag,
-   onRemoveLineItem, quantity, variant, onIncrementQuantity, onDecrementQuantity }) => {
+   onRemoveLineItem, quantity, variant, onIncrementQuantity, onDecrementQuantity, orders }) => {
   return (
     <View style={styles.productCardWrapper}>
       <View style={[styles.productCardContainer,
@@ -39,7 +39,7 @@ const ProductCard = ({ imageSource, name, description, color, size,
             </View>
           </View>
           <View style={styles.actionsContainer}>
-            <Close size={24} style={{color: colors.black}} onPress={onRemoveLineItem} />
+            { !orders && <Close size={24} style={{color: colors.black}} onPress={onRemoveLineItem} /> }
             { !soldOut && shoppingBag && <View style={styles.activeShoppingBag}>
               <ShoppingBag size={24} style={{color: colors.white}} />
             </View> }

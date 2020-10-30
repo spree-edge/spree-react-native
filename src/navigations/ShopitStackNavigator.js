@@ -12,6 +12,7 @@ import FiltersTabNavigator from './FiltersTabNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
+import OrdersScreen from '../screens/main/ShopitStack/OrdersScreen'
 
 const ShopitStack = createStackNavigator()
 
@@ -82,6 +83,12 @@ function ShopitStackNavigator ({ navigation }) {
         options={{
           headerTitle: 'Payment',
           headerRight: () => <Heart size={24} style={{color: colors.black}} />
+        }}
+      />
+      <ShopitStack.Screen name="Orders" component={OrdersScreen}
+        options={{
+          headerTitle: 'Orders',
+          headerRight: ({ color, size }) => <ShoppingBag size={size} style={{color}} />
         }}
       />
     </ShopitStack.Navigator>

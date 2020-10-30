@@ -3,12 +3,32 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
-  taxon: {},
+  taxon: {
+    products : [
+      {
+        images: [
+          {
+            styles: [
+              {
+                url: ''
+              },
+              {
+                url: ''
+              },
+              {
+                url: ''
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   taxonsList: [
     {
       children: []
     }
-  ]
+  ],
 };
 
 let changes = null;

@@ -2,48 +2,16 @@ import * as React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import ProductCard from '../../../../library/components/ProductCard'
-import TextField from '../../../../library/components/TextField'
 import { styles } from './styles'
 import { connect } from 'react-redux'
-import { getCart, removeLineItem, setQuantity, checkoutNext } from '../../../../redux'
-import CheckoutDetailsCard from '../../../../library/components/CheckoutDetailsCard'
+import { getOrders } from '../../../../redux'
 import ActionButtonFooter from '../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { Snackbar } from 'react-native-paper'
 
-const OrdersScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
-  const [promoCode, setPromoCode] = React.useState('')
-  const [snackbarVisible, setSnackbarVisible] = React.useState(false)
-
+const OrdersScreen = ({ navigation, dispatch, saving, orders }) => {
   React.useEffect(() => {
-    dispatch(getCart())
+    dispatch(getOrders())
   }, [])
-
-  const handleRemoveLineItem = (lineItemId) => {
-    dispatch(removeLineItem(lineItemId))
-  }
-
-  const handleIncrementQuantity = (lineItemId, lineItemQuantity) => {
-    dispatch(setQuantity(
-      {
-        line_item_id: lineItemId,
-        quantity: lineItemQuantity + 1
-      }
-    ))
-  }
-
-  const handleDecrementQuantity = (lineItemId, lineItemQuantity) => {
-    if(lineItemQuantity === 1) {
-      handleRemoveLineItem(lineItemId)
-    } else {
-      dispatch(setQuantity(
-        {
-          line_item_id: lineItemId,
-          quantity: lineItemQuantity - 1
-        }
-      ))
-    }
-  }
 
   if(saving) {
     return (
@@ -56,57 +24,35 @@ const OrdersScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) 
         <ScrollView>
           <View style={globalStyles.container}>
             {
-              cart.line_items.map(ele => <ProductCard 
-                key={ele.id}
-                counter
-                onIncrementQuantity={() => handleIncrementQuantity(ele.id, ele.quantity)}
-                onDecrementQuantity={() => handleDecrementQuantity(ele.id, ele.quantity)}
-                onRemoveLineItem={() => handleRemoveLineItem(ele.id)}
-                {...ele}
-              />)
+              // orders.line_items.map(ele => <ProductCard 
+              //   key={ele.id}
+              //   {...ele}
+              // />)
+              orders.map(order => 
+                order.line_items.map(item => <ProductCard
+                  orders
+                  key={item.id}
+                  {...item}
+                />)
+              )
             }
-          </View>
-          <View style={[globalStyles.containerFluid, globalStyles.bgWhite, globalStyles.mt16]}>
-            <View style={[ globalStyles.container, globalStyles.mt8 ]}>
-              <Text style={[ globalStyles.latoBold14, globalStyles.mb8 ]}>Promo Code</Text>
-              <TextField
-                placeholder=" Enter Promo Code"
-                containerStyle={styles.inputWrapperStyle}
-                rightElement={<Text style={styles.inputRightText}>Apply</Text>}
-                onChangeText={setPromoCode}
-                value={promoCode}
-              />
-            </View>
-          </View>
-
-          <CheckoutDetailsCard title="Price Details" display_total={cart && cart.display_total} />
-
-          <View style={styles.footer}>
-            <Text style={[globalStyles.textPrimary, globalStyles.latoBold16]}>Continue Shopping</Text>
           </View>
         </ScrollView>
         
         <ActionButtonFooter
-          title="Proceed to Checkout"
+          title="Continue Shopping"
           onPress={() => {
-            dispatch(checkoutNext())
-            navigation.navigate('ShippingAddress')}
+            navigation.navigate('ProductsList')}
           }
         />
       </View>
-      <Snackbar
-        visible={snackbarVisible}
-        duration={3000}
-        >
-        SetQuantity Success !
-      </Snackbar>
     </>
   )
 }
 
 const mapStateToProps = state => ({
   saving: state.cart.saving,
-  cart: state.cart.cart,
+  orders: state.account.orders
 })
 
 export default connect(mapStateToProps)(OrdersScreen)
