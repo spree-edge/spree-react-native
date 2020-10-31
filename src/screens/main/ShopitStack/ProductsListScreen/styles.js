@@ -23,9 +23,9 @@ export const styles = StyleSheet.create({
     height: 250,
   },
   newJustInItemContainer: {
-    marginRight: 16,
+    marginLeft: 10,
     marginBottom: 16,
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
   },
   paletteBlack: {
     color: colors.black

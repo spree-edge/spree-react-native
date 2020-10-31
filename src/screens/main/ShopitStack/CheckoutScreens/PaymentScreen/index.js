@@ -35,30 +35,37 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
   };
 
   const handlePaymentConfirmation = () => {
-    dispatch(updateCheckout(
-      {
-        order: {
-          payments_attributes: [
-            {
-              payment_method_id: 2,
-              source_attributes: {
-                number: cardNumber,
-                month: '01',
-                year: '2022',
-                verification_value: cvvInput,
-                name: nameOnCard
+    new Promise((resolve, reject) => {
+      dispatch(updateCheckout(
+        {
+          order: {
+            payments_attributes: [
+              {
+                payment_method_id: 2,
+                source_attributes: {
+                  number: cardNumber,
+                  month: '01',
+                  year: '2022',
+                  verification_value: cvvInput,
+                  name: nameOnCard
+                }
               }
-            }
-          ]
+            ]
+          }
         }
-      }
-    ))
-    setTimeout(() => {
-      dispatch(completeCheckout())
-    }, 500);
-    setTimeout(() => {
-      dispatch(createCart())
-    }, 500);
+      ))
+      .then(res => dispatch(completeCheckout())
+      .then(res => dispatch(createCart())
+      // .then(res => navigation.navigate('CheckoutPayment'))
+      ))
+    })
+    
+    // setTimeout(() => {
+    //   dispatch(completeCheckout())
+    // }, 500);
+    // setTimeout(() => {
+    //   dispatch(createCart())
+    // }, 500);
     toggleOverlay()
   }
   

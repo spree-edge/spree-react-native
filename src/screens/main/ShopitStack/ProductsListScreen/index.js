@@ -38,9 +38,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
  
   const productsSortList = [
-    { title: 'Newest' },
-    { title: 'Popular' },
-    { title: 'Customer review' },
     { 
       title: 'Price: lowest to high',
       onPress: () => setProductListLowToHigh()
@@ -109,7 +106,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
           <Text style={globalStyles.latoRegular14}> Filter</Text>
         </TouchableOpacity>
       </View>
-      <View style={[globalStyles.container, globalStyles.mt24]}>
+      <View style={[globalStyles.containerFluid, globalStyles.mt24]}>
         <FlatList
           data={productsList}
           renderItem={newJustInRenderItem}

@@ -75,6 +75,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
         quantity: 1,
       }
     ))
+    // setSnackbarVisible(true)
   }
 
   React.useEffect(() => {
@@ -128,7 +129,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                 disabledTitleStyle={{ color: colors.white }}
                 containerStyle={{flex: 1}}
                 buttonStyle={[ globalStyles.btn, globalStyles.btnSolid ]}
-                onPress={() => {handleAddToBag(); setSnackbarVisible(true)}}
+                onPress={handleAddToBag}
               />
             </View>
             <View style={ globalStyles.mt16 }>
@@ -159,10 +160,10 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               </ScrollView>
             </View>
             <View>
-              <View style={[ styles.sizingTitleContainer, globalStyles.mt16 ]}>
+              {activeColor ? <View style={[ styles.sizingTitleContainer, globalStyles.mt16 ]}>
                 <Text style={[ globalStyles.latoBold14, globalStyles.textDark ]}>Select Size</Text>
                 <Text style={[ globalStyles.latoBold14, globalStyles.textPrimary ]}>Size Help?</Text>
-              </View>
+              </View> : null }
               <View style={[ styles.rowContainer, globalStyles.mt8 ]}>
                 {
                   product.variants.map((variant, index) => {
@@ -330,7 +331,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
       </ScrollView>
       <Snackbar
         visible={snackbarVisible}
-        duration={5000}
+        duration={2000}
         >
         Added to Bag !
       </Snackbar>

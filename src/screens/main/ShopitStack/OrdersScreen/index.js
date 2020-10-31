@@ -24,10 +24,6 @@ const OrdersScreen = ({ navigation, dispatch, saving, orders }) => {
         <ScrollView>
           <View style={globalStyles.container}>
             {
-              // orders.line_items.map(ele => <ProductCard 
-              //   key={ele.id}
-              //   {...ele}
-              // />)
               orders.map(order => 
                 order.line_items.map(item => <ProductCard
                   orders

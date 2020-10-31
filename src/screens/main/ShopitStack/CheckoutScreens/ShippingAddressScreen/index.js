@@ -27,46 +27,55 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
   const [windowWidth] = React.useState(Dimensions.get('window').width)
 
   const handleUpdateCheckout = () => {
-    dispatch(
-      updateCheckout(
-        {
-          order: {
-            email: email,
-            special_instructions: 'Please leave at door',
-            bill_address_attributes: {
-              firstname: name,
-              lastname: name,
-              address1: address,
-              city: city,
-              phone: phone,
-              zipcode: pinCode,
-              state_name: statePickerSelectedValue,
-              country_iso: countryPickerSelectedValue
-            },
-            ship_address_attributes: {
-              firstname: name,
-              lastname: name,
-              address1: address,
-              city: city,
-              phone: phone,
-              zipcode: pinCode,
-              state_name: statePickerSelectedValue,
-              country_iso: countryPickerSelectedValue
+    new Promise((resolve, reject) => {
+      dispatch(
+        updateCheckout(
+          {
+            order: {
+              email: email,
+              special_instructions: 'Please leave at door',
+              bill_address_attributes: {
+                firstname: name,
+                lastname: name,
+                address1: address,
+                city: city,
+                phone: phone,
+                zipcode: pinCode,
+                state_name: statePickerSelectedValue,
+                country_iso: countryPickerSelectedValue
+              },
+              ship_address_attributes: {
+                firstname: name,
+                lastname: name,
+                address1: address,
+                city: city,
+                phone: phone,
+                zipcode: pinCode,
+                state_name: statePickerSelectedValue,
+                country_iso: countryPickerSelectedValue
+              }
             }
           }
-        }
+        )
       )
-    )
-    dispatch(checkoutNext())
-    dispatch(checkoutNext())
+      .then(res => dispatch(checkoutNext())
+      .then(res => dispatch(checkoutNext())
+      // .then(res => navigation.navigate('CheckoutPayment'))
+      ))
+    })
     navigation.navigate('CheckoutPayment')
   }
 
 
   React.useEffect(() => {
-    dispatch(getDefaultCountry())
-    dispatch(getCountriesList())
-    setCountryPickerSelectedValue(country.iso)
+    new Promise((resolve, reject) => {
+      dispatch(getDefaultCountry())
+      .then(res => dispatch(getCountriesList()))
+      .then(res => setCountryPickerSelectedValue(country.iso))
+    })
+    // dispatch(getDefaultCountry())
+    // dispatch(getCountriesList())
+    // setCountryPickerSelectedValue(country.iso)
   }, [])
 
   if(saving) {
