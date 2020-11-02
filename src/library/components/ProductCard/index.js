@@ -14,7 +14,10 @@ const ProductCard = ({ imageSource, name, description, color, size,
         soldOut ? styles.inactiveCard : null
       ]}>
         <Image
-          source={imageSource}
+          // source={imageSource}
+          source={{
+            uri: `http://192.168.1.5:3000/${imageSource}`
+          }}
           style={styles.productCardImage}
         />
         <View style={styles.favouriteProductDetailsContainer}>
@@ -33,7 +36,7 @@ const ProductCard = ({ imageSource, name, description, color, size,
               </View> }
             </View>
             <View style={styles.pricingContainer}>
-              <Text style={[styles.prices, styles.discountedPrice]}>${discountedPrice}</Text>
+              <Text style={[styles.prices, styles.discountedPrice]}>{discountedPrice}</Text>
               <Text style={[styles.prices, styles.price]}>${price || display_price}</Text>
               <Text style={[styles.prices, styles.discountPercent]}>({discountPercent}% OFF)</Text>
             </View>

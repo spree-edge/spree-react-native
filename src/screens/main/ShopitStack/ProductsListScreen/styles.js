@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
+
+const windowWidth = Dimensions.get('window').width
 
 export const styles = StyleSheet.create({
   filterContainer: {
@@ -19,11 +21,12 @@ export const styles = StyleSheet.create({
     borderBottomWidth: .2
   },
   newJustInImage: {
-    width: 185,
+    width: (windowWidth / 100) * 46,
     height: 250,
   },
   newJustInItemContainer: {
-    marginLeft: 10,
+    flex: 1,
+    marginHorizontal: '2%',
     marginBottom: 16,
     backgroundColor: colors.white,
   },
@@ -40,18 +43,18 @@ export const styles = StyleSheet.create({
   pricingContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    width: 160,
   },
   prices: {
     fontFamily: 'lato-bold',
+    fontSize: 13,
+    paddingRight: 5,
+    marginTop: 3
   },
   discountPercent: {
     color: colors.error
   },
   detailsContainer: {
-    ...globalStyles.container,
+    padding: 10,
     paddingVertical: 10
   },
   price: {

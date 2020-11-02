@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    width: 180,
+    width: 160,
   },
   prices: {
     fontFamily: 'lato-bold',

@@ -60,6 +60,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
               cart.line_items.map(ele => <ProductCard 
                 key={ele.id}
                 counter
+                discountedPrice={ele.display_price}
+                imageSource={ele.variant.images[0].styles[3].url}
                 onIncrementQuantity={() => handleIncrementQuantity(ele.id, ele.quantity)}
                 onDecrementQuantity={() => handleDecrementQuantity(ele.id, ele.quantity)}
                 onRemoveLineItem={() => handleRemoveLineItem(ele.id)}

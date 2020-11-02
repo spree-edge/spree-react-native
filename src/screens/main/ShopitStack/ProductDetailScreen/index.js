@@ -55,7 +55,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
   const [activeColor, setActiveColor] = React.useState(product.default_variant.option_values[0].presentation)
   const [activeSize, setActiveSize] = React.useState('')
   const [selectedVariantId, setSelectedVariantId] = React.useState('')
-  const [imageURI, setImageURI] = React.useState(`http://192.168.1.5:3000/${product.images[0].styles[3].url}`)
+  const [imageURI, setImageURI] = React.useState(`http://192.168.1.5:3000/${product.variants[0].images[0].styles[3].url}`)
 
   const [snackbarVisible, setSnackbarVisible] = React.useState(false)
 

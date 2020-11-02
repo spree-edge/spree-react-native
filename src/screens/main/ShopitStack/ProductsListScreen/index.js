@@ -1,29 +1,29 @@
 import * as React from 'react'
 import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { Filters, SortAZ } from '../../../../library/icons'
-import FlatListProductCard from '../../../../library/components/FlatListProductCard'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
 import { styles } from './styles'
 import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
-import { getProductsList } from '../../../../redux/actions/productActions'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
+import { getTaxon, getProductsList } from '../../../../redux'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
+
   return (
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
         source={{
-          uri: `http://192.168.1.5:3000/${item.images[0].styles[2].url}`
+          uri: `http://192.168.1.5:3000/${item.images[0].styles[3].url}`
         }}
-        style={{ width: imageStyle.width, height: imageStyle.height }}
+        style={{ width: imageStyle.width, height: imageStyle.height, resizeMode: 'cover' }}
       />
       <View style={styles.detailsContainer}>
-        <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.description}>Women Sea Wash Pleated Dress</Text>
+        <Text numberOfLines={1} style={styles.title}>{item.name}</Text>
+        <Text numberOfLines={1} style={styles.description}>Women Sea Wash Pleated Dress</Text>
         <View style={styles.pricingContainer}>
-          <Text style={[styles.prices, {color: colors.black}]}>{item.display_price}</Text>
+          <Text style={[styles.prices, {color: colors.black}]}>{item.display_price[0] + (item.price / 100 * 70).toPrecision(4)}</Text>
           <Text style={[styles.prices, styles.price]}>${item.price}</Text>
           <Text style={[styles.prices, styles.discountPercent]}>(30% OFF)</Text>
         </View>
@@ -37,6 +37,8 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   const [pageIndex, setPageIndex] = React.useState(1)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
  
+  const isTaxon = route.params?.taxon
+
   const productsSortList = [
     { 
       title: 'Price: lowest to high',
@@ -65,13 +67,15 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   }
 
   React.useEffect(() => {
-    dispatch(getProductsList(null, {
-      pageIndex,
-      filter: {
-        name: route.params?.searchQuery || '',
-        price: `${minimumPrice},${maximumPrice}`
-      }
-    }))
+    isTaxon
+    ? dispatch(getTaxon(route.params.id))
+    : dispatch(getProductsList(null, {
+        pageIndex,
+        filter: {
+          name: route.params?.searchQuery || '',
+          price: `${minimumPrice},${maximumPrice}`
+        }
+      }))
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
   }, [])
 
@@ -113,8 +117,11 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
           numColumns={2}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) => {
-            setPageIndex(pageIndex + 1)
-            dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
+            if(!isTaxon)
+            {
+              setPageIndex(pageIndex + 1)
+              dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
+            } else {null}
           }}
           ListFooterComponent={() => <ActivityIndicator size="large" /> }
         />
@@ -132,11 +139,19 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   )
 }
 
-const mapStateToProps = state => ({
-  productsList: state.products.productsList,
-  saving: state.products.saving,
-  minimumPrice: state.products.params.priceRange.minimum,
-  maximumPrice: state.products.params.priceRange.maximum
-})
+const mapStateToProps = (state, ownProps) => {
+  const isTaxon = ownProps.route.params?.taxon
+
+  return {
+    productsList: isTaxon
+      ? state.taxons.taxon.products
+      : state.products.productsList,
+    saving: isTaxon
+      ? state.taxons.saving
+      : state.products.saving,
+    minimumPrice: state.products.params.priceRange.minimum,
+    maximumPrice: state.products.params.priceRange.maximum
+  }
+}
 
 export default connect(mapStateToProps)(ProductListScreen)

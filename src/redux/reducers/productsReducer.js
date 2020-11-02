@@ -42,9 +42,55 @@ const DEFAULT_STATE = {
   freshProductList: false,
   title: '',
   product: {
+    variants: [
+      {
+        images: [
+          {
+            styles: [
+              {
+                url: ''
+              },
+              {
+                url: ''
+              },
+              {
+                url: ''
+              },
+              {
+                url: ''
+              },
+            ]
+          }
+        ]
+      }
+    ],
     images: [
       {
         styles: [
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
+          {
+            url: ''
+          },
           {
             url: ''
           },
@@ -106,6 +152,7 @@ const DEFAULT_STATE = {
   },
   productsList: [
     {
+      display_price: '$',
       images: [
         {
           styles: [
@@ -117,7 +164,34 @@ const DEFAULT_STATE = {
             },
             {
               url: ''
-            }
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
+            {
+              url: ''
+            },
           ]
         }
       ]

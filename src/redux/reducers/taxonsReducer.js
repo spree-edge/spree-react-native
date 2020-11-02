@@ -6,9 +6,13 @@ const DEFAULT_STATE = {
   taxon: {
     products : [
       {
+        display_price: '',
         images: [
           {
             styles: [
+              {
+                url: ''
+              },
               {
                 url: ''
               },

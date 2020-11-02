@@ -67,7 +67,7 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
                       title={taxonLevel2.name}
                       titleStyle={styles.listItemTitle}
                       style={styles.listItem}
-                      onPress={() => navigation.navigate('CategoryProductsList', {title: taxonLevel2.name, taxon: true, id: taxonLevel2.id})}
+                      onPress={() => navigation.navigate('ProductsList', {title: taxonLevel2.name, taxon: true, id: taxonLevel2.id})}
                     />
                   )
                 })
