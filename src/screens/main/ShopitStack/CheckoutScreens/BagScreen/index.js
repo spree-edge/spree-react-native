@@ -12,13 +12,18 @@ import ActionButtonFooter from '../../../../../library/components/ActionButtonFo
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 import { Snackbar } from 'react-native-paper'
 
-const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => {
+const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   const [promoCode, setPromoCode] = React.useState('')
   const [snackbarVisible, setSnackbarVisible] = React.useState(false)
 
   React.useEffect(() => {
     dispatch(getCart())
   }, [])
+
+  const handleToCheckout = async () => {
+    await dispatch(checkoutNext())
+    navigation.navigate('ShippingAddress')
+  }
 
   const handleRemoveLineItem = (lineItemId) => {
     dispatch(removeLineItem(lineItemId))
@@ -57,10 +62,10 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
         <ScrollView>
           <View style={globalStyles.container}>
             {
-              cart.line_items.map(ele => <ProductCard 
-                key={ele.id}
+              cart.line_items.map((ele, i) => <ProductCard 
+                key={i}
+                cart
                 counter
-                discountedPrice={ele.display_price}
                 imageSource={ele.variant.images[0].styles[3].url}
                 onIncrementQuantity={() => handleIncrementQuantity(ele.id, ele.quantity)}
                 onDecrementQuantity={() => handleDecrementQuantity(ele.id, ele.quantity)}
@@ -91,10 +96,7 @@ const BagScreen = ({ navigation, dispatch, saving, cart, lineItemQuantity }) => 
         
         <ActionButtonFooter
           title="Proceed to Checkout"
-          onPress={() => {
-            dispatch(checkoutNext())
-            navigation.navigate('ShippingAddress')}
-          }
+          onPress={handleToCheckout}
         />
       </View>
       <Snackbar

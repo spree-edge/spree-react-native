@@ -42,29 +42,29 @@ function CustomDrawerContent({ dispatch, ...props }) {
         label="Orders"
         labelStyle={styles.menuTitle}
         icon={({ color, size }) => <ShoppingBag size={size} style={{color, ...globalStyles.label}} />}
-        onPress={() => props.navigation.navigate('Orders')}
+        onPress={() => {}}
       />
       <Divider />
       <DrawerItem
         label="Support & More"
         labelStyle={styles.menuTitle}
         icon={({ color, size }) => <Support size={size} style={{color, ...globalStyles.label}} />}
-        onPress={() => props.navigation.navigate('Support')}
+        onPress={() => {}}
       />
       <DrawerItem
         label="FAQs"
         labelStyle={styles.subMenuTitle}
-        onPress={() => props.navigation.navigate('Support')}
+        onPress={() => {}}
       />
       <DrawerItem
         label="Contact Us"
         labelStyle={styles.subMenuTitle}
-        onPress={() => props.navigation.navigate('Support')}
+        onPress={() => {}}
       />
       <DrawerItem
         label="Privacy Policy"
         labelStyle={styles.subMenuTitle}
-        onPress={() => props.navigation.navigate('Support')}
+        onPress={() => {}}
       />
       <Button
         title="Logout Account"

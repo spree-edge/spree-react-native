@@ -2,15 +2,17 @@ import * as React from 'react'
 import { View, ScrollView } from 'react-native'
 import ProductCard from '../../../library/components/ProductCard'
 import { globalStyles } from '../../../styles/global'
+import { connect } from 'react-redux'
 
-const FavouritesScreen = () => {
+const FavouritesScreen = ({ favourites }) => {
   return (
     <ScrollView>
       <View style={globalStyles.container}>
         {
-          FAVOURITES_PRODUCT.map(ele => <ProductCard 
+          favourites.map(ele => <ProductCard
             key={ele.id}
             shoppingBag
+            imageSource={ele.images[0].styles[3].url}
             {...ele}
           />)
         }
@@ -19,7 +21,11 @@ const FavouritesScreen = () => {
   )
 }
 
-export default FavouritesScreen
+const mapStateToProps = state => ({
+  favourites: state.products.favourites
+})
+
+export default connect(mapStateToProps)(FavouritesScreen)
 
 const FAVOURITES_PRODUCT = [
   {

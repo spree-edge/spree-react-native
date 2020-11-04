@@ -50,3 +50,8 @@ export const toggleProductsSizeFilter = size => ({
   type: 'TOGGLE_PRODUCT_SIZE_FILTER',
   payload: size
 })
+
+export const setProductFavourite = variant => ({
+  type: 'SET_PRODUCT_FAVOURITE',
+  payload: variant
+})

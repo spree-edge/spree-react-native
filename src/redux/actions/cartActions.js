@@ -12,7 +12,7 @@ export function addItem(/* auth_token, */ data, filters={}) {
 export function getCart() {
   const url = `/${API_VERSION_STOREFRONT}/cart`;
   const params = {
-    include: 'line_items.variant.images'
+    include: 'line_items.variant.option_values,line_items.variant.images'
   }
   const method = 'GET';
   return {
@@ -33,7 +33,7 @@ export function createCart() {
 export function removeLineItem(lineItemId, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/cart/remove_line_item/${lineItemId}`;
   const params = {
-    include: 'line_items.variant.images'
+    include: 'line_items.variant.option_values,line_items.variant.images'
   }
   const method = 'DELETE';
   return {
@@ -45,7 +45,7 @@ export function removeLineItem(lineItemId, filters={}) {
 export function setQuantity(data, filters={}) {
   const url = `/${API_VERSION_STOREFRONT}/cart/set_quantity`;
   const params = {
-    include: 'line_items.variant.images'
+    include: 'line_items.variant.option_values,line_items.variant.images'
   }
   const method = 'PATCH';
   return {

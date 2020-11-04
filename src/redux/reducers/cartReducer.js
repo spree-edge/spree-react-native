@@ -24,6 +24,14 @@ const DEFAULT_STATE = {
                 }
               ]
             }
+          ],
+          option_values: [
+            {
+              presentation: ''
+            },
+            {
+              presentation: ''
+            }
           ]
         }
       }
@@ -96,14 +104,18 @@ export default function cartReducer(state = DEFAULT_STATE, action) {
      * SET_QUANTITY
      */
     case 'SET_QUANTITY_PENDING':
-      return state;
+      return { ...state, saving: true };
 
     case 'SET_QUANTITY_REJECTED':
+      changes = {
+        saving: false
+      };
       return { ...state, ...changes };
 
     case 'SET_QUANTITY_FULFILLED':
       changes = {
-        cart: dataFormatter.deserialize(response)
+        cart: dataFormatter.deserialize(response),
+        saving: false
       };
       return { ...state, ...changes };
     

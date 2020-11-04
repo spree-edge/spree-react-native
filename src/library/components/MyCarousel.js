@@ -27,6 +27,7 @@ const _renderItem = ({ item, index }) => {
 const MyCarousel = ({ imageURI }) => {
   const [activeSlide, setActiveSlide] = React.useState(0)
   const { width, height } = Dimensions.get('screen');
+  // console.log(imageURI)
   const [entries] = React.useState([
     {
       id: 1,

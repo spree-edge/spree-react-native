@@ -66,26 +66,34 @@ export default function FiltersDrawerNavigator() {
       initialRouteName="Home" 
       drawerType="permanent"
       drawerStyle={{
-        width: '30%',
+        flex: .45,
+        backgroundColor: colors.background
       }}
       drawerContentOptions={{
-        activeTintColor: '#000',
-        activeBackgroundColor: '#fff',
-        inactiveBackgroundColor: '#f5f5f5',
+        activeTintColor: colors.black,
+        activeBackgroundColor: colors.white,
+        inactiveBackgroundColor: colors.background,
         itemStyle: {
-          width: '100%',
-          marginLeft: 0,
-          marginTop: 0,
+          flex: 1,
+          paddingLeft: 5,
+          marginHorizontal: 0,
+          marginVertical: 0,
+          borderRadius: 0,
           borderBottomWidth: 1,
           borderBottomColor: colors.gray,
-          marginBottom: 0
+        },
+        labelStyle: {
+          width: '100%',
+          color: colors.gray,
+          ...globalStyles.latoRegular14,
+          ...globalStyles.mv8
         },
         contentContainerStyle: {
-          paddingTop: 0
+          paddingTop: 0,
         }
       }}
       sceneContainerStyle={{
-        backgroundColor: '#fff'
+        backgroundColor: colors.white
       }}
     >
       <Drawer.Screen name="Brand" component={BrandScreen} />

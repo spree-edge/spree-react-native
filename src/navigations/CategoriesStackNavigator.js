@@ -1,7 +1,6 @@
 import * as React from "react"
 import { createStackNavigator } from '@react-navigation/stack'
 import CategoriesScreen from '../screens/main/CategoriesStack/CategoriesScreen'
-import CategoryProductsListScreen from '../screens/main/CategoriesStack/CategoryProductsListScreen'
 import { Menu, ShoppingBag, Search } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
@@ -14,7 +13,7 @@ function CategoriesStackNavigator ({ navigation }) {
     <CategoriesStack.Navigator
       screenOptions={{
         headerLeft: () => <Menu size={24} style={{color: colors.black}}
-        onPress={() => navigation.openDrawer()}
+          onPress={() => navigation.openDrawer()}
         />,
         headerRight: () => <>
           <Search size={24} style={{color: colors.black, marginRight: 14}} />
@@ -34,7 +33,6 @@ function CategoriesStackNavigator ({ navigation }) {
       }}
     >
       <CategoriesStack.Screen name="Categories" component={CategoriesScreen} />
-      <CategoriesStack.Screen name="CategoryProductsList" component={CategoryProductsListScreen} />
     </CategoriesStack.Navigator>
   )
 }

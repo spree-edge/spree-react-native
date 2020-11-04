@@ -18,8 +18,7 @@ import {
 } from '../../../../library/icons'
 import TextField from '../../../../library/components/TextField'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { getProduct } from '../../../../redux/actions/productActions'
-import { addItem } from '../../../../redux'
+import { addItem, setProductFavourite } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
@@ -48,22 +47,24 @@ const CarouselProductCard = ({ imageURI }) => {
   )
 }
 
-const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, saving }) => {
+const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
   const [pincode, setPincode] = React.useState('')
 
-  const [addToBagButtonState, setAddToBagButtonState] = React.useState(true)
+  const [isVariantSelected, setIsVariantSelected] = React.useState(true)
   const [activeColor, setActiveColor] = React.useState(product.default_variant.option_values[0].presentation)
   const [activeSize, setActiveSize] = React.useState('')
-  const [selectedVariantId, setSelectedVariantId] = React.useState('')
+  const [selectedVariant, setSelectedVariant] = React.useState({})
   const [imageURI, setImageURI] = React.useState(`http://192.168.1.5:3000/${product.variants[0].images[0].styles[3].url}`)
 
   const [snackbarVisible, setSnackbarVisible] = React.useState(false)
 
+  const [variantDistinctColors] = React.useState([...new Set(product.variants.map(variant => variant.option_values[0].presentation))])
+
   const handleColorSelection = ({index, color}) => {
     setActiveColor(color)
     setActiveSize('')
-    setSelectedVariantId('')
-    setAddToBagButtonState(true)
+    setSelectedVariant({})
+    setIsVariantSelected(true)
     setImageURI(`http://192.168.1.5:3000/${product.variants[index].images[0].styles[3].url}`)
   }
 
@@ -71,16 +72,12 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
     dispatch(addItem(
       // auth.access_token,
       {
-        variant_id: selectedVariantId,
+        variant_id: selectedVariant.id,
         quantity: 1,
       }
     ))
     // setSnackbarVisible(true)
   }
-
-  React.useEffect(() => {
-    dispatch(getProduct(route.params.itemId))
-  }, [])
 
   if(saving) {
     return (
@@ -90,7 +87,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
   return (
     <>
       <ScrollView style={globalStyles.containerFluid}>
-        <MyCarousel imageURI={imageURI} />
+        <MyCarousel key={imageURI} imageURI={imageURI} />
         <View style={ styles.containerFluid }>
           <View style={[ globalStyles.container, globalStyles.pb16 ]}>
             <Text style={ globalStyles.latoBold18 }>{ product.name }</Text>
@@ -117,14 +114,17 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               <Button
                 title="Save For Later"
                 type="outline"
+                disabled={isVariantSelected}
+                disabledStyle={{ borderColor: colors.gray, color: colors.gray }}
                 containerStyle={{ flex: 1, marginRight: 16 }}
                 buttonStyle={globalStyles.btn}
                 titleStyle={styles.titleStyle}
+                onPress={() => dispatch(setProductFavourite(selectedVariant))}
               />
               <Button
                 title="Add To Bag"
                 type="solid"
-                disabled={addToBagButtonState}
+                disabled={isVariantSelected}
                 disabledStyle={{ backgroundColor: colors.gray }}
                 disabledTitleStyle={{ color: colors.white }}
                 containerStyle={{flex: 1}}
@@ -136,7 +136,7 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
               <Text style={ globalStyles.latoBold14 }>Select Color</Text>
               <ScrollView horizontal={true} style={[ styles.rowContainer, globalStyles.mt8 ]}>
                 {
-                  product.variants.map((variant, index) => (
+                  variantDistinctColors.map((color, index) => (
                     <Avatar
                       key={index}
                       size="small"
@@ -144,15 +144,15 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                       onPress={() => handleColorSelection(
                         {
                           index: index,
-                          color: variant.option_values[0].presentation
+                          color: color
                         }
                       )}
                       containerStyle={{
-                        backgroundColor: `${variant.option_values[0].presentation}`,
+                        backgroundColor: `${color}`,
                         marginRight: 16,
                         borderWidth: 1,
                         padding: 1,
-                        borderColor: variant.option_values[0].presentation !== activeColor ? colors.gray : colors.primary
+                        borderColor: color !== activeColor ? colors.gray : colors.primary
                       }}
                     />
                   ))
@@ -174,8 +174,8 @@ const ProductDetailScreen = ({ route, navigation, dispatch, product, auth, savin
                         title={`${variant.option_values[1].presentation}`}
                         onPress={() => {
                             setActiveSize(variant.option_values[1].presentation)
-                            setSelectedVariantId(variant.id)
-                            setAddToBagButtonState(false)
+                            setSelectedVariant(variant)
+                            setIsVariantSelected(false)
                           }
                         }
                         rounded

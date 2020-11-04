@@ -7,7 +7,7 @@ import { styles } from './styles'
 import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { getTaxon, getProductsList } from '../../../../redux'
+import { getTaxon, getProductsList, getProduct } from '../../../../redux'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
 
@@ -79,12 +79,17 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
   }, [])
 
+  const handleProductLoad = async (id) => {
+    await dispatch(getProduct(id))
+    navigation.navigate('ProductDetail')
+  }
+
   const newJustInRenderItem = ({ item }) => {
     return (
       <FlatListImageItem
         key={item.id}
         item={item}
-        onPress={() => navigation.navigate('ProductDetail', { itemId: item.id })}
+        onPress={() => handleProductLoad(item.id)}
         imageStyle={styles.newJustInImage}
         itemContainerStyle={styles.newJustInItemContainer}
       />
@@ -95,7 +100,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     return (
       <ActivityIndicatorCard />
     )
-  } else 
+  } else
   return (
     <>
       <View style={styles.filterContainer}>
@@ -113,6 +118,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
       <View style={[globalStyles.containerFluid, globalStyles.mt24]}>
         <FlatList
           data={productsList}
+          keyExtractor={item => item.id}
           renderItem={newJustInRenderItem}
           numColumns={2}
           onEndReachedThreshold={0.3}

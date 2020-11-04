@@ -3,6 +3,7 @@ const dataFormatter = new Jsona();
 
 const DEFAULT_STATE = {
   saving: false,
+  favourites: [],
   params: {
     priceRange: {
       minimum: '',
@@ -127,12 +128,10 @@ const DEFAULT_STATE = {
         images: [
           {
             styles: [
-              {},
-              {},
-              {},
-              {
-                url: ''
-              }
+              {url: ''},
+              {url: ''},
+              {url: ''},
+              {url: ''}
             ]
           }
         ]
@@ -291,6 +290,17 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
           ...state.params,
           sizeFilterList: state.params.sizeFilterList.map(item => item.name !== action.payload.name ? item : { ...item, active: !item.active})
         }
+      }
+    
+    /**
+     * SET_PRODUCT_FAVOURITE
+     */
+    case 'SET_PRODUCT_FAVOURITE':
+      return {
+        ...state,
+        favourites: [
+          ...new Set([...state.favourites, action.payload])
+        ]
       }
     
     /**
