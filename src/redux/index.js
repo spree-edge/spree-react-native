@@ -1,6 +1,5 @@
 export * from './actions/accountActions.js'
 export * from './actions/authActions.js'
-export * from './actions/cartActions.js'
 export * from './actions/checkoutActions.js'
 export * from './actions/productActions.js'
 export * from './actions/taxonsActions.js'

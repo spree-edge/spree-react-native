@@ -1,11 +1,11 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, View, Text, Dimensions } from 'react-native'
 import { globalStyles } from '../../../../../styles/global'
 import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
 import { Picker } from '@react-native-community/picker'
-import { getDefaultCountry, getCountriesList, getCountry, updateCheckout, checkoutNext } from '../../../../../redux/actions/checkoutActions'
+import { getCountry, getDefaultCountry, updateCheckout, checkoutNext } from '../../../../../redux/actions/checkoutActions'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import { checkoutStyles } from '../styles'
@@ -13,69 +13,59 @@ import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetai
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 
-const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, saving }) => {
-  const [statePickerSelectedValue, setStatePickerSelectedValue] = React.useState('Set API Default State')
-  const [countryPickerSelectedValue, setCountryPickerSelectedValue] = React.useState(country.iso)
+const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, saving, cart }) => {
+  const [statePickerSelectedValue, setStatePickerSelectedValue] = useState('Set API Default State')
+  const [countryPickerSelectedValue, setCountryPickerSelectedValue] = useState(country.iso)
 
-  const [name, setName] = React.useState('John Snow')
-  const [email, setEmail] = React.useState('john@snow.org')
-  const [address, setAddress] = React.useState('7735 Old Georgetown Road')
-  const [pinCode, setPinCode] = React.useState('20814')
-  const [city, setCity] = React.useState('Bethesda')
-  const [phone, setPhone] = React.useState('3014445002')
+  const [name, setName] = useState('John Snow')
+  const [email, setEmail] = useState('john@snow.org')
+  const [address, setAddress] = useState('7735 Old Georgetown Road')
+  const [pinCode, setPinCode] = useState('20814')
+  const [city, setCity] = useState('Bethesda')
+  const [phone, setPhone] = useState('3014445002')
 
-  const [windowWidth] = React.useState(Dimensions.get('window').width)
+  const [windowWidth] = useState(Dimensions.get('window').width)
 
   const handleUpdateCheckout = () => {
-    new Promise((resolve, reject) => {
-      dispatch(
-        updateCheckout(
-          {
-            order: {
-              email: email,
-              special_instructions: 'Please leave at door',
-              bill_address_attributes: {
-                firstname: name,
-                lastname: name,
-                address1: address,
-                city: city,
-                phone: phone,
-                zipcode: pinCode,
-                state_name: statePickerSelectedValue,
-                country_iso: countryPickerSelectedValue
-              },
-              ship_address_attributes: {
-                firstname: name,
-                lastname: name,
-                address1: address,
-                city: city,
-                phone: phone,
-                zipcode: pinCode,
-                state_name: statePickerSelectedValue,
-                country_iso: countryPickerSelectedValue
-              }
-            }
-          }
-        )
-      )
-      .then(res => dispatch(checkoutNext())
-      .then(res => dispatch(checkoutNext())
-      // .then(res => navigation.navigate('CheckoutPayment'))
-      ))
-    })
+    // dispatch(
+    //   updateCheckout(
+    //     {
+    //       order: {
+    //         email: email,
+    //         special_instructions: 'Please leave at door',
+    //         bill_address_attributes: {
+    //           firstname: name,
+    //           lastname: name,
+    //           address1: address,
+    //           city: city,
+    //           phone: phone,
+    //           zipcode: pinCode,
+    //           state_name: statePickerSelectedValue,
+    //           country_iso: countryPickerSelectedValue
+    //         },
+    //         ship_address_attributes: {
+    //           firstname: name,
+    //           lastname: name,
+    //           address1: address,
+    //           city: city,
+    //           phone: phone,
+    //           zipcode: pinCode,
+    //           state_name: statePickerSelectedValue,
+    //           country_iso: countryPickerSelectedValue
+    //         }
+    //       }
+    //     }
+    //   )
+    // )
+    // dispatch(checkoutNext())
+    // dispatch(checkoutNext())
+    dispatch(getDefaultCountry())
     navigation.navigate('CheckoutPayment')
   }
 
 
-  React.useEffect(() => {
-    new Promise((resolve, reject) => {
-      dispatch(getDefaultCountry())
-      .then(res => dispatch(getCountriesList()))
-      .then(res => setCountryPickerSelectedValue(country.iso))
-    })
-    // dispatch(getDefaultCountry())
-    // dispatch(getCountriesList())
-    // setCountryPickerSelectedValue(country.iso)
+  useEffect(() => {
+    setCountryPickerSelectedValue(country.iso)
   }, [])
 
   if(saving) {
@@ -210,7 +200,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
             </View>
           </View>
           
-          <CheckoutDetailsCard title="Order Total" />
+          <CheckoutDetailsCard title="Order Total" display_total={cart.display_item_total} />
 
         </ScrollView>
         
@@ -226,7 +216,8 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
 const mapStateToProps = state => ({
   country: state.checkout.country,
   countriesList: state.checkout.countriesList,
-  saving: state.checkout.saving
+  saving: state.checkout.saving,
+  cart: state.checkout.cart,
 })
 
 export default connect(mapStateToProps)(ShippingAddressScreen)

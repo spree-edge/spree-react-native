@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.bluebash.shopit"
     },
     "android": {
       "package": "com.bluebash.shopit",

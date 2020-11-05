@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
@@ -48,17 +48,17 @@ const CarouselProductCard = ({ imageURI }) => {
 }
 
 const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
-  const [pincode, setPincode] = React.useState('')
+  const [pincode, setPincode] = useState('')
 
-  const [isVariantSelected, setIsVariantSelected] = React.useState(true)
-  const [activeColor, setActiveColor] = React.useState(product.default_variant.option_values[0].presentation)
-  const [activeSize, setActiveSize] = React.useState('')
-  const [selectedVariant, setSelectedVariant] = React.useState({})
-  const [imageURI, setImageURI] = React.useState(`http://192.168.1.5:3000/${product.variants[0].images[0].styles[3].url}`)
+  const [isVariantSelected, setIsVariantSelected] = useState(true)
+  const [activeColor, setActiveColor] = useState(product.default_variant.option_values[0].presentation)
+  const [activeSize, setActiveSize] = useState('')
+  const [selectedVariant, setSelectedVariant] = useState({})
+  const [imageURI, setImageURI] = useState(`http://192.168.1.5:3000/${product.variants[0].images[0].styles[3].url}`)
 
-  const [snackbarVisible, setSnackbarVisible] = React.useState(false)
+  const [snackbarVisible, setSnackbarVisible] = useState(false)
 
-  const [variantDistinctColors] = React.useState([...new Set(product.variants.map(variant => variant.option_values[0].presentation))])
+  const [variantDistinctColors] = useState([...new Set(product.variants.map(variant => variant.option_values[0].presentation))])
 
   const handleColorSelection = ({index, color}) => {
     setActiveColor(color)

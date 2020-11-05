@@ -6,11 +6,11 @@ import TextField from '../../../../../library/components/TextField'
 import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import { connect } from 'react-redux'
-import { getCart, removeLineItem, setQuantity, checkoutNext } from '../../../../../redux'
+import { Snackbar } from 'react-native-paper'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
-import { Snackbar } from 'react-native-paper'
+import { getCart, removeLineItem, setQuantity, checkoutNext, getDefaultCountry, getCountriesList } from '../../../../../redux'
 
 const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   const [promoCode, setPromoCode] = React.useState('')
@@ -21,7 +21,9 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   }, [])
 
   const handleToCheckout = async () => {
-    await dispatch(checkoutNext())
+    dispatch(checkoutNext())
+    await dispatch(getDefaultCountry())
+    await dispatch(getCountriesList())
     navigation.navigate('ShippingAddress')
   }
 
@@ -110,8 +112,8 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
 }
 
 const mapStateToProps = state => ({
-  saving: state.cart.saving,
-  cart: state.cart.cart,
+  saving: state.checkout.saving,
+  cart: state.checkout.cart,
 })
 
 export default connect(mapStateToProps)(BagScreen)

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { ScrollView, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
 import { Divider, Button, Overlay } from 'react-native-elements'
 import { globalStyles } from '../../../../../styles/global'
@@ -10,68 +10,54 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
-import { getPaymentMethods, updateCheckout, completeCheckout, createCart } from '../../../../../redux'
+import { updateCheckout, completeCheckout, createCart, getDefaultCountry } from '../../../../../redux'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 import { connect } from 'react-redux'
 
-const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
-  const [cardNumber, setCardNumber] = React.useState('4111111111111111')
-  const [nameOnCard, setNameOnCard] = React.useState('John Snow')
-  const [validThru, setValidThru] = React.useState('01/2022')
-  const [cvvInput, setCvvInput] = React.useState('123')
+const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
+  const [cardNumber, setCardNumber] = useState('4111111111111111')
+  const [nameOnCard, setNameOnCard] = useState('John Snow')
+  const [validThru, setValidThru] = useState('01/2022')
+  const [cvvInput, setCvvInput] = useState('123')
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
 
-  const [accordionExpanded2, setAccordionExpanded2] = React.useState(false);
+  const [accordionExpanded2, setAccordionExpanded2] = useState(false);
   const toggleAccordionExpanded2 = () => setAccordionExpanded2(!accordionExpanded2);
 
-  const [windowWidth] = React.useState(Dimensions.get('window').width)
+  const [windowWidth] = useState(Dimensions.get('window').width)
 
-  const [overlayVisible, setOverlayVisible] = React.useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
 
   const toggleOverlay = () => {
     setOverlayVisible(!overlayVisible);
   };
 
   const handlePaymentConfirmation = () => {
-    new Promise((resolve, reject) => {
-      dispatch(updateCheckout(
-        {
-          order: {
-            payments_attributes: [
-              {
-                payment_method_id: 2,
-                source_attributes: {
-                  number: cardNumber,
-                  month: '01',
-                  year: '2022',
-                  verification_value: cvvInput,
-                  name: nameOnCard
-                }
-              }
-            ]
-          }
-        }
-      ))
-      .then(res => dispatch(completeCheckout())
-      .then(res => dispatch(createCart())
-      // .then(res => navigation.navigate('CheckoutPayment'))
-      ))
-    })
-    
-    // setTimeout(() => {
-    //   dispatch(completeCheckout())
-    // }, 500);
-    // setTimeout(() => {
-    //   dispatch(createCart())
-    // }, 500);
+    // dispatch(updateCheckout(
+    //   {
+    //     order: {
+    //       payments_attributes: [
+    //         {
+    //           payment_method_id: 2,
+    //           source_attributes: {
+    //             number: cardNumber,
+    //             month: '01',
+    //             year: '2022',
+    //             verification_value: cvvInput,
+    //             name: nameOnCard
+    //           }
+    //         }
+    //       ]
+    //     }
+    //   }
+    // ))
+    // dispatch(completeCheckout())
+    // dispatch(createCart())
+    dispatch(getDefaultCountry())
     toggleOverlay()
   }
-  
-  React.useEffect(() => {
-    dispatch(getPaymentMethods())
-  }, [])
 
   if(saving) {
     return (
@@ -219,7 +205,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
           {/*Code for Single Collapsible Ends*/}
         </View>
         
-        <CheckoutDetailsCard title="Order Total" />
+        <CheckoutDetailsCard title="Order Total" display_total={cart.display_item_total} />
 
       </ScrollView>
 
@@ -233,7 +219,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, paymentMethods }) => {
 
 const mapStateToProps = state => ({
   saving: state.checkout.saving,
-  paymentMethods: state.checkout.paymentMethods
+  cart: state.checkout.cart,
 })
 
 export default connect(mapStateToProps)(PaymentScreen)
