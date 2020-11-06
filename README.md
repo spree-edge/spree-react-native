@@ -34,7 +34,7 @@
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/register.png">
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/forget-password.png">
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/home.png">
-  <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/drawer-navigation.png">
+  <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/drawer-navigator.png">
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/products-list.png">
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/products-sorting.png">
   <img width="288px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/screenshots/products-filter.png">
