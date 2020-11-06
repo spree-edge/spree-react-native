@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img width="100px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/icon.png">
+    <img width="100px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/icon.png">
   </a>
   <h1 align="center">Spree - React Native</h1>  
 </p>
@@ -27,26 +27,26 @@
 
 ### Android
 
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/splash.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/onboarding1.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/onboarding2.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/onboarding3.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/login.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/register.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/forget-password.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/home.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/drawer-navigation.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/products-list.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/products-sorting.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/products-filter.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/product-detail-screen.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/favourites.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/categories.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/bag.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/checkout-shipping-address.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/checkout-paayment.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/checkout-success.png">
-<img width="288px" src="https://github.com/BlueBash/spree-react-native/blob/products-api/assets/images/profile.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/splash.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/onboarding1.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/onboarding2.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/onboarding3.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/login.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/register.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/forget-password.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/home.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/drawer-navigation.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/products-list.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/products-sorting.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/products-filter.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/product-detail-screen.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/favourites.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/categories.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/bag.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/checkout-shipping-address.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/checkout-paayment.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/checkout-success.png">
+<img width="288px" src="https://github.com/BlueBash/spree-react-native/tree/products-api/assets/images/screenshots/profile.png">
 
 
 ## Development
