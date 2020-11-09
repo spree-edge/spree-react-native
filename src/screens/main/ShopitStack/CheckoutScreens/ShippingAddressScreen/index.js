@@ -5,7 +5,7 @@ import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
 import { Picker } from '@react-native-community/picker'
-import { getCountry, getDefaultCountry, updateCheckout, checkoutNext } from '../../../../../redux/actions/checkoutActions'
+import { getCountry, getDefaultCountry, updateCheckout, checkoutNext, getPaymentMethods } from '../../../../../redux/actions/checkoutActions'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import { checkoutStyles } from '../styles'
@@ -14,7 +14,7 @@ import ActionButtonFooter from '../../../../../library/components/ActionButtonFo
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 
 const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, saving, cart }) => {
-  const [statePickerSelectedValue, setStatePickerSelectedValue] = useState('Set API Default State')
+  const [statePickerSelectedValue, setStatePickerSelectedValue] = useState(country.states[0])
   const [countryPickerSelectedValue, setCountryPickerSelectedValue] = useState(country.iso)
 
   const [name, setName] = useState('John Snow')
@@ -26,43 +26,43 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
 
   const [windowWidth] = useState(Dimensions.get('window').width)
 
-  const handleUpdateCheckout = () => {
-    // dispatch(
-    //   updateCheckout(
-    //     {
-    //       order: {
-    //         email: email,
-    //         special_instructions: 'Please leave at door',
-    //         bill_address_attributes: {
-    //           firstname: name,
-    //           lastname: name,
-    //           address1: address,
-    //           city: city,
-    //           phone: phone,
-    //           zipcode: pinCode,
-    //           state_name: statePickerSelectedValue,
-    //           country_iso: countryPickerSelectedValue
-    //         },
-    //         ship_address_attributes: {
-    //           firstname: name,
-    //           lastname: name,
-    //           address1: address,
-    //           city: city,
-    //           phone: phone,
-    //           zipcode: pinCode,
-    //           state_name: statePickerSelectedValue,
-    //           country_iso: countryPickerSelectedValue
-    //         }
-    //       }
-    //     }
-    //   )
-    // )
-    // dispatch(checkoutNext())
-    // dispatch(checkoutNext())
-    dispatch(getDefaultCountry())
+  const handleUpdateCheckout = async () => {
+    await dispatch(
+      updateCheckout(
+        {
+          order: {
+            email: email,
+            special_instructions: 'Please leave at door',
+            bill_address_attributes: {
+              firstname: name,
+              lastname: name,
+              address1: address,
+              city: city,
+              phone: phone,
+              zipcode: pinCode,
+              state_name: statePickerSelectedValue.abbr,
+              country_iso: countryPickerSelectedValue
+            },
+            ship_address_attributes: {
+              firstname: name,
+              lastname: name,
+              address1: address,
+              city: city,
+              phone: phone,
+              zipcode: pinCode,
+              state_name: statePickerSelectedValue.abbr,
+              country_iso: countryPickerSelectedValue
+            }
+          }
+        }
+      )
+    )
+    await dispatch(getPaymentMethods())
+    await dispatch(checkoutNext())
+
+    // dispatch(getDefaultCountry())
     navigation.navigate('CheckoutPayment')
   }
-
 
   useEffect(() => {
     setCountryPickerSelectedValue(country.iso)
@@ -112,7 +112,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
               value={name}
-              onValueChange={setName}
+              onChangeText={setName}
             />
             <TextField
               placeholder="Email"
@@ -120,7 +120,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
               value={email}
-              onValueChange={setEmail}
+              onChangeText={setEmail}
             />
             <TextField
               placeholder="Phone No."
@@ -128,7 +128,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
               value={phone}
-              onValueChange={setPhone}
+              onChangeText={setPhone}
             />
             <TextField
               placeholder="Pin Code"
@@ -136,7 +136,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
               value={pinCode}
-              onValueChange={setPinCode}
+              onChangeText={setPinCode}
             />
             <TextField
               placeholder="Address ( House No, Street, Area )"
@@ -144,7 +144,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               containerStyle={styles.containerStyle}
               inputContainerStyle={styles.inputContainerStyle}
               value={address}
-              onValueChange={setAddress}
+              onChangeText={setAddress}
             />
             <View style={[checkoutStyles.rowContainer, styles.inlineContainer]}>
               <TextField
@@ -153,7 +153,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
                 inputStyle={styles.inputStyle}
                 inputContainerStyle={styles.inputContainerStyle}
                 value={city}
-                onValueChange={setCity}
+                onChangeText={setCity}
                 containerStyle={[styles.containerStyle, {
                   paddingTop: 5,
                   width: windowWidth / 2.3
@@ -167,7 +167,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
                   width: windowWidth / 2.3
                 }]}
                 itemStyle={styles.inputStyle}
-                onValueChange={(itemValue, itemIndex) =>
+                onChangeText={(itemValue, itemIndex) =>
                   setStatePickerSelectedValue(itemValue)
                 }
               >
@@ -183,7 +183,7 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
               selectedValue={countryPickerSelectedValue}
               style={styles.containerStyle}
               itemStyle={styles.inputStyle}
-              onValueChange={(itemValue, itemIndex) => {
+              onChangeText={(itemValue, itemIndex) => {
                 setCountryPickerSelectedValue(itemValue)
                 dispatch(getCountry(itemValue))
               }}

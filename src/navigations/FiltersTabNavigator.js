@@ -60,7 +60,7 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
             }]}
             onPress={() => {
               dispatch(setFreshProductList())
-              navigation.push('ProductsList', { filterParams: true, title: route.params.title })
+              navigation.navigate('ProductsList', { filterParams: true, title: route.params.title })
             }}
           />
         }}

@@ -10,7 +10,7 @@ import { Snackbar } from 'react-native-paper'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
-import { getCart, removeLineItem, setQuantity, checkoutNext, getDefaultCountry, getCountriesList } from '../../../../../redux'
+import { getCart, removeLineItem, setQuantity, getDefaultCountry, getCountriesList } from '../../../../../redux'
 
 const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   const [promoCode, setPromoCode] = React.useState('')
@@ -21,10 +21,13 @@ const BagScreen = ({ navigation, dispatch, saving, cart }) => {
   }, [])
 
   const handleToCheckout = async () => {
-    dispatch(checkoutNext())
-    await dispatch(getDefaultCountry())
-    await dispatch(getCountriesList())
-    navigation.navigate('ShippingAddress')
+    if(cart.state === "cart") {
+      await dispatch(getDefaultCountry())
+      await dispatch(getCountriesList())
+      navigation.navigate('ShippingAddress')
+    } else {
+      navigation.navigate('CheckoutPayment')
+    }
   }
 
   const handleRemoveLineItem = (lineItemId) => {

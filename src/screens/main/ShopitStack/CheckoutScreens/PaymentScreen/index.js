@@ -20,7 +20,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
   const [validThru, setValidThru] = useState('01/2022')
   const [cvvInput, setCvvInput] = useState('123')
 
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const toggleExpanded = () => setExpanded(!expanded);
 
   const [accordionExpanded2, setAccordionExpanded2] = useState(false);
@@ -34,29 +34,29 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
     setOverlayVisible(!overlayVisible);
   };
 
-  const handlePaymentConfirmation = () => {
-    // dispatch(updateCheckout(
-    //   {
-    //     order: {
-    //       payments_attributes: [
-    //         {
-    //           payment_method_id: 2,
-    //           source_attributes: {
-    //             number: cardNumber,
-    //             month: '01',
-    //             year: '2022',
-    //             verification_value: cvvInput,
-    //             name: nameOnCard
-    //           }
-    //         }
-    //       ]
-    //     }
-    //   }
-    // ))
-    // dispatch(completeCheckout())
-    // dispatch(createCart())
-    dispatch(getDefaultCountry())
+  const handlePaymentConfirmation = async () => {
+    await dispatch(updateCheckout(
+      {
+        order: {
+          payments_attributes: [
+            {
+              payment_method_id: 2,
+              source_attributes: {
+                number: cardNumber,
+                month: '01',
+                year: '2022',
+                verification_value: cvvInput,
+                name: nameOnCard
+              }
+            }
+          ]
+        }
+      }
+    ))
+    await dispatch(completeCheckout())
+    await dispatch(createCart())
     toggleOverlay()
+    // dispatch(getDefaultCountry())
   }
 
   if(saving) {
@@ -183,7 +183,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
                   width: windowWidth / 2.3
                 }]}
                 inputContainerStyle={styles.inputContainerStyle}
-                onValueChange={setValidThru}
+                onChangeText={setValidThru}
               />
               <TextField
                 value={cvvInput}
@@ -194,7 +194,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
                   width: windowWidth / 2.3
                 }]}
                 inputContainerStyle={styles.inputContainerStyle}
-                onValueChange={setCvvInput}
+                onChangeText={setCvvInput}
               />
             </View>
             <View style={[styles.rowContainer, globalStyles.mt16, globalStyles.mb16]}>

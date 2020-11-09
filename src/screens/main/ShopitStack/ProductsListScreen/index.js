@@ -77,7 +77,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
         }
       }))
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
-  }, [])
+  }, [route.params])
 
   const handleProductLoad = async (id) => {
     await dispatch(getProduct(id))
