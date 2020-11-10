@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ChevronLeft, Eye } from '../../library/icons'
@@ -7,14 +7,14 @@ import { Input, Button } from 'react-native-elements'
 import { styles } from './styles'
 
 const ResetPasswordScreen = ({ navigation }) => {
-  const [newPasswordSecureEntryToggle, setNewPasswordSecureEntryToggle] = React.useState(true)
-  const [confPasswordSecureEntryToggle, setConfPasswordSecureEntryToggle] = React.useState(true)
+  const [newPasswordSecureEntryToggle, setNewPasswordSecureEntryToggle] = useState(true)
+  const [confPasswordSecureEntryToggle, setConfPasswordSecureEntryToggle] = useState(true)
 
-  const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
-  const [inputConfPasswordBorder, setInputConfPasswordBorder] = React.useState(false)
+  const [inputPasswordBorder, setInputPasswordBorder] = useState(false)
+  const [inputConfPasswordBorder, setInputConfPasswordBorder] = useState(false)
 
-  const [password, setPassword] = React.useState('')
-  const [confPassword, setConfPassword] = React.useState('')
+  const [password, setPassword] = useState('')
+  const [confPassword, setConfPassword] = useState('')
 
   return (
     <View style={globalStyles.container}>

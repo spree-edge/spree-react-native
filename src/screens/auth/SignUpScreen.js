@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
@@ -11,15 +11,15 @@ import { accountCreate } from '../../redux'
 
 
 const SignUpScreen = ({ navigation, dispatch }) => {
-  const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
+  const [secureTextEntryToggle, setSecureTextEntryToggle] = useState(true)
   
-  const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
-  const [inputPasswordConfirmationBorder, setInputPasswordConfirmationBorder] = React.useState(false)
+  const [inputPasswordBorder, setInputPasswordBorder] = useState(false)
+  const [inputPasswordConfirmationBorder, setInputPasswordConfirmationBorder] = useState(false)
 
-  const [userName, setUserName] = React.useState('')
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = React.useState('')
+  const [userName, setUserName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   const handleSignup = () =>  {
     dispatch(accountCreate(

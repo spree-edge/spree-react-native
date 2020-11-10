@@ -53,7 +53,7 @@ function ShopitStackNavigator ({ navigation }) {
           headerRight: () => (
             <>
               <Share size={24} style={{color: colors.black}} />
-              <Heart size={24} style={{color: colors.black}} />
+              <Heart size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Favorites')} />
               <ShoppingBag size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Bag')} />
             </>
           ),
@@ -62,7 +62,7 @@ function ShopitStackNavigator ({ navigation }) {
       <ShopitStack.Screen name="Bag" component={BagScreen}
         options={{
           headerTitle: 'Your Bag',
-          headerRight: () => <Heart size={24} style={{color: colors.black}} />
+          headerRight: () => <Heart size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Favorites')} />
         }}
       />
       <ShopitStack.Screen name="FiltersTabNavigator" component={FiltersTabNavigator}
@@ -74,13 +74,13 @@ function ShopitStackNavigator ({ navigation }) {
       <ShopitStack.Screen name="ShippingAddress" component={ShippingAddressScreen}
         options={{
           headerTitle: 'Shipping Address',
-          headerRight: () => <Heart size={24} style={{color: colors.black}} />
+          headerRight: () => <Heart size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Favorites')} />
         }}
       />
       <ShopitStack.Screen name="CheckoutPayment" component={PaymentScreen}
         options={{
           headerTitle: 'Payment',
-          headerRight: () => <Heart size={24} style={{color: colors.black}} />
+          headerRight: () => <Heart size={24} style={{color: colors.black}} onPress={() => navigation.navigate('Favorites')} />
         }}
       />
     </ShopitStack.Navigator>

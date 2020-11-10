@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import { globalStyles } from '../../styles/global'
@@ -11,12 +11,12 @@ import TextField from '../../library/components/TextField'
 
 
 const SignInScreen = ({ navigation, dispatch }) => {
-  const [secureTextEntryToggle, setSecureTextEntryToggle] = React.useState(true)
-  const [inputEmailBorder, setInputEmailBorder] = React.useState(false)
-  const [inputPasswordBorder, setInputPasswordBorder] = React.useState(false)
+  const [secureTextEntryToggle, setSecureTextEntryToggle] = useState(true)
+  const [inputEmailBorder, setInputEmailBorder] = useState(false)
+  const [inputPasswordBorder, setInputPasswordBorder] = useState(false)
 
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleLogin = () =>  {
     dispatch(userLogin({

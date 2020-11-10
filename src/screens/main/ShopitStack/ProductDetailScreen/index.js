@@ -262,7 +262,7 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
                       </View>
                     </View>
                   </View>
-                  { i !== arr.length - 1  ? <Divider style={styles.reviewBorder} /> : null}
+                  { i !== arr.length - 1  && <Divider style={styles.reviewBorder} /> }
                 </View>
               ))
             }
