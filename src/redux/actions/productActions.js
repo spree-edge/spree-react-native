@@ -55,3 +55,7 @@ export const setProductFavourite = variant => ({
   type: 'SET_PRODUCT_FAVOURITE',
   payload: variant
 })
+
+export const resetProductsList = () => ({
+  type: 'RESET_PRODUCTS_LIST'
+})

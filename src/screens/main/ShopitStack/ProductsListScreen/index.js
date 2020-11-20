@@ -7,7 +7,7 @@ import { styles } from './styles'
 import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { getTaxon, getProductsList, getProduct } from '../../../../redux'
+import { getProductsList, getProduct, resetProductsList } from '../../../../redux'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
 
@@ -15,7 +15,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
         source={{
-          uri: `http://192.168.1.5:3000/${item.images[0].styles[3].url}`
+          uri: `http://192.168.1.8:3000/${item.images[0].styles[3].url}`
         }}
         style={{ width: imageStyle.width, height: imageStyle.height, resizeMode: 'cover' }}
       />
@@ -32,12 +32,10 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice }) => {
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, isViewing }) => {
 
   const [pageIndex, setPageIndex] = React.useState(1)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
- 
-  const isTaxon = route.params?.taxon
 
   const productsSortList = [
     { 
@@ -67,16 +65,27 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   }
 
   React.useEffect(() => {
-    isTaxon
-    ? dispatch(getTaxon(route.params.id))
-    : dispatch(getProductsList(null, {
-        pageIndex,
-        filter: {
-          name: route.params?.searchQuery || '',
-          price: `${minimumPrice},${maximumPrice}`
-        }
-      }))
+    if(!isViewing) {
+      dispatch(resetProductsList())
+    }
+    // return () => {
+    //   cleanup
+    // }
+  }, [isViewing])
+
+  React.useEffect(() => {
+    dispatch(getProductsList(null, {
+      pageIndex,
+      filter: {
+        name: route.params?.searchQuery || '',
+        price: `${minimumPrice},${maximumPrice}`,
+        taxons: route.params.id
+      }
+    }))
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
+    return () => {
+      console.log("State Cleared")
+    }
   }, [route.params])
 
   const handleProductLoad = async (id) => {
@@ -123,11 +132,8 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
           numColumns={2}
           onEndReachedThreshold={0.3}
           onEndReached={({ distanceFromEnd }) => {
-            if(!isTaxon)
-            {
-              setPageIndex(pageIndex + 1)
-              dispatch(getProductsList(null, { pageIndex: pageIndex+1 }))
-            } else {null}
+            setPageIndex(pageIndex + 1)
+            dispatch(getProductsList(null, { pageIndex: pageIndex + 1 }))
           }}
           ListFooterComponent={() => <ActivityIndicator size="large" /> }
         />
@@ -145,18 +151,14 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const isTaxon = ownProps.route.params?.taxon
+const mapStateToProps = state => {
 
   return {
-    productsList: isTaxon
-      ? state.taxons.taxon.products
-      : state.products.productsList,
-    saving: isTaxon
-      ? state.taxons.saving
-      : state.products.saving,
+    productsList: state.products.productsList,
+    saving: state.products.saving,
     minimumPrice: state.products.params.priceRange.minimum,
-    maximumPrice: state.products.params.priceRange.maximum
+    maximumPrice: state.products.params.priceRange.maximum,
+    isViewing: state.products.isViewing,
   }
 }
 

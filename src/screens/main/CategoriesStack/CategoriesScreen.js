@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp } from '../../../library/icons'
 import { colors } from '../../../res/palette'
 import { List } from 'react-native-paper'
 import { styles } from './styles'
-import { getTaxonsList } from '../../../redux'
+import { getTaxonsList, setFreshProductList } from '../../../redux'
 import { connect } from 'react-redux'
 import ActivityIndicatorCard from '../../../library/components/ActivityIndicatorCard'
 
@@ -20,6 +20,11 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
     "rgba(215, 171, 98, 0.5)",
     "rgba(145, 225, 212, 0.54)"
   ])
+
+  const handleDisplayTaxon = ({ title, id }) => {
+    dispatch(setFreshProductList())
+    navigation.navigate('ProductsList', {title: title, id: id})
+  }
 
   React.useEffect(() => {
     dispatch(getTaxonsList())
@@ -67,7 +72,7 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
                       title={taxonLevel2.name}
                       titleStyle={styles.listItemTitle}
                       style={styles.listItem}
-                      onPress={() => navigation.navigate('ProductsList', {title: taxonLevel2.name, taxon: true, id: taxonLevel2.id})}
+                      onPress={() => handleDisplayTaxon({ title: taxonLevel2.name, id: taxonLevel2.id})}
                     />
                   )
                 })

@@ -41,6 +41,7 @@ const DEFAULT_STATE = {
     ]
   },
   freshProductList: false,
+  isViewing: false,
   title: '',
   product: {
     variants: [
@@ -220,10 +221,10 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 
           : dataFormatter.deserialize(response),
         freshProductList: false,
+        isViewing: true,
         saving: false
       };
       return { ...state, ...changes };
-
 
     /**
      * GET_PRODUCT
@@ -278,6 +279,16 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return {
         ...state,
         freshProductList: true
+      }
+
+    /**
+     * RESET_PRODUCTS_LIST
+     */
+    case 'RESET_PRODUCTS_LIST':
+      return {
+        ...state,
+        isViewing: false,
+        productsList: []
       }
 
     /**

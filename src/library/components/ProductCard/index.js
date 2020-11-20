@@ -15,7 +15,7 @@ const ProductCard = ({ imageSource, name, description, cart, size, option_values
       ]}>
         <Image
           source={{
-            uri: `http://192.168.1.5:3000/${imageSource}`
+            uri: `http://192.168.1.8:3000/${imageSource}`
           }}
           style={styles.productCardImage}
         />

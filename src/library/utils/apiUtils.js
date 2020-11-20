@@ -3,7 +3,7 @@ import qs from 'qs';
 //import { API_ROOT } from '../../env';
 
 const API_VERSION_STOREFRONT = '/api/v2/storefront';
-const API_ROOT = 'http://192.168.1.5:3000';
+const API_ROOT = 'http://192.168.1.8:3000';
 
 function handleAPI( path, params, method, data = null) {
   const headers = {
