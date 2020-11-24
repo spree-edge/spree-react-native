@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
+
+const windowWidth = Dimensions.get('window')
 
 export const styles = StyleSheet.create({
   centeredContent: {
@@ -14,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   newJustInItemContainer: {
     marginRight: 16,
-    marginBottom: 16
+    marginBottom: 16,
   },
   flatListHeaderText: {
     ...globalStyles.latoRegular14,
@@ -48,7 +50,7 @@ export const styles = StyleSheet.create({
     ...globalStyles.mt16,
     backgroundColor: colors.white
   },
-  besDealCards: {
+  bestDealCards: {
     width: "100%",
     height: 200,
     marginBottom: 16
@@ -57,5 +59,13 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 294,
     paddingVertical: 16
+  },
+  flatListImageItemContainer: {
+    marginRight: 10,
+    marginBottom: 10
+  },
+  flatListImageItem: {
+    width: 109,
+    height: 160,
   }
 })

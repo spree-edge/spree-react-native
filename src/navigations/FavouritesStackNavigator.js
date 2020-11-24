@@ -4,10 +4,13 @@ import FavouritesScreen from '../screens/main/FavouritesStack/FavouritesScreen'
 import { Menu, ShoppingBag, Search } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
+import { useSelector } from 'react-redux'
+import CustomTitle from '../library/components/CustomTitle'
 
 const FavouritesStack = createStackNavigator()
 
 function FavouritesStackNavigator ({ navigation }) {
+  const favourites = useSelector(state => state.products.favourites)
 
   return (
     <FavouritesStack.Navigator
@@ -32,7 +35,9 @@ function FavouritesStackNavigator ({ navigation }) {
         }
       }}
     >
-      <FavouritesStack.Screen name="Favorites" component={FavouritesScreen} />
+      <FavouritesStack.Screen name="Favorites" component={FavouritesScreen}
+        options={{ headerTitle: <CustomTitle title="Favorites" length={favourites.length} /> }}
+      />
     </FavouritesStack.Navigator>
   )
 }

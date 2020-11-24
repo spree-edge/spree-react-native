@@ -15,7 +15,7 @@ const ProductCard = ({ imageSource, name, description, cart, size, option_values
       ]}>
         <Image
           source={{
-            uri: `http://192.168.1.8:3000/${imageSource}`
+            uri: `http://192.168.1.25:3000/${imageSource}`
           }}
           style={styles.productCardImage}
         />
@@ -42,9 +42,9 @@ const ProductCard = ({ imageSource, name, description, cart, size, option_values
             </View>
           </View>
           <View style={styles.actionsContainer}>
-            { !orders && <Close size={24} style={{color: colors.black}} onPress={onRemoveLineItem} /> }
+            { !orders && <Close size={20} style={{color: colors.black}} onPress={onRemoveLineItem} /> }
             { !soldOut && shoppingBag && <View style={styles.activeShoppingBag}>
-              <ShoppingBag size={20} style={{color: colors.white}} />
+              <ShoppingBag size={18} style={{color: colors.white}} />
             </View> }
           </View>
         </View>

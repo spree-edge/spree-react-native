@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   },
   productCardImage: {
     width: 100,
-    height: 112
+    height: 112,
+    borderTopLeftRadius: 14,
+    borderBottomLeftRadius: 14
   },
   favouriteProductDetailsContainer: {
     flex: 1,
@@ -89,8 +91,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   activeShoppingBag: {
-    width: 38,
-    height: 38,
+    width: 32,
+    height: 32,
     borderRadius: 24,
     backgroundColor: "#ee3168",
     justifyContent: 'center',

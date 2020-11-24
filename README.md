@@ -51,6 +51,14 @@
 ## Development
 
 ```bash
+# Server Setup
+rails s
+
+rails s -b 0.0.0.0 (Enables server to accept requests from any network interface while enables no special hosting configuration for emulators)
+
+# Remote/ Local Host Setup
+Search & Replace all occurences of Remote/ Local Host (for example: http://192.168.1.25:3000)
+
 # Dependencies
 sudo yarn install
 

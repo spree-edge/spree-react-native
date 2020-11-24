@@ -4,7 +4,7 @@ import ProductCard from '../../../library/components/ProductCard'
 import { globalStyles } from '../../../styles/global'
 import { useSelector } from 'react-redux'
 
-const FavouritesScreen = () => {
+const FavouritesScreen = ({ navigation }) => {
   const favourites = useSelector(state => state.products.favourites)
 
   return (

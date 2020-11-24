@@ -5,9 +5,14 @@ import { globalStyles } from '../../../../styles/global'
 import { setMinimumPriceRange, setMaximumPriceRange } from '../../../../redux'
 import { connect } from 'react-redux'
 
-function PriceRange({ navigation, dispatch }) {
+function PriceRange({ navigation, dispatch, priceRange }) {
   const [priceRangeFrom, setPriceRangeFrom] = React.useState(20)
   const [priceRangeTo, setPriceRangeTo] = React.useState(100)
+  
+  React.useEffect(() => {
+    setPriceRangeFrom(priceRange.minimum)
+    setPriceRangeTo(priceRange.maximum)
+  }, [])
 
   return (
     <View style={[globalStyles.container,{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }]}>
@@ -62,4 +67,8 @@ function PriceRange({ navigation, dispatch }) {
   );
 }
 
-export default connect()(PriceRange)
+const mapStateToProps = state => ({
+  priceRange: state.products.params.priceRange
+})
+
+export default connect(mapStateToProps)(PriceRange)

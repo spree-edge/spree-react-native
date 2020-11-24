@@ -4,7 +4,6 @@ import { colors } from '../res/palette'
 import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Button } from 'react-native-elements'
 import { globalStyles } from '../styles/global'
-import { setFreshProductList } from '../redux'
 import { connect } from 'react-redux'
 
 const Tab = createBottomTabNavigator();
@@ -59,7 +58,6 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
               marginTop: 5
             }]}
             onPress={() => {
-              dispatch(setFreshProductList())
               navigation.navigate('ProductsList', { filterParams: true, title: route.params.title })
             }}
           />

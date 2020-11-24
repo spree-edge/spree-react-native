@@ -6,8 +6,8 @@ const DEFAULT_STATE = {
   favourites: [],
   params: {
     priceRange: {
-      minimum: '',
-      maximum: '',
+      minimum: 20,
+      maximum: 100,
     },
     sizeFilterList: [
       {
@@ -40,7 +40,9 @@ const DEFAULT_STATE = {
       }
     ]
   },
-  freshProductList: false,
+  meta: {
+    total_count: null
+  },
   isViewing: false,
   title: '',
   product: {
@@ -207,7 +209,7 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
      * GET_PRODUCTS_LIST
      */
     case 'GET_PRODUCTS_LIST_PENDING':
-      return { ...state, saving: true };
+      return { ...state, saving: state.isViewing ? false : true };
 
     case 'GET_PRODUCTS_LIST_REJECTED':
       changes = {
@@ -217,12 +219,12 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
 
     case 'GET_PRODUCTS_LIST_FULFILLED':
       changes = {
-        productsList: state.productsList.length !== 1 && !state.freshProductList
+        productsList: state.isViewing
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 
           : dataFormatter.deserialize(response),
-        freshProductList: false,
         isViewing: true,
-        saving: false
+        saving: false,
+        meta: response.meta
       };
       return { ...state, ...changes };
 
@@ -270,15 +272,6 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
             maximum: action.payload,
           }
         }
-      }
-    
-    /**
-     * FRESH_PRODUCT_LIST
-     */
-    case 'SET_FRESH_PRODUCT_LIST':
-      return {
-        ...state,
-        freshProductList: true
       }
 
     /**

@@ -3,14 +3,13 @@ import { View, ScrollView, Text, FlatList, TouchableOpacity, StyleSheet } from '
 import { SearchBar, Image } from 'react-native-elements'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
-import { setFreshProductList } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 
 const Item = ({ item }) => {
   return (
-    <TouchableOpacity onPress={() => console.log(item)} style={{ marginHorizontal: 7, marginBottom: 24}}>
-      <Image source={item.source} style={{width: 109, height: 160}} />
+    <TouchableOpacity onPress={() => console.log(item)} style={styles.flatListImageItemContainer}>
+      <Image source={item.source} style={styles.flatListImageItem} />
     </TouchableOpacity>
   )
 }
@@ -48,7 +47,6 @@ const HomeScreen = ({ navigation, dispatch }) => {
           inputStyle={ globalStyles.latoRegular16 }
           searchIcon={{ color: colors.black }}
           onSubmitEditing={() => {
-            dispatch(setFreshProductList())
             navigation.navigate('ProductsList', { searchQuery })
           }}
         />
@@ -57,7 +55,6 @@ const HomeScreen = ({ navigation, dispatch }) => {
         source={require('../../../../../assets/images/banner-first-order-discount/banner-first-order-discount.png')}
         style={styles.bannerFirst}
         onPress={() => {
-          dispatch(setFreshProductList())
           navigation.navigate('ProductsList', { title: 'Womens Dress' })
         }}
       />

@@ -15,7 +15,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
         source={{
-          uri: `http://192.168.1.8:3000/${item.images[0].styles[3].url}`
+          uri: `http://192.168.1.25:3000/${item.images[0].styles[3].url}`
         }}
         style={{ width: imageStyle.width, height: imageStyle.height, resizeMode: 'cover' }}
       />
@@ -32,10 +32,11 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, isViewing }) => {
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, meta }) => {
 
-  const [pageIndex, setPageIndex] = React.useState(1)
+  const [pageIndex, setPageIndex] = React.useState(0)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
+  const [numColumns, setNumColumns] = React.useState(2)
 
   const productsSortList = [
     { 
@@ -64,27 +65,38 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     setIsSortOverlayVisible(false)
   }
 
-  React.useEffect(() => {
-    if(!isViewing) {
-      dispatch(resetProductsList())
-    }
-    // return () => {
-    //   cleanup
-    // }
-  }, [isViewing])
+  const formatData = (data, numColumns) => {
+    const numberOfFullRows = Math.floor(data.length / numColumns)
 
-  React.useEffect(() => {
+    let numberOfElementsLastRow = data.length - (numberOfFullRows - numColumns)
+
+    while(numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
+      data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true })
+      numberOfElementsLastRow = numberOfElementsLastRow + 1
+    }
+
+    return data
+  }
+
+  const handleProductsLoad = () => {
+    setPageIndex(pageIndex + 1)
+
     dispatch(getProductsList(null, {
-      pageIndex,
+      pageIndex: pageIndex + 1,
       filter: {
         name: route.params?.searchQuery || '',
         price: `${minimumPrice},${maximumPrice}`,
         taxons: route.params.id
       }
     }))
+  }
+
+  React.useEffect(() => {
+    handleProductsLoad()
     navigation.setOptions({ title: route.params.title || route.params.searchQuery })
     return () => {
       console.log("State Cleared")
+      dispatch(resetProductsList())
     }
   }, [route.params])
 
@@ -126,16 +138,16 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
       </View>
       <View style={[globalStyles.containerFluid, globalStyles.mt24]}>
         <FlatList
+          // data={formatData(productsList, numColumns)}
           data={productsList}
           keyExtractor={item => item.id}
           renderItem={newJustInRenderItem}
           numColumns={2}
           onEndReachedThreshold={0.3}
-          onEndReached={({ distanceFromEnd }) => {
-            setPageIndex(pageIndex + 1)
-            dispatch(getProductsList(null, { pageIndex: pageIndex + 1 }))
+          onEndReached={() => {
+            meta.total_count !== productsList.length && handleProductsLoad()
           }}
-          ListFooterComponent={() => <ActivityIndicator size="large" /> }
+          ListFooterComponent={() => meta.total_count !== productsList.length && <ActivityIndicator size="large" /> }
         />
       </View>
       <BottomSheet isVisible={isSortOverlayVisible}>
@@ -151,15 +163,12 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   )
 }
 
-const mapStateToProps = state => {
-
-  return {
-    productsList: state.products.productsList,
-    saving: state.products.saving,
-    minimumPrice: state.products.params.priceRange.minimum,
-    maximumPrice: state.products.params.priceRange.maximum,
-    isViewing: state.products.isViewing,
-  }
-}
+const mapStateToProps = state => ({
+  meta: state.products.meta,
+  saving: state.products.saving,
+  productsList: state.products.productsList,
+  minimumPrice: state.products.params.priceRange.minimum,
+  maximumPrice: state.products.params.priceRange.maximum,
+})
 
 export default connect(mapStateToProps)(ProductListScreen)

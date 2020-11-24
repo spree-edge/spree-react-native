@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp } from '../../../library/icons'
 import { colors } from '../../../res/palette'
 import { List } from 'react-native-paper'
 import { styles } from './styles'
-import { getTaxonsList, setFreshProductList } from '../../../redux'
+import { getTaxonsList } from '../../../redux'
 import { connect } from 'react-redux'
 import ActivityIndicatorCard from '../../../library/components/ActivityIndicatorCard'
 
@@ -22,7 +22,6 @@ const CategoriesScreen = ({ navigation, dispatch, taxonomy, saving }) => {
   ])
 
   const handleDisplayTaxon = ({ title, id }) => {
-    dispatch(setFreshProductList())
     navigation.navigate('ProductsList', {title: title, id: id})
   }
 
