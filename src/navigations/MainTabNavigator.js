@@ -14,7 +14,10 @@ function MainTabNavigator() {
     <Tab.Navigator
       tabBarOptions={{
         activeTintColor: colors.primary,
-        inactiveTintColor: colors.black
+        inactiveTintColor: colors.black,
+        labelStyle: {
+          fontFamily: 'lato-bold'
+        }
       }}
     >
       <Tab.Screen name="Shopit" component={ShopitStackNavigator}

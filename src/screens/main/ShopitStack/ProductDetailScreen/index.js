@@ -21,6 +21,7 @@ import ActivityIndicatorCard from '../../../../library/components/ActivityIndica
 import { addItem, setProductFavourite } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
+import { capitalizeFirstLetter } from '../../../../res/helperFunctions'
 
 const CarouselProductCard = ({ imageURI }) => {
   return (
@@ -205,7 +206,7 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
                 {
                   product.product_properties.map(property => (
                     <Text key={property.id} style={globalStyles.label}>
-                      {'\u2022'} {property.name}: {property.value}
+                      {'\u2022'} {capitalizeFirstLetter(property.name)}: {property.value}
                     </Text>
                   ))
                 }

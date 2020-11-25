@@ -2,10 +2,9 @@ import * as React from 'react'
 import { View, ScrollView } from 'react-native'
 import ProductCard from '../../../library/components/ProductCard'
 import { globalStyles } from '../../../styles/global'
-import { useSelector } from 'react-redux'
+import { useSelector, connect } from 'react-redux'
 
-const FavouritesScreen = ({ navigation }) => {
-  const favourites = useSelector(state => state.products.favourites)
+const FavouritesScreen = ({ navigation, favourites }) => {
 
   return (
     <ScrollView>
@@ -23,4 +22,8 @@ const FavouritesScreen = ({ navigation }) => {
   )
 }
 
-export default FavouritesScreen
+const mapStateToProps = state => ({
+  favourites: state.products.favourites
+})
+
+export default connect(mapStateToProps)(FavouritesScreen)

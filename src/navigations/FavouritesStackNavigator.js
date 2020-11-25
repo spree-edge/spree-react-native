@@ -16,7 +16,7 @@ function FavouritesStackNavigator ({ navigation }) {
     <FavouritesStack.Navigator
       screenOptions={{
         headerLeft: () => <Menu size={24} style={{color: colors.black}}
-        onPress={() => navigation.openDrawer()}
+          onPress={() => navigation.openDrawer()}
         />,
         headerRight: () => <>
           <Search size={24} style={{color: colors.black, marginRight: 14}} />

@@ -93,7 +93,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
 
   React.useEffect(() => {
     handleProductsLoad()
-    navigation.setOptions({ title: route.params.title || route.params.searchQuery })
+    // navigation.setOptions({ title: route.params.title || route.params.searchQuery })
     return () => {
       console.log("State Cleared")
       dispatch(resetProductsList())

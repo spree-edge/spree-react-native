@@ -11,10 +11,13 @@ import FiltersTabNavigator from './FiltersTabNavigator'
 import { Menu, ShoppingBag, Bell, Heart, Share } from '../library/icons'
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
+import { useSelector } from 'react-redux'
+import CustomTitle from '../library/components/CustomTitle'
 
 const ShopitStack = createStackNavigator()
 
 function ShopitStackNavigator ({ navigation }) {
+  const productsList = useSelector(state => state.products.productsList)
 
   return (
     <ShopitStack.Navigator
@@ -45,7 +48,9 @@ function ShopitStackNavigator ({ navigation }) {
           }
         }}
       />
-      <ShopitStack.Screen name="ProductsList" component={ProductsListScreen} />
+      <ShopitStack.Screen name="ProductsList" component={ProductsListScreen}
+        options={({ route }) => ({ headerTitle: <CustomTitle title={route.params.title || route.params.searchQuery} length={productsList.length} /> })}
+      />
       <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}
         options={{
           headerTitle: 'Tokyo Talkies',
