@@ -38,7 +38,7 @@ const SignUpScreen = ({ navigation, dispatch }) => {
       <ChevronLeft size={24} style={styles.backButton} 
         onPress={navigation.goBack}
       />
-      <Text style={styles.title}>Join Shopit</Text>
+      <Text style={styles.title}>Join Spree Shop</Text>
       <View style={[globalStyles.containerFluid, { justifyContent: 'space-evenly',}]}>
         <View>
           <TextField

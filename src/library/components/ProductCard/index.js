@@ -4,6 +4,7 @@ import { globalStyles } from '../../../styles/global'
 import { Close, ShoppingBag, MathMinus, MathPlus } from '../../icons'
 import { colors } from '../../../res/palette'
 import styles from './styles'
+import { HOST } from '../../../res/env'
 
 const ProductCard = ({ imageSource, name, description, cart, size, option_values,
    discountedPrice, price, display_price, discountPercent, soldOut, counter, shoppingBag,
@@ -15,7 +16,7 @@ const ProductCard = ({ imageSource, name, description, cart, size, option_values
       ]}>
         <Image
           source={{
-            uri: `http://192.168.1.25:3000/${imageSource}`
+            uri: `${HOST}/${imageSource}`
           }}
           style={styles.productCardImage}
         />

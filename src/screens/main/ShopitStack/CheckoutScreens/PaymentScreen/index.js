@@ -82,7 +82,7 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
               type="outline"
               buttonStyle={[ globalStyles.btn, styles.btnOutlined]}
               titleStyle={styles.titleStyle}
-              onPress={() => navigation.navigate('Shopit')}
+              onPress={() => navigation.navigate('Shop')}
             />
           </View>
         </View>

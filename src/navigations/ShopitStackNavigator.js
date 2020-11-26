@@ -24,7 +24,7 @@ function ShopitStackNavigator ({ navigation }) {
       screenOptions={{
         headerRight: () => <>
           <Bell size={24} style={{color: colors.black, marginRight: 14}} />
-          <ShoppingBag size={24} style={{color: colors.black}} 
+          <ShoppingBag size={24} style={{color: colors.black}}
             onPress={() => navigation.navigate('Bag')}
           />
         </>,
@@ -38,8 +38,9 @@ function ShopitStackNavigator ({ navigation }) {
         }
       }}
     >
-      <ShopitStack.Screen name="Shopit" component={HomeScreen}
+      <ShopitStack.Screen name="Shop" component={HomeScreen}
         options={{
+          headerTitle: 'Spree Shop',
           headerLeft: () => <Menu size={24} style={{color: colors.black}}
             onPress={() => navigation.openDrawer()}
           />,
@@ -49,7 +50,7 @@ function ShopitStackNavigator ({ navigation }) {
         }}
       />
       <ShopitStack.Screen name="ProductsList" component={ProductsListScreen}
-        options={({ route }) => ({ headerTitle: <CustomTitle title={route.params.title || route.params.searchQuery} length={productsList.length} /> })}
+        options={({ route }) => ({ headerTitle: <CustomTitle title={route.params.title || route.params.searchQuery || 'ProductsList'} length={productsList.length} /> })}
       />
       <ShopitStack.Screen name="ProductDetail" component={ProductDetailScreen}
         options={{

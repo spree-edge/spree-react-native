@@ -14,7 +14,7 @@ const BrandScreen = ({ navigation }) => {
         <SearchBar
           platform="ios"
           value={search}
-          placeholder="Search shopit catalogue"
+          placeholder="Search shop catalogue"
           onChangeText={setSearch}
           inputContainerStyle={{
             backgroundColor: colors.background

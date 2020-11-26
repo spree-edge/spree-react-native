@@ -2,25 +2,25 @@
   <a>
     <img width="100px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/icon.png">
   </a>
-  <h1 align="center">Spree - React Native</h1>  
+  <h1 align="center">Spree Shop - React Native</h1>  
 </p>
 
-Spree On React Native is an E-commerce platform that is Spree, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, and even more it is open source.
+**Spree On React Native** is an open-source cross-platform mobile app, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, for more info [Spree](https://github.com/spree/spree).
 
 ![Spree - React Native](https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/Spree-React-Native-1.7x.gif)
 
-## Stack
+### Tech
 
-- React Native
-- Spree
-- Expo
+Spree Shop uses a number of open source projects:
 
-## Packages
-
-- React Navigation
-- Redux and related packages
-- Jsona
-- React Native Elements
+* [React Native](https://reactnative.dev/) - A Mobile Application framework that let's create native apps for Android and iOS using React
+* [Spree](https://github.com/spree/spree/) - A complete open source e-commerce solution built with **Ruby on Rails**
+* [React Navigation](https://reactnavigation.org/) - Routing and navigation for **React Native** apps
+* [Expo](https://docs.expo.io/) - Platform for making universal native apps that run on Android, iOS, and the web
+* [Redux](https://redux.js.org/) - Predictable State Container managing application state
+* [Storefront API v2](https://api.spreecommerce.org/docs/api-v2/api/docs/v2/storefront/index.yaml) - Storefront API v2 is a modern REST API based on the [JSON API spec](https://jsonapi.org/)
+* [Jsona](https://github.com/olosegres/jsona) - Data Formatter that deserializes the serailzed [Storefront API v2](https://api.spreecommerce.org/docs/api-v2/api/docs/v2/storefront/index.yaml) JSON API responses
+* [React Native Elements](https://reactnativeelements.com/) - React Native Component Library
 
 ## Features
 
@@ -84,4 +84,13 @@ sudo yarn ios
 # Run Android
 sudo yarn android
 
+## Contributing
+
+**Spree Shop - React Native** is an open source project and we encourage contributions.
+
 ```
+
+License
+----
+
+[MIT](https://opensource.org/licenses/MIT)

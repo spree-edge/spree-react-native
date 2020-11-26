@@ -20,7 +20,7 @@ function MainTabNavigator() {
         }
       }}
     >
-      <Tab.Screen name="Shopit" component={ShopitStackNavigator}
+      <Tab.Screen name="Shop" component={ShopitStackNavigator}
         options={{
           tabBarIcon: ({color, size}) => <Home color={color} size={size} />
         }}

@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation, dispatch }) => {
         <SearchBar
           platform="ios"
           value={searchQuery}
-          placeholder="Search shopit catalogue"
+          placeholder="Search shop catalogue"
           onChangeText={text => setSearchQuery(text)}
           inputContainerStyle={{ backgroundColor: colors.white }}
           containerStyle={{ backgroundColor: colors.background }}
@@ -109,7 +109,6 @@ const HomeScreen = ({ navigation, dispatch }) => {
             keyExtractor={item => item.id}
             renderItem={newJustInRenderItem}
             numColumns={3}
-            // contentContainerStyle={{borderWidth: 2, flexGrow: 1, justifyContent: 'center'}}
             ListHeaderComponent={() => <Text style={styles.flatListHeaderText}>NEW JUST IN</Text>}
           />
         </View>

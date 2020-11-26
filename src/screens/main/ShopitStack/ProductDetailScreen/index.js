@@ -22,6 +22,7 @@ import { addItem, setProductFavourite } from '../../../../redux'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import { capitalizeFirstLetter } from '../../../../res/helperFunctions'
+import { HOST } from '../../../../res/env'
 
 const CarouselProductCard = ({ imageURI }) => {
   return (
@@ -55,7 +56,7 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
   const [activeColor, setActiveColor] = useState(product.default_variant.option_values[0].presentation)
   const [activeSize, setActiveSize] = useState('')
   const [selectedVariant, setSelectedVariant] = useState({})
-  const [imageURI, setImageURI] = useState(`http://192.168.1.25:3000/${product.variants[0].images[0].styles[3].url}`)
+  const [imageURI, setImageURI] = useState(`${HOST}/${product.variants[0].images[0].styles[3].url}`)
 
   const [snackbarVisible, setSnackbarVisible] = useState(false)
 
@@ -66,7 +67,7 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
     setActiveSize('')
     setSelectedVariant({})
     setIsVariantSelected(true)
-    setImageURI(`http://192.168.1.25:3000/${product.variants[index].images[0].styles[3].url}`)
+    setImageURI(`${HOST}/${product.variants[index].images[0].styles[3].url}`)
   }
 
   const handleAddToBag = () => {

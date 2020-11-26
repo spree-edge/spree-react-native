@@ -25,7 +25,7 @@ const ResetPasswordScreen = ({ navigation }) => {
       <Text
         style={[ styles.label, globalStyles.mt16, globalStyles.mb32 ]}
       >
-        Hi John Doe. Create new password for your Shopit account.
+        Hi John Doe. Create new password for your Spree Shop account.
       </Text>
       <View style={globalStyles.containerFluid}>
         <Input

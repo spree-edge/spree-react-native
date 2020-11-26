@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { View, ScrollView, Text, StyleSheet, Animated } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { colors } from '../res/palette'
 import { globalStyles } from '../styles/global'
-import { Button, SearchBar } from 'react-native-elements'
-import { CheckR } from '../library/icons'
+import { Button } from 'react-native-elements'
 import BrandScreen from '../screens/main/ShopitStack/FiltersDrawer/BrandScreen'
 import PriceRange from '../screens/main/ShopitStack/FiltersDrawer/PriceRangeScreen'
 import SizeScreen from '../screens/main/ShopitStack/FiltersDrawer/SizeScreen'
-import { Slider, Icon } from 'react-native-elements';
 
 function Color({ navigation }) {
   return (

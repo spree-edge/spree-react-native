@@ -41,7 +41,7 @@ function RootStackNavigator({ authState, dispatch}) {
     bootstrapAsync();
   }, [])
 
-  if( authState.isLoading ) {    //Splash Screen can be shown
+  if( authState.isLoading ) {
     return (
       <ActivityIndicatorCard />
     )

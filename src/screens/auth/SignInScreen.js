@@ -61,7 +61,7 @@ const SignInScreen = ({ navigation, dispatch }) => {
           onPress={() => navigation.navigate('ForgotPassword')}
         />
         <Button
-          title="Login to Shopit"
+          title="Login to Spree Shop"
           buttonStyle={ styles.buttonBlockStyle }
           titleStyle={ globalStyles.latoBold16 }
           onPress={ handleLogin }

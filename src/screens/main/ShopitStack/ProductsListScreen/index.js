@@ -8,14 +8,15 @@ import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
 import { getProductsList, getProduct, resetProductsList } from '../../../../redux'
+import { HOST } from '../../../../res/env'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
-
+  
   return (
     <TouchableOpacity onPress={onPress} style={itemContainerStyle}>
       <Image
         source={{
-          uri: `http://192.168.1.25:3000/${item.images[0].styles[3].url}`
+          uri: `${HOST}/${item.images[0].styles[3].url}`
         }}
         style={{ width: imageStyle.width, height: imageStyle.height, resizeMode: 'cover' }}
       />
@@ -65,19 +66,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     setIsSortOverlayVisible(false)
   }
 
-  const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns)
-
-    let numberOfElementsLastRow = data.length - (numberOfFullRows - numColumns)
-
-    while(numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-      data.push({ key: `blank-${numberOfElementsLastRow}`, empty: true })
-      numberOfElementsLastRow = numberOfElementsLastRow + 1
-    }
-
-    return data
-  }
-
   const handleProductsLoad = () => {
     setPageIndex(pageIndex + 1)
 
@@ -93,9 +81,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
 
   React.useEffect(() => {
     handleProductsLoad()
-    // navigation.setOptions({ title: route.params.title || route.params.searchQuery })
     return () => {
-      console.log("State Cleared")
       dispatch(resetProductsList())
     }
   }, [route.params])
@@ -138,7 +124,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
       </View>
       <View style={[globalStyles.containerFluid, globalStyles.mt24]}>
         <FlatList
-          // data={formatData(productsList, numColumns)}
           data={productsList}
           keyExtractor={item => item.id}
           renderItem={newJustInRenderItem}

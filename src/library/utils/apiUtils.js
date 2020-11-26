@@ -1,9 +1,10 @@
 import axios from 'axios';
 import qs from 'qs';
 //import { API_ROOT } from '../../env';
+import { HOST } from '../../res/env'
 
 const API_VERSION_STOREFRONT = '/api/v2/storefront';
-const API_ROOT = 'http://192.168.1.18:3000';
+const API_ROOT = HOST;
 
 function handleAPI( path, params, method, data = null) {
   const headers = {
@@ -13,10 +14,8 @@ function handleAPI( path, params, method, data = null) {
     // 'Authorization': `Bearer ${auth_token}`,
     // 'Content-Length': data.length
   };
-  // debugger
   let url = API_ROOT + path;
   url = url +'?'+ qs.stringify(params, { arrayFormat: 'brackets' })
-  // debugger
 
   return axios({
     method,
