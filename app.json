@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Shopit",
-    "slug": "shopit-app-slug",
+    "name": "SpreeShop",
+    "slug": "spreeshop-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logoicon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash/logo.png",
       "resizeMode": "contain",
@@ -18,10 +18,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.bluebash.shopit"
+      "bundleIdentifier": "com.bluebash.spreeshop"
     },
     "android": {
-      "package": "com.bluebash.shopit",
+      "package": "com.bluebash.spreeshop",
       "versionCode": 1
     },
     "web": {

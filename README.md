@@ -86,11 +86,11 @@ sudo yarn android
 
 ## Contributing
 
-**Spree Shop - React Native** is an open source project and we encourage contributions.
+We are open to, and grateful for, any contributions made by the community.
 
 ```
 
 License
 ----
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](https://github.com/BlueBash/spree-react-native/raw/products-api/LICENSE)
