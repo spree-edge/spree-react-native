@@ -7,7 +7,7 @@ import { styles } from './styles'
 import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { getProductsList, getProduct, resetProductsList } from '../../../../redux'
+import { getProductsList, getProduct, resetProductsList, setPageIndex } from '../../../../redux'
 import { HOST } from '../../../../res/env'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
@@ -33,9 +33,9 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, meta }) => {
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, meta, pageIndex }) => {
 
-  const [pageIndex, setPageIndex] = React.useState(0)
+  // const [pageIndex, setPageIndex] = React.useState(0)
   const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
   const [numColumns, setNumColumns] = React.useState(2)
 
@@ -65,11 +65,19 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     productsList.sort((a, b) => a.price > b.price ? 1 : -1)
     setIsSortOverlayVisible(false)
   }
+  
+  const handleEndReached = () => {
+    // debugger
+    // console.log("End Reached")
+    dispatch(setPageIndex(pageIndex + 1))
+    handleProductsLoad()
+  }
 
   const handleProductsLoad = () => {
-    setPageIndex(pageIndex + 1)
+    // setPageIndex(pageIndex + 1)
 
     dispatch(getProductsList(null, {
+      // pageIndex: pageIndex + 1,
       pageIndex: pageIndex + 1,
       filter: {
         name: route.params?.searchQuery || '',
@@ -79,10 +87,20 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
     }))
   }
 
+  // React.useEffect(() => {
+  //   setPageIndex(0)
+  // }, [route.params?.filterParams])
+
   React.useEffect(() => {
+    dispatch(setPageIndex(1))
+
+    // if(route.params?.filterParams) {
+    //   dispatch(setPageIndex(1))
+    // }
     handleProductsLoad()
     return () => {
       dispatch(resetProductsList())
+      dispatch(setPageIndex(0))
     }
   }, [route.params])
 
@@ -130,7 +148,7 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
           numColumns={2}
           onEndReachedThreshold={0.3}
           onEndReached={() => {
-            meta.total_count !== productsList.length && handleProductsLoad()
+            meta.total_count !== productsList.length && handleEndReached()
           }}
           ListFooterComponent={() => meta.total_count !== productsList.length && <ActivityIndicator size="large" /> }
         />
@@ -154,6 +172,7 @@ const mapStateToProps = state => ({
   productsList: state.products.productsList,
   minimumPrice: state.products.params.priceRange.minimum,
   maximumPrice: state.products.params.priceRange.maximum,
+  pageIndex: state.products.pageIndex
 })
 
 export default connect(mapStateToProps)(ProductListScreen)

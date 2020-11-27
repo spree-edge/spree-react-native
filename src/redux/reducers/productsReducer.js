@@ -4,6 +4,7 @@ const dataFormatter = new Jsona();
 const DEFAULT_STATE = {
   saving: false,
   favourites: [],
+  pageIndex: 1,
   params: {
     priceRange: {
       minimum: 20,
@@ -218,6 +219,7 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return { ...state, ...changes };
 
     case 'GET_PRODUCTS_LIST_FULFILLED':
+      // debugger
       changes = {
         productsList: state.isViewing
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 
@@ -305,6 +307,15 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
         favourites: [
           ...new Set([...state.favourites, action.payload])
         ]
+      }
+
+    /**
+     * SET_PAGE_INDEX
+     */
+    case 'SET_PAGE_INDEX':
+      return {
+        ...state,
+        pageIndex: action.payload
       }
     
     /**

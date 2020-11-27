@@ -55,3 +55,8 @@ export const setProductFavourite = variant => ({
 export const resetProductsList = () => ({
   type: 'RESET_PRODUCTS_LIST'
 })
+
+export const setPageIndex = pageIndex => ({
+  type: 'SET_PAGE_INDEX',
+  payload: pageIndex
+})

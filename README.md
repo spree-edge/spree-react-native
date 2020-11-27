@@ -1,6 +1,6 @@
 <p align="center">
   <a>
-    <img width="100px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/icon.png">
+    <img width="100px" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/logo-mark.png">
   </a>
   <h1 align="center">Spree Shop - React Native</h1>  
 </p>
@@ -93,4 +93,4 @@ We are open to, and grateful for, any contributions made by the community.
 License
 ----
 
-[MIT](https://github.com/BlueBash/spree-react-native/raw/products-api/LICENSE)
+[MIT](https://github.com/BlueBash/spree-react-native/raw/products-api/LICENSE.md)
