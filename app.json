@@ -4,7 +4,7 @@
     "slug": "spreeshop-app-slug",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo-mark.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/images/splash/logo.png",
       "resizeMode": "contain",

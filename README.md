@@ -7,7 +7,9 @@
 
 **Spree On React Native** is an open-source cross-platform mobile app, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, for more info [Spree](https://github.com/spree/spree).
 
-![Spree - React Native](https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/Spree-React-Native-1.7x.gif)
+<div style="display: flex; justify-content: center">
+  <img src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/SpreeShop2x.gif" />
+</div>
 
 ### Tech
 
@@ -73,7 +75,7 @@ rails s
 rails s -b 0.0.0.0 (Enables server to accept requests from any network interface while enables no special hosting configuration for emulators)
 
 # Remote/ Local Host Setup
-Setup Remote/ Local Host (for example: http://192.168.1.25:3000) in `env.js`
+Setup Remote/ Local Host in `env.js`
 
 # Dependencies
 sudo yarn install
@@ -84,11 +86,11 @@ sudo yarn ios
 # Run Android
 sudo yarn android
 
+```
+
 ## Contributing
 
 We are open to, and grateful for, any contributions made by the community.
-
-```
 
 License
 ----
