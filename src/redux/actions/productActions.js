@@ -60,3 +60,7 @@ export const setPageIndex = pageIndex => ({
   type: 'SET_PAGE_INDEX',
   payload: pageIndex
 })
+
+export const resetProductsFilter = () => ({
+  type: 'RESET_PRODUCTS_FILTER'
+})

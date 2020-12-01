@@ -5,10 +5,16 @@ import FiltersDrawerNavigator from './FiltersDrawerNavigator'
 import { Button } from 'react-native-elements'
 import { globalStyles } from '../styles/global'
 import { connect } from 'react-redux'
+import { resetProductsFilter } from '../redux'
 
 const Tab = createBottomTabNavigator();
 
-function FiltersTabNavigator({ route, navigation, dispatch, params }) {
+function FiltersTabNavigator({ route, navigation, dispatch }) {
+
+  const handleFilterClose = () => {     //Unmount Screen & Reset Filter params
+    dispatch(resetProductsFilter())
+    navigation.navigate('ProductsList')
+  }
 
   return (
     <Tab.Navigator
@@ -18,7 +24,6 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
         tabStyle: {
           borderWidth: 2,
           borderColor: colors.success,
-
         },
         style: {
           borderTopWidth: 2,
@@ -41,7 +46,7 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
               marginTop: 5
             }]}
             titleStyle={{ color: colors.primary }}
-            onPress={() => navigation.navigate('ProductsList')}
+            onPress={handleFilterClose}
           />
         }}
       />
@@ -67,8 +72,4 @@ function FiltersTabNavigator({ route, navigation, dispatch, params }) {
   );
 }
 
-const mapStateToProps = state => ({
-  params: state.products.params
-})
-
-export default connect(mapStateToProps)(FiltersTabNavigator)
+export default connect()(FiltersTabNavigator)

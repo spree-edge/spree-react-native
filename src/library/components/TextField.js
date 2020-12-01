@@ -2,7 +2,6 @@ import * as React from "react"
 import { View, StyleSheet } from "react-native"
 import { globalStyles } from '../../styles/global'
 import { colors } from '../../res/palette'
-import { Eye } from '../icons'
 import { Input } from 'react-native-elements'
 
 const TextField = ({
@@ -32,7 +31,7 @@ const TextField = ({
         rightIcon={() => rightElement}
         onChangeText={onChangeText}
         value={value}
-        onEndEditing={() => console.log(value)}
+        // onEndEditing={() => console.log(value)}
       />
     </View>
   )

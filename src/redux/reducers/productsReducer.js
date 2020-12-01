@@ -319,6 +319,50 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       }
     
     /**
+     * RESET_PRODUCTS_FILTER
+     */
+    case 'RESET_PRODUCTS_FILTER':
+      return {
+        ...state,
+        params: {
+          priceRange: {
+            minimum: 20,
+            maximum: 100,
+          },
+          sizeFilterList: [
+            {
+              name: 'XS',
+              active: false,
+            },
+            {
+              name: 'S',
+              active: false,
+            },
+            {
+              name: 'M',
+              active: false,
+            },
+            {
+              name: 'L',
+              active: false,
+            },
+            {
+              name: 'XL',
+              active: false,
+            },
+            {
+              name: 'XXL',
+              active: false,
+            },
+            {
+              name: 'XXXL',
+              active: false,
+            }
+          ]
+        }
+      }
+
+    /**
      * Default State
      */
     default:

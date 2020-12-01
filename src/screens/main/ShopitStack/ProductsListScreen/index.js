@@ -7,7 +7,7 @@ import { styles } from './styles'
 import { connect } from 'react-redux'
 import { BottomSheet, ListItem } from 'react-native-elements'
 import ActivityIndicatorCard from '../../../../library/components/ActivityIndicatorCard'
-import { getProductsList, getProduct, resetProductsList, setPageIndex } from '../../../../redux'
+import { getProductsList, getProduct, resetProductsList, resetProductsFilter, setPageIndex } from '../../../../redux'
 import { HOST } from '../../../../res/env'
 
 const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) => {
@@ -33,11 +33,8 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   )
 }
 
-const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPrice, maximumPrice, meta, pageIndex }) => {
-
-  // const [pageIndex, setPageIndex] = React.useState(0)
-  const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false);
-  const [numColumns, setNumColumns] = React.useState(2)
+const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, minimumPriceRange, maximumPriceRange, meta, pageIndex }) => {
+  const [isSortOverlayVisible, setIsSortOverlayVisible] = React.useState(false)
 
   const productsSortList = [
     { 
@@ -67,42 +64,35 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   }
   
   const handleEndReached = () => {
+    const response = dispatch(setPageIndex(pageIndex + 1))
     // debugger
-    // console.log("End Reached")
-    dispatch(setPageIndex(pageIndex + 1))
-    handleProductsLoad()
+    handleProductsLoad(response.payload)
   }
 
-  const handleProductsLoad = () => {
-    // setPageIndex(pageIndex + 1)
-
+  const handleProductsLoad = (pageIndexAfterDispatch = null) => {
     dispatch(getProductsList(null, {
-      // pageIndex: pageIndex + 1,
-      pageIndex: pageIndex + 1,
+      pageIndex: pageIndexAfterDispatch || pageIndex,
       filter: {
         name: route.params?.searchQuery || '',
-        price: `${minimumPrice},${maximumPrice}`,
+        price: `${minimumPriceRange},${maximumPriceRange}`,
         taxons: route.params.id
       }
     }))
   }
 
-  // React.useEffect(() => {
-  //   setPageIndex(0)
-  // }, [route.params?.filterParams])
-
   React.useEffect(() => {
-    dispatch(setPageIndex(1))
-
-    // if(route.params?.filterParams) {
-    //   dispatch(setPageIndex(1))
-    // }
     handleProductsLoad()
     return () => {
       dispatch(resetProductsList())
-      dispatch(setPageIndex(0))
+      dispatch(setPageIndex(1))
     }
   }, [route.params])
+
+  React.useEffect(() => {         //Reset products filter only upon component unmount
+    return () => {
+      dispatch(resetProductsFilter())
+    }
+  }, [])
 
   const handleProductLoad = async (id) => {
     await dispatch(getProduct(id))
@@ -170,8 +160,8 @@ const mapStateToProps = state => ({
   meta: state.products.meta,
   saving: state.products.saving,
   productsList: state.products.productsList,
-  minimumPrice: state.products.params.priceRange.minimum,
-  maximumPrice: state.products.params.priceRange.maximum,
+  minimumPriceRange: state.products.params.priceRange.minimum,
+  maximumPriceRange: state.products.params.priceRange.maximum,
   pageIndex: state.products.pageIndex
 })
 
