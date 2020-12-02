@@ -72,7 +72,7 @@ Spree Shop uses a number of open source projects:
 # Server Setup
 rails s
 
-rails s -b 0.0.0.0 (Enables server to accept requests from any network interface while enables no special hosting configuration for emulators)
+rails s -b 0.0.0.0 (Enables server to accept requests from any network interface while enables no special network configuration for emulators)
 
 # Remote/ Local Host Setup
 Setup Remote/ Local Host in `env.js`
@@ -96,3 +96,7 @@ License
 ----
 
 [MIT](https://github.com/BlueBash/spree-react-native/raw/products-api/LICENSE.md)
+
+<p align="center">
+  Powered by [Bluebash](https://bluebash.co/)
+</p>

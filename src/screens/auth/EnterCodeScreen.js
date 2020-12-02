@@ -33,11 +33,11 @@ const EnterCodeScreen = ({ navigation }) => {
         </View>
       </View>
       <Button
-          title="Submit & Continue"
-          buttonStyle={styles.buttonBlockStyle}
-          titleStyle={globalStyles.latoBold16}
-          onPress={() => navigation.navigate('ResetPassword')}
-        />
+        title="Submit & Continue"
+        buttonStyle={styles.buttonBlockStyle}
+        titleStyle={globalStyles.latoBold16}
+        onPress={() => navigation.navigate('ResetPassword')}
+      />
     </View>
   )
 }
