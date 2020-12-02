@@ -86,6 +86,9 @@ sudo yarn ios
 # Run Android
 sudo yarn android
 
+# Login Credentials
+Username: anuj@bluebash.co
+Password: admin123
 ```
 
 ## Contributing
