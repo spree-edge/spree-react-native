@@ -7,9 +7,9 @@
 
 **Spree On React Native** is an open-source cross-platform mobile app, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, for more info [Spree](https://github.com/spree/spree).
 
-<div style="display: flex; justify-content: center">
-  <img src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/SpreeShop2x.gif" />
-</div>
+<p align="center">
+  <img width="300" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/SpreeShop2x.gif" alt="Screen Recording Spree Shop React Native" />
+</p>
 
 ### Tech
 
