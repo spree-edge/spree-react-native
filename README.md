@@ -98,5 +98,5 @@ License
 [MIT](https://github.com/BlueBash/spree-react-native/raw/products-api/LICENSE.md)
 
 <p align="center">
-  Powered by [Bluebash](https://bluebash.co/)
+  Powered by <a href="https://bluebash.co/">Bluebash</a>
 </p>
