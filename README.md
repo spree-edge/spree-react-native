@@ -5,7 +5,7 @@
   <h1 align="center">Spree Shop - React Native</h1>  
 </p>
 
-**Spree On React Native** is an open-source cross-platform mobile app, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, for more info [Spree](https://github.com/spree/spree).
+**Spree On React Native** is an open-source cross-platform mobile app, providing a modern front end built upon React Native that is more snappier than ever before in the e-commerce space, Its backed by spree storefront V2 API, for more info [Spree](https://github.com/spree/spree).
 
 <p align="center">
   <img width="300" src="https://github.com/BlueBash/spree-react-native/raw/products-api/assets/images/SpreeShop2x.gif" alt="Screen Recording Spree Shop React Native" />
@@ -68,6 +68,8 @@ Spree Shop uses a number of open source projects:
 
 ## Development
 
+## Here we are expecting you already have spree setup on your system.
+
 ```
 # Server Setup
 rails s
@@ -86,9 +88,6 @@ sudo yarn ios
 # Run Android
 sudo yarn android
 
-# Login Credentials
-Username: anuj@bluebash.co
-Password: admin123
 ```
 
 ## Contributing
