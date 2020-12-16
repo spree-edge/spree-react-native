@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
@@ -69,6 +69,10 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
     setIsVariantSelected(true)
     setImageURI(`${HOST}/${product.variants[index].images[0].styles[3].url}`)
   }
+
+  useEffect(() => {
+    console.log('Rendering ProductDetailScreen')
+  })
 
   const handleAddToBag = () => {
     dispatch(addItem(

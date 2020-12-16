@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MainTabNavigator from './MainTabNavigator'
+// import OrdersScreen from '../screens/main/MainDrawer/OrdersScreen'
+import OrdersStackNavigator from '../screens/main/MainDrawer/OrdersStack/OrdersStackNavigator'
 import CustomDrawerContent from '../library/components/CustomDrawerContent'
 import { colors } from '../res/palette'
-import { Browse } from '../library/icons'
+import { Browse, ShoppingBag } from '../library/icons'
 
 const Drawer = createDrawerNavigator()
 
@@ -22,9 +24,15 @@ export default function MainDrawerNavigator() {
         }}
       >
         <Drawer.Screen name="Shopit" component={MainTabNavigator} options={{
-          drawerLabel: 'Browse Catalogue',
-          drawerIcon: ({ focused, color, size }) => <Browse size={size} style={{color}} />
-        }} />
+            drawerLabel: 'Browse Catalogue',
+            drawerIcon: ({ focused, color, size }) => <Browse size={size} style={{color}} />
+          }}
+        />
+        <Drawer.Screen name="Orders" component={OrdersStackNavigator} options={{
+            drawerLabel: 'Orders',
+            drawerIcon: ({ focused, color, size }) => <ShoppingBag size={size} style={{color}} />
+          }}
+        />
       </Drawer.Navigator>
     </>
   );
