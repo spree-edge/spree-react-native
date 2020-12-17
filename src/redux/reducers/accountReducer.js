@@ -4,7 +4,40 @@ const dataFormatter = new Jsona();
 const DEFAULT_STATE = {
   saving: false,
   account: {},
-  orders: {}
+  orders: [
+    {
+      variants: [
+        {
+          images: [
+            {
+              styles: [
+                {
+                  url: ''
+                },
+                {
+                  url: ''
+                },
+                {
+                  url: ''
+                },
+                {
+                  url: ''
+                },
+              ]
+            }
+          ],
+          option_values: [
+            {
+              presentation: ''
+            },
+            {
+              presentation: ''
+            }
+          ]
+        }
+      ]
+    }
+  ]
 };
 
 let changes = null;
@@ -32,20 +65,36 @@ export default function accountReducer(state = DEFAULT_STATE, action) {
       return { ...state, ...changes };
 
     /**
-     * GET_ORDERS
+     * GET_COMPLETED_ORDERS
      */
-    case 'GET_ORDERS_PENDING':
+    case 'GET_COMPLETED_ORDERS_PENDING':
       return { ...state, saving: true };
 
-    case 'GET_ORDERS_REJECTED':
+    case 'GET_COMPLETED_ORDERS_REJECTED':
       changes = {
         saving: false
       };
       return { ...state, ...changes };
 
-    case 'GET_ORDERS_FULFILLED':
+    case 'GET_COMPLETED_ORDERS_FULFILLED':
       changes = {
         orders: dataFormatter.deserialize(response),
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'RESET_COMPLETED_ORDERS_PENDING':
+      return { ...state, saving: true };
+
+    case 'RESET_COMPLETED_ORDERS_REJECTED':
+      changes = {
+        saving: false
+      };
+      return { ...state, ...changes };
+
+    case 'RESET_COMPLETED_ORDERS_FULFILLED':
+      changes = {
+        orders: [],
         saving: false
       };
       return { ...state, ...changes };

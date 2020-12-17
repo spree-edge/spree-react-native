@@ -39,13 +39,6 @@ function CustomDrawerContent({ dispatch, ...props }) {
       <DrawerItemList {...props} />
       <Divider />
       <DrawerItem
-        label="Orders"
-        labelStyle={styles.menuTitle}
-        icon={({ color, size }) => <ShoppingBag size={size} style={{color, ...globalStyles.label}} />}
-        onPress={() => {}}
-      />
-      <Divider />
-      <DrawerItem
         label="Support & More"
         labelStyle={styles.menuTitle}
         icon={({ color, size }) => <Support size={size} style={{color, ...globalStyles.label}} />}

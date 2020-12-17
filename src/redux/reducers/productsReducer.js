@@ -219,7 +219,6 @@ export default function productsReducer(state = DEFAULT_STATE, action) {
       return { ...state, ...changes };
 
     case 'GET_PRODUCTS_LIST_FULFILLED':
-      // debugger
       changes = {
         productsList: state.isViewing
           ? [...state.productsList, ...dataFormatter.deserialize(response)] 

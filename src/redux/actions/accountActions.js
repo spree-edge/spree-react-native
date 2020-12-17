@@ -9,14 +9,18 @@ export function accountCreate(data, filters={}) {
   };
 }
 
-export function getOrders(filters={}) {
+export function getCompletedOrders() {
   const url = `/${API_VERSION_STOREFRONT}/account/orders`;
   const method = 'GET';
   const params = {
-    include: 'line_items'
+    include: 'variants.images,variants.option_values'
   }
   return {
-    type: 'GET_ORDERS',
+    type: 'GET_COMPLETED_ORDERS',
     payload: handleAPI(url, params, method)
   };
 }
+
+export const resetCompletedOrders = () => ({
+  type: 'RESET_COMPLETED_ORDERS'
+})

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
@@ -72,7 +72,6 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
 
   const handleAddToBag = () => {
     dispatch(addItem(
-      // auth.access_token,
       {
         variant_id: selectedVariant.id,
         quantity: 1,
