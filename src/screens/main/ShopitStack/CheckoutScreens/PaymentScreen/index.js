@@ -56,7 +56,6 @@ const PaymentScreen = ({ navigation, dispatch, saving, cart }) => {
     await dispatch(completeCheckout())
     await dispatch(createCart())
     toggleOverlay()
-    // dispatch(getDefaultCountry())
   }
 
   if(saving) {

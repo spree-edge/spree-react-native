@@ -65,7 +65,6 @@ const ProductListScreen = ({ navigation, route, dispatch, productsList, saving, 
   
   const handleEndReached = () => {
     const response = dispatch(setPageIndex(pageIndex + 1))
-    // debugger
     handleProductsLoad(response.payload)
   }
 

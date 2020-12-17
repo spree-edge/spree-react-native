@@ -1,6 +1,5 @@
 import axios from 'axios';
 import qs from 'qs';
-//import { API_ROOT } from '../../env';
 import { HOST } from '../../res/env'
 import AsyncStorage from '@react-native-community/async-storage'
 
@@ -14,7 +13,7 @@ async function getAuthToken() {
   return value;
 }
 
-async function handleAPI( path, params, method, data = null) {
+async function handleAPI(path, params, method, data = null) {
   const authToken = await getAuthToken()
   
   const headers = {
@@ -25,7 +24,6 @@ async function handleAPI( path, params, method, data = null) {
   let url = API_ROOT + path;
   url = url +'?'+ qs.stringify(params, { arrayFormat: 'brackets' })
 
-  // debugger
   return axios({
     method,
     url,

@@ -70,13 +70,8 @@ const ProductDetailScreen = ({ dispatch, product, auth, saving }) => {
     setImageURI(`${HOST}/${product.variants[index].images[0].styles[3].url}`)
   }
 
-  useEffect(() => {
-    console.log('Rendering ProductDetailScreen')
-  })
-
   const handleAddToBag = () => {
     dispatch(addItem(
-      // auth.access_token,
       {
         variant_id: selectedVariant.id,
         quantity: 1,
