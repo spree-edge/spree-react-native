@@ -5,7 +5,7 @@ import { colors } from '../../../../../res/palette'
 import { CheckR, CheckO } from '../../../../../library/icons'
 import TextField from '../../../../../library/components/TextField'
 import { Picker } from '@react-native-community/picker'
-import { getCountry, getDefaultCountry, updateCheckout, checkoutNext, getPaymentMethods } from '../../../../../redux/actions/checkoutActions'
+import { getCountry, updateCheckout, checkoutNext, getPaymentMethods } from '../../../../../redux/actions/checkoutActions'
 import { connect } from 'react-redux'
 import { styles } from './styles'
 import { checkoutStyles } from '../styles'
@@ -199,7 +199,6 @@ const ShippingAddressScreen = ({ navigation, dispatch, country, countriesList, s
           </View>
           
           <CheckoutDetailsCard title="Order Total" display_total={cart.display_item_total} />
-
         </ScrollView>
         
         <ActionButtonFooter

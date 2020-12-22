@@ -6,9 +6,9 @@ import { colors } from '../../../res/palette'
 import styles from './styles'
 import { HOST } from '../../../res/env'
 
-const ProductCard = ({ imageSource, name, description, cart, size, option_values,
-   discountedPrice, price, display_price, discountPercent, soldOut, counter, shoppingBag,
-   onRemoveLineItem, quantity, variant, onIncrementQuantity, onDecrementQuantity, orders }) => {
+const ProductCard = ({ imageSource, name, description, cart, option_values,
+  price, display_price, soldOut, counter, shoppingBag, onRemoveLineItem, quantity,
+  variant, onIncrementQuantity, onDecrementQuantity, orders }) => {
   return (
     <View style={styles.productCardWrapper}>
       <View style={[styles.productCardContainer,

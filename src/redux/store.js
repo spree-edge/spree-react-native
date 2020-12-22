@@ -10,7 +10,6 @@ const composeStoreWithMiddleware = applyMiddleware(
   logger
 )
 
-
 const store = createStore(rootReducer, composeStoreWithMiddleware)
 
 export default store

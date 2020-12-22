@@ -31,7 +31,7 @@ const TextField = ({
         rightIcon={() => rightElement}
         onChangeText={onChangeText}
         value={value}
-        // onEndEditing={() => console.log(value)}
+        // onEndEditing={() => console.log(value)}      
       />
     </View>
   )

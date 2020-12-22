@@ -6,7 +6,6 @@ import { Input, Button } from 'react-native-elements'
 import { styles } from './styles'
 
 const EnterCodeScreen = ({ navigation }) => {
-
   return (
     <View style={globalStyles.container}>
       <ChevronLeft size={24} style={styles.backButton} 

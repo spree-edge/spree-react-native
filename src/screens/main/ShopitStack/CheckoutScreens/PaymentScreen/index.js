@@ -10,7 +10,7 @@ import { styles } from './styles'
 import { checkoutStyles } from '../styles'
 import CheckoutDetailsCard from '../../../../../library/components/CheckoutDetailsCard'
 import ActionButtonFooter from '../../../../../library/components/ActionButtonFooter'
-import { updateCheckout, completeCheckout, createCart, getDefaultCountry } from '../../../../../redux'
+import { updateCheckout, completeCheckout, createCart } from '../../../../../redux'
 import ActivityIndicatorCard from '../../../../../library/components/ActivityIndicatorCard'
 import { connect } from 'react-redux'
 
