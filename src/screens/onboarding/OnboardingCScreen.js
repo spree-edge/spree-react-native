@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, ImageBackground, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { View, ImageBackground, Text, TouchableOpacity } from 'react-native'
 import { globalStyles } from '../../styles/global'
 import { ArrowLongRight } from '../../library/icons'
 import { styles } from './styles'

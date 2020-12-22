@@ -2,7 +2,7 @@ import * as React from 'react'
 import { View, ScrollView } from 'react-native'
 import ProductCard from '../../../library/components/ProductCard'
 import { globalStyles } from '../../../styles/global'
-import { useSelector, connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 const FavouritesScreen = ({ navigation, favourites }) => {
 

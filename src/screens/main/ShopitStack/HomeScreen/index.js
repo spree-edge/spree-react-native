@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, ScrollView, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, ScrollView, Text, FlatList, TouchableOpacity } from 'react-native'
 import { SearchBar, Image } from 'react-native-elements'
 import { globalStyles } from '../../../../styles/global'
 import { colors } from '../../../../res/palette'
@@ -20,7 +20,7 @@ const FlatListImageItem = ({ item, onPress, imageStyle, itemContainerStyle }) =>
   </TouchableOpacity>
 );
 
-const HomeScreen = ({ navigation, dispatch }) => {
+const HomeScreen = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = React.useState('')
 
   const newJustInRenderItem = ({ item }) => {

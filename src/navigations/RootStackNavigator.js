@@ -28,7 +28,7 @@ const MyTheme = {
 
 const RootStack = createStackNavigator()
 
-function RootStackNavigator({ authState, dispatch}) {
+function RootStackNavigator({authState, dispatch}) {
 
   React.useEffect(() => {
     const bootstrapAsync = async() => {

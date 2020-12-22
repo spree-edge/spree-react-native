@@ -9,10 +9,8 @@ import { styles } from './styles'
 import { userLogin } from '../../redux'
 import TextField from '../../library/components/TextField'
 
-
 const SignInScreen = ({ navigation, dispatch }) => {
   const [secureTextEntryToggle, setSecureTextEntryToggle] = useState(true)
-  const [inputEmailBorder, setInputEmailBorder] = useState(false)
   const [inputPasswordBorder, setInputPasswordBorder] = useState(false)
 
   const [email, setEmail] = useState('')
@@ -25,7 +23,6 @@ const SignInScreen = ({ navigation, dispatch }) => {
       grant_type: "password"
     }))
   }
-
 
   return (
     <View style={globalStyles.container}>

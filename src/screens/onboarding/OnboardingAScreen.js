@@ -4,7 +4,6 @@ import { globalStyles } from '../../styles/global'
 import { ArrowLongRight } from '../../library/icons'
 import { styles } from './styles'
 import { Button } from 'react-native-elements'
-import { colors } from '../../res/palette'
 
 const OnboardingAScreen = ({ navigation }) => {
   return (
